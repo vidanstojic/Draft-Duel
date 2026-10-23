@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Cards -->
+    <string name="avatar_description">Player avatar, number %1$d</string>
+    <string name="card_paid">paid</string>
+    <string name="rating_hidden">Rating hidden</string>
+    <string name="rating_short">RTG</string>
+
+    <!-- Bidding -->
+    <string name="bid_over_budget">over budget</string>
+    <string name="bid_raise_description">Raise by %1$d to %2$d</string>
+    <string name="bid_to_price">→ %1$d</string>
+</resources>
