@@ -10,4 +10,22 @@
     <string name="bid_over_budget">over budget</string>
     <string name="bid_raise_description">Raise by %1$d to %2$d</string>
     <string name="bid_to_price">→ %1$d</string>
+    <!-- Common -->
+    <string name="app_name">Draft Duel</string>
+    <string name="settings">Settings</string>
+    <string name="back">Back</string>
+    <string name="menu">Menu</string>
+    <string name="got_it">Got it</string>
+
+    <!-- Home -->
+    <string name="home_tagline">10 cards. 20 points.</string>
+    <string name="home_tagline_accent">Outbid your rival.</string>
+    <string name="mode_find_title">Find opponent</string>
+    <string name="mode_find_subtitle">Quick 1v1 match</string>
+    <string name="mode_local_title">Same device</string>
+    <string name="mode_local_subtitle">Two players, one phone</string>
+    <string name="mode_friend_title">Play a friend</string>
+    <string name="mode_friend_subtitle">Send a link or enter a code</string>
+    <string name="how_to_play">How to play</string>
+    <string name="how_to_play_rules">You both start with 20 points. 10 cards go up for auction, one at a time.\n\nThe opener must bid. Then raise by 1, 2 or 5, or pass and the other player takes the card at their last bid.\n\nRatings stay hidden. You see yours when you win a card and your rival's at the end.\n\nThe higher total rating wins.</string>
 </resources>
