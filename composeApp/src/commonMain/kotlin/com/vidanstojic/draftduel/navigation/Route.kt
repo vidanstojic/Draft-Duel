@@ -16,4 +16,7 @@ sealed interface Route {
 
     @Serializable
     data object FindOpponent : Route
+
+    @Serializable
+    data object InviteFriend : Route
 }

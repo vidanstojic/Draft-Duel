@@ -10,6 +10,7 @@ import androidx.navigation.toRoute
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.ui.screens.category.CategoryRoute
 import com.vidanstojic.draftduel.ui.screens.home.HomeRoute
+import com.vidanstojic.draftduel.ui.screens.invite.InviteRoute
 import com.vidanstojic.draftduel.ui.screens.matchmaking.FindOpponentRoute
 
 @Composable
@@ -39,12 +40,18 @@ fun DraftDuelNavHost(
                 onMatchReady = { },
             )
         }
+        composable<Route.InviteFriend> {
+            InviteRoute(
+                onBack = { navController.popBackStack() },
+                onMatchReady = { },
+            )
+        }
     }
 }
 
 /** Where the category screen leads for each mode. */
 private fun destinationAfterSetup(mode: GameMode): Route = when (mode) {
     GameMode.QUICK_MATCH -> Route.FindOpponent
-    GameMode.FRIEND -> Route.Home
+    GameMode.FRIEND -> Route.InviteFriend
     GameMode.SAME_DEVICE -> Route.Home
 }

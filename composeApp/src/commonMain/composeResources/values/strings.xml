@@ -60,4 +60,17 @@
     <string name="find_found">Opponent found</string>
     <string name="find_starting">Starting in %1$d…</string>
     <string name="find_rules_summary">10 cards · 20 pts each\n10 s per turn</string>
+    <!-- Invite -->
+    <string name="invite_title">Invite a friend</string>
+    <string name="invite_waiting">Waiting for your friend…</string>
+    <string name="invite_code_label">Match code</string>
+    <string name="invite_copy">Copy link</string>
+    <string name="invite_copied">Copied</string>
+    <string name="invite_share">Share</string>
+    <string name="invite_share_message">Join me in Draft Duel: %1$s</string>
+    <string name="invite_expires">Link expires in %1$s</string>
+    <string name="invite_have_code">Have a code?</string>
+    <string name="invite_join">Join</string>
+    <string name="invite_play_bot">Play the bot instead</string>
+    <string name="invite_bot_in">No friend yet? Bot match in %1$s</string>
 </resources>
