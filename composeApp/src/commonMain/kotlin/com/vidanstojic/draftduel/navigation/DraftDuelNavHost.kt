@@ -11,6 +11,8 @@ import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.ui.screens.category.CategoryRoute
 import com.vidanstojic.draftduel.ui.screens.home.HomeRoute
 import com.vidanstojic.draftduel.ui.screens.invite.InviteRoute
+import com.vidanstojic.draftduel.ui.screens.local.LocalMatchRoute
+import com.vidanstojic.draftduel.ui.screens.local.LocalSetupRoute
 import com.vidanstojic.draftduel.ui.screens.match.MatchRoute
 import com.vidanstojic.draftduel.ui.screens.result.ResultRoute
 import com.vidanstojic.draftduel.ui.screens.matchmaking.FindOpponentRoute
@@ -57,7 +59,21 @@ fun DraftDuelNavHost(
         composable<Route.Result> {
             ResultRoute(
                 onClose = { navController.backToHome() },
-                onRematch = { navController.startMatch() },
+                onRematch = { mode ->
+                    if (mode == GameMode.SAME_DEVICE) navController.startLocalMatch() else navController.startMatch()
+                },
+            )
+        }
+        composable<Route.LocalSetup> {
+            LocalSetupRoute(
+                onBack = { navController.popBackStack() },
+                onStart = { navController.startLocalMatch() },
+            )
+        }
+        composable<Route.LocalMatch> {
+            LocalMatchRoute(
+                onFinished = { navController.showResult() },
+                onLeave = { navController.backToHome() },
             )
         }
     }
@@ -67,12 +83,18 @@ fun DraftDuelNavHost(
 private fun destinationAfterSetup(mode: GameMode): Route = when (mode) {
     GameMode.QUICK_MATCH -> Route.FindOpponent
     GameMode.FRIEND -> Route.InviteFriend
-    GameMode.SAME_DEVICE -> Route.Home
+    GameMode.SAME_DEVICE -> Route.LocalSetup
 }
 
 /** Opens the match and drops the waiting screen, so Back from the match does not return to it. */
 private fun NavHostController.startMatch() {
     navigate(Route.Match) {
+        popUpTo<Route.Home>()
+    }
+}
+
+private fun NavHostController.startLocalMatch() {
+    navigate(Route.LocalMatch) {
         popUpTo<Route.Home>()
     }
 }

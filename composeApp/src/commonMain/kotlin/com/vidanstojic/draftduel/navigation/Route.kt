@@ -25,4 +25,10 @@ sealed interface Route {
 
     @Serializable
     data object Result : Route
+
+    @Serializable
+    data object LocalSetup : Route
+
+    @Serializable
+    data object LocalMatch : Route
 }

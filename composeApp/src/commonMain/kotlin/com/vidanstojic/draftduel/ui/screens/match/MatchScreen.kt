@@ -90,21 +90,34 @@ fun MatchScreen(
     }
 
     if (confirmLeave) {
-        AlertDialog(
-            onDismissRequest = { confirmLeave = false },
-            title = { Text(stringResource(Res.string.match_leave_title)) },
-            text = { Text(stringResource(Res.string.match_leave_text, state.opponent.name)) },
-            confirmButton = {
-                TextButton(onClick = {
-                    confirmLeave = false
-                    onLeave()
-                }) { Text(stringResource(Res.string.match_leave_confirm)) }
+        LeaveMatchDialog(
+            text = stringResource(Res.string.match_leave_text, state.opponent.name),
+            onConfirm = {
+                confirmLeave = false
+                onLeave()
             },
-            dismissButton = {
-                TextButton(onClick = { confirmLeave = false }) { Text(stringResource(Res.string.match_leave_cancel)) }
-            },
+            onDismiss = { confirmLeave = false },
         )
     }
+}
+
+@Composable
+internal fun LeaveMatchDialog(
+    text: String,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(Res.string.match_leave_title)) },
+        text = { Text(text) },
+        confirmButton = {
+            TextButton(onClick = onConfirm) { Text(stringResource(Res.string.match_leave_confirm)) }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text(stringResource(Res.string.match_leave_cancel)) }
+        },
+    )
 }
 
 /** Preview state: card 6 of 10, the opponent leads at 6 and the viewer is to act. */

@@ -124,4 +124,25 @@
     <string name="result_rematch">Rematch</string>
     <string name="result_share_message">Draft Duel: %1$d to %2$d. Best buy: %3$s. Can you beat it?</string>
     <string name="result_empty">No finished match yet.</string>
+    <!-- Same device -->
+    <string name="local_players_label">Players</string>
+    <string name="local_player_one">Player 1 (bottom)</string>
+    <string name="local_player_two">Player 2 (top)</string>
+    <string name="local_player_one_default">Luka</string>
+    <string name="local_player_two_default">Ana</string>
+    <string name="local_layout_label">How you play</string>
+    <string name="local_split_title">Split screen</string>
+    <string name="local_split_subtitle">Phone lies flat between you. Each side has its own buttons.</string>
+    <string name="local_pass_title">Pass the phone</string>
+    <string name="local_pass_subtitle">One view at a time. Hand the phone over after each move.</string>
+    <string name="local_ratings_note">With a split screen both of you see the same table, so all ratings stay hidden until the end.</string>
+    <string name="local_start">Start match</string>
+    <string name="local_ratings_at_end">ratings at the end</string>
+    <string name="local_leave_text">Leaving ends the match for both players.</string>
+    <string name="handoff_paused">Paused</string>
+    <string name="handoff_title">Pass the phone to</string>
+    <string name="handoff_leads_at">%1$s leads at %2$d</string>
+    <string name="handoff_new_card">New card on the table</string>
+    <string name="handoff_ready">I am %1$s, show my turn</string>
+    <string name="handoff_hidden_note">Cards and budgets stay hidden until the next player taps.</string>
 </resources>
