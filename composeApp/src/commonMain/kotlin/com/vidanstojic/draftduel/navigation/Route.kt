@@ -19,4 +19,7 @@ sealed interface Route {
 
     @Serializable
     data object InviteFriend : Route
+
+    @Serializable
+    data object Match : Route
 }

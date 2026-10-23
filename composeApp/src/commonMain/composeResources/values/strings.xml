@@ -73,4 +73,41 @@
     <string name="invite_join">Join</string>
     <string name="invite_play_bot">Play the bot instead</string>
     <string name="invite_bot_in">No friend yet? Bot match in %1$s</string>
+    <!-- Match -->
+    <plurals name="cards_count">
+        <item quantity="one">%1$d card</item>
+        <item quantity="other">%1$d cards</item>
+    </plurals>
+    <string name="match_card_label">Card</string>
+    <string name="match_card_of">%1$s of %2$d</string>
+    <string name="match_cards_left">×%1$d left</string>
+    <string name="match_points_left">%1$d pts left</string>
+    <string name="match_total">Σ %1$d</string>
+    <string name="match_price">Price</string>
+    <string name="match_seconds">%1$ds</string>
+    <string name="match_shot_clock">Shot clock</string>
+    <string name="match_your_turn">Your turn</string>
+    <string name="match_thinking">%1$s is thinking…</string>
+    <string name="match_leads">%1$s leads</string>
+    <string name="match_you_lead">You lead</string>
+    <string name="match_opens">%1$s opens</string>
+    <string name="match_you_open">You open</string>
+    <string name="match_can_bid_up_to">%1$s can bid up to %2$d</string>
+    <string name="match_pass_to">Pass · %1$s takes it for %2$d</string>
+    <string name="match_opener_must_bid">The opener must bid</string>
+    <string name="match_waiting_for">Waiting for %1$s</string>
+    <string name="match_free_card">Free card</string>
+    <string name="match_choose_explain">%1$s has 0 points. Who takes this card for free?</string>
+    <string name="match_take_it">Take it</string>
+    <string name="match_give_to">Give to %1$s</string>
+    <string name="match_choosing">%1$s is choosing…</string>
+    <string name="match_yours_for">Yours for %1$d</string>
+    <string name="match_rating_gain">+%1$d</string>
+    <string name="match_takes_it">%1$s takes it for %2$d</string>
+    <string name="match_rating_later">You will see its rating at the end</string>
+    <string name="match_next_card">Next card coming up</string>
+    <string name="match_leave_title">Leave the match?</string>
+    <string name="match_leave_text">Leaving counts as resigning, so %1$s wins this one.</string>
+    <string name="match_leave_confirm">Resign</string>
+    <string name="match_leave_cancel">Keep playing</string>
 </resources>

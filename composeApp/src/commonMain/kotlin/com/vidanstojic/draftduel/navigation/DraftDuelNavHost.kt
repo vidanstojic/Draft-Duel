@@ -11,6 +11,7 @@ import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.ui.screens.category.CategoryRoute
 import com.vidanstojic.draftduel.ui.screens.home.HomeRoute
 import com.vidanstojic.draftduel.ui.screens.invite.InviteRoute
+import com.vidanstojic.draftduel.ui.screens.match.MatchRoute
 import com.vidanstojic.draftduel.ui.screens.matchmaking.FindOpponentRoute
 
 @Composable
@@ -37,13 +38,19 @@ fun DraftDuelNavHost(
         composable<Route.FindOpponent> {
             FindOpponentRoute(
                 onCancel = { navController.popBackStack() },
-                onMatchReady = { },
+                onMatchReady = { navController.startMatch() },
             )
         }
         composable<Route.InviteFriend> {
             InviteRoute(
                 onBack = { navController.popBackStack() },
-                onMatchReady = { },
+                onMatchReady = { navController.startMatch() },
+            )
+        }
+        composable<Route.Match> {
+            MatchRoute(
+                onFinished = { navController.backToHome() },
+                onLeave = { navController.backToHome() },
             )
         }
     }
@@ -54,4 +61,15 @@ private fun destinationAfterSetup(mode: GameMode): Route = when (mode) {
     GameMode.QUICK_MATCH -> Route.FindOpponent
     GameMode.FRIEND -> Route.InviteFriend
     GameMode.SAME_DEVICE -> Route.Home
+}
+
+/** Opens the match and drops the waiting screen, so Back from the match does not return to it. */
+private fun NavHostController.startMatch() {
+    navigate(Route.Match) {
+        popUpTo<Route.Home>()
+    }
+}
+
+private fun NavHostController.backToHome() {
+    popBackStack<Route.Home>(inclusive = false)
 }
