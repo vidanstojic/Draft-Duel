@@ -10,4 +10,7 @@ sealed interface Route {
 
     @Serializable
     data object Home : Route
+
+    @Serializable
+    data class ChooseCategory(val mode: String) : Route
 }

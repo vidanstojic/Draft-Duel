@@ -6,6 +6,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import com.vidanstojic.draftduel.domain.model.GameMode
+import com.vidanstojic.draftduel.ui.screens.category.CategoryRoute
 import com.vidanstojic.draftduel.ui.screens.home.HomeRoute
 
 @Composable
@@ -19,7 +22,15 @@ fun DraftDuelNavHost(
         modifier = modifier,
     ) {
         composable<Route.Home> {
-            HomeRoute(onModeSelected = {})
+            HomeRoute(onModeSelected = { mode -> navController.navigate(Route.ChooseCategory(mode.name)) })
+        }
+        composable<Route.ChooseCategory> { entry ->
+            val route = entry.toRoute<Route.ChooseCategory>()
+            CategoryRoute(
+                mode = GameMode.valueOf(route.mode),
+                onBack = { navController.popBackStack() },
+                onContinue = { },
+            )
         }
     }
 }
