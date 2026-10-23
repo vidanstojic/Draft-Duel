@@ -51,15 +51,13 @@ import com.vidanstojic.draftduel.resources.mode_find_title
 import com.vidanstojic.draftduel.resources.source_category
 import com.vidanstojic.draftduel.resources.source_custom
 import com.vidanstojic.draftduel.resources.source_random
-import com.vidanstojic.draftduel.resources.sport_basketball
-import com.vidanstojic.draftduel.resources.sport_football
-import com.vidanstojic.draftduel.resources.sport_tennis
 import com.vidanstojic.draftduel.ui.components.DdIconButton
 import com.vidanstojic.draftduel.ui.components.DdPrimaryButton
 import com.vidanstojic.draftduel.ui.components.DdScreen
 import com.vidanstojic.draftduel.ui.components.DdTopBar
 import com.vidanstojic.draftduel.ui.components.SectionLabel
 import com.vidanstojic.draftduel.ui.components.TopBarTitle
+import com.vidanstojic.draftduel.ui.components.label
 import com.vidanstojic.draftduel.ui.surface.SurfacePreview
 import com.vidanstojic.draftduel.ui.surface.SurfaceStyle
 import com.vidanstojic.draftduel.ui.surface.surfaceStyle
@@ -168,12 +166,6 @@ private fun ctaFor(mode: GameMode): StringResource = when (mode) {
     GameMode.QUICK_MATCH -> Res.string.mode_find_title
     GameMode.FRIEND -> Res.string.cta_create_invite
     GameMode.SAME_DEVICE -> Res.string.cta_continue
-}
-
-private fun Sport.label(): StringResource = when (this) {
-    Sport.FOOTBALL -> Res.string.sport_football
-    Sport.BASKETBALL -> Res.string.sport_basketball
-    Sport.TENNIS -> Res.string.sport_tennis
 }
 
 @Composable

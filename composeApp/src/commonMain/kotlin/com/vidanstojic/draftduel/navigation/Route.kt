@@ -13,4 +13,7 @@ sealed interface Route {
 
     @Serializable
     data class ChooseCategory(val mode: String) : Route
+
+    @Serializable
+    data object FindOpponent : Route
 }

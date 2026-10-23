@@ -48,4 +48,16 @@
     <string name="source_custom">Custom</string>
     <string name="cta_continue">Continue</string>
     <string name="cta_create_invite">Create invite</string>
+    <!-- Players -->
+    <string name="you">You</string>
+    <string name="versus">VS</string>
+    <string name="cancel">Cancel</string>
+    <string name="profile_meta">%1$s · %2$d wins</string>
+
+    <!-- Find opponent -->
+    <string name="find_title">Quick match</string>
+    <string name="find_searching">Finding opponent</string>
+    <string name="find_found">Opponent found</string>
+    <string name="find_starting">Starting in %1$d…</string>
+    <string name="find_rules_summary">10 cards · 20 pts each\n10 s per turn</string>
 </resources>
