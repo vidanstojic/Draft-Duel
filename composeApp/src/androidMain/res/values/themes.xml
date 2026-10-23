@@ -1,0 +1,6 @@
+<resources>
+    <!-- Only the window behind Compose; all in-app styling lives in commonMain (DraftDuelTheme). -->
+    <style name="Theme.DraftDuel" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/window_background</item>
+    </style>
+</resources>

@@ -1,0 +1,35 @@
+# Build output
+build/
+.gradle/
+.kotlin/
+*.apk
+*.aab
+*.class
+
+# Local settings (SDK path, keys)
+local.properties
+
+# IDE
+.idea/
+*.iml
+.navigation/
+captures/
+.cxx/
+.externalNativeBuild/
+
+# Signing
+*.jks
+*.keystore
+keystore.properties
+
+# iOS / Xcode
+iosApp/iosApp.xcodeproj/
+iosApp/*.xcworkspace/
+iosApp/Pods/
+xcuserdata/
+DerivedData/
+*.xcuserstate
+
+# OS
+.DS_Store
+Thumbs.db
