@@ -110,4 +110,18 @@
     <string name="match_leave_text">Leaving counts as resigning, so %1$s wins this one.</string>
     <string name="match_leave_confirm">Resign</string>
     <string name="match_leave_cancel">Keep playing</string>
+    <!-- Result -->
+    <string name="close">Close</string>
+    <string name="result_title">Final reveal</string>
+    <string name="result_cards">%1$d cards revealed</string>
+    <string name="result_paid">paid %1$d / 20</string>
+    <string name="result_draw">Draw</string>
+    <string name="result_you_win_by">You win by %1$d</string>
+    <string name="result_you_lose_by">You lose by %1$d</string>
+    <string name="result_wins_by">%1$s wins by %2$d</string>
+    <string name="result_best_buy">Best buy: %1$s, %2$d for %3$d</string>
+    <string name="result_share">Share result</string>
+    <string name="result_rematch">Rematch</string>
+    <string name="result_share_message">Draft Duel: %1$d to %2$d. Best buy: %3$s. Can you beat it?</string>
+    <string name="result_empty">No finished match yet.</string>
 </resources>

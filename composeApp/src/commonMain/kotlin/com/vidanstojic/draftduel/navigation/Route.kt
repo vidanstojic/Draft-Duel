@@ -22,4 +22,7 @@ sealed interface Route {
 
     @Serializable
     data object Match : Route
+
+    @Serializable
+    data object Result : Route
 }

@@ -12,6 +12,7 @@ import com.vidanstojic.draftduel.ui.screens.category.CategoryRoute
 import com.vidanstojic.draftduel.ui.screens.home.HomeRoute
 import com.vidanstojic.draftduel.ui.screens.invite.InviteRoute
 import com.vidanstojic.draftduel.ui.screens.match.MatchRoute
+import com.vidanstojic.draftduel.ui.screens.result.ResultRoute
 import com.vidanstojic.draftduel.ui.screens.matchmaking.FindOpponentRoute
 
 @Composable
@@ -49,8 +50,14 @@ fun DraftDuelNavHost(
         }
         composable<Route.Match> {
             MatchRoute(
-                onFinished = { navController.backToHome() },
+                onFinished = { navController.showResult() },
                 onLeave = { navController.backToHome() },
+            )
+        }
+        composable<Route.Result> {
+            ResultRoute(
+                onClose = { navController.backToHome() },
+                onRematch = { navController.startMatch() },
             )
         }
     }
@@ -66,6 +73,12 @@ private fun destinationAfterSetup(mode: GameMode): Route = when (mode) {
 /** Opens the match and drops the waiting screen, so Back from the match does not return to it. */
 private fun NavHostController.startMatch() {
     navigate(Route.Match) {
+        popUpTo<Route.Home>()
+    }
+}
+
+private fun NavHostController.showResult() {
+    navigate(Route.Result) {
         popUpTo<Route.Home>()
     }
 }
