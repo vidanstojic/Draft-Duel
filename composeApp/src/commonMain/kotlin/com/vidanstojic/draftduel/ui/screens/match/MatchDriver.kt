@@ -1,6 +1,6 @@
 package com.vidanstojic.draftduel.ui.screens.match
 
-import com.vidanstojic.draftduel.domain.match.BotStrategy
+import com.vidanstojic.draftduel.domain.bot.MatchBot
 import com.vidanstojic.draftduel.domain.match.GameRules
 import com.vidanstojic.draftduel.domain.match.MatchAction
 import com.vidanstojic.draftduel.domain.match.MatchEngine
@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 class MatchDriver(
     private val scope: CoroutineScope,
     initial: MatchState,
-    private val bot: BotStrategy? = null,
+    private val bot: MatchBot? = null,
     private val botSeat: Seat? = null,
     private val onFinished: (MatchState) -> Unit,
 ) {

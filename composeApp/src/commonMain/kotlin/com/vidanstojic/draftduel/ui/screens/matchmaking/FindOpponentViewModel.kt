@@ -3,6 +3,7 @@ package com.vidanstojic.draftduel.ui.screens.matchmaking
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vidanstojic.draftduel.domain.bot.BotPersonality
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.MatchSetup
 import com.vidanstojic.draftduel.domain.model.PlayerProfile
@@ -56,7 +57,7 @@ class FindOpponentViewModel(
             _state.update { it.copy(elapsedSeconds = it.elapsedSeconds + 1) }
         }
         val opponent = profileRepository.quickMatchOpponent()
-        sessionRepository.setup = setup.copy(opponent = opponent)
+        sessionRepository.setup = setup.copy(opponent = opponent, bot = BotPersonality.randomForQuickMatch())
         _state.update { it.copy(opponent = opponent) }
         for (seconds in COUNTDOWN_SECONDS downTo 1) {
             _state.update { it.copy(startsIn = seconds) }

@@ -3,6 +3,7 @@ package com.vidanstojic.draftduel.ui.screens.invite
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vidanstojic.draftduel.domain.bot.BotPersonality
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.MatchSetup
 import com.vidanstojic.draftduel.domain.model.PlayerProfile
@@ -93,6 +94,7 @@ class InviteViewModel(
         sessionRepository.setup = setup.copy(
             mode = GameMode.QUICK_MATCH,
             opponent = profileRepository.quickMatchOpponent(),
+            bot = BotPersonality.randomForQuickMatch(),
         )
     }
 

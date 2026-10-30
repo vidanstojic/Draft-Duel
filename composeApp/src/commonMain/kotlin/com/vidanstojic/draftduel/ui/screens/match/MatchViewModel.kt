@@ -2,7 +2,9 @@ package com.vidanstojic.draftduel.ui.screens.match
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vidanstojic.draftduel.domain.match.BotStrategy
+import com.vidanstojic.draftduel.domain.bot.BotFactory
+import com.vidanstojic.draftduel.domain.bot.BotPersonality
+import com.vidanstojic.draftduel.domain.bot.PoolStats
 import com.vidanstojic.draftduel.domain.match.MatchAction
 import com.vidanstojic.draftduel.domain.match.MatchEngine
 import com.vidanstojic.draftduel.domain.match.Seat
@@ -39,6 +41,9 @@ class MatchViewModel(
     private val sport = if (packRepository.pack(setup.sport) != null) setup.sport else Sport.FOOTBALL
     private val pack = requireNotNull(packRepository.pack(sport)) { "No pack for $sport" }
 
+    /** Hidden in quick matches, chosen by the player in "Play vs bot". Kept for the rematch. */
+    private val botPersonality: BotPersonality = setup.bot ?: BotPersonality.randomForQuickMatch(random)
+
     private val driver = MatchDriver(
         scope = viewModelScope,
         initial = MatchEngine.start(
@@ -48,7 +53,11 @@ class MatchViewModel(
             nameB = opponent.nickname,
             firstOpener = if (random.nextBoolean()) Seat.A else Seat.B,
         ),
-        bot = BotStrategy(averageRating = pack.averageRating, random = random),
+        bot = BotFactory.create(
+            personality = botPersonality,
+            stats = PoolStats(pack.candidatesFor(setup.poolSource).map { it.rating }),
+            random = random,
+        ),
         botSeat = Seat.B,
         onFinished = { finishedMatch ->
             sessionRepository.lastFinishedMatch = finishedMatch
