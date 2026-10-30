@@ -26,6 +26,8 @@
     <string name="mode_local_subtitle">Two players, one phone</string>
     <string name="mode_friend_title">Play a friend</string>
     <string name="mode_friend_subtitle">Send a link or enter a code</string>
+    <string name="mode_bot_title">Play vs bot</string>
+    <string name="mode_bot_subtitle">Pick a rival. Works offline</string>
     <string name="how_to_play">How to play</string>
     <string name="how_to_play_rules">You both start with 20 points. 10 cards go up for auction, one at a time.\n\nThe opener must bid. Then raise by 1, 2 or 5, or pass and the other player takes the card at their last bid.\n\nRatings stay hidden. You see yours when you win a card and your rival's at the end.\n\nThe higher total rating wins.</string>
     <!-- Sports -->
@@ -48,6 +50,7 @@
     <string name="source_custom">Custom</string>
     <string name="cta_continue">Continue</string>
     <string name="cta_create_invite">Create invite</string>
+    <string name="cta_choose_bot">Choose a bot</string>
     <!-- Players -->
     <string name="you">You</string>
     <string name="versus">VS</string>
@@ -60,6 +63,20 @@
     <string name="find_found">Opponent found</string>
     <string name="find_starting">Starting in %1$d…</string>
     <string name="find_rules_summary">10 cards · 20 pts each\n10 s per turn</string>
+    <!-- Play vs bot -->
+    <string name="bot_select_title">Choose a bot</string>
+    <string name="bot_opponents">Opponents</string>
+    <string name="bot_start">Play %1$s</string>
+    <string name="bot_offline_note">Bot matches run on your phone and work without internet.</string>
+    <string name="bot_difficulty_easy">Easy</string>
+    <string name="bot_difficulty_medium">Medium</string>
+    <string name="bot_difficulty_hard">Hard</string>
+    <string name="bot_tagline_star_chaser">Goes all in on big names, lowballs the rest.</string>
+    <string name="bot_tagline_casual_fan">Bids on gut feeling and loves strikers.</string>
+    <string name="bot_tagline_bargain_hunter">Never overpays. Waits for steals.</string>
+    <string name="bot_tagline_steady">Plays it by the book, card after card.</string>
+    <string name="bot_tagline_hustler">Pushes prices up just to drain you.</string>
+    <string name="bot_tagline_scout">Knows every rating and plans ahead.</string>
     <!-- Invite -->
     <string name="invite_title">Invite a friend</string>
     <string name="invite_waiting">Waiting for your friend…</string>

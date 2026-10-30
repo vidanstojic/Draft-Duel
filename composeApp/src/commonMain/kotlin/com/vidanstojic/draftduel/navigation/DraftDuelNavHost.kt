@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.vidanstojic.draftduel.domain.model.GameMode
+import com.vidanstojic.draftduel.ui.screens.bot.BotSelectRoute
 import com.vidanstojic.draftduel.ui.screens.category.CategoryRoute
 import com.vidanstojic.draftduel.ui.screens.home.HomeRoute
 import com.vidanstojic.draftduel.ui.screens.invite.InviteRoute
@@ -50,6 +51,12 @@ fun DraftDuelNavHost(
                 onMatchReady = { navController.startMatch() },
             )
         }
+        composable<Route.ChooseBot> {
+            BotSelectRoute(
+                onBack = { navController.popBackStack() },
+                onStart = { navController.startMatch() },
+            )
+        }
         composable<Route.Match> {
             MatchRoute(
                 onFinished = { navController.showResult() },
@@ -84,6 +91,7 @@ private fun destinationAfterSetup(mode: GameMode): Route = when (mode) {
     GameMode.QUICK_MATCH -> Route.FindOpponent
     GameMode.FRIEND -> Route.InviteFriend
     GameMode.SAME_DEVICE -> Route.LocalSetup
+    GameMode.VS_BOT -> Route.ChooseBot
 }
 
 /** Opens the match and drops the waiting screen, so Back from the match does not return to it. */

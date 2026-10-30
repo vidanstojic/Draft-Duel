@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
@@ -47,6 +48,8 @@ import com.vidanstojic.draftduel.resources.home_tagline
 import com.vidanstojic.draftduel.resources.home_tagline_accent
 import com.vidanstojic.draftduel.resources.how_to_play
 import com.vidanstojic.draftduel.resources.how_to_play_rules
+import com.vidanstojic.draftduel.resources.mode_bot_subtitle
+import com.vidanstojic.draftduel.resources.mode_bot_title
 import com.vidanstojic.draftduel.resources.mode_find_subtitle
 import com.vidanstojic.draftduel.resources.mode_find_title
 import com.vidanstojic.draftduel.resources.mode_friend_subtitle
@@ -98,6 +101,13 @@ fun HomeScreen(
             onClick = { onModeSelected(GameMode.QUICK_MATCH) },
         )
         ModeCard(
+            title = stringResource(Res.string.mode_bot_title),
+            subtitle = stringResource(Res.string.mode_bot_subtitle),
+            icon = Icons.Filled.Face,
+            iconBackground = colors.opponent,
+            onClick = { onModeSelected(GameMode.VS_BOT) },
+        )
+        ModeCard(
             title = stringResource(Res.string.mode_local_title),
             subtitle = stringResource(Res.string.mode_local_subtitle),
             icon = Icons.Filled.Person,
@@ -143,7 +153,7 @@ private fun HeroTable() {
         style = SurfaceStyle.TABLE,
         modifier = Modifier
             .fillMaxWidth()
-            .height(250.dp),
+            .height(200.dp),
     ) {
         Column(
             modifier = Modifier.align(Alignment.Center),

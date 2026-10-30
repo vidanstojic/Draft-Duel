@@ -9,6 +9,9 @@ enum class GameMode {
 
     /** Two people, one phone. */
     SAME_DEVICE,
+
+    /** Against a bot the player picks. Runs on the phone, so it also works offline. */
+    VS_BOT,
 }
 
 /** How a same-device match is laid out. */

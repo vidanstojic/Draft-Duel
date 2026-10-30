@@ -21,6 +21,9 @@ sealed interface Route {
     data object InviteFriend : Route
 
     @Serializable
+    data object ChooseBot : Route
+
+    @Serializable
     data object Match : Route
 
     @Serializable

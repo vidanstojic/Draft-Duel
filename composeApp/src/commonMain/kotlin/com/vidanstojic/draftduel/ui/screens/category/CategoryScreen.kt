@@ -45,6 +45,7 @@ import com.vidanstojic.draftduel.resources.category_pick_categories
 import com.vidanstojic.draftduel.resources.category_pool
 import com.vidanstojic.draftduel.resources.category_sport
 import com.vidanstojic.draftduel.resources.category_title
+import com.vidanstojic.draftduel.resources.cta_choose_bot
 import com.vidanstojic.draftduel.resources.cta_continue
 import com.vidanstojic.draftduel.resources.cta_create_invite
 import com.vidanstojic.draftduel.resources.mode_find_title
@@ -166,6 +167,7 @@ private fun ctaFor(mode: GameMode): StringResource = when (mode) {
     GameMode.QUICK_MATCH -> Res.string.mode_find_title
     GameMode.FRIEND -> Res.string.cta_create_invite
     GameMode.SAME_DEVICE -> Res.string.cta_continue
+    GameMode.VS_BOT -> Res.string.cta_choose_bot
 }
 
 @Composable
