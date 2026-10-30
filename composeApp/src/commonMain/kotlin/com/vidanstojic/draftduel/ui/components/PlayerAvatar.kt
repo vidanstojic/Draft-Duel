@@ -22,7 +22,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import com.vidanstojic.draftduel.domain.model.AvatarColorway
 import com.vidanstojic.draftduel.domain.model.AvatarSpec
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 
 private data class AvatarColors(val background: Color, val jersey: Color, val number: Color)
 
@@ -39,12 +39,12 @@ private val NeckColor = Color(0xFFE9DFC4)
 
 /**
  * Faceless silhouette in a numbered jersey (spec §5: no photos, no likeness). The jersey cut
- * follows the sport; colors come from a neutral colorway, never a real club's.
+ * follows the theme; colors come from a neutral colorway, never a real club's.
  */
 @Composable
 fun PlayerAvatar(
     spec: AvatarSpec,
-    sport: Sport,
+    theme: Theme,
     contentDescription: String,
     modifier: Modifier = Modifier,
 ) {
@@ -54,7 +54,7 @@ fun PlayerAvatar(
             .background(colors.background)
             .semantics { this.contentDescription = contentDescription },
     ) {
-        Canvas(Modifier.fillMaxSize()) { drawSilhouette(sport, colors) }
+        Canvas(Modifier.fillMaxSize()) { drawSilhouette(theme, colors) }
         val numberSize = with(LocalDensity.current) { (maxHeight * 0.2f).toSp() }
         Text(
             text = spec.jerseyNumber.toString(),
@@ -69,7 +69,7 @@ fun PlayerAvatar(
 }
 
 /** Drawn in a 140 x 112 design space scaled to the height and centered horizontally. */
-private fun DrawScope.drawSilhouette(sport: Sport, colors: AvatarColors) {
+private fun DrawScope.drawSilhouette(theme: Theme, colors: AvatarColors) {
     val s = size.height / 112f
     val cx = size.width / 2f
     fun p(x: Float, y: Float) = Offset(cx + x * s, y * s)
@@ -78,8 +78,8 @@ private fun DrawScope.drawSilhouette(sport: Sport, colors: AvatarColors) {
     drawOval(HeadColor, topLeft = Offset(cx - 17 * s, 24 * s), size = Size(34 * s, 40 * s))
 
     val jersey = Path().apply {
-        when (sport) {
-            Sport.BASKETBALL -> {
+        when (theme) {
+            Theme.BASKETBALL -> {
                 moveTo(p(-48f, 112f).x, p(-48f, 112f).y)
                 lineTo(p(-40f, 80f).x, p(-40f, 80f).y)
                 cubicTo(p(-30f, 74f).x, p(-30f, 74f).y, p(-18f, 72f).x, p(-18f, 72f).y, p(-12f, 72f).x, p(-12f, 72f).y)
@@ -88,7 +88,7 @@ private fun DrawScope.drawSilhouette(sport: Sport, colors: AvatarColors) {
                 cubicTo(p(18f, 72f).x, p(18f, 72f).y, p(30f, 74f).x, p(30f, 74f).y, p(40f, 80f).x, p(40f, 80f).y)
                 lineTo(p(48f, 112f).x, p(48f, 112f).y)
             }
-            Sport.FOOTBALL, Sport.TENNIS -> {
+            Theme.FOOTBALL, Theme.TENNIS -> {
                 moveTo(p(-56f, 112f).x, p(-56f, 112f).y)
                 cubicTo(p(-52f, 84f).x, p(-52f, 84f).y, p(-30f, 72f).x, p(-30f, 72f).y, p(0f, 72f).x, p(0f, 72f).y)
                 cubicTo(p(30f, 72f).x, p(30f, 72f).y, p(52f, 84f).x, p(52f, 84f).y, p(56f, 112f).x, p(56f, 112f).y)
@@ -98,10 +98,10 @@ private fun DrawScope.drawSilhouette(sport: Sport, colors: AvatarColors) {
     }
     drawPath(jersey, colors.jersey)
 
-    if (sport != Sport.BASKETBALL) {
+    if (theme != Theme.BASKETBALL) {
         val collar = Path().apply {
             moveTo(p(-12f, 72f).x, p(-12f, 72f).y)
-            lineTo(p(0f, if (sport == Sport.TENNIS) 80f else 84f).x, p(0f, if (sport == Sport.TENNIS) 80f else 84f).y)
+            lineTo(p(0f, if (theme == Theme.TENNIS) 80f else 84f).x, p(0f, if (theme == Theme.TENNIS) 80f else 84f).y)
             lineTo(p(12f, 72f).x, p(12f, 72f).y)
         }
         drawPath(collar, colors.number, style = Stroke(width = 4 * s, join = StrokeJoin.Round))

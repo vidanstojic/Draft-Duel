@@ -78,7 +78,7 @@ fun ColumnScope.MatchContent(
     onAssign: (toSelf: Boolean) -> Unit,
 ) {
     PlaySurface(
-        style = state.sport.surfaceStyle(),
+        style = state.theme.surfaceStyle(),
         modifier = Modifier
             .weight(1f)
             .fillMaxWidth(),
@@ -171,7 +171,7 @@ private fun CenterRow(state: MatchUiState) {
     ) {
         AthleteCardView(
             card = card,
-            sport = state.sport,
+            theme = state.theme,
             ratingVisible = state.cardRatingVisible,
             glow = awarded?.toYou == true,
         )

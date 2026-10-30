@@ -33,7 +33,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vidanstojic.draftduel.di.LocalAppContainer
 import com.vidanstojic.draftduel.domain.model.GameMode
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.back
 import com.vidanstojic.draftduel.resources.category_athletes
@@ -43,7 +43,7 @@ import com.vidanstojic.draftduel.resources.category_custom_hint
 import com.vidanstojic.draftduel.resources.category_new_match
 import com.vidanstojic.draftduel.resources.category_pick_categories
 import com.vidanstojic.draftduel.resources.category_pool
-import com.vidanstojic.draftduel.resources.category_sport
+import com.vidanstojic.draftduel.resources.category_theme
 import com.vidanstojic.draftduel.resources.category_title
 import com.vidanstojic.draftduel.resources.cta_choose_bot
 import com.vidanstojic.draftduel.resources.cta_continue
@@ -81,7 +81,7 @@ fun CategoryRoute(
     CategoryScreen(
         state = state,
         onBack = onBack,
-        onSportSelected = viewModel::selectSport,
+        onThemeSelected = viewModel::selectTheme,
         onSourceSelected = viewModel::selectSource,
         onCategorySelected = viewModel::selectCategory,
         onContinue = { onContinue(viewModel.confirm()) },
@@ -92,7 +92,7 @@ fun CategoryRoute(
 fun CategoryScreen(
     state: CategoryUiState,
     onBack: () -> Unit,
-    onSportSelected: (Sport) -> Unit,
+    onThemeSelected: (Theme) -> Unit,
     onSourceSelected: (PoolSourceType) -> Unit,
     onCategorySelected: (String) -> Unit,
     onContinue: () -> Unit,
@@ -108,13 +108,13 @@ fun CategoryScreen(
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            SectionLabel(stringResource(Res.string.category_sport), Modifier.padding(horizontal = 4.dp))
+            SectionLabel(stringResource(Res.string.category_theme), Modifier.padding(horizontal = 4.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                state.sports.forEach { option ->
-                    SportTile(
+                state.themes.forEach { option ->
+                    ThemeTile(
                         option = option,
-                        selected = option.sport == state.selectedSport,
-                        onClick = { onSportSelected(option.sport) },
+                        selected = option.theme == state.selectedTheme,
+                        onClick = { onThemeSelected(option.theme) },
                         modifier = Modifier.weight(1f),
                     )
                 }
@@ -171,8 +171,8 @@ private fun ctaFor(mode: GameMode): StringResource = when (mode) {
 }
 
 @Composable
-private fun SportTile(
-    option: SportOptionUi,
+private fun ThemeTile(
+    option: ThemeOptionUi,
     selected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -190,7 +190,7 @@ private fun SportTile(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         SurfacePreview(
-            style = option.sport.surfaceStyle(),
+            style = option.theme.surfaceStyle(),
             modifier = Modifier
                 .fillMaxWidth()
                 .height(84.dp),
@@ -203,7 +203,7 @@ private fun SportTile(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Column {
-                Text(stringResource(option.sport.label()), style = DraftDuelTheme.type.bodyStrong, color = colors.onScreen)
+                Text(stringResource(option.theme.label()), style = DraftDuelTheme.type.bodyStrong, color = colors.onScreen)
                 if (!option.available) {
                     Text(stringResource(Res.string.category_coming_soon), style = DraftDuelTheme.type.mono, color = colors.muted)
                 }
@@ -305,12 +305,12 @@ private fun CategoryScreenPreview() {
         CategoryScreen(
             state = CategoryUiState(
                 mode = GameMode.QUICK_MATCH,
-                sports = listOf(
-                    SportOptionUi(Sport.FOOTBALL, true),
-                    SportOptionUi(Sport.BASKETBALL, true),
-                    SportOptionUi(Sport.TENNIS, false),
+                themes = listOf(
+                    ThemeOptionUi(Theme.FOOTBALL, true),
+                    ThemeOptionUi(Theme.BASKETBALL, true),
+                    ThemeOptionUi(Theme.TENNIS, false),
                 ),
-                selectedSport = Sport.FOOTBALL,
+                selectedTheme = Theme.FOOTBALL,
                 sourceType = PoolSourceType.CATEGORY,
                 categories = listOf(
                     CategoryOptionUi("legends", "Legends", 10),
@@ -319,7 +319,7 @@ private fun CategoryScreenPreview() {
                 selectedCategoryId = "legends",
             ),
             onBack = {},
-            onSportSelected = {},
+            onThemeSelected = {},
             onSourceSelected = {},
             onCategorySelected = {},
             onContinue = {},

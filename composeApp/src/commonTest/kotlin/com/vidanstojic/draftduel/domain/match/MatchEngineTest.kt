@@ -3,7 +3,7 @@ package com.vidanstojic.draftduel.domain.match
 import com.vidanstojic.draftduel.domain.model.AthleteCard
 import com.vidanstojic.draftduel.domain.model.AvatarColorway
 import com.vidanstojic.draftduel.domain.model.AvatarSpec
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
@@ -25,7 +25,7 @@ class MatchEngineTest {
     )
 
     private fun newMatch(cards: Int = GameRules.POOL_SIZE) = MatchEngine.start(
-        sport = Sport.FOOTBALL,
+        theme = Theme.FOOTBALL,
         pool = List(cards) { card(it) },
         nameA = "A",
         nameB = "B",

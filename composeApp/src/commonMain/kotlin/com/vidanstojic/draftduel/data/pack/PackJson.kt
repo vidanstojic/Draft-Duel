@@ -5,7 +5,7 @@ import com.vidanstojic.draftduel.domain.model.AthleteCard
 import com.vidanstojic.draftduel.domain.model.AvatarColorway
 import com.vidanstojic.draftduel.domain.model.AvatarSpec
 import com.vidanstojic.draftduel.domain.model.PackCategory
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.model.ThemePack
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -45,15 +45,15 @@ internal object PackJson {
 
     private val json = Json { ignoreUnknownKeys = true }
 
-    fun decode(text: String, sport: Sport): ThemePack = json.decodeFromString<PackDto>(text).toDomain(sport)
+    fun decode(text: String, theme: Theme): ThemePack = json.decodeFromString<PackDto>(text).toDomain(theme)
 }
 
-internal fun PackDto.toDomain(sport: Sport): ThemePack {
+internal fun PackDto.toDomain(theme: Theme): ThemePack {
     val categoryNames = (categories + athletes.flatMap { it.categories }).distinct()
     return ThemePack(
         id = id,
-        sport = sport,
-        name = theme,
+        theme = theme,
+        name = this.theme,
         version = version,
         categories = categoryNames.map { PackCategory(id = categoryId(it), name = it) },
         cards = athletes
@@ -80,7 +80,7 @@ private fun AthleteDto.toDomain() = AthleteCard(
 
 internal fun categoryId(name: String): String = name.trim().lowercase().replace(' ', '-')
 
-/** Pack positions (GK/DF/MF/FW) to the short codes the cards use. Other sports pass through. */
+/** Pack positions (GK/DF/MF/FW) to the short codes the cards use. Other themes pass through. */
 internal fun positionCode(position: String): String = when (position.uppercase()) {
     "DF" -> "DEF"
     "MF" -> "MID"

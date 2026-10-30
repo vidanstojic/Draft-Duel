@@ -7,7 +7,7 @@ import com.vidanstojic.draftduel.domain.model.LocalLayout
 import com.vidanstojic.draftduel.domain.model.MatchSetup
 import com.vidanstojic.draftduel.domain.model.PlayerProfile
 import com.vidanstojic.draftduel.domain.model.PoolSource
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.update
 
 @Immutable
 data class LocalSetupUiState(
-    val sport: Sport,
+    val theme: Theme,
     val playerOne: String = "",
     val playerTwo: String = "",
     val layout: LocalLayout = LocalLayout.SPLIT_SCREEN,
@@ -34,7 +34,7 @@ class LocalSetupViewModel(
 
     private val _state = MutableStateFlow(
         LocalSetupUiState(
-            sport = baseSetup?.sport ?: Sport.FOOTBALL,
+            theme = baseSetup?.theme ?: Theme.FOOTBALL,
             playerOne = defaultPlayerOne,
             playerTwo = defaultPlayerTwo,
         ),
@@ -51,7 +51,7 @@ class LocalSetupViewModel(
         val current = _state.value
         sessionRepository.setup = MatchSetup(
             mode = GameMode.SAME_DEVICE,
-            sport = current.sport,
+            theme = current.theme,
             poolSource = baseSetup?.poolSource ?: PoolSource.Random,
             you = PlayerProfile(nickname = current.playerOne.trim(), country = "", wins = 0),
             opponent = PlayerProfile(nickname = current.playerTwo.trim(), country = "", wins = 0),

@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vidanstojic.draftduel.di.LocalAppContainer
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.platform.rememberShareText
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.back
@@ -111,12 +111,12 @@ fun InviteScreen(
     onJoin: () -> Unit,
     onPlayBot: () -> Unit,
 ) {
-    val surface = state.sport.surfaceStyle()
+    val surface = state.theme.surfaceStyle()
     DdScreen(surface = surface) {
         val colors = DraftDuelTheme.colors
         DdTopBar(
             leading = { DdIconButton(Icons.AutoMirrored.Filled.ArrowBack, stringResource(Res.string.back), onBack) },
-            title = { TopBarTitle(stringResource(Res.string.invite_title), stringResource(state.sport.label())) },
+            title = { TopBarTitle(stringResource(Res.string.invite_title), stringResource(state.theme.label())) },
         )
         PlaySurface(style = surface, modifier = Modifier.weight(1f).fillMaxWidth()) {
             Column(
@@ -255,7 +255,7 @@ private fun formatClock(totalSeconds: Int): String {
 private fun InviteScreenPreview() {
     InviteScreen(
         state = InviteUiState(
-            sport = Sport.BASKETBALL,
+            theme = Theme.BASKETBALL,
             code = "KX-4821",
             link = "draftduel.gg/j/KX-4821",
             expiresInSeconds = 592,

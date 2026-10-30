@@ -11,7 +11,7 @@ import com.vidanstojic.draftduel.domain.match.Seat
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.MatchSetup
 import com.vidanstojic.draftduel.domain.model.PoolSource
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 import com.vidanstojic.draftduel.domain.repository.PackRepository
 import com.vidanstojic.draftduel.domain.repository.ProfileRepository
@@ -33,13 +33,13 @@ class MatchViewModel(
 
     private val setup: MatchSetup = sessionRepository.setup ?: MatchSetup(
         mode = GameMode.QUICK_MATCH,
-        sport = Sport.FOOTBALL,
+        theme = Theme.FOOTBALL,
         poolSource = PoolSource.Random,
         you = profileRepository.currentPlayer(),
     )
     private val opponent = setup.opponent ?: profileRepository.quickMatchOpponent()
-    private val sport = if (packRepository.pack(setup.sport) != null) setup.sport else Sport.FOOTBALL
-    private val pack = requireNotNull(packRepository.pack(sport)) { "No pack for $sport" }
+    private val theme = if (packRepository.pack(setup.theme) != null) setup.theme else Theme.FOOTBALL
+    private val pack = requireNotNull(packRepository.pack(theme)) { "No pack for $theme" }
 
     /** Hidden in quick matches, chosen by the player in "Play vs bot". Kept for the rematch. */
     private val botPersonality: BotPersonality = setup.bot ?: BotPersonality.randomForQuickMatch(random)
@@ -47,8 +47,8 @@ class MatchViewModel(
     private val driver = MatchDriver(
         scope = viewModelScope,
         initial = MatchEngine.start(
-            sport = sport,
-            pool = packRepository.drawPool(sport, setup.poolSource),
+            theme = theme,
+            pool = packRepository.drawPool(theme, setup.poolSource),
             nameA = setup.you.nickname,
             nameB = opponent.nickname,
             firstOpener = if (random.nextBoolean()) Seat.A else Seat.B,

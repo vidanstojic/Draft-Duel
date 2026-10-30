@@ -3,7 +3,7 @@ package com.vidanstojic.draftduel.domain.repository
 import com.vidanstojic.draftduel.domain.match.GameRules
 import com.vidanstojic.draftduel.domain.model.AthleteCard
 import com.vidanstojic.draftduel.domain.model.PoolSource
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.model.ThemePack
 
 interface PackRepository {
@@ -11,11 +11,11 @@ interface PackRepository {
     /** Reads the packs (bundled now, cached downloads later). Called once before the first screen. */
     suspend fun load()
 
-    /** Sports in the order they are offered. A sport without a pack is shown as "coming soon". */
-    fun sports(): List<Sport>
+    /** Themes in the order they are offered. A theme without a pack is shown as "coming soon". */
+    fun themes(): List<Theme>
 
-    fun pack(sport: Sport): ThemePack?
+    fun pack(theme: Theme): ThemePack?
 
     /** Shuffled pool for one match. On the server this happens server-side (spec §11). */
-    fun drawPool(sport: Sport, source: PoolSource, size: Int = GameRules.POOL_SIZE): List<AthleteCard>
+    fun drawPool(theme: Theme, source: PoolSource, size: Int = GameRules.POOL_SIZE): List<AthleteCard>
 }

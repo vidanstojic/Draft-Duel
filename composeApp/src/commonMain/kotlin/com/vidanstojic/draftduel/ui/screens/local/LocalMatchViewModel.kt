@@ -14,7 +14,7 @@ import com.vidanstojic.draftduel.domain.model.LocalLayout
 import com.vidanstojic.draftduel.domain.model.MatchSetup
 import com.vidanstojic.draftduel.domain.model.PlayerProfile
 import com.vidanstojic.draftduel.domain.model.PoolSource
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 import com.vidanstojic.draftduel.domain.repository.PackRepository
 import com.vidanstojic.draftduel.ui.screens.match.MatchDriver
@@ -64,20 +64,20 @@ class LocalMatchViewModel(
 
     private val setup: MatchSetup = sessionRepository.setup ?: MatchSetup(
         mode = GameMode.SAME_DEVICE,
-        sport = Sport.FOOTBALL,
+        theme = Theme.FOOTBALL,
         poolSource = PoolSource.Random,
         you = PlayerProfile("Player 1", "", 0),
         opponent = PlayerProfile("Player 2", "", 0),
     )
     private val layout = setup.localLayout
     private val revealOwn = layout == LocalLayout.PASS_DEVICE
-    private val sport = if (packRepository.pack(setup.sport) != null) setup.sport else Sport.FOOTBALL
+    private val theme = if (packRepository.pack(setup.theme) != null) setup.theme else Theme.FOOTBALL
 
     private val driver = MatchDriver(
         scope = viewModelScope,
         initial = MatchEngine.start(
-            sport = sport,
-            pool = packRepository.drawPool(sport, setup.poolSource),
+            theme = theme,
+            pool = packRepository.drawPool(theme, setup.poolSource),
             nameA = setup.you.nickname,
             nameB = setup.opponent?.nickname ?: "Player 2",
             firstOpener = if (random.nextBoolean()) Seat.A else Seat.B,

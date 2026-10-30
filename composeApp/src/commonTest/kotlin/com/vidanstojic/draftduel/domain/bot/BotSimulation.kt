@@ -9,7 +9,7 @@ import com.vidanstojic.draftduel.domain.match.Seat
 import com.vidanstojic.draftduel.domain.model.AthleteCard
 import com.vidanstojic.draftduel.domain.model.AvatarColorway
 import com.vidanstojic.draftduel.domain.model.AvatarSpec
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import kotlin.random.Random
 
 /** Ratings and positions of the bundled football pack (v5 model, 50 athletes), without names. */
@@ -58,7 +58,7 @@ internal object BotSimulation {
         pool: List<AthleteCard>,
         firstOpener: Seat,
     ): SimulatedMatch {
-        var state = MatchEngine.start(Sport.FOOTBALL, pool, "A", "B", firstOpener)
+        var state = MatchEngine.start(Theme.FOOTBALL, pool, "A", "B", firstOpener)
         var rejected = 0
         var timeouts = 0
         var guard = 0

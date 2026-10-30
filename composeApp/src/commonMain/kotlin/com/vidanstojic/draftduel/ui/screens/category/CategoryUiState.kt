@@ -2,13 +2,13 @@ package com.vidanstojic.draftduel.ui.screens.category
 
 import androidx.compose.runtime.Immutable
 import com.vidanstojic.draftduel.domain.model.GameMode
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 
 enum class PoolSourceType { RANDOM, CATEGORY, CUSTOM }
 
 @Immutable
-data class SportOptionUi(
-    val sport: Sport,
+data class ThemeOptionUi(
+    val theme: Theme,
     val available: Boolean,
 )
 
@@ -22,8 +22,8 @@ data class CategoryOptionUi(
 @Immutable
 data class CategoryUiState(
     val mode: GameMode,
-    val sports: List<SportOptionUi>,
-    val selectedSport: Sport,
+    val themes: List<ThemeOptionUi>,
+    val selectedTheme: Theme,
     val sourceType: PoolSourceType = PoolSourceType.RANDOM,
     val categories: List<CategoryOptionUi> = emptyList(),
     val selectedCategoryId: String? = null,

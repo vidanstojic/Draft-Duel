@@ -34,7 +34,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vidanstojic.draftduel.di.LocalAppContainer
 import com.vidanstojic.draftduel.domain.match.Seat
 import com.vidanstojic.draftduel.domain.model.LocalLayout
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.local_leave_text
 import com.vidanstojic.draftduel.resources.local_ratings_at_end
@@ -115,7 +115,7 @@ fun LocalMatchRoute(
             topActions = actionsFor(Seat.B),
             onMenu = { confirmLeave = true },
         )
-        handoff != null -> HandoffScreen(handoff = handoff, sport = state.bottom.sport, onReady = viewModel::onHandoffConfirmed)
+        handoff != null -> HandoffScreen(handoff = handoff, theme = state.bottom.theme, onReady = viewModel::onHandoffConfirmed)
         else -> PassDeviceMatchScreen(
             state = state.active,
             actions = actionsFor(state.activeSeat),
@@ -142,7 +142,7 @@ private fun PassDeviceMatchScreen(
     actions: SeatActions,
     onMenu: () -> Unit,
 ) {
-    DdScreen(surface = state.sport.surfaceStyle()) {
+    DdScreen(surface = state.theme.surfaceStyle()) {
         DdTopBar(
             leading = { DdIconButton(Icons.Filled.Menu, stringResource(Res.string.menu), onMenu) },
             title = {
@@ -167,7 +167,7 @@ private fun SplitMatchScreen(
     topActions: SeatActions,
     onMenu: () -> Unit,
 ) {
-    val surface = state.bottom.sport.surfaceStyle()
+    val surface = state.bottom.theme.surfaceStyle()
     DraftDuelTheme(surface = surface) {
         Column(
             modifier = Modifier
@@ -298,7 +298,7 @@ private fun CenterStrip(state: MatchUiState, onMenu: () -> Unit) {
         else -> 0
     }
     PlaySurface(
-        style = state.sport.surfaceStyle(),
+        style = state.theme.surfaceStyle(),
         modifier = Modifier
             .fillMaxWidth()
             .height(196.dp)
@@ -318,7 +318,7 @@ private fun CenterStrip(state: MatchUiState, onMenu: () -> Unit) {
                 )
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                if (card != null) AthleteCardCompact(card = card, sport = state.sport, ratingVisible = false)
+                if (card != null) AthleteCardCompact(card = card, theme = state.theme, ratingVisible = false)
                 TurnTimerRing(
                     progress = state.timerProgress,
                     value = price.toString(),
@@ -340,7 +340,7 @@ private fun CenterStrip(state: MatchUiState, onMenu: () -> Unit) {
 @Preview
 @Composable
 private fun SplitMatchScreenPreview() {
-    val bottom = previewMatchState(Sport.BASKETBALL)
+    val bottom = previewMatchState(Theme.BASKETBALL)
     val noop = SeatActions(onRaise = {}, onPass = {}, onAssign = {})
     SplitMatchScreen(
         state = LocalMatchUiState(

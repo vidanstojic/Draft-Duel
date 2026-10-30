@@ -8,7 +8,7 @@ import com.vidanstojic.draftduel.domain.match.MatchState
 import com.vidanstojic.draftduel.domain.match.OwnedCard
 import com.vidanstojic.draftduel.domain.match.Seat
 import com.vidanstojic.draftduel.domain.model.GameMode
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 
 @Immutable
@@ -33,7 +33,7 @@ enum class ResultOutcome { BOTTOM_WINS, TOP_WINS, DRAW }
 
 @Immutable
 data class ResultUiState(
-    val sport: Sport,
+    val theme: Theme,
     /** Bottom of the screen: the local user, or player 1 on a shared device. */
     val bottom: RosterUi,
     val top: RosterUi,
@@ -64,7 +64,7 @@ internal fun MatchState.toResultUi(bottomIsYou: Boolean): ResultUiState {
         MatchOutcome.DRAW -> ResultOutcome.DRAW
     }
     return ResultUiState(
-        sport = sport,
+        theme = theme,
         bottom = roster(Seat.A, best),
         top = roster(Seat.B, best = null),
         outcome = outcome,

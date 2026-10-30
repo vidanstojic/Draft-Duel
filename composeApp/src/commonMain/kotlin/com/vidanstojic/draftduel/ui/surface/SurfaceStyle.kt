@@ -5,12 +5,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.ui.theme.BidColors
 import com.vidanstojic.draftduel.ui.theme.SurfacePalette
 
 /**
- * The surface seen from above behind a match. The sport of the pack decides which one is used;
+ * The surface seen from above behind a match. The theme of the pack decides which one is used;
  * the table is the neutral surface for menus and mixed content.
  */
 enum class SurfaceStyle(
@@ -97,8 +97,8 @@ enum class SurfaceStyle(
     ),
 }
 
-fun Sport.surfaceStyle(): SurfaceStyle = when (this) {
-    Sport.FOOTBALL -> SurfaceStyle.PITCH
-    Sport.BASKETBALL -> SurfaceStyle.COURT
-    Sport.TENNIS -> SurfaceStyle.CLAY
+fun Theme.surfaceStyle(): SurfaceStyle = when (this) {
+    Theme.FOOTBALL -> SurfaceStyle.PITCH
+    Theme.BASKETBALL -> SurfaceStyle.COURT
+    Theme.TENNIS -> SurfaceStyle.CLAY
 }

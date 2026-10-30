@@ -30,7 +30,7 @@ composeApp/src/
 │   ├── App.kt                 koren UI-ja (Android i iOS)
 │   ├── di/                    AppContainer: ručni DI, ovde se lažne implementacije menjaju pravim
 │   ├── domain/
-│   │   ├── model/             Sport, AthleteCard, ThemePack, GameMode, MatchSetup…
+│   │   ├── model/             Theme, AthleteCard, ThemePack, GameMode, MatchSetup…
 │   │   ├── match/             MatchEngine (pravila), MatchState, GameRules
 │   │   ├── bot/               ličnosti botova, procena ocene, vrednovanje, lookahead model
 │   │   └── repository/        interfejsi: paketi, profili, sesija partije

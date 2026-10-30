@@ -5,7 +5,7 @@ import com.vidanstojic.draftduel.domain.bot.BotPersonality
 /** Everything chosen before a match starts. Passed between screens through the session repository. */
 data class MatchSetup(
     val mode: GameMode,
-    val sport: Sport,
+    val theme: Theme,
     val poolSource: PoolSource,
     val you: PlayerProfile,
     val opponent: PlayerProfile? = null,

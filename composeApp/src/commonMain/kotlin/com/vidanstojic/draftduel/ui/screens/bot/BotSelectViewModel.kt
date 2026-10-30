@@ -7,7 +7,7 @@ import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.MatchSetup
 import com.vidanstojic.draftduel.domain.model.PlayerProfile
 import com.vidanstojic.draftduel.domain.model.PoolSource
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 import com.vidanstojic.draftduel.domain.repository.ProfileRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,7 +29,7 @@ class BotSelectViewModel(
 
     private val setup: MatchSetup = sessionRepository.setup ?: MatchSetup(
         mode = GameMode.VS_BOT,
-        sport = Sport.FOOTBALL,
+        theme = Theme.FOOTBALL,
         poolSource = PoolSource.Random,
         you = profileRepository.currentPlayer(),
     )

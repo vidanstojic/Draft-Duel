@@ -1,7 +1,7 @@
 package com.vidanstojic.draftduel.domain.match
 
 import com.vidanstojic.draftduel.domain.model.AthleteCard
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 
 /** The two sides of a match. A is always the local user in online and bot matches. */
 enum class Seat {
@@ -66,7 +66,7 @@ enum class MatchOutcome {
 }
 
 data class MatchState(
-    val sport: Sport,
+    val theme: Theme,
     val pool: List<AthleteCard>,
     val roundIndex: Int,
     val seats: Map<Seat, SeatState>,

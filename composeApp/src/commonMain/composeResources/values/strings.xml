@@ -30,15 +30,15 @@
     <string name="mode_bot_subtitle">Pick a rival. Works offline</string>
     <string name="how_to_play">How to play</string>
     <string name="how_to_play_rules">You both start with 20 points. 10 cards go up for auction, one at a time.\n\nThe opener must bid. Then raise by 1, 2 or 5, or pass and the other player takes the card at their last bid.\n\nRatings stay hidden. You see yours when you win a card and your rival's at the end.\n\nThe higher total rating wins.</string>
-    <!-- Sports -->
-    <string name="sport_football">Football</string>
-    <string name="sport_basketball">Basketball</string>
-    <string name="sport_tennis">Tennis</string>
+    <!-- Themes -->
+    <string name="theme_football">Football</string>
+    <string name="theme_basketball">Basketball</string>
+    <string name="theme_tennis">Tennis</string>
 
     <!-- Category -->
     <string name="category_new_match">New match</string>
-    <string name="category_title">Choose a sport</string>
-    <string name="category_sport">Sport</string>
+    <string name="category_title">Choose a theme</string>
+    <string name="category_theme">Theme</string>
     <string name="category_pool">Card pool</string>
     <string name="category_pick_categories">Categories</string>
     <string name="category_athletes">%1$d athletes</string>

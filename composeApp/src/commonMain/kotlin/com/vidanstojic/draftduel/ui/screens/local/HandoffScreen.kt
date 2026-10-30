@@ -20,7 +20,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.vidanstojic.draftduel.data.fake.FakePacks
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.handoff_hidden_note
 import com.vidanstojic.draftduel.resources.handoff_leads_at
@@ -42,10 +42,10 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 fun HandoffScreen(
     handoff: HandoffUi,
-    sport: Sport,
+    theme: Theme,
     onReady: () -> Unit,
 ) {
-    val surface = sport.surfaceStyle()
+    val surface = theme.surfaceStyle()
     DdScreen(surface = surface) {
         val colors = DraftDuelTheme.colors
         SectionLabel(stringResource(Res.string.handoff_paused), Modifier.align(Alignment.CenterHorizontally))
@@ -122,7 +122,7 @@ private fun HandoffPictogram() {
 private fun HandoffScreenPreview() {
     HandoffScreen(
         handoff = HandoffUi(nextPlayer = "Ana", card = FakePacks.football.cards.first(), price = 9, leaderName = "Luka"),
-        sport = Sport.FOOTBALL,
+        theme = Theme.FOOTBALL,
         onReady = {},
     )
 }

@@ -3,7 +3,7 @@ package com.vidanstojic.draftduel.data.pack
 import com.vidanstojic.draftduel.data.fake.FakePacks
 import com.vidanstojic.draftduel.domain.model.AthleteCard
 import com.vidanstojic.draftduel.domain.model.PoolSource
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.model.ThemePack
 import com.vidanstojic.draftduel.domain.repository.PackRepository
 import com.vidanstojic.draftduel.resources.Res
@@ -22,26 +22,26 @@ class BundledPackRepository(
     private val readFile: suspend (path: String) -> ByteArray = ::readResource,
 ) : PackRepository {
 
-    private var packs: Map<Sport, ThemePack> = samplePacks()
+    private var packs: Map<Theme, ThemePack> = samplePacks()
 
     override suspend fun load() {
-        val football = runCatching { PackJson.decode(readFile(FOOTBALL_PATH).decodeToString(), Sport.FOOTBALL) }
+        val football = runCatching { PackJson.decode(readFile(FOOTBALL_PATH).decodeToString(), Theme.FOOTBALL) }
             .getOrNull()
             ?.takeIf { it.cards.isNotEmpty() }
-        if (football != null) packs = packs + (Sport.FOOTBALL to football)
+        if (football != null) packs = packs + (Theme.FOOTBALL to football)
     }
 
-    override fun sports(): List<Sport> = listOf(Sport.FOOTBALL, Sport.BASKETBALL, Sport.TENNIS)
+    override fun themes(): List<Theme> = listOf(Theme.FOOTBALL, Theme.BASKETBALL, Theme.TENNIS)
 
-    override fun pack(sport: Sport): ThemePack? = packs[sport]
+    override fun pack(theme: Theme): ThemePack? = packs[theme]
 
-    override fun drawPool(sport: Sport, source: PoolSource, size: Int): List<AthleteCard> {
-        val pack = packs[sport] ?: return emptyList()
+    override fun drawPool(theme: Theme, source: PoolSource, size: Int): List<AthleteCard> {
+        val pack = packs[theme] ?: return emptyList()
         return pack.candidatesFor(source, size).shuffled(random).take(size)
     }
 
-    private fun samplePacks(): Map<Sport, ThemePack> =
-        listOf(FakePacks.football, FakePacks.basketball).associateBy { it.sport }
+    private fun samplePacks(): Map<Theme, ThemePack> =
+        listOf(FakePacks.football, FakePacks.basketball).associateBy { it.theme }
 
     companion object {
         const val FOOTBALL_PATH = "files/packs/football.json"

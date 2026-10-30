@@ -8,7 +8,7 @@ import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.MatchSetup
 import com.vidanstojic.draftduel.domain.model.PlayerProfile
 import com.vidanstojic.draftduel.domain.model.PoolSource
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 import com.vidanstojic.draftduel.domain.repository.ProfileRepository
 import kotlinx.coroutines.delay
@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 
 @Immutable
 data class InviteUiState(
-    val sport: Sport,
+    val theme: Theme,
     val code: String,
     val link: String,
     val expiresInSeconds: Int,
@@ -48,14 +48,14 @@ class InviteViewModel(
 
     private val setup: MatchSetup = sessionRepository.setup ?: MatchSetup(
         mode = GameMode.FRIEND,
-        sport = Sport.FOOTBALL,
+        theme = Theme.FOOTBALL,
         poolSource = PoolSource.Random,
         you = profileRepository.currentPlayer(),
     )
 
     private val _state = MutableStateFlow(
         InviteUiState(
-            sport = setup.sport,
+            theme = setup.theme,
             code = SAMPLE_CODE,
             link = "draftduel.gg/j/$SAMPLE_CODE",
             expiresInSeconds = InviteUiState.LINK_VALID_SECONDS,

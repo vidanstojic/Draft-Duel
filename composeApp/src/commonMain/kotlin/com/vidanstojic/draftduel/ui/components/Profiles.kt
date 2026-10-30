@@ -14,18 +14,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.sp
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.resources.Res
-import com.vidanstojic.draftduel.resources.sport_basketball
-import com.vidanstojic.draftduel.resources.sport_football
-import com.vidanstojic.draftduel.resources.sport_tennis
+import com.vidanstojic.draftduel.resources.theme_basketball
+import com.vidanstojic.draftduel.resources.theme_football
+import com.vidanstojic.draftduel.resources.theme_tennis
 import org.jetbrains.compose.resources.StringResource
 
-/** Label of a sport, shared by every screen that names it. */
-fun Sport.label(): StringResource = when (this) {
-    Sport.FOOTBALL -> Res.string.sport_football
-    Sport.BASKETBALL -> Res.string.sport_basketball
-    Sport.TENNIS -> Res.string.sport_tennis
+/** Label of a theme, shared by every screen that names it. */
+fun Theme.label(): StringResource = when (this) {
+    Theme.FOOTBALL -> Res.string.theme_football
+    Theme.BASKETBALL -> Res.string.theme_basketball
+    Theme.TENNIS -> Res.string.theme_tennis
 }
 
 /** Round player badge with initials (players, not athletes). */

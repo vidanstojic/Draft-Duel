@@ -35,7 +35,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vidanstojic.draftduel.di.LocalAppContainer
 import com.vidanstojic.draftduel.domain.model.LocalLayout
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.back
 import com.vidanstojic.draftduel.resources.local_layout_label
@@ -99,7 +99,7 @@ fun LocalSetupScreen(
         val colors = DraftDuelTheme.colors
         DdTopBar(
             leading = { DdIconButton(Icons.AutoMirrored.Filled.ArrowBack, stringResource(Res.string.back), onBack) },
-            title = { TopBarTitle(stringResource(Res.string.mode_local_title), stringResource(state.sport.label())) },
+            title = { TopBarTitle(stringResource(Res.string.mode_local_title), stringResource(state.theme.label())) },
         )
         SectionLabel(stringResource(Res.string.local_players_label), Modifier.padding(start = 4.dp, top = 8.dp))
         NameField(
@@ -234,7 +234,7 @@ private fun PassPictogram() {
 @Composable
 private fun LocalSetupScreenPreview() {
     LocalSetupScreen(
-        state = LocalSetupUiState(sport = Sport.BASKETBALL, playerOne = "Luka", playerTwo = "Ana"),
+        state = LocalSetupUiState(theme = Theme.BASKETBALL, playerOne = "Luka", playerTwo = "Ana"),
         onBack = {},
         onPlayerOneChange = {},
         onPlayerTwoChange = {},

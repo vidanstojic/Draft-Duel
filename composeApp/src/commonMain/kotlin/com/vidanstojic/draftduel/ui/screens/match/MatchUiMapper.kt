@@ -50,7 +50,7 @@ fun MatchState.toUi(
     val awardedToViewer = (phase as? MatchPhase.Awarded)?.winner == viewer
     val turnMillis = GameRules.TURN_SECONDS * 1_000L
     return MatchUiState(
-        sport = sport,
+        theme = theme,
         cardNumber = (roundIndex + 1).coerceAtMost(pool.size),
         totalCards = pool.size,
         cardsLeft = cardsLeft,

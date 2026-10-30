@@ -8,7 +8,7 @@ import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.MatchSetup
 import com.vidanstojic.draftduel.domain.model.PlayerProfile
 import com.vidanstojic.draftduel.domain.model.PoolSource
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 import com.vidanstojic.draftduel.domain.repository.ProfileRepository
 import kotlinx.coroutines.delay
@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 
 @Immutable
 data class FindOpponentUiState(
-    val sport: Sport,
+    val theme: Theme,
     val you: PlayerProfile,
     val elapsedSeconds: Int = 0,
     val opponent: PlayerProfile? = null,
@@ -39,12 +39,12 @@ class FindOpponentViewModel(
 
     private val setup: MatchSetup = sessionRepository.setup ?: MatchSetup(
         mode = GameMode.QUICK_MATCH,
-        sport = Sport.FOOTBALL,
+        theme = Theme.FOOTBALL,
         poolSource = PoolSource.Random,
         you = profileRepository.currentPlayer(),
     )
 
-    private val _state = MutableStateFlow(FindOpponentUiState(sport = setup.sport, you = setup.you))
+    private val _state = MutableStateFlow(FindOpponentUiState(theme = setup.theme, you = setup.you))
     val state: StateFlow<FindOpponentUiState> = _state.asStateFlow()
 
     init {

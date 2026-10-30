@@ -1,7 +1,7 @@
 package com.vidanstojic.draftduel.domain.match
 
 import com.vidanstojic.draftduel.domain.model.AthleteCard
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 
 /**
  * Pure, deterministic match rules used by the UI demo and the on-device bot match.
@@ -12,7 +12,7 @@ import com.vidanstojic.draftduel.domain.model.Sport
 object MatchEngine {
 
     fun start(
-        sport: Sport,
+        theme: Theme,
         pool: List<AthleteCard>,
         nameA: String,
         nameB: String,
@@ -20,7 +20,7 @@ object MatchEngine {
     ): MatchState {
         require(pool.isNotEmpty()) { "A match needs at least one card." }
         val initial = MatchState(
-            sport = sport,
+            theme = theme,
             pool = pool,
             roundIndex = 0,
             seats = mapOf(

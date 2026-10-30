@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vidanstojic.draftduel.domain.model.AthleteCard
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.avatar_description
 import com.vidanstojic.draftduel.resources.card_paid
@@ -62,7 +62,7 @@ private val CardBackBrush = Brush.linearGradient(
 @Composable
 fun AthleteCardView(
     card: AthleteCard,
-    sport: Sport,
+    theme: Theme,
     ratingVisible: Boolean,
     modifier: Modifier = Modifier,
     width: Dp = 150.dp,
@@ -87,7 +87,7 @@ fun AthleteCardView(
             Box {
                 PlayerAvatar(
                     spec = card.avatar,
-                    sport = sport,
+                    theme = theme,
                     contentDescription = stringResource(Res.string.avatar_description, card.avatar.jerseyNumber),
                     modifier = Modifier
                         .fillMaxWidth()
@@ -123,7 +123,7 @@ fun AthleteCardView(
 @Composable
 fun AthleteCardCompact(
     card: AthleteCard,
-    sport: Sport,
+    theme: Theme,
     ratingVisible: Boolean,
     modifier: Modifier = Modifier,
 ) {
@@ -141,7 +141,7 @@ fun AthleteCardCompact(
         ) {
             PlayerAvatar(
                 spec = card.avatar,
-                sport = sport,
+                theme = theme,
                 contentDescription = stringResource(Res.string.avatar_description, card.avatar.jerseyNumber),
                 modifier = Modifier
                     .size(width = 38.dp, height = 48.dp)

@@ -33,7 +33,7 @@ import com.vidanstojic.draftduel.domain.match.MatchPhase
 import com.vidanstojic.draftduel.domain.match.OwnedCard
 import com.vidanstojic.draftduel.domain.match.Seat
 import com.vidanstojic.draftduel.domain.model.GameMode
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.platform.rememberShareText
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.close
@@ -98,7 +98,7 @@ fun ResultScreen(
     onShare: () -> Unit,
     onRematch: () -> Unit,
 ) {
-    val surface = state.sport.surfaceStyle()
+    val surface = state.theme.surfaceStyle()
     DdScreen(surface = surface) {
         DdTopBar(
             leading = { DdIconButton(Icons.Filled.Close, stringResource(Res.string.close), onClose) },
@@ -247,11 +247,11 @@ private fun EmptyResult(onClose: () -> Unit) {
 }
 
 /** A finished sample match for previews. */
-internal fun previewResultState(sport: Sport): ResultUiState {
-    val pack = if (sport == Sport.BASKETBALL) FakePacks.basketball else FakePacks.football
+internal fun previewResultState(theme: Theme): ResultUiState {
+    val pack = if (theme == Theme.BASKETBALL) FakePacks.basketball else FakePacks.football
     val cards = pack.cards.take(10)
     val prices = listOf(8, 6, 3, 2, 1, 5, 4, 4, 4, 3)
-    var match = MatchEngine.start(sport, cards, "You", "Marco_23", firstOpener = Seat.A)
+    var match = MatchEngine.start(theme, cards, "You", "Marco_23", firstOpener = Seat.A)
     val owners = listOf(Seat.A, Seat.B, Seat.A, Seat.B, Seat.A, Seat.B, Seat.A, Seat.B, Seat.A, Seat.B)
     val seats = owners.indices.groupBy { owners[it] }.mapValues { (seat, indices) ->
         match.seat(seat).copy(
@@ -266,5 +266,5 @@ internal fun previewResultState(sport: Sport): ResultUiState {
 @Preview
 @Composable
 private fun ResultScreenPreview() {
-    ResultScreen(previewResultState(Sport.FOOTBALL), onClose = {}, onShare = {}, onRematch = {})
+    ResultScreen(previewResultState(Theme.FOOTBALL), onClose = {}, onShare = {}, onRematch = {})
 }

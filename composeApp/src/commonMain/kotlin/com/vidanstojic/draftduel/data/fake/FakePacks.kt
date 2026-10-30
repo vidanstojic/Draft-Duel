@@ -4,7 +4,7 @@ import com.vidanstojic.draftduel.domain.model.AthleteCard
 import com.vidanstojic.draftduel.domain.model.AvatarColorway
 import com.vidanstojic.draftduel.domain.model.AvatarSpec
 import com.vidanstojic.draftduel.domain.model.PackCategory
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.model.ThemePack
 
 /**
@@ -21,7 +21,7 @@ internal object FakePacks {
 
     val football = ThemePack(
         id = "football-v1",
-        sport = Sport.FOOTBALL,
+        theme = Theme.FOOTBALL,
         name = "Football",
         version = 1,
         categories = listOf(
@@ -55,7 +55,7 @@ internal object FakePacks {
 
     val basketball = ThemePack(
         id = "basketball-v1",
-        sport = Sport.BASKETBALL,
+        theme = Theme.BASKETBALL,
         name = "Basketball",
         version = 1,
         categories = listOf(

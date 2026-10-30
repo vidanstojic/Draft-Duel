@@ -1,7 +1,7 @@
 package com.vidanstojic.draftduel.data.pack
 
 import com.vidanstojic.draftduel.domain.model.PoolSource
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -28,7 +28,7 @@ class PackJsonTest {
 
     @Test
     fun decode_mapsPackFormatToDomain() {
-        val pack = PackJson.decode(sample, Sport.FOOTBALL)
+        val pack = PackJson.decode(sample, Theme.FOOTBALL)
 
         assertEquals("football-top5", pack.id)
         assertEquals(1, pack.version)
@@ -48,7 +48,7 @@ class PackJsonTest {
     fun bundledRepository_fallsBackToSamplePackWhenFileIsBroken() = runTest {
         val repository = BundledPackRepository(readFile = { "not json".encodeToByteArray() })
         repository.load()
-        assertTrue(repository.pack(Sport.FOOTBALL)!!.cards.isNotEmpty())
+        assertTrue(repository.pack(Theme.FOOTBALL)!!.cards.isNotEmpty())
     }
 
     @Test
@@ -61,11 +61,11 @@ class PackJsonTest {
         val repository = BundledPackRepository(readFile = { json.encodeToByteArray() })
         repository.load()
 
-        assertEquals(2, repository.pack(Sport.FOOTBALL)!!.version)
-        val spain = repository.drawPool(Sport.FOOTBALL, PoolSource.ByCategory("spain"))
+        assertEquals(2, repository.pack(Theme.FOOTBALL)!!.version)
+        val spain = repository.drawPool(Theme.FOOTBALL, PoolSource.ByCategory("spain"))
         assertEquals(10, spain.size)
         assertTrue(spain.all { "spain" in it.categoryIds })
         // Italy has only 2 athletes, so the pool comes from the whole pack.
-        assertEquals(10, repository.drawPool(Sport.FOOTBALL, PoolSource.ByCategory("italy")).size)
+        assertEquals(10, repository.drawPool(Theme.FOOTBALL, PoolSource.ByCategory("italy")).size)
     }
 }

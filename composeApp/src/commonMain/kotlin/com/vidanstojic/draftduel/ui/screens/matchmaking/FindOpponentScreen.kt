@@ -29,7 +29,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vidanstojic.draftduel.di.LocalAppContainer
 import com.vidanstojic.draftduel.domain.model.PlayerProfile
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.back
 import com.vidanstojic.draftduel.resources.cancel
@@ -74,12 +74,12 @@ fun FindOpponentScreen(
     state: FindOpponentUiState,
     onCancel: () -> Unit,
 ) {
-    val surface = state.sport.surfaceStyle()
+    val surface = state.theme.surfaceStyle()
     DdScreen(surface = surface) {
         val colors = DraftDuelTheme.colors
         DdTopBar(
             leading = { DdIconButton(Icons.AutoMirrored.Filled.ArrowBack, stringResource(Res.string.back), onCancel) },
-            title = { TopBarTitle(stringResource(Res.string.find_title), stringResource(state.sport.label())) },
+            title = { TopBarTitle(stringResource(Res.string.find_title), stringResource(state.theme.label())) },
         )
         PlaySurface(style = surface, modifier = Modifier.weight(1f).fillMaxWidth()) {
             Column(
@@ -189,7 +189,7 @@ private fun formatElapsed(seconds: Int): String = "0:${seconds.toString().padSta
 private fun FindOpponentScreenPreview() {
     FindOpponentScreen(
         state = FindOpponentUiState(
-            sport = Sport.FOOTBALL,
+            theme = Theme.FOOTBALL,
             you = PlayerProfile("You", "Serbia", 12),
             elapsedSeconds = 3,
             opponent = PlayerProfile("Marco_23", "Italy", 41),

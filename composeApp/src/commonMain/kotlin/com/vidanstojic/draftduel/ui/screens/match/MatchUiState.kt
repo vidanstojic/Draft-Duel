@@ -2,7 +2,7 @@ package com.vidanstojic.draftduel.ui.screens.match
 
 import androidx.compose.runtime.Immutable
 import com.vidanstojic.draftduel.domain.model.AthleteCard
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.ui.components.BidOptionUi
 import com.vidanstojic.draftduel.ui.components.PileCard
 
@@ -47,7 +47,7 @@ sealed interface MatchPhaseUi {
 
 @Immutable
 data class MatchUiState(
-    val sport: Sport,
+    val theme: Theme,
     val cardNumber: Int,
     val totalCards: Int,
     val cardsLeft: Int,

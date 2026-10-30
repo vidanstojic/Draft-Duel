@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.MatchSetup
 import com.vidanstojic.draftduel.domain.model.PoolSource
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 import com.vidanstojic.draftduel.domain.repository.PackRepository
 import com.vidanstojic.draftduel.domain.repository.ProfileRepository
@@ -23,12 +23,12 @@ class CategoryViewModel(
     private val _state = MutableStateFlow(initialState(mode))
     val state: StateFlow<CategoryUiState> = _state.asStateFlow()
 
-    fun selectSport(sport: Sport) {
-        if (packRepository.pack(sport) == null) return
+    fun selectTheme(theme: Theme) {
+        if (packRepository.pack(theme) == null) return
         _state.update {
             it.copy(
-                selectedSport = sport,
-                categories = categoriesOf(sport),
+                selectedTheme = theme,
+                categories = categoriesOf(theme),
                 selectedCategoryId = null,
                 sourceType = if (it.sourceType == PoolSourceType.CATEGORY) PoolSourceType.RANDOM else it.sourceType,
             )
@@ -59,7 +59,7 @@ class CategoryViewModel(
         }
         sessionRepository.setup = MatchSetup(
             mode = current.mode,
-            sport = current.selectedSport,
+            theme = current.selectedTheme,
             poolSource = source,
             you = profileRepository.currentPlayer(),
         )
@@ -67,18 +67,18 @@ class CategoryViewModel(
     }
 
     private fun initialState(mode: GameMode): CategoryUiState {
-        val sports = packRepository.sports().map { SportOptionUi(it, available = packRepository.pack(it) != null) }
-        val first = sports.first { it.available }.sport
+        val themes = packRepository.themes().map { ThemeOptionUi(it, available = packRepository.pack(it) != null) }
+        val first = themes.first { it.available }.theme
         return CategoryUiState(
             mode = mode,
-            sports = sports,
-            selectedSport = first,
+            themes = themes,
+            selectedTheme = first,
             categories = categoriesOf(first),
         )
     }
 
-    private fun categoriesOf(sport: Sport): List<CategoryOptionUi> {
-        val pack = packRepository.pack(sport) ?: return emptyList()
+    private fun categoriesOf(theme: Theme): List<CategoryOptionUi> {
+        val pack = packRepository.pack(theme) ?: return emptyList()
         return pack.categories.map { CategoryOptionUi(it.id, it.name, pack.cardsIn(it.id).size) }
     }
 }

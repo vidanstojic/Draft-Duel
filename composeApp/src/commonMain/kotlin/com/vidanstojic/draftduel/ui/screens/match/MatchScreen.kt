@@ -18,7 +18,7 @@ import com.vidanstojic.draftduel.di.LocalAppContainer
 import com.vidanstojic.draftduel.domain.match.MatchAction
 import com.vidanstojic.draftduel.domain.match.MatchEngine
 import com.vidanstojic.draftduel.domain.match.Seat
-import com.vidanstojic.draftduel.domain.model.Sport
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.match_card_label
 import com.vidanstojic.draftduel.resources.match_card_of
@@ -69,7 +69,7 @@ fun MatchScreen(
     onLeave: () -> Unit,
 ) {
     var confirmLeave by rememberSaveable { mutableStateOf(false) }
-    DdScreen(surface = state.sport.surfaceStyle()) {
+    DdScreen(surface = state.theme.surfaceStyle()) {
         DdTopBar(
             leading = { DdIconButton(Icons.Filled.Menu, stringResource(Res.string.menu), onClick = { confirmLeave = true }) },
             trailing = {
@@ -121,9 +121,9 @@ internal fun LeaveMatchDialog(
 }
 
 /** Preview state: card 6 of 10, the opponent leads at 6 and the viewer is to act. */
-internal fun previewMatchState(sport: Sport): MatchUiState {
-    val pack = if (sport == Sport.BASKETBALL) FakePacks.basketball else FakePacks.football
-    var match = MatchEngine.start(sport, pack.cards.take(10), "You", "Marco_23", firstOpener = Seat.B)
+internal fun previewMatchState(theme: Theme): MatchUiState {
+    val pack = if (theme == Theme.BASKETBALL) FakePacks.basketball else FakePacks.football
+    var match = MatchEngine.start(theme, pack.cards.take(10), "You", "Marco_23", firstOpener = Seat.B)
     repeat(5) { round ->
         val opener = MatchEngine.openerFor(match, round)
         match = MatchEngine.reduce(match, MatchAction.Raise(opener, if (round % 2 == 0) 2 else 1))
@@ -139,11 +139,11 @@ internal fun previewMatchState(sport: Sport): MatchUiState {
 @Preview
 @Composable
 private fun MatchScreenPitchPreview() {
-    MatchScreen(previewMatchState(Sport.FOOTBALL), onRaise = {}, onPass = {}, onAssign = {}, onLeave = {})
+    MatchScreen(previewMatchState(Theme.FOOTBALL), onRaise = {}, onPass = {}, onAssign = {}, onLeave = {})
 }
 
 @Preview
 @Composable
 private fun MatchScreenCourtPreview() {
-    MatchScreen(previewMatchState(Sport.BASKETBALL), onRaise = {}, onPass = {}, onAssign = {}, onLeave = {})
+    MatchScreen(previewMatchState(Theme.BASKETBALL), onRaise = {}, onPass = {}, onAssign = {}, onLeave = {})
 }

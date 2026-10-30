@@ -28,7 +28,7 @@ object DraftDuelTheme {
 }
 
 /**
- * Applies the tokens of [surface]. Screens nest this with the sport's surface, so the same
+ * Applies the tokens of [surface]. Screens nest this with the theme's surface, so the same
  * components automatically recolor for the table, pitch, court or clay.
  */
 @Composable
