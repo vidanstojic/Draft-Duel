@@ -1,5 +1,7 @@
 package com.vidanstojic.draftduel.domain.model
 
+import com.vidanstojic.draftduel.domain.match.GameRules
+
 data class PackCategory(
     val id: String,
     val name: String,
@@ -17,4 +19,13 @@ data class ThemePack(
     fun cardsIn(categoryId: String): List<AthleteCard> = cards.filter { categoryId in it.categoryIds }
 
     val averageRating: Double get() = cards.map { it.rating }.average()
+
+    /**
+     * The cards a pool for [source] is drawn from: the category when it has at least [poolSize]
+     * athletes (spec §5), otherwise the whole pack.
+     */
+    fun candidatesFor(source: PoolSource, poolSize: Int = GameRules.POOL_SIZE): List<AthleteCard> = when (source) {
+        is PoolSource.ByCategory -> cardsIn(source.categoryId).takeIf { it.size >= poolSize } ?: cards
+        PoolSource.Random, PoolSource.Custom -> cards
+    }
 }

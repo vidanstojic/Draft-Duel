@@ -7,5 +7,6 @@ object GameRules {
     const val TURN_SECONDS = 10
     const val AWARD_PAUSE_MILLIS = 2_000L
     const val MIN_RATING = 60
+    const val MAX_RATING = 99
     val BID_STEPS: List<Int> = listOf(1, 2, 5)
 }

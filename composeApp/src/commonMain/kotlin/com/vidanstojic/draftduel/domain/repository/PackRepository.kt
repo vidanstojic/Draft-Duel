@@ -8,6 +8,9 @@ import com.vidanstojic.draftduel.domain.model.ThemePack
 
 interface PackRepository {
 
+    /** Reads the packs (bundled now, cached downloads later). Called once before the first screen. */
+    suspend fun load()
+
     /** Sports in the order they are offered. A sport without a pack is shown as "coming soon". */
     fun sports(): List<Sport>
 

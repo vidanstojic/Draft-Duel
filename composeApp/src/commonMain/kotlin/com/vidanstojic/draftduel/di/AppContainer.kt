@@ -1,8 +1,8 @@
 package com.vidanstojic.draftduel.di
 
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.vidanstojic.draftduel.data.fake.FakePackRepository
 import com.vidanstojic.draftduel.data.fake.FakeProfileRepository
+import com.vidanstojic.draftduel.data.pack.BundledPackRepository
 import com.vidanstojic.draftduel.domain.repository.InMemoryMatchSessionRepository
 import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 import com.vidanstojic.draftduel.domain.repository.PackRepository
@@ -15,7 +15,7 @@ import com.vidanstojic.draftduel.domain.repository.ProfileRepository
  * Swap the fake implementations for network/cache-backed ones here; screens only see the interfaces.
  */
 class AppContainer {
-    val packRepository: PackRepository = FakePackRepository()
+    val packRepository: PackRepository = BundledPackRepository()
     val profileRepository: ProfileRepository = FakeProfileRepository()
     val sessionRepository: MatchSessionRepository = InMemoryMatchSessionRepository()
 }

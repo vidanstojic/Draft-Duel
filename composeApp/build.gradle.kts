@@ -40,6 +40,7 @@ kotlin {
             implementation(libs.androidx.navigation.compose)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.serialization.core)
+            implementation(libs.kotlinx.serialization.json)
         }
         androidMain.dependencies {
             implementation(compose.preview)

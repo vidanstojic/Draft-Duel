@@ -7,11 +7,14 @@ import com.vidanstojic.draftduel.domain.model.ThemePack
 import com.vidanstojic.draftduel.domain.repository.PackRepository
 import kotlin.random.Random
 
+/** Hand-written sample packs only. Handy for previews and tests that should not read resources. */
 class FakePackRepository(
     private val random: Random = Random.Default,
 ) : PackRepository {
 
     private val packs: Map<Sport, ThemePack> = listOf(FakePacks.football, FakePacks.basketball).associateBy { it.sport }
+
+    override suspend fun load() = Unit
 
     override fun sports(): List<Sport> = listOf(Sport.FOOTBALL, Sport.BASKETBALL, Sport.TENNIS)
 
@@ -19,10 +22,6 @@ class FakePackRepository(
 
     override fun drawPool(sport: Sport, source: PoolSource, size: Int): List<AthleteCard> {
         val pack = packs[sport] ?: return emptyList()
-        val candidates = when (source) {
-            is PoolSource.ByCategory -> pack.cardsIn(source.categoryId).takeIf { it.size >= size } ?: pack.cards
-            PoolSource.Random, PoolSource.Custom -> pack.cards
-        }
-        return candidates.shuffled(random).take(size)
+        return pack.candidatesFor(source, size).shuffled(random).take(size)
     }
 }
