@@ -7,8 +7,8 @@ import kotlin.random.Random
  * the match, so it is not translated; taglines live in string resources.
  *
  * [difficulty] comes from bot-vs-bot simulation on the football pack (average win rate against the
- * other five, 500 games per pair): Star chaser 24%, Casual fan 27%, Bargain hunter 47%,
- * Steady 54%, Hustler 59%, Scout 90%.
+ * other five, 1 000 games per pair): Star chaser 25%, Casual fan 26%, Bargain hunter 47%,
+ * Steady 53%, Hustler 59%, Scout 90%.
  */
 enum class BotPersonality(
     val nickname: String,
