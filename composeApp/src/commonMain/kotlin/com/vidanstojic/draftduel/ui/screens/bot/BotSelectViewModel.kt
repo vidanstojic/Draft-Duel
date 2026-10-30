@@ -7,6 +7,7 @@ import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.MatchSetup
 import com.vidanstojic.draftduel.domain.model.PlayerProfile
 import com.vidanstojic.draftduel.domain.model.PoolSource
+import com.vidanstojic.draftduel.domain.model.Scoring
 import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 import com.vidanstojic.draftduel.domain.repository.ProfileRepository
@@ -17,6 +18,8 @@ import kotlinx.coroutines.flow.update
 
 @Immutable
 data class BotSelectUiState(
+    /** Difficulty labels depend on how the chosen theme scores. */
+    val scoring: Scoring = Scoring.RATINGS,
     val bots: List<BotPersonality> = BotPersonality.entries,
     val selected: BotPersonality,
 )
@@ -35,7 +38,7 @@ class BotSelectViewModel(
     )
 
     private val _state = MutableStateFlow(
-        BotSelectUiState(selected = setup.bot ?: DEFAULT_BOT),
+        BotSelectUiState(scoring = setup.theme.scoring, selected = setup.bot ?: DEFAULT_BOT),
     )
     val state: StateFlow<BotSelectUiState> = _state.asStateFlow()
 

@@ -5,6 +5,7 @@ import com.vidanstojic.draftduel.domain.match.MatchEngine
 import com.vidanstojic.draftduel.domain.match.MatchPhase
 import com.vidanstojic.draftduel.domain.match.MatchState
 import com.vidanstojic.draftduel.domain.match.Seat
+import com.vidanstojic.draftduel.domain.model.Scoring
 import com.vidanstojic.draftduel.domain.model.Theme
 import kotlin.math.abs
 import kotlin.random.Random
@@ -17,10 +18,10 @@ import kotlin.test.assertTrue
 
 class PersonalityBotTest {
 
-    private val stats = FootballPackFixture.stats
+    private val stats = PoolStats.of(SimPacks.football.cards, Scoring.RATINGS)
 
     private fun match(cards: Int = 10, opener: Seat = Seat.B): MatchState =
-        MatchEngine.start(Theme.FOOTBALL, FootballPackFixture.cards.take(cards), "A", "B", opener)
+        MatchEngine.start(Theme.FOOTBALL, SimPacks.football.cards.take(cards), "A", "B", opener)
 
     private fun MatchState.withBudgets(a: Int, b: Int) = copy(
         seats = mapOf(Seat.A to seat(Seat.A).copy(budget = a), Seat.B to seat(Seat.B).copy(budget = b)),

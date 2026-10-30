@@ -98,7 +98,7 @@ fun BotSelectScreen(
         ) {
             SectionLabel(stringResource(Res.string.bot_opponents), Modifier.padding(horizontal = 4.dp))
             state.bots.forEach { bot ->
-                BotRow(bot = bot, selected = bot == state.selected, onClick = { onSelect(bot) })
+                BotRow(bot = bot, difficulty = bot.difficultyFor(state.scoring), selected = bot == state.selected, onClick = { onSelect(bot) })
             }
             Text(
                 text = stringResource(Res.string.bot_offline_note),
@@ -118,6 +118,7 @@ fun BotSelectScreen(
 @Composable
 private fun BotRow(
     bot: BotPersonality,
+    difficulty: BotDifficulty,
     selected: Boolean,
     onClick: () -> Unit,
 ) {
@@ -134,12 +135,12 @@ private fun BotRow(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        ProfileBadge(name = bot.nickname, color = badgeColor(bot.difficulty), size = 40.dp)
+        ProfileBadge(name = bot.nickname, color = badgeColor(difficulty), size = 40.dp)
         Column(Modifier.weight(1f)) {
             Text(bot.nickname, style = DraftDuelTheme.type.bodyStrong, color = colors.onScreen)
             Text(stringResource(bot.tagline()), style = DraftDuelTheme.type.caption, color = colors.muted)
         }
-        DifficultyBadge(bot.difficulty)
+        DifficultyBadge(difficulty)
     }
 }
 

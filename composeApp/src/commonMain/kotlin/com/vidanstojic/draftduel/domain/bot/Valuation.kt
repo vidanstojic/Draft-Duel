@@ -3,6 +3,7 @@ package com.vidanstojic.draftduel.domain.bot
 import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.max
+import kotlin.math.roundToInt
 
 /** Everything a valuation needs for the card on the table, from the bot's point of view. */
 data class BidView(
@@ -16,8 +17,11 @@ data class BidView(
     /** Uniform [0, 1) sample fixed for this round, for valuations with a mood (spec §12 epsilon). */
     val mood: Double,
 ) {
-    /** Cards the bot expects to buy from here on if both sides split them evenly. */
-    val fairShare: Int get() = max(1, (cardsAfter + 2) / 2)
+    /**
+     * Cards worth having the bot expects to buy from here on if both sides split them evenly
+     * (wrong ingredients are not counted: nobody should buy them).
+     */
+    val fairShare: Int get() = max(1, ((cardsAfter * stats.usefulShare).roundToInt() + 2) / 2)
 
     /** (r - floor) / (avg - floor): 1.0 for a typical good card, 0 for one worth nothing or less. */
     val strength: Double
@@ -82,8 +86,18 @@ class StarChaserValuation(
     }
 }
 
-/** Uses [AuctionLookahead]: the price at which winning and losing this card are worth the same. */
-class LookaheadValuation(private val lookahead: AuctionLookahead) : Valuation {
-    override fun maxPrice(view: BidView): Int =
-        lookahead.reservation(view.perceived, view.budget, view.opponentBudget, view.cardsAfter)
+/**
+ * Uses [AuctionLookahead]: the price at which winning and losing this card are worth the same,
+ * scaled by the round's mood within [[moodMin], [moodMax]] so the bot is strong but not flawless.
+ */
+class LookaheadValuation(
+    private val lookahead: AuctionLookahead,
+    private val moodMin: Double = 1.0,
+    private val moodMax: Double = 1.0,
+) : Valuation {
+    override fun maxPrice(view: BidView): Int {
+        val reservation = lookahead.reservation(view.perceived, view.budget, view.opponentBudget, view.cardsAfter)
+        val mood = moodMin + view.mood * (moodMax - moodMin)
+        return (reservation * mood).roundToInt()
+    }
 }

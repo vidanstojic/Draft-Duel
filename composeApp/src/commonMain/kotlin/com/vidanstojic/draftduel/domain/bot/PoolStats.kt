@@ -25,6 +25,9 @@ class PoolStats(
     /** Average of the cards worth having, the "typical good card" valuations compare against. */
     val average: Double = values.filter { it > floor }.ifEmpty { values }.average()
 
+    /** Share of cards that add something (all of them in rating packs, the fitting ingredients in a recipe). */
+    val usefulShare: Double = values.count { it > 0 }.toDouble() / values.size
+
     /** Expected |value|: what a free pick is worth when the rival is on 0 (good cards kept, bad ones given away). */
     val averageMagnitude: Double = values.map { abs(it) }.average()
 

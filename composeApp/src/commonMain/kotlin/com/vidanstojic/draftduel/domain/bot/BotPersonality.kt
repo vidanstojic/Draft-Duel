@@ -1,23 +1,29 @@
 package com.vidanstojic.draftduel.domain.bot
 
+import com.vidanstojic.draftduel.domain.model.Scoring
 import kotlin.random.Random
 
 /**
  * The bots a player can face, ordered from easiest to hardest. [nickname] is a proper name shown in
  * the match, so it is not translated; taglines live in string resources.
  *
- * [difficulty] comes from bot-vs-bot simulation on the football pack (average win rate against the
- * other five, 1 000 games per pair): Star chaser 25%, Casual fan 26%, Bargain hunter 47%,
- * Steady 53%, Hustler 59%, Scout 90%.
+ * Difficulty comes from bot-vs-bot simulation (`BotSimulationTest`, average win rate against the
+ * other five on each pack); see the README for the latest table.
  */
 enum class BotPersonality(
     val nickname: String,
-    val difficulty: BotDifficulty,
+    /** Difficulty in rating packs (football, movies). */
+    private val ratingsDifficulty: BotDifficulty,
     /** Relative chance of meeting this bot behind "Find opponent". */
     val quickMatchWeight: Int,
+    /** Difficulty in recipe packs (food), where some styles play differently. */
+    private val recipeDifficulty: BotDifficulty = ratingsDifficulty,
 ) {
-    /** Goes all in on stars and lowballs everyone else. Flashy, but easy to drain. */
-    STAR_CHASER("Galáctico Gio", BotDifficulty.EASY, quickMatchWeight = 15),
+    /**
+     * Goes all in on stars and lowballs everyone else. Flashy and easy to drain in rating packs;
+     * in a recipe the main ingredients really are the stars, so there it plays at medium level.
+     */
+    STAR_CHASER("Galáctico Gio", BotDifficulty.EASY, quickMatchWeight = 15, recipeDifficulty = BotDifficulty.MEDIUM),
 
     /** Bids on gut feeling, loves forwards, jumps the price for no reason. */
     CASUAL_FAN("Sunday Sam", BotDifficulty.EASY, quickMatchWeight = 20),
@@ -34,6 +40,8 @@ enum class BotPersonality(
     /** Knows ratings almost exactly and plans the rest of the match with a lookahead. */
     SCOUT("Scout Nina", BotDifficulty.HARD, quickMatchWeight = 10),
     ;
+
+    fun difficultyFor(scoring: Scoring): BotDifficulty = if (scoring == Scoring.RECIPE) recipeDifficulty else ratingsDifficulty
 
     companion object {
         /** Hidden opponent for "Find opponent" and the invite fallback. */
@@ -91,8 +99,14 @@ object BotFactory {
             thinkMillis = 700L..2_000L,
         )
         BotPersonality.SCOUT -> BotBehavior(
-            perception = RatingPerception(noise = 1),
-            valuation = LookaheadValuation(AuctionLookahead(stats)),
+            perception = RatingPerception(noise = 2),
+            // In rating packs the exact lookahead beat every other bot 9 times in 10, so it
+            // plays a little cautious there; recipe matches are close enough without that.
+            valuation = if (stats.scoring == Scoring.RATINGS) {
+                LookaheadValuation(AuctionLookahead(stats), moodMin = 0.75, moodMax = 1.05)
+            } else {
+                LookaheadValuation(AuctionLookahead(stats))
+            },
             style = BidStyle(snipes = true),
             thinkMillis = 1_500L..4_000L,
         )
