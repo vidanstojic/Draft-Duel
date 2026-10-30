@@ -3,7 +3,7 @@
 Brz 1v1 duel (3–5 min): dva igrača sa po 20 poena licitiraju za 10 kartica sportista, a pobeđuje veći zbir ocena.
 Jedan kod za Android i iOS: **Kotlin + Compose Multiplatform**.
 
-> **Status:** UI + prava pravila + šest botova. Fudbalski paket dolazi iz baze ocena (v5), košarka je još primer (`data/fake`).
+> **Status:** UI + prava pravila + šest botova. Teme: fudbal (baza ocena v5), filmovi i hrana (ručno), košarka je još primer (`data/fake`).
 > Protivnik u svim online modovima je bot na telefonu, a server još ne postoji. Pravila (`MatchEngine`) i botovi su pokriveni testovima.
 
 ## Pokretanje
@@ -30,7 +30,7 @@ composeApp/src/
 │   ├── App.kt                 koren UI-ja (Android i iOS)
 │   ├── di/                    AppContainer: ručni DI, ovde se lažne implementacije menjaju pravim
 │   ├── domain/
-│   │   ├── model/             Theme, AthleteCard, ThemePack, GameMode, MatchSetup…
+│   │   ├── model/             Theme/Scoring, GameCard, ThemePack, MatchPool, GameMode…
 │   │   ├── match/             MatchEngine (pravila), MatchState, GameRules
 │   │   ├── bot/               ličnosti botova, procena ocene, vrednovanje, lookahead model
 │   │   └── repository/        interfejsi: paketi, profili, sesija partije
@@ -50,6 +50,7 @@ composeApp/src/
 └── iosMain/                   MainViewController za Swift
 iosApp/                        Swift omotač + XcodeGen project.yml
 tools/export_pack.py           pravi football.json iz draft_duel.db
+tools/validate_pack.py         proverava sve pakete (opseg ocena, kategorije, recepti = 100)
 ```
 
 **Konvencije**
@@ -63,7 +64,7 @@ tools/export_pack.py           pravi football.json iz draft_duel.db
 | Ekran | Šta prikazuje |
 |---|---|
 | Home | Četiri moda: *Find opponent*, *Play vs bot*, *Same device*, *Play a friend* + pravila |
-| Category | Sport (podloga se vidi na pločici, tenis „uskoro“), izvor bazena (nasumično, po kategoriji, sopstveni samo za prijatelja) |
+| Category | Tema (podloga se vidi na pločici, tenis „uskoro“), izvor bazena (nasumično, po kategoriji, sopstveni samo za prijatelja) |
 | Find opponent | Traženje → „Opponent found“ → odbrojavanje. U v1 je to bot sa imenom igrača |
 | Invite | Kod i link, kopiranje, sistemsko deljenje, istek linka, ulazak preko koda, ponuda bota posle 60 s |
 | Match | Licitacija na podlozi sporta, gomile kartica bez limita, budžeti, skrivene ocene, „X can bid up to N“, biranje kad je neko na 0, dodela |
@@ -89,30 +90,58 @@ python tools/export_pack.py C:/Users/<ti>/Desktop/data/v5/draft_duel.db
 
 Ako fajl nedostaje ili je neispravan, aplikacija koristi primer paket, pa se ne ruši.
 
+## Filmovi
+
+`movies.json`: 60 filmova, ocene sam dodelio ručno (spec §5: „autor, ručno“, bez tuđih ocena), balans 6 / 18 / 36 kao u specu.
+Kategorije su žanrovi (Sci-Fi, Crime, Animation, Comedy, Drama, Action, po 10), na kartici su godina i zemlja.
+Kartica je filmska traka sa inicijalima: nema postera ni logotipa. Podloga je bioskop (zavese, platno, sedišta).
+
+## Hrana (recept mod)
+
+Pravila su ista, a menja se samo bodovanje (`Scoring.RECIPE`):
+- Partija je jedno jelo (kategorija): pica, burger, karbonara, sarma, ćevapi, maki, grčka salata, palačinke, gvakamole, tiramisu.
+  *Random* bira nasumično jelo.
+- Pravi sastojci nose poene koji zbirno daju 100 (npr. testo 30, paradajz sos 25, mocarela 25…). Pogrešni oduzimaju (ananas −15, čokolada −20…).
+  Zbir zato pokazuje koliko je igrač blizu receptu.
+- Bazen čine svi pravi sastojci plus nasumični pogrešni do 10 karata.
+- **Otvarač sme da preskoči kartu bez ponude i tada je niko ne dobija.** Bez toga bi pogrešan sastojak uvek pao otvaraču,
+  pa bi pobeda zavisila od sreće, a ne od znanja o receptu.
+- Kad je protivnik na 0, „Dajem protivniku“ ima smisla: pogrešan sastojak mu se daje.
+- Na kartici je grupa namirnice (DAIRY, MEAT…), poeni imaju znak (+25 / −10), a ekran partije pokazuje jelo koje se pravi.
+  Podloga je kuhinjski sto sa kariranim stolnjakom.
+
+Provera paketa: `python tools/validate_pack.py`.
+
 ## Botovi
 
 Bot vidi isto što i igrač: kartu na stolu, oba budžeta i ocene karata koje je osvojio. Ocena na stolu je skrivena,
 pa svaki bot licitira na svoju procenu (`RatingPerception`). Ličnost = procena + vrednovanje (`Valuation`) + stil licitiranja (`BidStyle`).
 
-| Bot | Težina | Kako igra | Pobede protiv ostalih* |
-|---|---|---|---|
-| Galáctico Gio | Easy | Sve na zvezde (procena 85+), ostale kartice nisko; otvara zvezdu sa +5 | 25% |
-| Sunday Sam | Easy | Procena ±9, precenjuje napadače, podcenjuje golmane, nasumično +1/+2/+5 | 26% |
-| Bargain Bea | Medium | 85% fer cene, na kraju troši ostatak ravnomerno; „snajper“ | 47% |
-| Steady Stefan | Medium | Originalna formula iz spec §12, bez izmena | 53% |
-| Hustler Hugo | Medium | Fer cena, ali u 45% slučajeva diže +1 preko svoje granice da protivnik plati više | 59% |
-| Scout Nina | Hard | Procena ±1 i model ostatka partije (`AuctionLookahead`) | 90% |
+| Bot | Težina | Kako igra | Fudbal* | Filmovi* | Hrana* |
+|---|---|---|---|---|---|
+| Galáctico Gio | Easy (u hrani Medium) | Sve na zvezde, ostale kartice nisko; otvara zvezdu sa +5 | 24% | 28% | 50% |
+| Sunday Sam | Easy | Procena ±9, precenjuje napadače, podcenjuje golmane, nasumično +1/+2/+5 | 34% | 30% | 32% |
+| Bargain Bea | Medium | 85% fer cene, na kraju troši ostatak ravnomerno; „snajper“ | 47% | 46% | 49% |
+| Steady Stefan | Medium | Originalna formula iz spec §12 | 57% | 49% | 48% |
+| Hustler Hugo | Medium | Fer cena, ali u 45% slučajeva diže +1 preko svoje granice da protivnik plati više | 63% | 62% | 50% |
+| Scout Nina | Hard | Procena ±2 i model ostatka partije (`AuctionLookahead`) | 76% | 86% | 72% |
 
-\* simulacija bot protiv bota, 1000 partija po paru, fudbalski paket.
+\* prosek pobeda protiv ostalih pet, turnir bot protiv bota, 1000 partija po paru (`BotSimulation.tournament`).
+
+**Korekcije posle turnira:**
+- Scout je pre korekcije pobeđivao 89% (fudbal) i 96% (filmovi). Sada ima procenu ±2 umesto ±1 i u temama sa ocenama malo opreznije licitira (0,75–1,05 svoje cene).
+- U hrani su botovi sa formulom brojali i pogrešne sastojke kao karte koje vredi kupiti, pa su potplaćivali prave (Bargain Bea 27%).
+  Sada računaju samo korisne karte.
+- Galáctico je u hrani Medium jer su tamo glavni sastojci zaista „zvezde“; ekran izbora bota prikazuje težinu za izabranu temu.
 
 Svi osim Sunday Sama i Steady Stefana znaju dve stvari o kraju partije: ostatak budžeta posle poslednje karte ne vredi ništa,
 a ponuda veća od protivnikovog budžeta + 1 je bačen novac. „Snajper“ licitira tačno protivnikov budžet + 1 kad to odmah osvaja kartu.
-Kad je protivnik na 0, bot uvek uzima besplatnu kartu (bez limita slotova svaka karta povećava zbir).
+Kad je protivnik na 0, bot uzima kartu koja nešto vredi (bez limita slotova svaka takva karta povećava zbir), a pogrešan sastojak daje protivniku.
 
 *Find opponent* i rezervna opcija u pozivu biraju skrivenu ličnost po težinama (`quickMatchWeight`), a revanš zadržava istog bota.
 
 Uvid iz simulacije: pošto je najniža ocena 60, broj karata nosi više od razlike u ocenama, pa je skupo plaćanje zvezde loša strategija.
-Otvarač prve runde pobeđuje u 48,5% partija (cilj iz spec §17: 45–55%).
+Otvarač prve runde pobeđuje u 48,7% (fudbal), 50,0% (filmovi) i 51,6% (hrana) partija (cilj iz spec §17: 45–55%).
 
 ## Testovi
 
@@ -121,8 +150,9 @@ Otvarač prve runde pobeđuje u 48,5% partija (cilj iz spec §17: 45–55%).
 ```
 - `MatchEngineTest` pokriva redove tabele primera iz spec §3, prilagođene pravilima bez limita kartica.
 - `PackJsonTest`: format paketa, odbacivanje ocena van 60–99, rezervni paket, bazen po kategoriji.
+- `RecipeModeTest`: bazen jela, preskakanje otvarača, negativni poeni, botovi preskaču i poklanjaju pogrešne sastojke.
 - `PersonalityBotTest`: otvarač mora da ponudi, granica i odustajanje, snajper, kraj partije, lookahead model.
-- `BotSimulationTest` (spec §17): samo legalni potezi, invarijante budžeta, prednost otvarača, redosled težina.
+- `BotSimulationTest` (spec §17), na sve tri teme: samo legalni potezi, invarijante budžeta, prednost otvarača, redosled težina.
 
 ## Sledeći koraci
 - Fontovi: dodati Bricolage Grotesque i IBM Plex Mono u `composeResources/font` i zameniti ih u `ui/theme/Typography.kt`.
