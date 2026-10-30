@@ -95,10 +95,50 @@ enum class SurfaceStyle(
         shape = RoundedCornerShape(8.dp),
         contentPadding = PaddingValues(horizontal = 26.dp, vertical = 20.dp),
     ),
+    CINEMA(
+        palette = SurfacePalette(
+            screen = Color(0xFF12070A),
+            onScreen = Color(0xFFF6E9D6),
+            muted = Color(0xFFE2C9B0),
+            accent = Color(0xFFE8B64C),
+            onAccent = Color(0xFF2A0B10),
+            accentEdge = Color(0xFFA27A22),
+            panel = Color(0xB8180509),
+            outline = Color(0x80E2C9B0),
+            opponent = Color(0xFF3B7BD8),
+            onOpponent = Color.White,
+            primaryBid = BidColors(Color(0xFFF6E9D6), Color(0xFF2A0B10), Color(0xFFA8977E)),
+            secondaryBid = BidColors(Color(0xFFE8B64C), Color(0xFF2A0B10), Color(0xFFA27A22)),
+            disabledBid = BidColors(Color(0xFF3E2328), Color(0xFFB79CA1), Color(0xFF26141A)),
+        ),
+        shape = RoundedCornerShape(10.dp),
+        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 22.dp),
+    ),
+    KITCHEN(
+        palette = SurfacePalette(
+            screen = Color(0xFF1E120B),
+            onScreen = Color(0xFFFFF4E6),
+            muted = Color(0xFFF1D9C4),
+            accent = Color(0xFFF2C14E),
+            onAccent = Color(0xFF2B1408),
+            accentEdge = Color(0xFFB38B2A),
+            panel = Color(0xB8240E08),
+            outline = Color(0x80F1D9C4),
+            opponent = Color(0xFF3B7BD8),
+            onOpponent = Color.White,
+            primaryBid = BidColors(Color(0xFFFFF4E6), Color(0xFF2B1408), Color(0xFFBCA88F)),
+            secondaryBid = BidColors(Color(0xFF3E8E5A), Color.White, Color(0xFF285E3B)),
+            disabledBid = BidColors(Color(0xFF4F3A30), Color(0xFFC7B1A3), Color(0xFF33241C)),
+        ),
+        shape = RoundedCornerShape(18.dp),
+        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 22.dp),
+    ),
 }
 
 fun Theme.surfaceStyle(): SurfaceStyle = when (this) {
     Theme.FOOTBALL -> SurfaceStyle.PITCH
     Theme.BASKETBALL -> SurfaceStyle.COURT
     Theme.TENNIS -> SurfaceStyle.CLAY
+    Theme.MOVIES -> SurfaceStyle.CINEMA
+    Theme.FOOD -> SurfaceStyle.KITCHEN
 }

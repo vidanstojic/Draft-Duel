@@ -58,7 +58,7 @@ class MatchDriver(
         val state = _match.value
         job = scope.launch {
             when (state.phase) {
-                is MatchPhase.Awarded -> {
+                is MatchPhase.Awarded, MatchPhase.Discarded -> {
                     delay(GameRules.AWARD_PAUSE_MILLIS)
                     _match.value = MatchEngine.advance(_match.value)
                     onMatchChanged()

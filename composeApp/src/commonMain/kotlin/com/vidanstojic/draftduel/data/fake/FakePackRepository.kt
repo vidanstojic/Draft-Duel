@@ -1,6 +1,6 @@
 package com.vidanstojic.draftduel.data.fake
 
-import com.vidanstojic.draftduel.domain.model.AthleteCard
+import com.vidanstojic.draftduel.domain.model.MatchPool
 import com.vidanstojic.draftduel.domain.model.PoolSource
 import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.model.ThemePack
@@ -20,8 +20,6 @@ class FakePackRepository(
 
     override fun pack(theme: Theme): ThemePack? = packs[theme]
 
-    override fun drawPool(theme: Theme, source: PoolSource, size: Int): List<AthleteCard> {
-        val pack = packs[theme] ?: return emptyList()
-        return pack.candidatesFor(source, size).shuffled(random).take(size)
-    }
+    override fun drawPool(theme: Theme, source: PoolSource, size: Int): MatchPool? =
+        packs[theme]?.drawPool(source, size, random)
 }

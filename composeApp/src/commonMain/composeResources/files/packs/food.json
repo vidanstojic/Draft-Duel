@@ -1,0 +1,1804 @@
+{
+  "id": "food-v1",
+  "version": 1,
+  "theme": "Food",
+  "categories": [
+    "Pizza Margherita",
+    "Cheeseburger",
+    "Spaghetti Carbonara",
+    "Sarma",
+    "Ćevapi",
+    "Salmon maki",
+    "Greek salad",
+    "Pancakes",
+    "Guacamole",
+    "Tiramisu"
+  ],
+  "athletes": [
+    {
+      "id": "fd-pizza-margherita-pizza-dough",
+      "name": "Pizza dough",
+      "rating": 30,
+      "categories": [
+        "Pizza Margherita"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "PD"
+      }
+    },
+    {
+      "id": "fd-pizza-margherita-tomato-sauce",
+      "name": "Tomato sauce",
+      "rating": 25,
+      "categories": [
+        "Pizza Margherita"
+      ],
+      "position": "SAUCE",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "TS"
+      }
+    },
+    {
+      "id": "fd-pizza-margherita-mozzarella",
+      "name": "Mozzarella",
+      "rating": 25,
+      "categories": [
+        "Pizza Margherita"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "MO"
+      }
+    },
+    {
+      "id": "fd-pizza-margherita-fresh-basil",
+      "name": "Fresh basil",
+      "rating": 10,
+      "categories": [
+        "Pizza Margherita"
+      ],
+      "position": "HERB",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "FB"
+      }
+    },
+    {
+      "id": "fd-pizza-margherita-olive-oil",
+      "name": "Olive oil",
+      "rating": 5,
+      "categories": [
+        "Pizza Margherita"
+      ],
+      "position": "FAT",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "OO"
+      }
+    },
+    {
+      "id": "fd-pizza-margherita-sea-salt",
+      "name": "Sea salt",
+      "rating": 5,
+      "categories": [
+        "Pizza Margherita"
+      ],
+      "position": "SPICE",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "SS"
+      }
+    },
+    {
+      "id": "fd-pizza-margherita-pineapple",
+      "name": "Pineapple",
+      "rating": -15,
+      "categories": [
+        "Pizza Margherita"
+      ],
+      "position": "FRUIT",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "PI"
+      }
+    },
+    {
+      "id": "fd-pizza-margherita-cheddar",
+      "name": "Cheddar",
+      "rating": -5,
+      "categories": [
+        "Pizza Margherita"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "CH"
+      }
+    },
+    {
+      "id": "fd-pizza-margherita-ketchup",
+      "name": "Ketchup",
+      "rating": -10,
+      "categories": [
+        "Pizza Margherita"
+      ],
+      "position": "SAUCE",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "KE"
+      }
+    },
+    {
+      "id": "fd-pizza-margherita-chocolate",
+      "name": "Chocolate",
+      "rating": -20,
+      "categories": [
+        "Pizza Margherita"
+      ],
+      "position": "SWEET",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "CH"
+      }
+    },
+    {
+      "id": "fd-pizza-margherita-mayonnaise",
+      "name": "Mayonnaise",
+      "rating": -10,
+      "categories": [
+        "Pizza Margherita"
+      ],
+      "position": "SAUCE",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "MA"
+      }
+    },
+    {
+      "id": "fd-pizza-margherita-cucumber",
+      "name": "Cucumber",
+      "rating": -10,
+      "categories": [
+        "Pizza Margherita"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "CU"
+      }
+    },
+    {
+      "id": "fd-cheeseburger-burger-bun",
+      "name": "Burger bun",
+      "rating": 20,
+      "categories": [
+        "Cheeseburger"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "BB"
+      }
+    },
+    {
+      "id": "fd-cheeseburger-beef-patty",
+      "name": "Beef patty",
+      "rating": 30,
+      "categories": [
+        "Cheeseburger"
+      ],
+      "position": "MEAT",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "BP"
+      }
+    },
+    {
+      "id": "fd-cheeseburger-cheddar",
+      "name": "Cheddar",
+      "rating": 15,
+      "categories": [
+        "Cheeseburger"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "CH"
+      }
+    },
+    {
+      "id": "fd-cheeseburger-lettuce",
+      "name": "Lettuce",
+      "rating": 10,
+      "categories": [
+        "Cheeseburger"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "LE"
+      }
+    },
+    {
+      "id": "fd-cheeseburger-tomato",
+      "name": "Tomato",
+      "rating": 10,
+      "categories": [
+        "Cheeseburger"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "TO"
+      }
+    },
+    {
+      "id": "fd-cheeseburger-pickles",
+      "name": "Pickles",
+      "rating": 10,
+      "categories": [
+        "Cheeseburger"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "PI"
+      }
+    },
+    {
+      "id": "fd-cheeseburger-onion",
+      "name": "Onion",
+      "rating": 5,
+      "categories": [
+        "Cheeseburger"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "ON"
+      }
+    },
+    {
+      "id": "fd-cheeseburger-salmon",
+      "name": "Salmon",
+      "rating": -15,
+      "categories": [
+        "Cheeseburger"
+      ],
+      "position": "FISH",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "SA"
+      }
+    },
+    {
+      "id": "fd-cheeseburger-mozzarella",
+      "name": "Mozzarella",
+      "rating": -5,
+      "categories": [
+        "Cheeseburger"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "MO"
+      }
+    },
+    {
+      "id": "fd-cheeseburger-strawberries",
+      "name": "Strawberries",
+      "rating": -15,
+      "categories": [
+        "Cheeseburger"
+      ],
+      "position": "FRUIT",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "ST"
+      }
+    },
+    {
+      "id": "fd-cheeseburger-rice",
+      "name": "Rice",
+      "rating": -10,
+      "categories": [
+        "Cheeseburger"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "RI"
+      }
+    },
+    {
+      "id": "fd-cheeseburger-custard",
+      "name": "Custard",
+      "rating": -20,
+      "categories": [
+        "Cheeseburger"
+      ],
+      "position": "SWEET",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "CU"
+      }
+    },
+    {
+      "id": "fd-spaghetti-carbonara-spaghetti",
+      "name": "Spaghetti",
+      "rating": 30,
+      "categories": [
+        "Spaghetti Carbonara"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "SP"
+      }
+    },
+    {
+      "id": "fd-spaghetti-carbonara-guanciale",
+      "name": "Guanciale",
+      "rating": 25,
+      "categories": [
+        "Spaghetti Carbonara"
+      ],
+      "position": "MEAT",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "GU"
+      }
+    },
+    {
+      "id": "fd-spaghetti-carbonara-egg-yolks",
+      "name": "Egg yolks",
+      "rating": 20,
+      "categories": [
+        "Spaghetti Carbonara"
+      ],
+      "position": "EGG",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "EY"
+      }
+    },
+    {
+      "id": "fd-spaghetti-carbonara-pecorino-romano",
+      "name": "Pecorino Romano",
+      "rating": 15,
+      "categories": [
+        "Spaghetti Carbonara"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "PR"
+      }
+    },
+    {
+      "id": "fd-spaghetti-carbonara-black-pepper",
+      "name": "Black pepper",
+      "rating": 10,
+      "categories": [
+        "Spaghetti Carbonara"
+      ],
+      "position": "SPICE",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "BP"
+      }
+    },
+    {
+      "id": "fd-spaghetti-carbonara-cream",
+      "name": "Cream",
+      "rating": -10,
+      "categories": [
+        "Spaghetti Carbonara"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "CR"
+      }
+    },
+    {
+      "id": "fd-spaghetti-carbonara-garlic",
+      "name": "Garlic",
+      "rating": -5,
+      "categories": [
+        "Spaghetti Carbonara"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "GA"
+      }
+    },
+    {
+      "id": "fd-spaghetti-carbonara-peas",
+      "name": "Peas",
+      "rating": -10,
+      "categories": [
+        "Spaghetti Carbonara"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "PE"
+      }
+    },
+    {
+      "id": "fd-spaghetti-carbonara-ketchup",
+      "name": "Ketchup",
+      "rating": -20,
+      "categories": [
+        "Spaghetti Carbonara"
+      ],
+      "position": "SAUCE",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "KE"
+      }
+    },
+    {
+      "id": "fd-spaghetti-carbonara-mushrooms",
+      "name": "Mushrooms",
+      "rating": -10,
+      "categories": [
+        "Spaghetti Carbonara"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "MU"
+      }
+    },
+    {
+      "id": "fd-spaghetti-carbonara-chicken",
+      "name": "Chicken",
+      "rating": -10,
+      "categories": [
+        "Spaghetti Carbonara"
+      ],
+      "position": "MEAT",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "CH"
+      }
+    },
+    {
+      "id": "fd-sarma-sauerkraut-leaves",
+      "name": "Sauerkraut leaves",
+      "rating": 30,
+      "categories": [
+        "Sarma"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "SL"
+      }
+    },
+    {
+      "id": "fd-sarma-minced-pork",
+      "name": "Minced pork",
+      "rating": 25,
+      "categories": [
+        "Sarma"
+      ],
+      "position": "MEAT",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "MP"
+      }
+    },
+    {
+      "id": "fd-sarma-rice",
+      "name": "Rice",
+      "rating": 15,
+      "categories": [
+        "Sarma"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "RI"
+      }
+    },
+    {
+      "id": "fd-sarma-smoked-bacon",
+      "name": "Smoked bacon",
+      "rating": 15,
+      "categories": [
+        "Sarma"
+      ],
+      "position": "MEAT",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "SB"
+      }
+    },
+    {
+      "id": "fd-sarma-onion",
+      "name": "Onion",
+      "rating": 10,
+      "categories": [
+        "Sarma"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "ON"
+      }
+    },
+    {
+      "id": "fd-sarma-sweet-paprika",
+      "name": "Sweet paprika",
+      "rating": 5,
+      "categories": [
+        "Sarma"
+      ],
+      "position": "SPICE",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "SP"
+      }
+    },
+    {
+      "id": "fd-sarma-pasta",
+      "name": "Pasta",
+      "rating": -10,
+      "categories": [
+        "Sarma"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "PA"
+      }
+    },
+    {
+      "id": "fd-sarma-pineapple",
+      "name": "Pineapple",
+      "rating": -20,
+      "categories": [
+        "Sarma"
+      ],
+      "position": "FRUIT",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "PI"
+      }
+    },
+    {
+      "id": "fd-sarma-soy-sauce",
+      "name": "Soy sauce",
+      "rating": -10,
+      "categories": [
+        "Sarma"
+      ],
+      "position": "SAUCE",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "SS"
+      }
+    },
+    {
+      "id": "fd-sarma-cheddar",
+      "name": "Cheddar",
+      "rating": -10,
+      "categories": [
+        "Sarma"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "CH"
+      }
+    },
+    {
+      "id": "fd-sarma-avocado",
+      "name": "Avocado",
+      "rating": -15,
+      "categories": [
+        "Sarma"
+      ],
+      "position": "FRUIT",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "AV"
+      }
+    },
+    {
+      "id": "fd-sarma-chocolate",
+      "name": "Chocolate",
+      "rating": -20,
+      "categories": [
+        "Sarma"
+      ],
+      "position": "SWEET",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "CH"
+      }
+    },
+    {
+      "id": "fd-cevapi-minced-beef",
+      "name": "Minced beef",
+      "rating": 35,
+      "categories": [
+        "Ćevapi"
+      ],
+      "position": "MEAT",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "MB"
+      }
+    },
+    {
+      "id": "fd-cevapi-minced-lamb",
+      "name": "Minced lamb",
+      "rating": 15,
+      "categories": [
+        "Ćevapi"
+      ],
+      "position": "MEAT",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "ML"
+      }
+    },
+    {
+      "id": "fd-cevapi-lepinja",
+      "name": "Lepinja",
+      "rating": 20,
+      "categories": [
+        "Ćevapi"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "LE"
+      }
+    },
+    {
+      "id": "fd-cevapi-raw-onion",
+      "name": "Raw onion",
+      "rating": 15,
+      "categories": [
+        "Ćevapi"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "RO"
+      }
+    },
+    {
+      "id": "fd-cevapi-kajmak",
+      "name": "Kajmak",
+      "rating": 10,
+      "categories": [
+        "Ćevapi"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "KA"
+      }
+    },
+    {
+      "id": "fd-cevapi-salt",
+      "name": "Salt",
+      "rating": 5,
+      "categories": [
+        "Ćevapi"
+      ],
+      "position": "SPICE",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "SA"
+      }
+    },
+    {
+      "id": "fd-cevapi-ketchup",
+      "name": "Ketchup",
+      "rating": -10,
+      "categories": [
+        "Ćevapi"
+      ],
+      "position": "SAUCE",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "KE"
+      }
+    },
+    {
+      "id": "fd-cevapi-mozzarella",
+      "name": "Mozzarella",
+      "rating": -10,
+      "categories": [
+        "Ćevapi"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "MO"
+      }
+    },
+    {
+      "id": "fd-cevapi-tortilla",
+      "name": "Tortilla",
+      "rating": -5,
+      "categories": [
+        "Ćevapi"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "TO"
+      }
+    },
+    {
+      "id": "fd-cevapi-rice",
+      "name": "Rice",
+      "rating": -10,
+      "categories": [
+        "Ćevapi"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "RI"
+      }
+    },
+    {
+      "id": "fd-cevapi-pineapple",
+      "name": "Pineapple",
+      "rating": -20,
+      "categories": [
+        "Ćevapi"
+      ],
+      "position": "FRUIT",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "PI"
+      }
+    },
+    {
+      "id": "fd-cevapi-mayonnaise",
+      "name": "Mayonnaise",
+      "rating": -10,
+      "categories": [
+        "Ćevapi"
+      ],
+      "position": "SAUCE",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "MA"
+      }
+    },
+    {
+      "id": "fd-salmon-maki-sushi-rice",
+      "name": "Sushi rice",
+      "rating": 30,
+      "categories": [
+        "Salmon maki"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "SR"
+      }
+    },
+    {
+      "id": "fd-salmon-maki-nori",
+      "name": "Nori",
+      "rating": 20,
+      "categories": [
+        "Salmon maki"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "NO"
+      }
+    },
+    {
+      "id": "fd-salmon-maki-raw-salmon",
+      "name": "Raw salmon",
+      "rating": 25,
+      "categories": [
+        "Salmon maki"
+      ],
+      "position": "FISH",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "RS"
+      }
+    },
+    {
+      "id": "fd-salmon-maki-rice-vinegar",
+      "name": "Rice vinegar",
+      "rating": 10,
+      "categories": [
+        "Salmon maki"
+      ],
+      "position": "SAUCE",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "RV"
+      }
+    },
+    {
+      "id": "fd-salmon-maki-wasabi",
+      "name": "Wasabi",
+      "rating": 5,
+      "categories": [
+        "Salmon maki"
+      ],
+      "position": "SPICE",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "WA"
+      }
+    },
+    {
+      "id": "fd-salmon-maki-soy-sauce",
+      "name": "Soy sauce",
+      "rating": 10,
+      "categories": [
+        "Salmon maki"
+      ],
+      "position": "SAUCE",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "SS"
+      }
+    },
+    {
+      "id": "fd-salmon-maki-cheddar",
+      "name": "Cheddar",
+      "rating": -15,
+      "categories": [
+        "Salmon maki"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "CH"
+      }
+    },
+    {
+      "id": "fd-salmon-maki-bread",
+      "name": "Bread",
+      "rating": -10,
+      "categories": [
+        "Salmon maki"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "BR"
+      }
+    },
+    {
+      "id": "fd-salmon-maki-ketchup",
+      "name": "Ketchup",
+      "rating": -15,
+      "categories": [
+        "Salmon maki"
+      ],
+      "position": "SAUCE",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "KE"
+      }
+    },
+    {
+      "id": "fd-salmon-maki-bacon",
+      "name": "Bacon",
+      "rating": -10,
+      "categories": [
+        "Salmon maki"
+      ],
+      "position": "MEAT",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "BA"
+      }
+    },
+    {
+      "id": "fd-salmon-maki-basmati-rice",
+      "name": "Basmati rice",
+      "rating": -5,
+      "categories": [
+        "Salmon maki"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "BR"
+      }
+    },
+    {
+      "id": "fd-salmon-maki-chocolate",
+      "name": "Chocolate",
+      "rating": -20,
+      "categories": [
+        "Salmon maki"
+      ],
+      "position": "SWEET",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "CH"
+      }
+    },
+    {
+      "id": "fd-greek-salad-tomato",
+      "name": "Tomato",
+      "rating": 25,
+      "categories": [
+        "Greek salad"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "TO"
+      }
+    },
+    {
+      "id": "fd-greek-salad-cucumber",
+      "name": "Cucumber",
+      "rating": 20,
+      "categories": [
+        "Greek salad"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "CU"
+      }
+    },
+    {
+      "id": "fd-greek-salad-feta",
+      "name": "Feta",
+      "rating": 25,
+      "categories": [
+        "Greek salad"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "FE"
+      }
+    },
+    {
+      "id": "fd-greek-salad-red-onion",
+      "name": "Red onion",
+      "rating": 10,
+      "categories": [
+        "Greek salad"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "RO"
+      }
+    },
+    {
+      "id": "fd-greek-salad-kalamata-olives",
+      "name": "Kalamata olives",
+      "rating": 15,
+      "categories": [
+        "Greek salad"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "KO"
+      }
+    },
+    {
+      "id": "fd-greek-salad-dried-oregano",
+      "name": "Dried oregano",
+      "rating": 5,
+      "categories": [
+        "Greek salad"
+      ],
+      "position": "HERB",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "DO"
+      }
+    },
+    {
+      "id": "fd-greek-salad-lettuce",
+      "name": "Lettuce",
+      "rating": -5,
+      "categories": [
+        "Greek salad"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "LE"
+      }
+    },
+    {
+      "id": "fd-greek-salad-mozzarella",
+      "name": "Mozzarella",
+      "rating": -10,
+      "categories": [
+        "Greek salad"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "MO"
+      }
+    },
+    {
+      "id": "fd-greek-salad-croutons",
+      "name": "Croutons",
+      "rating": -10,
+      "categories": [
+        "Greek salad"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "CR"
+      }
+    },
+    {
+      "id": "fd-greek-salad-bacon",
+      "name": "Bacon",
+      "rating": -15,
+      "categories": [
+        "Greek salad"
+      ],
+      "position": "MEAT",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "BA"
+      }
+    },
+    {
+      "id": "fd-greek-salad-mayonnaise",
+      "name": "Mayonnaise",
+      "rating": -15,
+      "categories": [
+        "Greek salad"
+      ],
+      "position": "SAUCE",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "MA"
+      }
+    },
+    {
+      "id": "fd-greek-salad-pasta",
+      "name": "Pasta",
+      "rating": -10,
+      "categories": [
+        "Greek salad"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "PA"
+      }
+    },
+    {
+      "id": "fd-pancakes-flour",
+      "name": "Flour",
+      "rating": 25,
+      "categories": [
+        "Pancakes"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "FL"
+      }
+    },
+    {
+      "id": "fd-pancakes-milk",
+      "name": "Milk",
+      "rating": 20,
+      "categories": [
+        "Pancakes"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "MI"
+      }
+    },
+    {
+      "id": "fd-pancakes-eggs",
+      "name": "Eggs",
+      "rating": 20,
+      "categories": [
+        "Pancakes"
+      ],
+      "position": "EGG",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "EG"
+      }
+    },
+    {
+      "id": "fd-pancakes-butter",
+      "name": "Butter",
+      "rating": 15,
+      "categories": [
+        "Pancakes"
+      ],
+      "position": "FAT",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "BU"
+      }
+    },
+    {
+      "id": "fd-pancakes-sugar",
+      "name": "Sugar",
+      "rating": 10,
+      "categories": [
+        "Pancakes"
+      ],
+      "position": "SWEET",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "SU"
+      }
+    },
+    {
+      "id": "fd-pancakes-baking-powder",
+      "name": "Baking powder",
+      "rating": 10,
+      "categories": [
+        "Pancakes"
+      ],
+      "position": "SPICE",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "BP"
+      }
+    },
+    {
+      "id": "fd-pancakes-yeast",
+      "name": "Yeast",
+      "rating": -5,
+      "categories": [
+        "Pancakes"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "YE"
+      }
+    },
+    {
+      "id": "fd-pancakes-garlic",
+      "name": "Garlic",
+      "rating": -20,
+      "categories": [
+        "Pancakes"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "GA"
+      }
+    },
+    {
+      "id": "fd-pancakes-cheddar",
+      "name": "Cheddar",
+      "rating": -10,
+      "categories": [
+        "Pancakes"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "CH"
+      }
+    },
+    {
+      "id": "fd-pancakes-tomato-sauce",
+      "name": "Tomato sauce",
+      "rating": -20,
+      "categories": [
+        "Pancakes"
+      ],
+      "position": "SAUCE",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "TS"
+      }
+    },
+    {
+      "id": "fd-pancakes-olive-oil",
+      "name": "Olive oil",
+      "rating": -5,
+      "categories": [
+        "Pancakes"
+      ],
+      "position": "FAT",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "OO"
+      }
+    },
+    {
+      "id": "fd-pancakes-onion",
+      "name": "Onion",
+      "rating": -15,
+      "categories": [
+        "Pancakes"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "ON"
+      }
+    },
+    {
+      "id": "fd-guacamole-avocado",
+      "name": "Avocado",
+      "rating": 40,
+      "categories": [
+        "Guacamole"
+      ],
+      "position": "FRUIT",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "AV"
+      }
+    },
+    {
+      "id": "fd-guacamole-lime-juice",
+      "name": "Lime juice",
+      "rating": 15,
+      "categories": [
+        "Guacamole"
+      ],
+      "position": "FRUIT",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "LJ"
+      }
+    },
+    {
+      "id": "fd-guacamole-white-onion",
+      "name": "White onion",
+      "rating": 10,
+      "categories": [
+        "Guacamole"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "WO"
+      }
+    },
+    {
+      "id": "fd-guacamole-cilantro",
+      "name": "Cilantro",
+      "rating": 10,
+      "categories": [
+        "Guacamole"
+      ],
+      "position": "HERB",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "CI"
+      }
+    },
+    {
+      "id": "fd-guacamole-tomato",
+      "name": "Tomato",
+      "rating": 10,
+      "categories": [
+        "Guacamole"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "TO"
+      }
+    },
+    {
+      "id": "fd-guacamole-jalapeno",
+      "name": "Jalapeño",
+      "rating": 10,
+      "categories": [
+        "Guacamole"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "JA"
+      }
+    },
+    {
+      "id": "fd-guacamole-salt",
+      "name": "Salt",
+      "rating": 5,
+      "categories": [
+        "Guacamole"
+      ],
+      "position": "SPICE",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "SA"
+      }
+    },
+    {
+      "id": "fd-guacamole-mayonnaise",
+      "name": "Mayonnaise",
+      "rating": -10,
+      "categories": [
+        "Guacamole"
+      ],
+      "position": "SAUCE",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "MA"
+      }
+    },
+    {
+      "id": "fd-guacamole-banana",
+      "name": "Banana",
+      "rating": -15,
+      "categories": [
+        "Guacamole"
+      ],
+      "position": "FRUIT",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "BA"
+      }
+    },
+    {
+      "id": "fd-guacamole-cheddar",
+      "name": "Cheddar",
+      "rating": -10,
+      "categories": [
+        "Guacamole"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "CH"
+      }
+    },
+    {
+      "id": "fd-guacamole-sour-cream",
+      "name": "Sour cream",
+      "rating": -5,
+      "categories": [
+        "Guacamole"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "SC"
+      }
+    },
+    {
+      "id": "fd-guacamole-ketchup",
+      "name": "Ketchup",
+      "rating": -15,
+      "categories": [
+        "Guacamole"
+      ],
+      "position": "SAUCE",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "KE"
+      }
+    },
+    {
+      "id": "fd-tiramisu-ladyfingers",
+      "name": "Ladyfingers",
+      "rating": 25,
+      "categories": [
+        "Tiramisu"
+      ],
+      "position": "BASE",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "LA"
+      }
+    },
+    {
+      "id": "fd-tiramisu-mascarpone",
+      "name": "Mascarpone",
+      "rating": 25,
+      "categories": [
+        "Tiramisu"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "MA"
+      }
+    },
+    {
+      "id": "fd-tiramisu-espresso",
+      "name": "Espresso",
+      "rating": 20,
+      "categories": [
+        "Tiramisu"
+      ],
+      "position": "DRINK",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "ES"
+      }
+    },
+    {
+      "id": "fd-tiramisu-eggs",
+      "name": "Eggs",
+      "rating": 10,
+      "categories": [
+        "Tiramisu"
+      ],
+      "position": "EGG",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "EG"
+      }
+    },
+    {
+      "id": "fd-tiramisu-sugar",
+      "name": "Sugar",
+      "rating": 10,
+      "categories": [
+        "Tiramisu"
+      ],
+      "position": "SWEET",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "SU"
+      }
+    },
+    {
+      "id": "fd-tiramisu-cocoa-powder",
+      "name": "Cocoa powder",
+      "rating": 10,
+      "categories": [
+        "Tiramisu"
+      ],
+      "position": "SWEET",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "CP"
+      }
+    },
+    {
+      "id": "fd-tiramisu-whipped-cream",
+      "name": "Whipped cream",
+      "rating": -5,
+      "categories": [
+        "Tiramisu"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "WC"
+      }
+    },
+    {
+      "id": "fd-tiramisu-ricotta",
+      "name": "Ricotta",
+      "rating": -5,
+      "categories": [
+        "Tiramisu"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#24387A",
+        "number": 0,
+        "initials": "RI"
+      }
+    },
+    {
+      "id": "fd-tiramisu-garlic",
+      "name": "Garlic",
+      "rating": -20,
+      "categories": [
+        "Tiramisu"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "GA"
+      }
+    },
+    {
+      "id": "fd-tiramisu-cheddar",
+      "name": "Cheddar",
+      "rating": -15,
+      "categories": [
+        "Tiramisu"
+      ],
+      "position": "DAIRY",
+      "country": "",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 0,
+        "initials": "CH"
+      }
+    },
+    {
+      "id": "fd-tiramisu-tomato",
+      "name": "Tomato",
+      "rating": -20,
+      "categories": [
+        "Tiramisu"
+      ],
+      "position": "VEG",
+      "country": "",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "TO"
+      }
+    },
+    {
+      "id": "fd-tiramisu-vanilla-pudding",
+      "name": "Vanilla pudding",
+      "rating": -10,
+      "categories": [
+        "Tiramisu"
+      ],
+      "position": "SWEET",
+      "country": "",
+      "avatar": {
+        "color": "#33404D",
+        "number": 0,
+        "initials": "VP"
+      }
+    }
+  ]
+}

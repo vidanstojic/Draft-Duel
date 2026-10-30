@@ -2,9 +2,11 @@
 <resources>
     <!-- Cards -->
     <string name="avatar_description">Player avatar, number %1$d</string>
+    <string name="card_art_description">%1$s, card art</string>
     <string name="card_paid">paid</string>
     <string name="rating_hidden">Rating hidden</string>
     <string name="rating_short">RTG</string>
+    <string name="points_short">PTS</string>
 
     <!-- Bidding -->
     <string name="bid_over_budget">over budget</string>
@@ -34,6 +36,8 @@
     <string name="theme_football">Football</string>
     <string name="theme_basketball">Basketball</string>
     <string name="theme_tennis">Tennis</string>
+    <string name="theme_movies">Movies</string>
+    <string name="theme_food">Food</string>
 
     <!-- Category -->
     <string name="category_new_match">New match</string>
@@ -41,7 +45,8 @@
     <string name="category_theme">Theme</string>
     <string name="category_pool">Card pool</string>
     <string name="category_pick_categories">Categories</string>
-    <string name="category_athletes">%1$d athletes</string>
+    <string name="category_athletes">%1$d cards</string>
+    <string name="category_recipe_hint">Food: every match is one dish. Collect what belongs in it; wrong ingredients cost points. The opener may skip a card.</string>
     <string name="category_coming_soon">Coming soon</string>
     <string name="category_custom_hint">You will pick at least 10 athletes before sending the invite. Coming soon.</string>
     <string name="category_custom_friend_only">Custom pools are for friend matches only.</string>
@@ -112,6 +117,9 @@
     <string name="match_can_bid_up_to">%1$s can bid up to %2$d</string>
     <string name="match_pass_to">Pass · %1$s takes it for %2$d</string>
     <string name="match_opener_must_bid">The opener must bid</string>
+    <string name="match_skip">Skip · nobody gets it</string>
+    <string name="match_skipped">Skipped, nobody gets it</string>
+    <string name="match_recipe_label">Build this dish</string>
     <string name="match_waiting_for">Waiting for %1$s</string>
     <string name="match_free_card">Free card</string>
     <string name="match_choose_explain">%1$s has 0 points. Who takes this card for free?</string>
@@ -119,7 +127,7 @@
     <string name="match_give_to">Give to %1$s</string>
     <string name="match_choosing">%1$s is choosing…</string>
     <string name="match_yours_for">Yours for %1$d</string>
-    <string name="match_rating_gain">+%1$d</string>
+    <string name="match_rating_gain">%1$s</string>
     <string name="match_takes_it">%1$s takes it for %2$d</string>
     <string name="match_rating_later">You will see its rating at the end</string>
     <string name="match_next_card">Next card coming up</string>

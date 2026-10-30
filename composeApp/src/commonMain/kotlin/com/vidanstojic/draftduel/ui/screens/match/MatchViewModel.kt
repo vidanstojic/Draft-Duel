@@ -39,7 +39,7 @@ class MatchViewModel(
     )
     private val opponent = setup.opponent ?: profileRepository.quickMatchOpponent()
     private val theme = if (packRepository.pack(setup.theme) != null) setup.theme else Theme.FOOTBALL
-    private val pack = requireNotNull(packRepository.pack(theme)) { "No pack for $theme" }
+    private val pool = requireNotNull(packRepository.drawPool(theme, setup.poolSource)) { "No pack for $theme" }
 
     /** Hidden in quick matches, chosen by the player in "Play vs bot". Kept for the rematch. */
     private val botPersonality: BotPersonality = setup.bot ?: BotPersonality.randomForQuickMatch(random)
@@ -48,14 +48,15 @@ class MatchViewModel(
         scope = viewModelScope,
         initial = MatchEngine.start(
             theme = theme,
-            pool = packRepository.drawPool(theme, setup.poolSource),
+            pool = pool.cards,
+            goal = pool.goal?.name,
             nameA = setup.you.nickname,
             nameB = opponent.nickname,
             firstOpener = if (random.nextBoolean()) Seat.A else Seat.B,
         ),
         bot = BotFactory.create(
             personality = botPersonality,
-            stats = PoolStats(pack.candidatesFor(setup.poolSource).map { it.rating }),
+            stats = PoolStats.of(pool.drawnFrom, theme.scoring),
             random = random,
         ),
         botSeat = Seat.B,

@@ -27,6 +27,7 @@ import com.vidanstojic.draftduel.resources.match_leave_cancel
 import com.vidanstojic.draftduel.resources.match_leave_confirm
 import com.vidanstojic.draftduel.resources.match_leave_text
 import com.vidanstojic.draftduel.resources.match_leave_title
+import com.vidanstojic.draftduel.resources.match_recipe_label
 import com.vidanstojic.draftduel.resources.menu
 import com.vidanstojic.draftduel.ui.components.DdIconButton
 import com.vidanstojic.draftduel.ui.components.DdScreen
@@ -80,10 +81,15 @@ fun MatchScreen(
                 )
             },
             title = {
-                TopBarTitle(
-                    label = stringResource(Res.string.match_card_label),
-                    value = stringResource(Res.string.match_card_of, state.cardNumber.toString().padStart(2, '0'), state.totalCards),
-                )
+                val goal = state.goal
+                if (goal != null) {
+                    TopBarTitle(label = stringResource(Res.string.match_recipe_label), value = goal)
+                } else {
+                    TopBarTitle(
+                        label = stringResource(Res.string.match_card_label),
+                        value = stringResource(Res.string.match_card_of, state.cardNumber.toString().padStart(2, '0'), state.totalCards),
+                    )
+                }
             },
         )
         MatchContent(state = state, onRaise = onRaise, onPass = onPass, onAssign = onAssign)

@@ -6,7 +6,7 @@ import com.vidanstojic.draftduel.domain.match.MatchOutcome
 import com.vidanstojic.draftduel.domain.match.MatchPhase
 import com.vidanstojic.draftduel.domain.match.MatchState
 import com.vidanstojic.draftduel.domain.match.Seat
-import com.vidanstojic.draftduel.domain.model.AthleteCard
+import com.vidanstojic.draftduel.domain.model.GameCard
 import com.vidanstojic.draftduel.domain.model.AvatarColorway
 import com.vidanstojic.draftduel.domain.model.AvatarSpec
 import com.vidanstojic.draftduel.domain.model.Theme
@@ -25,8 +25,8 @@ internal object FootballPackFixture {
         73 to "FWD", 71 to "DEF",
     )
 
-    val cards: List<AthleteCard> = entries.mapIndexed { i, (rating, position) ->
-        AthleteCard(
+    val cards: List<GameCard> = entries.mapIndexed { i, (rating, position) ->
+        GameCard(
             id = "fb-$i",
             name = "Athlete $i",
             season = "2025/26",
@@ -55,7 +55,7 @@ internal object BotSimulation {
     fun play(
         botA: MatchBot,
         botB: MatchBot,
-        pool: List<AthleteCard>,
+        pool: List<GameCard>,
         firstOpener: Seat,
     ): SimulatedMatch {
         var state = MatchEngine.start(Theme.FOOTBALL, pool, "A", "B", firstOpener)

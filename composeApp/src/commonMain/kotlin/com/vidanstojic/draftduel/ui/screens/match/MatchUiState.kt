@@ -1,7 +1,7 @@
 package com.vidanstojic.draftduel.ui.screens.match
 
 import androidx.compose.runtime.Immutable
-import com.vidanstojic.draftduel.domain.model.AthleteCard
+import com.vidanstojic.draftduel.domain.model.GameCard
 import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.ui.components.BidOptionUi
 import com.vidanstojic.draftduel.ui.components.PileCard
@@ -35,6 +35,9 @@ sealed interface MatchPhaseUi {
     /** One player is on 0 points; the other decides who takes the card for free. */
     data class Choosing(val youChoose: Boolean) : MatchPhaseUi
 
+    /** Recipe packs: the opener skipped the card and nobody gets it. */
+    data object Discarded : MatchPhaseUi
+
     data class Awarded(
         val toYou: Boolean,
         val price: Int,
@@ -48,12 +51,14 @@ sealed interface MatchPhaseUi {
 @Immutable
 data class MatchUiState(
     val theme: Theme,
+    /** The dish to build in recipe packs; null in rating packs. */
+    val goal: String?,
     val cardNumber: Int,
     val totalCards: Int,
     val cardsLeft: Int,
     val you: PlayerPanelUi,
     val opponent: PlayerPanelUi,
-    val card: AthleteCard?,
+    val card: GameCard?,
     val cardRatingVisible: Boolean,
     val phase: MatchPhaseUi,
     val secondsLeft: Int,

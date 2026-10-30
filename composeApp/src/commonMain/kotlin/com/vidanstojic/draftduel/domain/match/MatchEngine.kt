@@ -1,6 +1,7 @@
 package com.vidanstojic.draftduel.domain.match
 
-import com.vidanstojic.draftduel.domain.model.AthleteCard
+import com.vidanstojic.draftduel.domain.model.GameCard
+import com.vidanstojic.draftduel.domain.model.Scoring
 import com.vidanstojic.draftduel.domain.model.Theme
 
 /**
@@ -13,10 +14,11 @@ object MatchEngine {
 
     fun start(
         theme: Theme,
-        pool: List<AthleteCard>,
+        pool: List<GameCard>,
         nameA: String,
         nameB: String,
         firstOpener: Seat,
+        goal: String? = null,
     ): MatchState {
         require(pool.isNotEmpty()) { "A match needs at least one card." }
         val initial = MatchState(
@@ -29,6 +31,7 @@ object MatchEngine {
             ),
             firstOpener = firstOpener,
             phase = MatchPhase.Finished,
+            goal = goal,
         )
         return drawRound(initial)
     }
@@ -40,9 +43,9 @@ object MatchEngine {
         MatchAction.Timeout -> timeout(state)
     }
 
-    /** Moves from [MatchPhase.Awarded] to the next card, or to [MatchPhase.Finished]. */
+    /** Moves from a settled card ([MatchPhase.Awarded] or [MatchPhase.Discarded]) to the next one, or to [MatchPhase.Finished]. */
     fun advance(state: MatchState): MatchState {
-        if (state.phase !is MatchPhase.Awarded) return state
+        if (!state.isSettled) return state
         val next = state.roundIndex + 1
         if (next >= state.pool.size) return state.copy(roundIndex = state.pool.size, phase = MatchPhase.Finished)
         return drawRound(state.copy(roundIndex = next))
@@ -55,8 +58,11 @@ object MatchEngine {
 
     fun canPass(state: MatchState, seat: Seat): Boolean {
         val phase = state.phase as? MatchPhase.Bidding ?: return false
-        return phase.toAct == seat && phase.leader != null
+        return phase.toAct == seat && (phase.leader != null || openerMaySkip(state))
     }
+
+    /** Spec §3 rule 3 (the opener must bid) holds for rating packs; in recipe packs the opener may skip. */
+    fun openerMaySkip(state: MatchState): Boolean = state.theme.scoring == Scoring.RECIPE
 
     fun outcome(state: MatchState): MatchOutcome {
         val a = state.seat(Seat.A).total
@@ -97,7 +103,7 @@ object MatchEngine {
     private fun pass(state: MatchState, seat: Seat): MatchState {
         val phase = state.phase as? MatchPhase.Bidding ?: return state
         if (!canPass(state, seat)) return state
-        val leader = phase.leader ?: return state
+        val leader = phase.leader ?: return state.copy(phase = MatchPhase.Discarded)
         return award(state, winner = leader, price = phase.price, reason = AwardReason.PASSED)
     }
 

@@ -62,10 +62,10 @@ class PackJsonTest {
         repository.load()
 
         assertEquals(2, repository.pack(Theme.FOOTBALL)!!.version)
-        val spain = repository.drawPool(Theme.FOOTBALL, PoolSource.ByCategory("spain"))
+        val spain = repository.drawPool(Theme.FOOTBALL, PoolSource.ByCategory("spain"))!!.cards
         assertEquals(10, spain.size)
         assertTrue(spain.all { "spain" in it.categoryIds })
         // Italy has only 2 athletes, so the pool comes from the whole pack.
-        assertEquals(10, repository.drawPool(Theme.FOOTBALL, PoolSource.ByCategory("italy")).size)
+        assertEquals(10, repository.drawPool(Theme.FOOTBALL, PoolSource.ByCategory("italy"))!!.cards.size)
     }
 }

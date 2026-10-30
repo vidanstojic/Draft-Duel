@@ -37,25 +37,23 @@ import com.vidanstojic.draftduel.domain.model.LocalLayout
 import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.local_leave_text
+import com.vidanstojic.draftduel.resources.match_skipped
 import com.vidanstojic.draftduel.resources.local_ratings_at_end
 import com.vidanstojic.draftduel.resources.match_card_label
 import com.vidanstojic.draftduel.resources.match_card_of
 import com.vidanstojic.draftduel.resources.match_choosing
 import com.vidanstojic.draftduel.resources.match_give_to
 import com.vidanstojic.draftduel.resources.match_leads
-import com.vidanstojic.draftduel.resources.match_opener_must_bid
 import com.vidanstojic.draftduel.resources.match_opens
-import com.vidanstojic.draftduel.resources.match_pass_to
 import com.vidanstojic.draftduel.resources.match_points_left
 import com.vidanstojic.draftduel.resources.match_seconds
 import com.vidanstojic.draftduel.resources.match_take_it
 import com.vidanstojic.draftduel.resources.match_takes_it
-import com.vidanstojic.draftduel.resources.match_waiting_for
 import com.vidanstojic.draftduel.resources.match_you_lead
 import com.vidanstojic.draftduel.resources.match_your_turn
 import com.vidanstojic.draftduel.resources.match_yours_for
 import com.vidanstojic.draftduel.resources.menu
-import com.vidanstojic.draftduel.ui.components.AthleteCardCompact
+import com.vidanstojic.draftduel.ui.components.GameCardCompact
 import com.vidanstojic.draftduel.ui.components.BidControls
 import com.vidanstojic.draftduel.ui.components.CardPile
 import com.vidanstojic.draftduel.ui.components.DdIconButton
@@ -71,6 +69,7 @@ import com.vidanstojic.draftduel.ui.screens.match.LeaveMatchDialog
 import com.vidanstojic.draftduel.ui.screens.match.MatchContent
 import com.vidanstojic.draftduel.ui.screens.match.MatchPhaseUi
 import com.vidanstojic.draftduel.ui.screens.match.MatchUiState
+import com.vidanstojic.draftduel.ui.screens.match.passLabel
 import com.vidanstojic.draftduel.ui.screens.match.previewMatchState
 import com.vidanstojic.draftduel.ui.surface.PlaySurface
 import com.vidanstojic.draftduel.ui.surface.surfaceScreenBackground
@@ -249,11 +248,7 @@ private fun SeatHalf(
                 }
                 is MatchPhaseUi.Bidding -> BidControls(
                     options = phase.options,
-                    passText = when {
-                        !phase.yourTurn -> stringResource(Res.string.match_waiting_for, state.opponent.name)
-                        phase.leader == Leader.NONE -> stringResource(Res.string.match_opener_must_bid)
-                        else -> stringResource(Res.string.match_pass_to, state.opponent.name, phase.price)
-                    },
+                    passText = passLabel(phase, state.opponent.name),
                     passEnabled = phase.yourTurn && phase.canPass,
                     onBid = actions.onRaise,
                     onPass = actions.onPass,
@@ -285,6 +280,7 @@ private fun statusFor(state: MatchUiState): String = when (val phase = state.pha
     } else {
         stringResource(Res.string.match_takes_it, state.opponent.name, phase.price)
     }
+    MatchPhaseUi.Discarded -> stringResource(Res.string.match_skipped)
     MatchPhaseUi.Finished -> ""
 }
 
@@ -318,7 +314,7 @@ private fun CenterStrip(state: MatchUiState, onMenu: () -> Unit) {
                 )
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                if (card != null) AthleteCardCompact(card = card, theme = state.theme, ratingVisible = false)
+                if (card != null) GameCardCompact(card = card, theme = state.theme, ratingVisible = false)
                 TurnTimerRing(
                     progress = state.timerProgress,
                     value = price.toString(),

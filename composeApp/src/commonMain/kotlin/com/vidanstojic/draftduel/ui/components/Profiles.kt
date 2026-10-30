@@ -17,7 +17,9 @@ import androidx.compose.ui.unit.sp
 import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.theme_basketball
+import com.vidanstojic.draftduel.resources.theme_food
 import com.vidanstojic.draftduel.resources.theme_football
+import com.vidanstojic.draftduel.resources.theme_movies
 import com.vidanstojic.draftduel.resources.theme_tennis
 import org.jetbrains.compose.resources.StringResource
 
@@ -26,6 +28,8 @@ fun Theme.label(): StringResource = when (this) {
     Theme.FOOTBALL -> Res.string.theme_football
     Theme.BASKETBALL -> Res.string.theme_basketball
     Theme.TENNIS -> Res.string.theme_tennis
+    Theme.MOVIES -> Res.string.theme_movies
+    Theme.FOOD -> Res.string.theme_food
 }
 
 /** Round player badge with initials (players, not athletes). */

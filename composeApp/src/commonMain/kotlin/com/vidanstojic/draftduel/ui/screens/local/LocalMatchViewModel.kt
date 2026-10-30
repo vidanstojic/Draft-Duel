@@ -8,7 +8,7 @@ import com.vidanstojic.draftduel.domain.match.MatchEngine
 import com.vidanstojic.draftduel.domain.match.MatchPhase
 import com.vidanstojic.draftduel.domain.match.MatchState
 import com.vidanstojic.draftduel.domain.match.Seat
-import com.vidanstojic.draftduel.domain.model.AthleteCard
+import com.vidanstojic.draftduel.domain.model.GameCard
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.LocalLayout
 import com.vidanstojic.draftduel.domain.model.MatchSetup
@@ -33,7 +33,7 @@ import kotlin.random.Random
 @Immutable
 data class HandoffUi(
     val nextPlayer: String,
-    val card: AthleteCard?,
+    val card: GameCard?,
     val price: Int,
     val leaderName: String?,
 )
@@ -72,12 +72,14 @@ class LocalMatchViewModel(
     private val layout = setup.localLayout
     private val revealOwn = layout == LocalLayout.PASS_DEVICE
     private val theme = if (packRepository.pack(setup.theme) != null) setup.theme else Theme.FOOTBALL
+    private val pool = requireNotNull(packRepository.drawPool(theme, setup.poolSource)) { "No pack for $theme" }
 
     private val driver = MatchDriver(
         scope = viewModelScope,
         initial = MatchEngine.start(
             theme = theme,
-            pool = packRepository.drawPool(theme, setup.poolSource),
+            pool = pool.cards,
+            goal = pool.goal?.name,
             nameA = setup.you.nickname,
             nameB = setup.opponent?.nickname ?: "Player 2",
             firstOpener = if (random.nextBoolean()) Seat.A else Seat.B,

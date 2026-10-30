@@ -45,12 +45,14 @@ fun MatchState.toUi(
             price = current.price,
             rating = if (current.winner == viewer && revealOwnRatings) currentCard?.rating else null,
         )
+        MatchPhase.Discarded -> MatchPhaseUi.Discarded
         MatchPhase.Finished -> MatchPhaseUi.Finished
     }
     val awardedToViewer = (phase as? MatchPhase.Awarded)?.winner == viewer
     val turnMillis = GameRules.TURN_SECONDS * 1_000L
     return MatchUiState(
         theme = theme,
+        goal = goal,
         cardNumber = (roundIndex + 1).coerceAtMost(pool.size),
         totalCards = pool.size,
         cardsLeft = cardsLeft,

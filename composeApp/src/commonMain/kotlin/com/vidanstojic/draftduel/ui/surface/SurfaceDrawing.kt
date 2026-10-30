@@ -27,6 +27,8 @@ fun DrawScope.drawSurface(style: SurfaceStyle) = when (style) {
     SurfaceStyle.PITCH -> drawPitch()
     SurfaceStyle.COURT -> drawCourt()
     SurfaceStyle.CLAY -> drawClay()
+    SurfaceStyle.CINEMA -> drawCinema()
+    SurfaceStyle.KITCHEN -> drawKitchen()
 }
 
 /** Felt table with a wooden rim. */
@@ -173,6 +175,128 @@ fun DrawScope.drawClay() {
         strokeWidth = stroke.width * 1.5f,
         pathEffect = PathEffect.dashPathEffect(floatArrayOf(stroke.width * 3, stroke.width * 2)),
     )
+}
+
+/** Velvet curtains with a gold valance, a glowing screen in the middle and rows of seats below. */
+fun DrawScope.drawCinema() {
+    val folds = 14
+    val foldWidth = size.width / folds
+    repeat(folds) { i ->
+        drawRect(
+            brush = Brush.horizontalGradient(
+                colors = listOf(Color(0xFF4A0C15), Color(0xFF7A1626), Color(0xFF4A0C15)),
+                startX = i * foldWidth,
+                endX = (i + 1) * foldWidth,
+            ),
+            topLeft = Offset(i * foldWidth, 0f),
+            size = Size(foldWidth + 1f, size.height),
+        )
+    }
+
+    val screen = Rect(size.width * 0.12f, size.height * 0.1f, size.width * 0.88f, size.height * 0.72f)
+    drawRoundRect(
+        brush = Brush.radialGradient(
+            colors = listOf(Color(0xFF3A3F55), Color(0xFF1B1D29)),
+            center = screen.center,
+            radius = max(screen.width, screen.height) * 0.7f,
+        ),
+        topLeft = screen.topLeft,
+        size = screen.size,
+        cornerRadius = CornerRadius(size.minDimension * 0.02f),
+    )
+    // Film perforations down both sides of the screen.
+    val hole = size.minDimension * 0.022f
+    val gap = hole * 2.2f
+    var y = screen.top + gap / 2
+    while (y + hole < screen.bottom) {
+        for (x in listOf(screen.left + hole * 0.6f, screen.right - hole * 1.6f)) {
+            drawRoundRect(Color(0x33FFFFFF), Offset(x, y), Size(hole, hole * 0.7f), CornerRadius(hole * 0.2f))
+        }
+        y += gap
+    }
+
+    val gold = Color(0xFFC9973A)
+    val valance = size.height * 0.06f
+    drawRect(Color(0xFF6A1220), Offset.Zero, Size(size.width, valance))
+    val scallops = 9
+    val scallopWidth = size.width / scallops
+    repeat(scallops) { i ->
+        drawArc(
+            color = Color(0xFF6A1220),
+            startAngle = 0f,
+            sweepAngle = 180f,
+            useCenter = true,
+            topLeft = Offset(i * scallopWidth, valance - scallopWidth / 2),
+            size = Size(scallopWidth, scallopWidth),
+        )
+        drawArc(
+            color = gold,
+            startAngle = 0f,
+            sweepAngle = 180f,
+            useCenter = false,
+            topLeft = Offset(i * scallopWidth, valance - scallopWidth / 2),
+            size = Size(scallopWidth, scallopWidth),
+            style = Stroke(width = lineWidth()),
+        )
+    }
+
+    val seatRows = 3
+    val seatsPerRow = 9
+    val seatWidth = size.width / (seatsPerRow + 1)
+    repeat(seatRows) { row ->
+        val rowTop = size.height * (0.78f + row * 0.07f)
+        repeat(seatsPerRow) { seat ->
+            val left = seatWidth * (seat + 0.5f) + if (row % 2 == 1) seatWidth / 2 else 0f
+            if (left + seatWidth * 0.8f <= size.width) {
+                drawRoundRect(
+                    color = Color(0xFF2A060C),
+                    topLeft = Offset(left, rowTop),
+                    size = Size(seatWidth * 0.8f, size.height * 0.05f),
+                    cornerRadius = CornerRadius(seatWidth * 0.3f),
+                )
+            }
+        }
+    }
+}
+
+/** A wooden kitchen table under a gingham cloth, with a plate outline where the card sits. */
+fun DrawScope.drawKitchen() {
+    val plank = size.minDimension * 0.11f
+    val woods = listOf(Color(0xFF6B4329), Color(0xFF61391F), Color(0xFF704A2E))
+    var top = 0f
+    var i = 0
+    while (top < size.height) {
+        drawRect(woods[i % woods.size], Offset(0f, top), Size(size.width, plank))
+        drawRect(Color(0xFF4A2B17), Offset(0f, top + plank - 1f), Size(size.width, 1f))
+        top += plank
+        i++
+    }
+
+    val inset = size.minDimension * 0.05f
+    val cloth = Rect(inset, inset, size.width - inset, size.height - inset)
+    drawRect(Color(0xFF7E2620), cloth.topLeft, cloth.size)
+    val check = size.minDimension * 0.07f
+    val band = Color(0x40F7E6D0)
+    var x = cloth.left
+    var column = 0
+    while (x < cloth.right) {
+        if (column % 2 == 0) drawRect(band, Offset(x, cloth.top), Size(min(check, cloth.right - x), cloth.height))
+        x += check
+        column++
+    }
+    var y = cloth.top
+    var row = 0
+    while (y < cloth.bottom) {
+        if (row % 2 == 0) drawRect(band, Offset(cloth.left, y), Size(cloth.width, min(check, cloth.bottom - y)))
+        y += check
+        row++
+    }
+    drawRect(Color(0x66000000), cloth.topLeft, cloth.size, style = Stroke(width = lineWidth() * 2))
+
+    val plateRadius = size.minDimension * 0.3f
+    drawCircle(Color(0x33FFFFFF), radius = plateRadius, center = center)
+    drawCircle(Color(0x55FFFFFF), radius = plateRadius, center = center, style = Stroke(width = lineWidth() * 1.5f))
+    drawCircle(Color(0x33FFFFFF), radius = plateRadius * 0.72f, center = center, style = Stroke(width = lineWidth()))
 }
 
 /** Vertical wood planks behind the table, as on the menu screens. */

@@ -3,6 +3,7 @@ package com.vidanstojic.draftduel.ui.screens.category
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.CircleShape
@@ -33,6 +35,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vidanstojic.draftduel.di.LocalAppContainer
 import com.vidanstojic.draftduel.domain.model.GameMode
+import com.vidanstojic.draftduel.domain.model.Scoring
 import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.back
@@ -43,6 +46,7 @@ import com.vidanstojic.draftduel.resources.category_custom_hint
 import com.vidanstojic.draftduel.resources.category_new_match
 import com.vidanstojic.draftduel.resources.category_pick_categories
 import com.vidanstojic.draftduel.resources.category_pool
+import com.vidanstojic.draftduel.resources.category_recipe_hint
 import com.vidanstojic.draftduel.resources.category_theme
 import com.vidanstojic.draftduel.resources.category_title
 import com.vidanstojic.draftduel.resources.cta_choose_bot
@@ -109,15 +113,26 @@ fun CategoryScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             SectionLabel(stringResource(Res.string.category_theme), Modifier.padding(horizontal = 4.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Row(
+                modifier = Modifier.horizontalScroll(rememberScrollState()),
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
                 state.themes.forEach { option ->
                     ThemeTile(
                         option = option,
                         selected = option.theme == state.selectedTheme,
                         onClick = { onThemeSelected(option.theme) },
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier.width(112.dp),
                     )
                 }
+            }
+            if (state.selectedTheme.scoring == Scoring.RECIPE) {
+                Text(
+                    text = stringResource(Res.string.category_recipe_hint),
+                    style = DraftDuelTheme.type.caption,
+                    color = DraftDuelTheme.colors.muted,
+                    modifier = Modifier.padding(horizontal = 4.dp),
+                )
             }
 
             SectionLabel(stringResource(Res.string.category_pool), Modifier.padding(start = 4.dp, top = 6.dp))

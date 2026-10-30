@@ -47,8 +47,8 @@ class PersonalityBot(
 
     override fun decide(state: MatchState, seat: Seat): MatchAction? = when (val phase = state.phase) {
         is MatchPhase.Bidding -> if (phase.toAct == seat) bid(state, seat, phase) else null
-        // No slot limit: every card adds to the total, so a free card is always taken.
-        is MatchPhase.Choosing -> if (phase.chooser == seat) MatchAction.Assign(chooser = seat, to = seat) else null
+        // No slot limit: a card worth more than 0 always helps its owner, anything else goes to the rival.
+        is MatchPhase.Choosing -> if (phase.chooser == seat) choose(state, seat) else null
         else -> null
     }
 
@@ -58,7 +58,7 @@ class PersonalityBot(
     /** The bot's current guess of the card on the table, or null between rounds. */
     fun perceivedRating(state: MatchState): Double? {
         val card = state.currentCard ?: return null
-        return perceived.getOrPut(card.id) { behavior.perception.perceive(card, random) }
+        return perceived.getOrPut(card.id) { behavior.perception.perceive(card, stats, random) }
     }
 
     /** Highest price this bot will pay for the current card right now, already capped by the rules. */
@@ -74,6 +74,8 @@ class PersonalityBot(
             stats = stats,
             mood = moods.getOrPut(state.roundIndex) { random.nextDouble() },
         )
+        // A card worth 0 or less (a wrong ingredient) only lowers its owner's total.
+        if (rating <= 0) return 0
         var limit = behavior.valuation.maxPrice(view)
         if (behavior.playsEndgame) {
             if (state.cardsLeft == 0) limit = budget
@@ -87,7 +89,11 @@ class PersonalityBot(
         val price = phase.price
         val style = behavior.style
 
-        if (phase.leader == null) return MatchAction.Raise(seat, openingStep(state, seat, limit))
+        if (phase.leader == null) {
+            val unwanted = (perceivedRating(state) ?: 0.0) <= 0.0
+            if (unwanted && MatchEngine.canPass(state, seat)) return MatchAction.Pass(seat)
+            return MatchAction.Raise(seat, openingStep(state, seat, limit))
+        }
 
         if (style.snipes) {
             val winningBid = state.seat(seat.other).budget + 1
@@ -99,11 +105,16 @@ class PersonalityBot(
         return MatchAction.Pass(seat)
     }
 
-    /** The opener must bid at least 1 even on a card it does not want (spec §3 rule 3). */
+    private fun choose(state: MatchState, seat: Seat): MatchAction {
+        val wanted = (perceivedRating(state) ?: 0.0) > 0.0
+        return MatchAction.Assign(chooser = seat, to = if (wanted) seat else seat.other)
+    }
+
+    /** In rating packs the opener must bid at least 1 even on a card it does not want (spec §3 rule 3). */
     private fun openingStep(state: MatchState, seat: Seat, limit: Int): Int {
         val starOpening = behavior.style.starOpening
         val rating = perceivedRating(state) ?: 0.0
-        if (starOpening != null && rating >= RatingPerception.STAR_RATING && starOpening <= limit &&
+        if (starOpening != null && rating >= stats.starLine && starOpening <= limit &&
             MatchEngine.canRaise(state, seat, starOpening)
         ) {
             return starOpening
@@ -127,6 +138,8 @@ class PersonalityBot(
     private fun shouldPush(state: MatchState, seat: Seat, price: Int, limit: Int): Boolean {
         val style = behavior.style
         if (style.pushChance <= 0.0 || state.cardsLeft == 0) return false
+        // Pushing a card the rival does not want would just leave it with the pusher.
+        if ((perceivedRating(state) ?: 0.0) <= 0.0) return false
         val next = price + 1
         val affordable = next <= limit + style.pushMargin && MatchEngine.canRaise(state, seat, 1)
         // Pushing past the rival's budget would just buy the card; that is not a push.

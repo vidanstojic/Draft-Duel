@@ -35,15 +35,19 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.vidanstojic.draftduel.domain.model.AthleteCard
+import com.vidanstojic.draftduel.domain.model.GameCard
+import com.vidanstojic.draftduel.domain.model.Scoring
 import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.avatar_description
+import com.vidanstojic.draftduel.resources.card_art_description
 import com.vidanstojic.draftduel.resources.card_paid
+import com.vidanstojic.draftduel.resources.points_short
 import com.vidanstojic.draftduel.resources.rating_hidden
 import com.vidanstojic.draftduel.resources.rating_short
 import com.vidanstojic.draftduel.ui.theme.CardColors
 import com.vidanstojic.draftduel.ui.theme.DraftDuelTheme
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
 private val HoloBrush = Brush.sweepGradient(CardColors.Holo)
@@ -60,8 +64,8 @@ private val CardBackBrush = Brush.linearGradient(
 
 /** The card on auction (or just won): holographic frame, avatar, name, season, country. */
 @Composable
-fun AthleteCardView(
-    card: AthleteCard,
+fun GameCardView(
+    card: GameCard,
     theme: Theme,
     ratingVisible: Boolean,
     modifier: Modifier = Modifier,
@@ -88,7 +92,7 @@ fun AthleteCardView(
                 PlayerAvatar(
                     spec = card.avatar,
                     theme = theme,
-                    contentDescription = stringResource(Res.string.avatar_description, card.avatar.jerseyNumber),
+                    contentDescription = cardArtDescription(card, theme),
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(width * 0.6f)
@@ -109,11 +113,11 @@ fun AthleteCardView(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = "${card.season}\n${card.country.uppercase()}",
+                    text = listOf(card.season, card.country.uppercase()).filter { it.isNotBlank() }.joinToString("\n"),
                     style = DraftDuelTheme.type.mono.copy(fontSize = 10.sp, lineHeight = 13.sp, fontWeight = FontWeight.SemiBold),
                     color = CardColors.InkMuted,
                 )
-                if (ratingVisible) RatingBadge(card.rating, size = 46.dp) else HiddenRating(size = 42.dp)
+                if (ratingVisible) RatingBadge(card.rating, size = 46.dp, scoring = theme.scoring) else HiddenRating(size = 42.dp)
             }
         }
     }
@@ -121,8 +125,8 @@ fun AthleteCardView(
 
 /** Horizontal card for tight layouts (split screen). */
 @Composable
-fun AthleteCardCompact(
-    card: AthleteCard,
+fun GameCardCompact(
+    card: GameCard,
     theme: Theme,
     ratingVisible: Boolean,
     modifier: Modifier = Modifier,
@@ -142,7 +146,7 @@ fun AthleteCardCompact(
             PlayerAvatar(
                 spec = card.avatar,
                 theme = theme,
-                contentDescription = stringResource(Res.string.avatar_description, card.avatar.jerseyNumber),
+                contentDescription = cardArtDescription(card, theme),
                 modifier = Modifier
                     .size(width = 38.dp, height = 48.dp)
                     .clip(RoundedCornerShape(5.dp)),
@@ -150,12 +154,12 @@ fun AthleteCardCompact(
             Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                 Text(card.name, style = DraftDuelTheme.type.bodyStrong, color = CardColors.Ink, maxLines = 1)
                 Text(
-                    text = "${card.season} · ${card.country.uppercase()} · ${card.position}",
+                    text = card.details,
                     style = DraftDuelTheme.type.mono.copy(fontSize = 9.sp),
                     color = CardColors.InkMuted,
                 )
                 Text(
-                    text = "${stringResource(Res.string.rating_short)} ${if (ratingVisible) card.rating.toString() else "??"}",
+                    text = "${stringResource(theme.scoring.scoreLabel())} ${if (ratingVisible) theme.scoring.format(card.rating) else "??"}",
                     style = DraftDuelTheme.type.mono.copy(fontWeight = FontWeight.Bold, fontSize = 11.sp),
                     color = CardColors.Ink,
                 )
@@ -176,8 +180,23 @@ private fun PositionTag(position: String, modifier: Modifier = Modifier) {
     )
 }
 
+/** Short label of a card's value: rating or recipe points. */
+fun Scoring.scoreLabel(): StringResource = when (this) {
+    Scoring.RATINGS -> Res.string.rating_short
+    Scoring.RECIPE -> Res.string.points_short
+}
+
+/** Recipe points carry a sign, so a wrong ingredient reads as a loss at a glance. */
+fun Scoring.format(value: Int): String = if (this == Scoring.RECIPE && value > 0) "+$value" else value.toString()
+
 @Composable
-fun RatingBadge(rating: Int, size: Dp, modifier: Modifier = Modifier) {
+private fun cardArtDescription(card: GameCard, theme: Theme): String = when (theme) {
+    Theme.MOVIES, Theme.FOOD -> stringResource(Res.string.card_art_description, card.name)
+    Theme.FOOTBALL, Theme.BASKETBALL, Theme.TENNIS -> stringResource(Res.string.avatar_description, card.avatar.jerseyNumber)
+}
+
+@Composable
+fun RatingBadge(rating: Int, size: Dp, modifier: Modifier = Modifier, scoring: Scoring = Scoring.RATINGS) {
     Column(
         modifier = modifier
             .size(size)
@@ -186,14 +205,14 @@ fun RatingBadge(rating: Int, size: Dp, modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
     ) {
         Text(
-            text = rating.toString(),
+            text = scoring.format(rating),
             color = CardColors.BackInk,
             fontWeight = FontWeight.ExtraBold,
             fontSize = (size.value * 0.46f).sp,
             lineHeight = (size.value * 0.48f).sp,
         )
         Text(
-            text = stringResource(Res.string.rating_short),
+            text = stringResource(scoring.scoreLabel()),
             color = CardColors.BackInk,
             style = DraftDuelTheme.type.mono.copy(fontSize = 7.sp, letterSpacing = 1.sp),
         )

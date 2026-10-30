@@ -33,6 +33,7 @@ import com.vidanstojic.draftduel.domain.match.MatchPhase
 import com.vidanstojic.draftduel.domain.match.OwnedCard
 import com.vidanstojic.draftduel.domain.match.Seat
 import com.vidanstojic.draftduel.domain.model.GameMode
+import com.vidanstojic.draftduel.domain.model.Scoring
 import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.platform.rememberShareText
 import com.vidanstojic.draftduel.resources.Res
@@ -56,6 +57,7 @@ import com.vidanstojic.draftduel.ui.components.DdScreen
 import com.vidanstojic.draftduel.ui.components.DdTopBar
 import com.vidanstojic.draftduel.ui.components.InfoPill
 import com.vidanstojic.draftduel.ui.components.TopBarTitle
+import com.vidanstojic.draftduel.ui.components.format
 import com.vidanstojic.draftduel.ui.surface.PlaySurface
 import com.vidanstojic.draftduel.ui.surface.SurfaceStyle
 import com.vidanstojic.draftduel.ui.surface.surfaceStyle
@@ -105,7 +107,7 @@ fun ResultScreen(
             title = {
                 TopBarTitle(
                     label = stringResource(Res.string.result_title),
-                    value = stringResource(Res.string.result_cards, state.bottom.rows.size + state.top.rows.size),
+                    value = state.goal ?: stringResource(Res.string.result_cards, state.bottom.rows.size + state.top.rows.size),
                 )
             },
         )
@@ -117,9 +119,9 @@ fun ResultScreen(
                     .padding(vertical = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(14.dp),
             ) {
-                RosterBlock(state.top, nameFirst = true, isBottom = false)
+                RosterBlock(state.top, nameFirst = true, isBottom = false, scoring = state.theme.scoring)
                 Scoreboard(state)
-                RosterBlock(state.bottom, nameFirst = false, isBottom = true)
+                RosterBlock(state.bottom, nameFirst = false, isBottom = true, scoring = state.theme.scoring)
             }
         }
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -140,7 +142,7 @@ fun ResultScreen(
 }
 
 @Composable
-private fun RosterBlock(roster: RosterUi, nameFirst: Boolean, isBottom: Boolean) {
+private fun RosterBlock(roster: RosterUi, nameFirst: Boolean, isBottom: Boolean, scoring: Scoring) {
     val colors = DraftDuelTheme.colors
     val header: @Composable () -> Unit = {
         Row(
@@ -160,13 +162,13 @@ private fun RosterBlock(roster: RosterUi, nameFirst: Boolean, isBottom: Boolean)
     }
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         if (nameFirst) header()
-        roster.rows.forEach { RosterRow(it) }
+        roster.rows.forEach { RosterRow(it, scoring) }
         if (!nameFirst) header()
     }
 }
 
 @Composable
-private fun RosterRow(row: RosterRowUi) {
+private fun RosterRow(row: RosterRowUi, scoring: Scoring) {
     val shape = RoundedCornerShape(6.dp)
     Row(
         modifier = Modifier
@@ -188,11 +190,11 @@ private fun RosterRow(row: RosterRowUi) {
             modifier = Modifier.weight(1f),
         )
         Text(
-            text = "${row.season.takeLast(5)} · ${row.country.take(3).uppercase()} · ${row.price}",
+            text = listOf(row.details, row.price.toString()).filter { it.isNotBlank() }.joinToString(" · "),
             style = DraftDuelTheme.type.mono.copy(fontSize = 9.sp),
             color = CardColors.InkMuted,
         )
-        Text(row.rating.toString(), style = DraftDuelTheme.type.monoStrong, color = CardColors.Ink)
+        Text(scoring.format(row.rating), style = DraftDuelTheme.type.monoStrong, color = CardColors.Ink)
     }
 }
 

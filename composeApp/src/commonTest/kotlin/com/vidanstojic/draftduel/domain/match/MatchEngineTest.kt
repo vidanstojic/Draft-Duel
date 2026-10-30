@@ -1,6 +1,6 @@
 package com.vidanstojic.draftduel.domain.match
 
-import com.vidanstojic.draftduel.domain.model.AthleteCard
+import com.vidanstojic.draftduel.domain.model.GameCard
 import com.vidanstojic.draftduel.domain.model.AvatarColorway
 import com.vidanstojic.draftduel.domain.model.AvatarSpec
 import com.vidanstojic.draftduel.domain.model.Theme
@@ -13,7 +13,7 @@ import kotlin.test.assertTrue
 /** Rows of the example table in spec §3, adapted to the rules without the 5-slot limit. */
 class MatchEngineTest {
 
-    private fun card(i: Int, rating: Int = 80) = AthleteCard(
+    private fun card(i: Int, rating: Int = 80) = GameCard(
         id = "c$i",
         name = "Player $i",
         season = "2020/21",

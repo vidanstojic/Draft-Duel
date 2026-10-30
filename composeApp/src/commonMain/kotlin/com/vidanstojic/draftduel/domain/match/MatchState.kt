@@ -1,6 +1,6 @@
 package com.vidanstojic.draftduel.domain.match
 
-import com.vidanstojic.draftduel.domain.model.AthleteCard
+import com.vidanstojic.draftduel.domain.model.GameCard
 import com.vidanstojic.draftduel.domain.model.Theme
 
 /** The two sides of a match. A is always the local user in online and bot matches. */
@@ -13,7 +13,7 @@ enum class Seat {
 }
 
 data class OwnedCard(
-    val card: AthleteCard,
+    val card: GameCard,
     val price: Int,
 )
 
@@ -56,6 +56,9 @@ sealed interface MatchPhase {
         val reason: AwardReason,
     ) : MatchPhase
 
+    /** Recipe packs: the opener skipped the card without bidding, so nobody gets it. */
+    data object Discarded : MatchPhase
+
     data object Finished : MatchPhase
 }
 
@@ -67,18 +70,23 @@ enum class MatchOutcome {
 
 data class MatchState(
     val theme: Theme,
-    val pool: List<AthleteCard>,
+    val pool: List<GameCard>,
     val roundIndex: Int,
     val seats: Map<Seat, SeatState>,
     val firstOpener: Seat,
     val phase: MatchPhase,
+    /** The dish to build in recipe packs; null in rating packs. */
+    val goal: String? = null,
 ) {
-    val currentCard: AthleteCard? get() = pool.getOrNull(roundIndex)
+    val currentCard: GameCard? get() = pool.getOrNull(roundIndex)
 
     /** Cards still to be drawn after the current one. */
     val cardsLeft: Int get() = (pool.size - roundIndex - 1).coerceAtLeast(0)
 
     val isFinished: Boolean get() = phase == MatchPhase.Finished
+
+    /** True between rounds: the card is settled and the next one is about to be drawn. */
+    val isSettled: Boolean get() = phase is MatchPhase.Awarded || phase == MatchPhase.Discarded
 
     fun seat(seat: Seat): SeatState = seats.getValue(seat)
 }

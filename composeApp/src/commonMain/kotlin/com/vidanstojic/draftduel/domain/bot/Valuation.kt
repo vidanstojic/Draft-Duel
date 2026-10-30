@@ -1,6 +1,5 @@
 package com.vidanstojic.draftduel.domain.bot
 
-import com.vidanstojic.draftduel.domain.match.GameRules
 import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.max
@@ -20,11 +19,11 @@ data class BidView(
     /** Cards the bot expects to buy from here on if both sides split them evenly. */
     val fairShare: Int get() = max(1, (cardsAfter + 2) / 2)
 
-    /** (r - 60) / (avg - 60): 1.0 for an average card, above 1 for better ones. */
+    /** (r - floor) / (avg - floor): 1.0 for a typical good card, 0 for one worth nothing or less. */
     val strength: Double
         get() {
-            val spread = (stats.average - GameRules.MIN_RATING).coerceAtLeast(1.0)
-            return ((perceived - GameRules.MIN_RATING) / spread).coerceAtLeast(0.0)
+            val spread = (stats.average - stats.floor).coerceAtLeast(1.0)
+            return ((perceived - stats.floor) / spread).coerceAtLeast(0.0)
         }
 }
 
@@ -66,7 +65,6 @@ class BargainValuation(
 
 /** Goes big on athletes it believes are stars and lowballs everyone else until the last cards. */
 class StarChaserValuation(
-    private val starRating: Int = RatingPerception.STAR_RATING,
     private val starBudgetShare: Double = 0.4,
     private val othersScale: Double = 0.75,
     private val endgameCards: Int = 2,
@@ -76,7 +74,7 @@ class StarChaserValuation(
     override fun maxPrice(view: BidView): Int {
         val normal = fair.maxPrice(view)
         if (view.cardsAfter + 1 <= endgameCards) return normal
-        return if (view.perceived >= starRating) {
+        return if (view.perceived >= view.stats.starLine) {
             max(normal, floor(view.budget * starBudgetShare).toInt())
         } else {
             floor(normal * othersScale).toInt()

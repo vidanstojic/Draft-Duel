@@ -1,0 +1,975 @@
+{
+  "id": "movies-v1",
+  "version": 1,
+  "theme": "Movies",
+  "categories": [
+    "Sci-Fi",
+    "Crime",
+    "Animation",
+    "Comedy",
+    "Drama",
+    "Action"
+  ],
+  "athletes": [
+    {
+      "id": "mv-the-godfather",
+      "name": "The Godfather",
+      "rating": 99,
+      "categories": [
+        "Crime"
+      ],
+      "position": "CRIME",
+      "season": "1972",
+      "country": "USA",
+      "avatar": {
+        "color": "#24387A",
+        "number": 72,
+        "initials": "TG"
+      }
+    },
+    {
+      "id": "mv-the-shawshank-redemption",
+      "name": "The Shawshank Redemption",
+      "rating": 97,
+      "categories": [
+        "Drama"
+      ],
+      "position": "DRAMA",
+      "season": "1994",
+      "country": "USA",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 94,
+        "initials": "TS"
+      }
+    },
+    {
+      "id": "mv-the-dark-knight",
+      "name": "The Dark Knight",
+      "rating": 96,
+      "categories": [
+        "Action"
+      ],
+      "position": "ACTION",
+      "season": "2008",
+      "country": "USA",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 8,
+        "initials": "TD"
+      }
+    },
+    {
+      "id": "mv-2001-a-space-odyssey",
+      "name": "2001: A Space Odyssey",
+      "rating": 95,
+      "categories": [
+        "Sci-Fi"
+      ],
+      "position": "SCIFI",
+      "season": "1968",
+      "country": "UK",
+      "avatar": {
+        "color": "#24483A",
+        "number": 68,
+        "initials": "2A"
+      }
+    },
+    {
+      "id": "mv-pulp-fiction",
+      "name": "Pulp Fiction",
+      "rating": 94,
+      "categories": [
+        "Crime"
+      ],
+      "position": "CRIME",
+      "season": "1994",
+      "country": "USA",
+      "avatar": {
+        "color": "#33404D",
+        "number": 94,
+        "initials": "PF"
+      }
+    },
+    {
+      "id": "mv-spirited-away",
+      "name": "Spirited Away",
+      "rating": 93,
+      "categories": [
+        "Animation"
+      ],
+      "position": "ANIM",
+      "season": "2001",
+      "country": "Japan",
+      "avatar": {
+        "color": "#24387A",
+        "number": 1,
+        "initials": "SA"
+      }
+    },
+    {
+      "id": "mv-goodfellas",
+      "name": "Goodfellas",
+      "rating": 89,
+      "categories": [
+        "Crime"
+      ],
+      "position": "CRIME",
+      "season": "1990",
+      "country": "USA",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 90,
+        "initials": "G"
+      }
+    },
+    {
+      "id": "mv-schindler-s-list",
+      "name": "Schindler's List",
+      "rating": 89,
+      "categories": [
+        "Drama"
+      ],
+      "position": "DRAMA",
+      "season": "1993",
+      "country": "USA",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 93,
+        "initials": "SL"
+      }
+    },
+    {
+      "id": "mv-the-matrix",
+      "name": "The Matrix",
+      "rating": 88,
+      "categories": [
+        "Sci-Fi"
+      ],
+      "position": "SCIFI",
+      "season": "1999",
+      "country": "USA",
+      "avatar": {
+        "color": "#24483A",
+        "number": 99,
+        "initials": "TM"
+      }
+    },
+    {
+      "id": "mv-parasite",
+      "name": "Parasite",
+      "rating": 88,
+      "categories": [
+        "Drama"
+      ],
+      "position": "DRAMA",
+      "season": "2019",
+      "country": "South Korea",
+      "avatar": {
+        "color": "#33404D",
+        "number": 19,
+        "initials": "P"
+      }
+    },
+    {
+      "id": "mv-mad-max-fury-road",
+      "name": "Mad Max: Fury Road",
+      "rating": 87,
+      "categories": [
+        "Action"
+      ],
+      "position": "ACTION",
+      "season": "2015",
+      "country": "Australia",
+      "avatar": {
+        "color": "#24387A",
+        "number": 15,
+        "initials": "MM"
+      }
+    },
+    {
+      "id": "mv-terminator-2-judgment-day",
+      "name": "Terminator 2: Judgment Day",
+      "rating": 87,
+      "categories": [
+        "Action"
+      ],
+      "position": "ACTION",
+      "season": "1991",
+      "country": "USA",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 91,
+        "initials": "T2"
+      }
+    },
+    {
+      "id": "mv-blade-runner",
+      "name": "Blade Runner",
+      "rating": 86,
+      "categories": [
+        "Sci-Fi"
+      ],
+      "position": "SCIFI",
+      "season": "1982",
+      "country": "USA",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 82,
+        "initials": "BR"
+      }
+    },
+    {
+      "id": "mv-inception",
+      "name": "Inception",
+      "rating": 86,
+      "categories": [
+        "Sci-Fi"
+      ],
+      "position": "SCIFI",
+      "season": "2010",
+      "country": "USA",
+      "avatar": {
+        "color": "#24483A",
+        "number": 10,
+        "initials": "I"
+      }
+    },
+    {
+      "id": "mv-toy-story",
+      "name": "Toy Story",
+      "rating": 86,
+      "categories": [
+        "Animation"
+      ],
+      "position": "ANIM",
+      "season": "1995",
+      "country": "USA",
+      "avatar": {
+        "color": "#33404D",
+        "number": 95,
+        "initials": "TS"
+      }
+    },
+    {
+      "id": "mv-ko-to-tamo-peva",
+      "name": "Ko to tamo peva",
+      "rating": 85,
+      "categories": [
+        "Comedy"
+      ],
+      "position": "COMEDY",
+      "season": "1980",
+      "country": "Yugoslavia",
+      "avatar": {
+        "color": "#24387A",
+        "number": 80,
+        "initials": "KT"
+      }
+    },
+    {
+      "id": "mv-gladiator",
+      "name": "Gladiator",
+      "rating": 85,
+      "categories": [
+        "Action"
+      ],
+      "position": "ACTION",
+      "season": "2000",
+      "country": "USA",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 0,
+        "initials": "G"
+      }
+    },
+    {
+      "id": "mv-forrest-gump",
+      "name": "Forrest Gump",
+      "rating": 84,
+      "categories": [
+        "Drama"
+      ],
+      "position": "DRAMA",
+      "season": "1994",
+      "country": "USA",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 94,
+        "initials": "FG"
+      }
+    },
+    {
+      "id": "mv-fight-club",
+      "name": "Fight Club",
+      "rating": 84,
+      "categories": [
+        "Drama"
+      ],
+      "position": "DRAMA",
+      "season": "1999",
+      "country": "USA",
+      "avatar": {
+        "color": "#24483A",
+        "number": 99,
+        "initials": "FC"
+      }
+    },
+    {
+      "id": "mv-the-departed",
+      "name": "The Departed",
+      "rating": 83,
+      "categories": [
+        "Crime"
+      ],
+      "position": "CRIME",
+      "season": "2006",
+      "country": "USA",
+      "avatar": {
+        "color": "#33404D",
+        "number": 6,
+        "initials": "TD"
+      }
+    },
+    {
+      "id": "mv-wall-e",
+      "name": "WALL-E",
+      "rating": 83,
+      "categories": [
+        "Animation"
+      ],
+      "position": "ANIM",
+      "season": "2008",
+      "country": "USA",
+      "avatar": {
+        "color": "#24387A",
+        "number": 8,
+        "initials": "W"
+      }
+    },
+    {
+      "id": "mv-interstellar",
+      "name": "Interstellar",
+      "rating": 82,
+      "categories": [
+        "Sci-Fi"
+      ],
+      "position": "SCIFI",
+      "season": "2014",
+      "country": "USA",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 14,
+        "initials": "I"
+      }
+    },
+    {
+      "id": "mv-the-lion-king",
+      "name": "The Lion King",
+      "rating": 81,
+      "categories": [
+        "Animation"
+      ],
+      "position": "ANIM",
+      "season": "1994",
+      "country": "USA",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 94,
+        "initials": "TL"
+      }
+    },
+    {
+      "id": "mv-die-hard",
+      "name": "Die Hard",
+      "rating": 80,
+      "categories": [
+        "Action"
+      ],
+      "position": "ACTION",
+      "season": "1988",
+      "country": "USA",
+      "avatar": {
+        "color": "#24483A",
+        "number": 88,
+        "initials": "DH"
+      }
+    },
+    {
+      "id": "mv-se7en",
+      "name": "Se7en",
+      "rating": 79,
+      "categories": [
+        "Crime"
+      ],
+      "position": "CRIME",
+      "season": "1995",
+      "country": "USA",
+      "avatar": {
+        "color": "#33404D",
+        "number": 95,
+        "initials": "S"
+      }
+    },
+    {
+      "id": "mv-maratonci-trce-pocasni-krug",
+      "name": "Maratonci trče počasni krug",
+      "rating": 79,
+      "categories": [
+        "Comedy"
+      ],
+      "position": "COMEDY",
+      "season": "1982",
+      "country": "Yugoslavia",
+      "avatar": {
+        "color": "#24387A",
+        "number": 82,
+        "initials": "MT"
+      }
+    },
+    {
+      "id": "mv-whiplash",
+      "name": "Whiplash",
+      "rating": 79,
+      "categories": [
+        "Drama"
+      ],
+      "position": "DRAMA",
+      "season": "2014",
+      "country": "USA",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 14,
+        "initials": "W"
+      }
+    },
+    {
+      "id": "mv-heat",
+      "name": "Heat",
+      "rating": 78,
+      "categories": [
+        "Crime"
+      ],
+      "position": "CRIME",
+      "season": "1995",
+      "country": "USA",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 95,
+        "initials": "H"
+      }
+    },
+    {
+      "id": "mv-underground",
+      "name": "Underground",
+      "rating": 78,
+      "categories": [
+        "Drama"
+      ],
+      "position": "DRAMA",
+      "season": "1995",
+      "country": "Yugoslavia",
+      "avatar": {
+        "color": "#24483A",
+        "number": 95,
+        "initials": "U"
+      }
+    },
+    {
+      "id": "mv-up",
+      "name": "Up",
+      "rating": 77,
+      "categories": [
+        "Animation"
+      ],
+      "position": "ANIM",
+      "season": "2009",
+      "country": "USA",
+      "avatar": {
+        "color": "#33404D",
+        "number": 9,
+        "initials": "U"
+      }
+    },
+    {
+      "id": "mv-the-grand-budapest-hotel",
+      "name": "The Grand Budapest Hotel",
+      "rating": 77,
+      "categories": [
+        "Comedy"
+      ],
+      "position": "COMEDY",
+      "season": "2014",
+      "country": "USA",
+      "avatar": {
+        "color": "#24387A",
+        "number": 14,
+        "initials": "TG"
+      }
+    },
+    {
+      "id": "mv-arrival",
+      "name": "Arrival",
+      "rating": 76,
+      "categories": [
+        "Sci-Fi"
+      ],
+      "position": "SCIFI",
+      "season": "2016",
+      "country": "USA",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 16,
+        "initials": "A"
+      }
+    },
+    {
+      "id": "mv-top-gun-maverick",
+      "name": "Top Gun: Maverick",
+      "rating": 76,
+      "categories": [
+        "Action"
+      ],
+      "position": "ACTION",
+      "season": "2022",
+      "country": "USA",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 22,
+        "initials": "TG"
+      }
+    },
+    {
+      "id": "mv-groundhog-day",
+      "name": "Groundhog Day",
+      "rating": 75,
+      "categories": [
+        "Comedy"
+      ],
+      "position": "COMEDY",
+      "season": "1993",
+      "country": "USA",
+      "avatar": {
+        "color": "#24483A",
+        "number": 93,
+        "initials": "GD"
+      }
+    },
+    {
+      "id": "mv-the-big-lebowski",
+      "name": "The Big Lebowski",
+      "rating": 75,
+      "categories": [
+        "Comedy"
+      ],
+      "position": "COMEDY",
+      "season": "1998",
+      "country": "USA",
+      "avatar": {
+        "color": "#33404D",
+        "number": 98,
+        "initials": "TB"
+      }
+    },
+    {
+      "id": "mv-dune",
+      "name": "Dune",
+      "rating": 74,
+      "categories": [
+        "Sci-Fi"
+      ],
+      "position": "SCIFI",
+      "season": "2021",
+      "country": "USA",
+      "avatar": {
+        "color": "#24387A",
+        "number": 21,
+        "initials": "D"
+      }
+    },
+    {
+      "id": "mv-titanic",
+      "name": "Titanic",
+      "rating": 74,
+      "categories": [
+        "Drama"
+      ],
+      "position": "DRAMA",
+      "season": "1997",
+      "country": "USA",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 97,
+        "initials": "T"
+      }
+    },
+    {
+      "id": "mv-mission-impossible-fallout",
+      "name": "Mission: Impossible – Fallout",
+      "rating": 74,
+      "categories": [
+        "Action"
+      ],
+      "position": "ACTION",
+      "season": "2018",
+      "country": "USA",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 18,
+        "initials": "MI"
+      }
+    },
+    {
+      "id": "mv-snatch",
+      "name": "Snatch",
+      "rating": 73,
+      "categories": [
+        "Crime"
+      ],
+      "position": "CRIME",
+      "season": "2000",
+      "country": "UK",
+      "avatar": {
+        "color": "#24483A",
+        "number": 0,
+        "initials": "S"
+      }
+    },
+    {
+      "id": "mv-shrek",
+      "name": "Shrek",
+      "rating": 73,
+      "categories": [
+        "Animation"
+      ],
+      "position": "ANIM",
+      "season": "2001",
+      "country": "USA",
+      "avatar": {
+        "color": "#33404D",
+        "number": 1,
+        "initials": "S"
+      }
+    },
+    {
+      "id": "mv-john-wick",
+      "name": "John Wick",
+      "rating": 72,
+      "categories": [
+        "Action"
+      ],
+      "position": "ACTION",
+      "season": "2014",
+      "country": "USA",
+      "avatar": {
+        "color": "#24387A",
+        "number": 14,
+        "initials": "JW"
+      }
+    },
+    {
+      "id": "mv-avatar",
+      "name": "Avatar",
+      "rating": 71,
+      "categories": [
+        "Sci-Fi"
+      ],
+      "position": "SCIFI",
+      "season": "2009",
+      "country": "USA",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 9,
+        "initials": "A"
+      }
+    },
+    {
+      "id": "mv-ocean-s-eleven",
+      "name": "Ocean's Eleven",
+      "rating": 71,
+      "categories": [
+        "Crime"
+      ],
+      "position": "CRIME",
+      "season": "2001",
+      "country": "USA",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 1,
+        "initials": "OE"
+      }
+    },
+    {
+      "id": "mv-frozen",
+      "name": "Frozen",
+      "rating": 70,
+      "categories": [
+        "Animation"
+      ],
+      "position": "ANIM",
+      "season": "2013",
+      "country": "USA",
+      "avatar": {
+        "color": "#24483A",
+        "number": 13,
+        "initials": "F"
+      }
+    },
+    {
+      "id": "mv-home-alone",
+      "name": "Home Alone",
+      "rating": 70,
+      "categories": [
+        "Comedy"
+      ],
+      "position": "COMEDY",
+      "season": "1990",
+      "country": "USA",
+      "avatar": {
+        "color": "#33404D",
+        "number": 90,
+        "initials": "HA"
+      }
+    },
+    {
+      "id": "mv-kung-fu-panda",
+      "name": "Kung Fu Panda",
+      "rating": 69,
+      "categories": [
+        "Animation"
+      ],
+      "position": "ANIM",
+      "season": "2008",
+      "country": "USA",
+      "avatar": {
+        "color": "#24387A",
+        "number": 8,
+        "initials": "KF"
+      }
+    },
+    {
+      "id": "mv-the-pursuit-of-happyness",
+      "name": "The Pursuit of Happyness",
+      "rating": 68,
+      "categories": [
+        "Drama"
+      ],
+      "position": "DRAMA",
+      "season": "2006",
+      "country": "USA",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 6,
+        "initials": "TP"
+      }
+    },
+    {
+      "id": "mv-the-town",
+      "name": "The Town",
+      "rating": 67,
+      "categories": [
+        "Crime"
+      ],
+      "position": "CRIME",
+      "season": "2010",
+      "country": "USA",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 10,
+        "initials": "TT"
+      }
+    },
+    {
+      "id": "mv-the-hangover",
+      "name": "The Hangover",
+      "rating": 67,
+      "categories": [
+        "Comedy"
+      ],
+      "position": "COMEDY",
+      "season": "2009",
+      "country": "USA",
+      "avatar": {
+        "color": "#24483A",
+        "number": 9,
+        "initials": "TH"
+      }
+    },
+    {
+      "id": "mv-independence-day",
+      "name": "Independence Day",
+      "rating": 66,
+      "categories": [
+        "Sci-Fi"
+      ],
+      "position": "SCIFI",
+      "season": "1996",
+      "country": "USA",
+      "avatar": {
+        "color": "#33404D",
+        "number": 96,
+        "initials": "ID"
+      }
+    },
+    {
+      "id": "mv-despicable-me",
+      "name": "Despicable Me",
+      "rating": 65,
+      "categories": [
+        "Animation"
+      ],
+      "position": "ANIM",
+      "season": "2010",
+      "country": "USA",
+      "avatar": {
+        "color": "#24387A",
+        "number": 10,
+        "initials": "DM"
+      }
+    },
+    {
+      "id": "mv-fast-five",
+      "name": "Fast Five",
+      "rating": 65,
+      "categories": [
+        "Action"
+      ],
+      "position": "ACTION",
+      "season": "2011",
+      "country": "USA",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 11,
+        "initials": "FF"
+      }
+    },
+    {
+      "id": "mv-mean-girls",
+      "name": "Mean Girls",
+      "rating": 64,
+      "categories": [
+        "Comedy"
+      ],
+      "position": "COMEDY",
+      "season": "2004",
+      "country": "USA",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 4,
+        "initials": "MG"
+      }
+    },
+    {
+      "id": "mv-mrs-doubtfire",
+      "name": "Mrs. Doubtfire",
+      "rating": 64,
+      "categories": [
+        "Comedy"
+      ],
+      "position": "COMEDY",
+      "season": "1993",
+      "country": "USA",
+      "avatar": {
+        "color": "#24483A",
+        "number": 93,
+        "initials": "MD"
+      }
+    },
+    {
+      "id": "mv-armageddon",
+      "name": "Armageddon",
+      "rating": 63,
+      "categories": [
+        "Sci-Fi"
+      ],
+      "position": "SCIFI",
+      "season": "1998",
+      "country": "USA",
+      "avatar": {
+        "color": "#33404D",
+        "number": 98,
+        "initials": "A"
+      }
+    },
+    {
+      "id": "mv-cars",
+      "name": "Cars",
+      "rating": 63,
+      "categories": [
+        "Animation"
+      ],
+      "position": "ANIM",
+      "season": "2006",
+      "country": "USA",
+      "avatar": {
+        "color": "#24387A",
+        "number": 6,
+        "initials": "C"
+      }
+    },
+    {
+      "id": "mv-now-you-see-me",
+      "name": "Now You See Me",
+      "rating": 62,
+      "categories": [
+        "Crime"
+      ],
+      "position": "CRIME",
+      "season": "2013",
+      "country": "USA",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 13,
+        "initials": "NY"
+      }
+    },
+    {
+      "id": "mv-the-notebook",
+      "name": "The Notebook",
+      "rating": 62,
+      "categories": [
+        "Drama"
+      ],
+      "position": "DRAMA",
+      "season": "2004",
+      "country": "USA",
+      "avatar": {
+        "color": "#4A2A4F",
+        "number": 4,
+        "initials": "TN"
+      }
+    },
+    {
+      "id": "mv-dumb-and-dumber",
+      "name": "Dumb and Dumber",
+      "rating": 61,
+      "categories": [
+        "Comedy"
+      ],
+      "position": "COMEDY",
+      "season": "1994",
+      "country": "USA",
+      "avatar": {
+        "color": "#24483A",
+        "number": 94,
+        "initials": "DA"
+      }
+    },
+    {
+      "id": "mv-transformers",
+      "name": "Transformers",
+      "rating": 60,
+      "categories": [
+        "Action"
+      ],
+      "position": "ACTION",
+      "season": "2007",
+      "country": "USA",
+      "avatar": {
+        "color": "#33404D",
+        "number": 7,
+        "initials": "T"
+      }
+    }
+  ]
+}

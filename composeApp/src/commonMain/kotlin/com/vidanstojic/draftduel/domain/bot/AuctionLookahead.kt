@@ -12,7 +12,8 @@ import kotlin.math.min
  * depends only on budgets and cards left. Assumptions that keep it small:
  * - future ratings are independent draws from [PoolStats.distribution];
  * - both players bid up to their reservation price, so the higher one wins at the other's + 1;
- * - once a player is at 0, the other takes every remaining card for free (spec §3);
+ * - once a player is at 0, the other picks for free: keeps good cards, hands over bad ones (spec §3);
+ * - in recipe packs a card nobody wants is skipped by the opener;
  * - when both are at 0 the free cards split evenly (worth 0).
  *
  * Values are memoised; one table serves a whole match (21 x 21 x 10 states at most).
@@ -24,7 +25,8 @@ class AuctionLookahead(
 ) {
     private val ratings: IntArray = stats.distribution.map { it.first }.toIntArray()
     private val probabilities: DoubleArray = stats.distribution.map { it.second }.toDoubleArray()
-    private val average: Double = stats.average
+    private val freePickValue: Double = stats.averageMagnitude
+    private val openerMaySkip: Boolean = stats.openerMaySkip
     private val memo = DoubleArray((maxBudget + 1) * (maxBudget + 1) * (maxCards + 1)) { Double.NaN }
 
     /**
@@ -49,8 +51,8 @@ class AuctionLookahead(
     fun value(budget: Int, opponentBudget: Int, cards: Int): Double {
         if (cards <= 0) return 0.0
         if (budget == 0 && opponentBudget == 0) return 0.0
-        if (opponentBudget == 0) return cards * average
-        if (budget == 0) return -cards * average
+        if (opponentBudget == 0) return cards * freePickValue
+        if (budget == 0) return -cards * freePickValue
         val key = (budget * (maxBudget + 1) + opponentBudget) * (maxCards + 1) + cards
         val cached = memo[key]
         if (!cached.isNaN()) return cached
@@ -64,6 +66,8 @@ class AuctionLookahead(
             val outcome = when {
                 mine > theirs -> win(r, budget, opponentBudget, after, price = max(1, theirs + 1))
                 theirs > mine -> lose(r, budget, opponentBudget, after, price = max(1, mine + 1))
+                // Nobody wants it: in recipe packs the opener skips it and it is gone.
+                mine == 0 && r <= 0 && openerMaySkip -> value(budget, opponentBudget, after)
                 else -> {
                     val price = max(1, mine)
                     0.5 * (win(r, budget, opponentBudget, after, price) + lose(r, budget, opponentBudget, after, price))

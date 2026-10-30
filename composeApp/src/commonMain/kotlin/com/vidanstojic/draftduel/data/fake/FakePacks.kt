@@ -1,6 +1,6 @@
 package com.vidanstojic.draftduel.data.fake
 
-import com.vidanstojic.draftduel.domain.model.AthleteCard
+import com.vidanstojic.draftduel.domain.model.GameCard
 import com.vidanstojic.draftduel.domain.model.AvatarColorway
 import com.vidanstojic.draftduel.domain.model.AvatarSpec
 import com.vidanstojic.draftduel.domain.model.PackCategory
@@ -97,7 +97,7 @@ internal object FakePacks {
         number: Int,
         colorway: AvatarColorway,
         vararg categories: String,
-    ) = AthleteCard(
+    ) = GameCard(
         id = id,
         name = name,
         season = season,

@@ -28,6 +28,8 @@ import com.vidanstojic.draftduel.resources.match_free_card
 import com.vidanstojic.draftduel.resources.match_give_to
 import com.vidanstojic.draftduel.resources.match_leads
 import com.vidanstojic.draftduel.resources.match_next_card
+import com.vidanstojic.draftduel.resources.match_skip
+import com.vidanstojic.draftduel.resources.match_skipped
 import com.vidanstojic.draftduel.resources.match_opener_must_bid
 import com.vidanstojic.draftduel.resources.match_opens
 import com.vidanstojic.draftduel.resources.match_pass_to
@@ -46,7 +48,7 @@ import com.vidanstojic.draftduel.resources.match_yours_for
 import com.vidanstojic.draftduel.resources.match_you_lead
 import com.vidanstojic.draftduel.resources.match_you_open
 import com.vidanstojic.draftduel.resources.match_your_turn
-import com.vidanstojic.draftduel.ui.components.AthleteCardView
+import com.vidanstojic.draftduel.ui.components.GameCardView
 import com.vidanstojic.draftduel.ui.components.BidControls
 import com.vidanstojic.draftduel.ui.components.BudgetMeter
 import com.vidanstojic.draftduel.ui.components.CardPile
@@ -169,7 +171,7 @@ private fun CenterRow(state: MatchUiState) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
-        AthleteCardView(
+        GameCardView(
             card = card,
             theme = state.theme,
             ratingVisible = state.cardRatingVisible,
@@ -192,7 +194,7 @@ private fun AuctionClock(state: MatchUiState) {
         is MatchPhaseUi.Bidding -> phase.price.toString()
         is MatchPhaseUi.Awarded -> phase.price.toString()
         is MatchPhaseUi.Choosing -> "0"
-        MatchPhaseUi.Finished -> ""
+        MatchPhaseUi.Discarded, MatchPhaseUi.Finished -> ""
     }
     val ticking = state.phase is MatchPhaseUi.Bidding || state.phase is MatchPhaseUi.Choosing
     if (DraftDuelTheme.surface == SurfaceStyle.COURT) {
@@ -243,12 +245,13 @@ private fun AuctionStatus(state: MatchUiState) {
             if (phase.toYou) {
                 StatusText(stringResource(Res.string.match_yours_for, phase.price), highlight = true)
                 phase.rating?.let {
-                    Text(stringResource(Res.string.match_rating_gain, it), style = DraftDuelTheme.type.monoStrong, color = colors.accent)
+                    Text(stringResource(Res.string.match_rating_gain, if (it > 0) "+$it" else "$it"), style = DraftDuelTheme.type.monoStrong, color = colors.accent)
                 }
             } else {
                 StatusText(stringResource(Res.string.match_takes_it, opponent, phase.price), highlight = false)
             }
         }
+        MatchPhaseUi.Discarded -> StatusText(stringResource(Res.string.match_skipped), highlight = false)
         MatchPhaseUi.Finished -> Unit
     }
 }
@@ -273,11 +276,7 @@ private fun PhaseControls(
     when (phase) {
         is MatchPhaseUi.Bidding -> BidControls(
             options = phase.options,
-            passText = when {
-                !phase.yourTurn -> stringResource(Res.string.match_waiting_for, opponentName)
-                phase.leader == Leader.NONE -> stringResource(Res.string.match_opener_must_bid)
-                else -> stringResource(Res.string.match_pass_to, opponentName, phase.price)
-            },
+            passText = passLabel(phase, opponentName),
             passEnabled = phase.yourTurn && phase.canPass,
             onBid = onRaise,
             onPass = onPass,
@@ -320,6 +319,19 @@ private fun PhaseControls(
             }
             Text(stringResource(Res.string.match_next_card), style = DraftDuelTheme.type.mono, color = colors.muted)
         }
+        MatchPhaseUi.Discarded -> Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            Text(stringResource(Res.string.match_skipped), style = DraftDuelTheme.type.headline, color = colors.onScreen)
+            Text(stringResource(Res.string.match_next_card), style = DraftDuelTheme.type.mono, color = colors.muted)
+        }
         MatchPhaseUi.Finished -> Box(Modifier.width(1.dp))
     }
+}
+
+/** Text of the pass button; in recipe packs the opener may skip a card instead of bidding. */
+@Composable
+internal fun passLabel(phase: MatchPhaseUi.Bidding, opponentName: String): String = when {
+    !phase.yourTurn -> stringResource(Res.string.match_waiting_for, opponentName)
+    phase.leader == Leader.NONE && phase.canPass -> stringResource(Res.string.match_skip)
+    phase.leader == Leader.NONE -> stringResource(Res.string.match_opener_must_bid)
+    else -> stringResource(Res.string.match_pass_to, opponentName, phase.price)
 }

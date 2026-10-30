@@ -14,8 +14,8 @@ import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 @Immutable
 data class RosterRowUi(
     val name: String,
-    val season: String,
-    val country: String,
+    /** Season, country and tag, e.g. "2025/26 · ENGLAND · FWD". */
+    val details: String,
     val rating: Int,
     val price: Int,
     val bestBuy: Boolean = false,
@@ -34,6 +34,8 @@ enum class ResultOutcome { BOTTOM_WINS, TOP_WINS, DRAW }
 @Immutable
 data class ResultUiState(
     val theme: Theme,
+    /** The dish of a recipe match; null in rating packs. */
+    val goal: String? = null,
     /** Bottom of the screen: the local user, or player 1 on a shared device. */
     val bottom: RosterUi,
     val top: RosterUi,
@@ -65,6 +67,7 @@ internal fun MatchState.toResultUi(bottomIsYou: Boolean): ResultUiState {
     }
     return ResultUiState(
         theme = theme,
+        goal = goal,
         bottom = roster(Seat.A, best),
         top = roster(Seat.B, best = null),
         outcome = outcome,
@@ -88,8 +91,7 @@ private fun valueFor(owned: OwnedCard): Double = owned.card.rating.toDouble() / 
 
 private fun OwnedCard.toRow(isBest: Boolean) = RosterRowUi(
     name = card.name,
-    season = card.season,
-    country = card.country,
+    details = card.details,
     rating = card.rating,
     price = price,
     bestBuy = isBest,
