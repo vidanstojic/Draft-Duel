@@ -38,6 +38,8 @@ fun MatchState.toUi(
             },
             canPass = MatchEngine.canPass(this, viewer),
             opponentMaxBid = seat(viewer.other).budget,
+            handOverCost = if (MatchEngine.canHandOver(this, viewer)) MatchEngine.handOverCost(this, viewer) else null,
+            handedOver = current.handedOver,
         )
         is MatchPhase.Choosing -> MatchPhaseUi.Choosing(youChoose = current.chooser == viewer)
         is MatchPhase.Awarded -> MatchPhaseUi.Awarded(
@@ -56,8 +58,8 @@ fun MatchState.toUi(
         cardNumber = (roundIndex + 1).coerceAtMost(pool.size),
         totalCards = pool.size,
         cardsLeft = cardsLeft,
-        you = seat(viewer).toPanel(faceUp = revealOwnRatings, includeTotal = revealOwnRatings),
-        opponent = seat(viewer.other).toPanel(faceUp = false, includeTotal = false),
+        you = seat(viewer).toPanel(faceUp = revealOwnRatings, includeTotal = revealOwnRatings, slots = ruleSet.slots),
+        opponent = seat(viewer.other).toPanel(faceUp = false, includeTotal = false, slots = ruleSet.slots),
         card = currentCard,
         cardRatingVisible = awardedToViewer && revealOwnRatings,
         phase = phaseUi,
@@ -67,7 +69,7 @@ fun MatchState.toUi(
     )
 }
 
-private fun SeatState.toPanel(faceUp: Boolean, includeTotal: Boolean): PlayerPanelUi = PlayerPanelUi(
+private fun SeatState.toPanel(faceUp: Boolean, includeTotal: Boolean, slots: Int?): PlayerPanelUi = PlayerPanelUi(
     name = name,
     budget = budget,
     pile = cards.mapIndexed { index, owned ->
@@ -82,4 +84,5 @@ private fun SeatState.toPanel(faceUp: Boolean, includeTotal: Boolean): PlayerPan
         }
     },
     total = if (includeTotal) total else null,
+    slots = slots,
 )

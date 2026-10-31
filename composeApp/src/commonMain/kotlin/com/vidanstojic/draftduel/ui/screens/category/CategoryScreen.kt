@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vidanstojic.draftduel.di.LocalAppContainer
+import com.vidanstojic.draftduel.domain.match.RuleSet
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.Scoring
 import com.vidanstojic.draftduel.domain.model.Theme
@@ -49,6 +50,11 @@ import com.vidanstojic.draftduel.resources.category_pool
 import com.vidanstojic.draftduel.resources.category_recipe_hint
 import com.vidanstojic.draftduel.resources.category_theme
 import com.vidanstojic.draftduel.resources.category_title
+import com.vidanstojic.draftduel.resources.rules_classic
+import com.vidanstojic.draftduel.resources.rules_classic_hint
+import com.vidanstojic.draftduel.resources.rules_five_slots
+import com.vidanstojic.draftduel.resources.rules_five_slots_hint
+import com.vidanstojic.draftduel.resources.rules_label
 import com.vidanstojic.draftduel.resources.cta_choose_bot
 import com.vidanstojic.draftduel.resources.cta_continue
 import com.vidanstojic.draftduel.resources.cta_create_invite
@@ -87,6 +93,7 @@ fun CategoryRoute(
         onBack = onBack,
         onThemeSelected = viewModel::selectTheme,
         onSourceSelected = viewModel::selectSource,
+        onRuleSetSelected = viewModel::selectRuleSet,
         onCategorySelected = viewModel::selectCategory,
         onContinue = { onContinue(viewModel.confirm()) },
     )
@@ -100,6 +107,7 @@ fun CategoryScreen(
     onSourceSelected: (PoolSourceType) -> Unit,
     onCategorySelected: (String) -> Unit,
     onContinue: () -> Unit,
+    onRuleSetSelected: (RuleSet) -> Unit = {},
 ) {
     DdScreen(surface = SurfaceStyle.TABLE) {
         DdTopBar(
@@ -129,6 +137,17 @@ fun CategoryScreen(
             if (state.selectedTheme.scoring == Scoring.RECIPE) {
                 Text(
                     text = stringResource(Res.string.category_recipe_hint),
+                    style = DraftDuelTheme.type.caption,
+                    color = DraftDuelTheme.colors.muted,
+                    modifier = Modifier.padding(horizontal = 4.dp),
+                )
+            }
+
+            if (state.ruleSetsAvailable) {
+                SectionLabel(stringResource(Res.string.rules_label), Modifier.padding(start = 4.dp, top = 6.dp))
+                RuleSetSelector(selected = state.ruleSet, onSelected = onRuleSetSelected)
+                Text(
+                    text = stringResource(state.ruleSet.description()),
                     style = DraftDuelTheme.type.caption,
                     color = DraftDuelTheme.colors.muted,
                     modifier = Modifier.padding(horizontal = 4.dp),
@@ -273,6 +292,53 @@ private fun SourceSelector(
             }
         }
     }
+}
+
+@Composable
+private fun RuleSetSelector(
+    selected: RuleSet,
+    onSelected: (RuleSet) -> Unit,
+) {
+    val colors = DraftDuelTheme.colors
+    val shape = RoundedCornerShape(12.dp)
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(shape)
+            .background(colors.panel)
+            .border(1.5.dp, colors.outline, shape)
+            .padding(4.dp),
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        RuleSet.entries.forEach { ruleSet ->
+            val isSelected = ruleSet == selected
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .height(40.dp)
+                    .clip(RoundedCornerShape(9.dp))
+                    .background(if (isSelected) colors.accent else colors.panel.copy(alpha = 0f))
+                    .selectable(selected = isSelected, role = Role.Tab, onClick = { onSelected(ruleSet) }),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text(
+                    text = stringResource(ruleSet.label()),
+                    style = DraftDuelTheme.type.bodyStrong,
+                    color = if (isSelected) colors.onAccent else colors.onScreen,
+                )
+            }
+        }
+    }
+}
+
+private fun RuleSet.label(): StringResource = when (this) {
+    RuleSet.CLASSIC -> Res.string.rules_classic
+    RuleSet.FIVE_SLOTS -> Res.string.rules_five_slots
+}
+
+private fun RuleSet.description(): StringResource = when (this) {
+    RuleSet.CLASSIC -> Res.string.rules_classic_hint
+    RuleSet.FIVE_SLOTS -> Res.string.rules_five_slots_hint
 }
 
 @Composable

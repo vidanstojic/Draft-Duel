@@ -45,7 +45,6 @@ import com.vidanstojic.draftduel.resources.match_card_of
 import com.vidanstojic.draftduel.resources.match_choosing
 import com.vidanstojic.draftduel.resources.match_give_to
 import com.vidanstojic.draftduel.resources.match_leads
-import com.vidanstojic.draftduel.resources.match_opens
 import com.vidanstojic.draftduel.resources.match_points_left
 import com.vidanstojic.draftduel.resources.match_seconds
 import com.vidanstojic.draftduel.resources.match_take_it
@@ -70,6 +69,7 @@ import com.vidanstojic.draftduel.ui.screens.match.LeaveMatchDialog
 import com.vidanstojic.draftduel.ui.screens.match.MatchContent
 import com.vidanstojic.draftduel.ui.screens.match.MatchPhaseUi
 import com.vidanstojic.draftduel.ui.screens.match.MatchUiState
+import com.vidanstojic.draftduel.ui.screens.match.openerText
 import com.vidanstojic.draftduel.ui.screens.match.passLabel
 import com.vidanstojic.draftduel.ui.screens.match.previewMatchState
 import com.vidanstojic.draftduel.ui.surface.PlaySurface
@@ -269,7 +269,7 @@ private fun SeatHalf(
                 is MatchPhaseUi.Bidding -> BidControls(
                     options = phase.options,
                     passText = passLabel(phase, state.opponent.name),
-                    passEnabled = phase.yourTurn && phase.canPass,
+                    passEnabled = phase.passEnabled,
                     onBid = actions.onRaise,
                     onPass = actions.onPass,
                     chipHeight = 64.dp,
@@ -285,9 +285,10 @@ private fun SeatHalf(
 @Composable
 private fun statusFor(state: MatchUiState): String = when (val phase = state.phase) {
     is MatchPhaseUi.Bidding -> when {
+        phase.handedOver && phase.leader == Leader.NONE -> openerText(phase, state.opponent.name)
         phase.yourTurn -> stringResource(Res.string.match_your_turn)
         phase.leader == Leader.YOU -> stringResource(Res.string.match_you_lead)
-        phase.leader == Leader.NONE -> stringResource(Res.string.match_opens, state.opponent.name)
+        phase.leader == Leader.NONE -> openerText(phase, state.opponent.name)
         else -> stringResource(Res.string.match_leads, state.opponent.name)
     }
     is MatchPhaseUi.Choosing -> if (phase.youChoose) {

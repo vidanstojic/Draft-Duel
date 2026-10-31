@@ -1,6 +1,7 @@
 package com.vidanstojic.draftduel.ui.screens.category
 
 import androidx.lifecycle.ViewModel
+import com.vidanstojic.draftduel.domain.match.RuleSet
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.MatchSetup
 import com.vidanstojic.draftduel.domain.model.PoolSource
@@ -35,6 +36,10 @@ class CategoryViewModel(
         }
     }
 
+    fun selectRuleSet(ruleSet: RuleSet) {
+        _state.update { if (it.ruleSetsAvailable) it.copy(ruleSet = ruleSet) else it }
+    }
+
     fun selectSource(type: PoolSourceType) {
         _state.update { current ->
             if (type == PoolSourceType.CUSTOM && !current.customAllowed) return@update current
@@ -62,6 +67,7 @@ class CategoryViewModel(
             theme = current.selectedTheme,
             poolSource = source,
             you = profileRepository.currentPlayer(),
+            ruleSet = if (current.ruleSetsAvailable) current.ruleSet else RuleSet.CLASSIC,
         )
         return current.mode
     }

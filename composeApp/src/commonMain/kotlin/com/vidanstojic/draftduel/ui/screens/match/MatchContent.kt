@@ -28,7 +28,11 @@ import com.vidanstojic.draftduel.resources.match_free_card
 import com.vidanstojic.draftduel.resources.match_give_to
 import com.vidanstojic.draftduel.resources.match_leads
 import com.vidanstojic.draftduel.resources.match_next_card
+import com.vidanstojic.draftduel.resources.match_hand_over
+import com.vidanstojic.draftduel.resources.match_handed_to_you
 import com.vidanstojic.draftduel.resources.match_skip
+import com.vidanstojic.draftduel.resources.match_slots
+import com.vidanstojic.draftduel.resources.match_you_handed
 import com.vidanstojic.draftduel.resources.match_skipped
 import com.vidanstojic.draftduel.resources.match_opener_must_bid
 import com.vidanstojic.draftduel.resources.match_opens
@@ -124,7 +128,7 @@ private fun OpponentSide(state: MatchUiState) {
         InfoPill {
             Text(state.opponent.name, style = DraftDuelTheme.type.bodyStrong, color = colors.onScreen)
             Text(
-                pluralStringResource(Res.plurals.cards_count, state.opponent.pile.size, state.opponent.pile.size),
+                cardsLabel(state.opponent),
                 style = DraftDuelTheme.type.mono,
                 color = colors.muted,
             )
@@ -144,7 +148,7 @@ private fun OwnSide(state: MatchUiState) {
             Text(state.you.name, style = DraftDuelTheme.type.bodyStrong, color = colors.accent)
             val total = state.you.total
             Text(
-                text = pluralStringResource(Res.plurals.cards_count, state.you.pile.size, state.you.pile.size) +
+                text = cardsLabel(state.you) +
                     if (total != null) " · " + stringResource(Res.string.match_total, total) else "",
                 style = DraftDuelTheme.type.mono,
                 color = colors.muted,
@@ -223,7 +227,7 @@ private fun AuctionStatus(state: MatchUiState) {
                 Leader.YOU -> LeaderBadge(stringResource(Res.string.match_you_lead), container = colors.accent, content = colors.onAccent)
                 Leader.NONE -> InfoPill {
                     Text(
-                        text = if (phase.youOpen) stringResource(Res.string.match_you_open) else stringResource(Res.string.match_opens, opponent),
+                        text = openerText(phase, opponent),
                         style = DraftDuelTheme.type.mono,
                         color = colors.onScreen,
                     )
@@ -277,7 +281,7 @@ private fun PhaseControls(
         is MatchPhaseUi.Bidding -> BidControls(
             options = phase.options,
             passText = passLabel(phase, opponentName),
-            passEnabled = phase.yourTurn && phase.canPass,
+            passEnabled = phase.passEnabled,
             onBid = onRaise,
             onPass = onPass,
             modifier = Modifier.fillMaxWidth(),
@@ -327,10 +331,25 @@ private fun PhaseControls(
     }
 }
 
-/** Text of the pass button; in recipe packs the opener may skip a card instead of bidding. */
+/** Who opens, and whether the card was handed over (five slots). */
+@Composable
+internal fun openerText(phase: MatchPhaseUi.Bidding, opponentName: String): String = when {
+    phase.handedOver && phase.youOpen -> stringResource(Res.string.match_handed_to_you, opponentName)
+    phase.handedOver -> stringResource(Res.string.match_you_handed, opponentName)
+    phase.youOpen -> stringResource(Res.string.match_you_open)
+    else -> stringResource(Res.string.match_opens, opponentName)
+}
+
+/** Cards a player holds, as "3 cards", or "3/5 cards" with a card limit. */
+@Composable
+internal fun cardsLabel(panel: PlayerPanelUi): String = panel.slots?.let { stringResource(Res.string.match_slots, panel.pile.size, it) }
+    ?: pluralStringResource(Res.plurals.cards_count, panel.pile.size, panel.pile.size)
+
+/** Text of the pass button; in recipe packs the opener may skip a card, with five slots hand it over. */
 @Composable
 internal fun passLabel(phase: MatchPhaseUi.Bidding, opponentName: String): String = when {
     !phase.yourTurn -> stringResource(Res.string.match_waiting_for, opponentName)
+    phase.leader == Leader.NONE && phase.handOverCost != null -> stringResource(Res.string.match_hand_over, phase.handOverCost)
     phase.leader == Leader.NONE && phase.canPass -> stringResource(Res.string.match_skip)
     phase.leader == Leader.NONE -> stringResource(Res.string.match_opener_must_bid)
     else -> stringResource(Res.string.match_pass_to, opponentName, phase.price)

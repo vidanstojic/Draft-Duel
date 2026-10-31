@@ -3,6 +3,7 @@ package com.vidanstojic.draftduel.ui.screens.bot
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import com.vidanstojic.draftduel.domain.bot.BotPersonality
+import com.vidanstojic.draftduel.domain.match.RuleSet
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.MatchSetup
 import com.vidanstojic.draftduel.domain.model.PlayerProfile
@@ -20,6 +21,7 @@ import kotlinx.coroutines.flow.update
 data class BotSelectUiState(
     /** Difficulty labels depend on how the chosen theme scores. */
     val scoring: Scoring = Scoring.RATINGS,
+    val ruleSet: RuleSet = RuleSet.CLASSIC,
     val bots: List<BotPersonality> = BotPersonality.entries,
     val selected: BotPersonality,
 )
@@ -38,7 +40,7 @@ class BotSelectViewModel(
     )
 
     private val _state = MutableStateFlow(
-        BotSelectUiState(scoring = setup.theme.scoring, selected = setup.bot ?: DEFAULT_BOT),
+        BotSelectUiState(scoring = setup.theme.scoring, ruleSet = setup.ruleSet, selected = setup.bot ?: DEFAULT_BOT),
     )
     val state: StateFlow<BotSelectUiState> = _state.asStateFlow()
 

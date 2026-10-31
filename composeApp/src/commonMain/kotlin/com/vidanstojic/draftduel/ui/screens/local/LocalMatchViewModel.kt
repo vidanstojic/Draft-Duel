@@ -80,6 +80,7 @@ class LocalMatchViewModel(
             theme = theme,
             pool = pool.cards,
             goal = pool.goal?.name,
+            ruleSet = setup.ruleSet,
             nameA = setup.you.nickname,
             nameB = setup.opponent?.nickname ?: "Player 2",
             firstOpener = if (random.nextBoolean()) Seat.A else Seat.B,
@@ -122,7 +123,7 @@ class LocalMatchViewModel(
 
     fun onRaise(seat: Seat, step: Int) = act(MatchAction.Raise(seat, step))
 
-    fun onPass(seat: Seat) = act(MatchAction.Pass(seat))
+    fun onPass(seat: Seat) = act(MatchEngine.passAction(driver.match.value, seat))
 
     fun onAssign(chooser: Seat, toSelf: Boolean) = act(MatchAction.Assign(chooser, if (toSelf) chooser else chooser.other))
 

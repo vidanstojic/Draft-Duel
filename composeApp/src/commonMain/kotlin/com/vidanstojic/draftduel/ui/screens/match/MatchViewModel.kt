@@ -50,6 +50,7 @@ class MatchViewModel(
             theme = theme,
             pool = pool.cards,
             goal = pool.goal?.name,
+            ruleSet = setup.ruleSet,
             nameA = setup.you.nickname,
             nameB = opponent.nickname,
             firstOpener = if (random.nextBoolean()) Seat.A else Seat.B,
@@ -58,6 +59,7 @@ class MatchViewModel(
             personality = botPersonality,
             stats = PoolStats.of(pool.drawnFrom, theme.scoring),
             random = random,
+            ruleSet = setup.ruleSet,
         ),
         botSeat = Seat.B,
         onFinished = { finishedMatch ->
@@ -83,7 +85,8 @@ class MatchViewModel(
 
     fun onRaise(step: Int) = driver.dispatch(MatchAction.Raise(Seat.A, step))
 
-    fun onPass() = driver.dispatch(MatchAction.Pass(Seat.A))
+    /** Pass, or for an opener in five-slot matches a paid hand-over (see [MatchEngine.passAction]). */
+    fun onPass() = driver.dispatch(MatchEngine.passAction(driver.match.value, Seat.A))
 
     fun onAssign(toSelf: Boolean) = driver.dispatch(MatchAction.Assign(chooser = Seat.A, to = if (toSelf) Seat.A else Seat.B))
 }

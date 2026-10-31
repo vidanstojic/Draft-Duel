@@ -31,7 +31,7 @@
     <string name="mode_bot_title">Play vs bot</string>
     <string name="mode_bot_subtitle">Pick a rival. Works offline</string>
     <string name="how_to_play">How to play</string>
-    <string name="how_to_play_rules">You both start with 20 points. 10 cards go up for auction, one at a time.\n\nThe opener must bid. Then raise by 1, 2 or 5, or pass and the other player takes the card at their last bid.\n\nRatings stay hidden. You see yours when you win a card and your rival's at the end.\n\nThe higher total rating wins.</string>
+    <string name="how_to_play_rules">You both start with 20 points. 10 cards go up for auction, one at a time.\n\nThe opener must bid. Then raise by 1, 2 or 5, or pass and the other player takes the card at their last bid.\n\nRatings stay hidden. You see yours when you win a card and your rival's at the end.\n\nThe higher total rating wins.\n\n5 cards rules: each player ends with exactly 5 cards. As the opener you may hand a card you do not want over to your rival, who must then open it. Your first hand-over costs 1 point, the next 2, then 3.</string>
     <!-- Themes -->
     <string name="theme_football">Football</string>
     <string name="theme_basketball">Basketball</string>
@@ -50,6 +50,11 @@
     <string name="category_coming_soon">Coming soon</string>
     <string name="category_custom_hint">You will pick at least 10 athletes before sending the invite. Coming soon.</string>
     <string name="category_custom_friend_only">Custom pools are for friend matches only.</string>
+    <string name="rules_label">Rules</string>
+    <string name="rules_classic">Classic</string>
+    <string name="rules_five_slots">5 cards</string>
+    <string name="rules_classic_hint">No card limit. Only your 20 points stop you, and the opener must bid.</string>
+    <string name="rules_five_slots_hint">Each player ends with exactly 5 cards. The opener may hand a card over instead of bidding, and the rival must open it. Hand-overs cost 1, then 2, then 3… points each.</string>
     <string name="source_random">Random</string>
     <string name="source_category">By category</string>
     <string name="source_custom">Custom</string>
@@ -118,6 +123,10 @@
     <string name="match_pass_to">Pass · %1$s takes it for %2$d</string>
     <string name="match_opener_must_bid">The opener must bid</string>
     <string name="match_skip">Skip · nobody gets it</string>
+    <string name="match_hand_over">Hand over · −%1$d pts</string>
+    <string name="match_handed_to_you">%1$s handed it over. You must open.</string>
+    <string name="match_you_handed">You handed it over to %1$s</string>
+    <string name="match_slots">%1$d/%2$d cards</string>
     <string name="match_skipped">Skipped, nobody gets it</string>
     <string name="match_recipe_label">Build this dish</string>
     <string name="match_waiting_for">Waiting for %1$s</string>

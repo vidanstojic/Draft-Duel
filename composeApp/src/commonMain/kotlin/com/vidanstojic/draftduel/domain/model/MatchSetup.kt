@@ -1,6 +1,7 @@
 package com.vidanstojic.draftduel.domain.model
 
 import com.vidanstojic.draftduel.domain.bot.BotPersonality
+import com.vidanstojic.draftduel.domain.match.RuleSet
 
 /** Everything chosen before a match starts. Passed between screens through the session repository. */
 data class MatchSetup(
@@ -12,4 +13,5 @@ data class MatchSetup(
     val localLayout: LocalLayout = LocalLayout.SPLIT_SCREEN,
     /** Who the bot plays like. Null means a random personality (quick match). */
     val bot: BotPersonality? = null,
+    val ruleSet: RuleSet = RuleSet.CLASSIC,
 )

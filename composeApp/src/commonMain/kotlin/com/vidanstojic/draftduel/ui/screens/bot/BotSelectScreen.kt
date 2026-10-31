@@ -98,7 +98,7 @@ fun BotSelectScreen(
         ) {
             SectionLabel(stringResource(Res.string.bot_opponents), Modifier.padding(horizontal = 4.dp))
             state.bots.forEach { bot ->
-                BotRow(bot = bot, difficulty = bot.difficultyFor(state.scoring), selected = bot == state.selected, onClick = { onSelect(bot) })
+                BotRow(bot = bot, difficulty = bot.difficultyFor(state.scoring, state.ruleSet), selected = bot == state.selected, onClick = { onSelect(bot) })
             }
             Text(
                 text = stringResource(Res.string.bot_offline_note),

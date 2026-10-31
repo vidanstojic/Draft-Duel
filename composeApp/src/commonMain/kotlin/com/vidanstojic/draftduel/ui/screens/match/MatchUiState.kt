@@ -14,6 +14,8 @@ data class PlayerPanelUi(
     val pile: List<PileCard>,
     /** Known only for the viewer's own cards; null while hidden. */
     val total: Int?,
+    /** Card limit of the rule set, or null without one. */
+    val slots: Int? = null,
 )
 
 enum class Leader { NONE, YOU, OPPONENT }
@@ -30,7 +32,14 @@ sealed interface MatchPhaseUi {
         val canPass: Boolean,
         /** The opponent's budget is the most they can bid. */
         val opponentMaxBid: Int,
-    ) : MatchPhaseUi
+        /** Price of handing this card over, when the viewer is an opener who may; null otherwise. */
+        val handOverCost: Int? = null,
+        /** The first opener paid to hand this card over to the current opener. */
+        val handedOver: Boolean = false,
+    ) : MatchPhaseUi {
+        /** The pass button passes, skips (recipe packs) or hands over (five slots). */
+        val passEnabled: Boolean get() = yourTurn && (canPass || handOverCost != null)
+    }
 
     /** One player is on 0 points; the other decides who takes the card for free. */
     data class Choosing(val youChoose: Boolean) : MatchPhaseUi
