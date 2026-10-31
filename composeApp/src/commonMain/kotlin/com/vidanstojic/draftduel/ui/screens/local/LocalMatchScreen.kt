@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Text
@@ -157,7 +158,9 @@ private fun PassDeviceMatchScreen(
 
 /**
  * Phone lying flat between two players: player 2's half is rotated 180°, the card sits in the
- * middle. Both halves are always live; the one not on turn is dimmed.
+ * middle. The surface fills the whole screen, so each player gets their half of the pitch (court,
+ * table…) and the card lies on the center line. Both halves are always live; the one not on turn
+ * is dimmed.
  */
 @Composable
 private fun SplitMatchScreen(
@@ -168,25 +171,34 @@ private fun SplitMatchScreen(
 ) {
     val surface = state.bottom.theme.surfaceStyle()
     DraftDuelTheme(surface = surface) {
-        Column(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
                 .surfaceScreenBackground(surface)
                 .windowInsetsPadding(WindowInsets.safeDrawing),
         ) {
-            SeatHalf(
-                state = state.top,
-                actions = topActions,
+            PlaySurface(
+                style = surface,
                 modifier = Modifier
-                    .weight(1f)
-                    .rotate(180f),
+                    .fillMaxSize()
+                    .padding(6.dp),
+                content = {},
             )
-            CenterStrip(state = state.bottom, onMenu = onMenu)
-            SeatHalf(
-                state = state.bottom,
-                actions = bottomActions,
-                modifier = Modifier.weight(1f),
-            )
+            Column(Modifier.fillMaxSize()) {
+                SeatHalf(
+                    state = state.top,
+                    actions = topActions,
+                    modifier = Modifier
+                        .weight(1f)
+                        .rotate(180f),
+                )
+                CenterStrip(state = state.bottom, onMenu = onMenu)
+                SeatHalf(
+                    state = state.bottom,
+                    actions = bottomActions,
+                    modifier = Modifier.weight(1f),
+                )
+            }
         }
     }
 }
@@ -207,10 +219,18 @@ private fun SeatHalf(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 14.dp, vertical = 10.dp),
+            .padding(horizontal = 18.dp, vertical = 14.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Bottom),
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+        // Drawn over the surface, so the name row gets a panel to stay readable on light courts.
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(colors.panel, RoundedCornerShape(14.dp))
+                .padding(horizontal = 10.dp, vertical = 6.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
             Box(Modifier.size(12.dp).background(colors.accent, CircleShape))
             Text(state.you.name, style = DraftDuelTheme.type.title, color = colors.onScreen, modifier = Modifier.weight(1f))
             CardPile(state.you.pile, cardWidth = 30.dp, overlap = 9.dp)
@@ -293,21 +313,22 @@ private fun CenterStrip(state: MatchUiState, onMenu: () -> Unit) {
         is MatchPhaseUi.Awarded -> phase.price
         else -> 0
     }
-    PlaySurface(
-        style = state.theme.surfaceStyle(),
+    // The surface behind is the whole screen; the strip is a panel on its center line.
+    Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(196.dp)
-            .padding(horizontal = 10.dp),
+            .padding(horizontal = 16.dp)
+            .background(colors.panel, RoundedCornerShape(18.dp))
+            .padding(horizontal = 12.dp, vertical = 10.dp),
     ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween,
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             if (card != null) {
                 Text(
-                    text = "${card.name} · ${card.season} · ${card.country} · ${card.position}",
+                    text = listOf(card.name, card.details).filter { it.isNotBlank() }.joinToString(" · "),
                     style = DraftDuelTheme.type.mono,
                     color = colors.onScreen,
                     modifier = Modifier.rotate(180f),
