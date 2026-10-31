@@ -16,18 +16,26 @@ data class BidView(
     val stats: PoolStats,
     /** Uniform [0, 1) sample fixed for this round, for valuations with a mood (spec §12 epsilon). */
     val mood: Double,
+    /** Empty slots of the bot and of the rival, or null without a card limit. */
+    val slotsLeft: Int? = null,
+    val opponentSlotsLeft: Int? = null,
 ) {
     /**
-     * Cards worth having the bot expects to buy from here on if both sides split them evenly
-     * (wrong ingredients are not counted: nobody should buy them).
+     * Cards the bot still expects to buy. With a card limit that is its empty slots (spec §12: S);
+     * otherwise its half of the remaining cards worth having (wrong ingredients are not counted).
      */
-    val fairShare: Int get() = max(1, ((cardsAfter * stats.usefulShare).roundToInt() + 2) / 2)
+    val fairShare: Int
+        get() = slotsLeft?.let { max(1, it) } ?: max(1, ((cardsAfter * stats.usefulShare).roundToInt() + 2) / 2)
 
-    /** (r - floor) / (avg - floor): 1.0 for a typical good card, 0 for one worth nothing or less. */
+    /**
+     * (r - floor) / (avg - floor): 1.0 for a typical good card, 0 for one worth nothing or less.
+     * With a card limit the floor is the pack's lower quartile instead (a slot has a price).
+     */
     val strength: Double
         get() {
-            val spread = (stats.average - stats.floor).coerceAtLeast(1.0)
-            return ((perceived - stats.floor) / spread).coerceAtLeast(0.0)
+            val floor = if (slotsLeft != null) stats.lowerQuartile else stats.floor.toDouble()
+            val spread = (stats.average - floor).coerceAtLeast(1.0)
+            return ((perceived - floor) / spread).coerceAtLeast(0.0)
         }
 }
 
@@ -96,8 +104,44 @@ class LookaheadValuation(
     private val moodMax: Double = 1.0,
 ) : Valuation {
     override fun maxPrice(view: BidView): Int {
-        val reservation = lookahead.reservation(view.perceived, view.budget, view.opponentBudget, view.cardsAfter)
+        val reservation = lookahead.reservation(
+            rating = view.perceived,
+            budget = view.budget,
+            opponentBudget = view.opponentBudget,
+            cardsAfter = view.cardsAfter,
+            mySlots = view.slotsLeft ?: 0,
+            theirSlots = view.opponentSlotsLeft ?: 0,
+        )
         val mood = moodMin + view.mood * (moodMax - moodMin)
         return (reservation * mood).roundToInt()
     }
+}
+
+/**
+ * Whether an opener should pay [cost] to let the rival open a card instead (rule sets with
+ * hand-over). Only asked when the hand-over is allowed and affordable.
+ */
+fun interface HandOverPolicy {
+    fun shouldHandOver(view: BidView, cost: Int): Boolean
+}
+
+/** Hands over cards that look weaker than [below] times a typical good card, while it costs at most [maxCost]. */
+class ThresholdHandOver(
+    private val below: Double,
+    private val maxCost: Int,
+) : HandOverPolicy {
+    override fun shouldHandOver(view: BidView, cost: Int): Boolean = cost <= maxCost && view.strength < below
+}
+
+/** Compares opening and handing over with [AuctionLookahead]. */
+class LookaheadHandOver(private val lookahead: AuctionLookahead) : HandOverPolicy {
+    override fun shouldHandOver(view: BidView, cost: Int): Boolean = lookahead.handOverGain(
+        rating = view.perceived,
+        budget = view.budget,
+        opponentBudget = view.opponentBudget,
+        cardsAfter = view.cardsAfter,
+        mySlots = view.slotsLeft ?: 0,
+        theirSlots = view.opponentSlotsLeft ?: 0,
+        cost = cost,
+    ) > 0.0
 }

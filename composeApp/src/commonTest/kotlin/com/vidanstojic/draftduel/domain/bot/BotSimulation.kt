@@ -6,6 +6,7 @@ import com.vidanstojic.draftduel.domain.match.MatchEngine
 import com.vidanstojic.draftduel.domain.match.MatchOutcome
 import com.vidanstojic.draftduel.domain.match.MatchPhase
 import com.vidanstojic.draftduel.domain.match.MatchState
+import com.vidanstojic.draftduel.domain.match.RuleSet
 import com.vidanstojic.draftduel.domain.match.Seat
 import com.vidanstojic.draftduel.domain.model.AvatarColorway
 import com.vidanstojic.draftduel.domain.model.AvatarSpec
@@ -92,6 +93,7 @@ internal data class SimulatedMatch(
     val rejectedActions: Int,
     val timeouts: Int,
     val discarded: Int,
+    val handOvers: Int,
 )
 
 /** Plays bot-vs-bot matches without clocks or coroutines (spec §17 simulation). */
@@ -103,8 +105,9 @@ internal object BotSimulation {
         pack: ThemePack,
         pool: MatchPool,
         firstOpener: Seat,
+        ruleSet: RuleSet = RuleSet.CLASSIC,
     ): SimulatedMatch {
-        var state = MatchEngine.start(pack.theme, pool.cards, "A", "B", firstOpener, goal = pool.goal?.name)
+        var state = MatchEngine.start(pack.theme, pool.cards, "A", "B", firstOpener, goal = pool.goal?.name, ruleSet = ruleSet)
         var rejected = 0
         var timeouts = 0
         var discarded = 0
@@ -132,30 +135,45 @@ internal object BotSimulation {
                 next
             }
         }
-        return SimulatedMatch(state, MatchEngine.outcome(state), rejected, timeouts, discarded)
+        return SimulatedMatch(state, MatchEngine.outcome(state), rejected, timeouts, discarded, state.seats.values.sumOf { it.handOvers })
     }
 
     /** One match on [pack] with fresh bots; seat A plays [a]. */
-    fun playOnce(a: BotPersonality, b: BotPersonality, pack: ThemePack, random: Random, firstOpener: Seat): SimulatedMatch {
+    fun playOnce(
+        a: BotPersonality,
+        b: BotPersonality,
+        pack: ThemePack,
+        random: Random,
+        firstOpener: Seat,
+        ruleSet: RuleSet = RuleSet.CLASSIC,
+    ): SimulatedMatch {
         val pool = pack.drawPool(PoolSource.Random, GameRules.POOL_SIZE, random)
         val stats = PoolStats.of(pool.drawnFrom, pack.scoring)
         return play(
-            botA = BotFactory.create(a, stats, Random(random.nextInt())),
-            botB = BotFactory.create(b, stats, Random(random.nextInt())),
+            botA = BotFactory.create(a, stats, Random(random.nextInt()), ruleSet),
+            botB = BotFactory.create(b, stats, Random(random.nextInt()), ruleSet),
             pack = pack,
             pool = pool,
             firstOpener = firstOpener,
+            ruleSet = ruleSet,
         )
     }
 
     /** Win rate of [a] against [b] over [games] on [pack], seats and first opener alternating. Draws count half. */
-    fun winRate(a: BotPersonality, b: BotPersonality, games: Int, seed: Int, pack: ThemePack = SimPacks.football): Double {
+    fun winRate(
+        a: BotPersonality,
+        b: BotPersonality,
+        games: Int,
+        seed: Int,
+        pack: ThemePack = SimPacks.football,
+        ruleSet: RuleSet = RuleSet.CLASSIC,
+    ): Double {
         val random = Random(seed)
         var points = 0.0
         repeat(games) { game ->
             val aSitsA = game % 2 == 0
             val opener = if ((game / 2) % 2 == 0) Seat.A else Seat.B
-            val result = playOnce(if (aSitsA) a else b, if (aSitsA) b else a, pack, random, opener)
+            val result = playOnce(if (aSitsA) a else b, if (aSitsA) b else a, pack, random, opener, ruleSet)
             val aWon = if (aSitsA) MatchOutcome.A_WINS else MatchOutcome.B_WINS
             points += when (result.outcome) {
                 aWon -> 1.0
@@ -167,11 +185,11 @@ internal object BotSimulation {
     }
 
     /** Average win rate of each personality against all the others on [pack]. */
-    fun tournament(pack: ThemePack, gamesPerPair: Int, seed: Int = 0): Map<BotPersonality, Double> {
+    fun tournament(pack: ThemePack, gamesPerPair: Int, seed: Int = 0, ruleSet: RuleSet = RuleSet.CLASSIC): Map<BotPersonality, Double> {
         val all = BotPersonality.entries
         return all.associateWith { a ->
             all.filter { it != a }
-                .map { b -> winRate(a, b, gamesPerPair, seed = seed + a.ordinal * 31 + b.ordinal, pack = pack) }
+                .map { b -> winRate(a, b, gamesPerPair, seed = seed + a.ordinal * 31 + b.ordinal, pack = pack, ruleSet = ruleSet) }
                 .average()
         }
     }

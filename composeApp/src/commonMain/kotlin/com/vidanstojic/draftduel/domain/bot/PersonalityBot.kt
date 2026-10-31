@@ -16,6 +16,8 @@ data class BidStyle(
     val starOpening: Int? = null,
     /** Bids exactly opponentBudget + 1 when that wins outright and is within the limit. */
     val snipes: Boolean = false,
+    /** When to pay to hand the opening over (rule sets that allow it); null never does. */
+    val handOver: HandOverPolicy? = null,
     /** Chance to raise +1 above its own limit just to make the rival pay more. */
     val pushChance: Double = 0.0,
     /** How far above its limit a push may go. */
@@ -63,17 +65,10 @@ class PersonalityBot(
 
     /** Highest price this bot will pay for the current card right now, already capped by the rules. */
     fun limit(state: MatchState, seat: Seat): Int {
-        val rating = perceivedRating(state) ?: return 0
-        val budget = state.seat(seat).budget
-        val opponentBudget = state.seat(seat.other).budget
-        val view = BidView(
-            perceived = rating,
-            budget = budget,
-            opponentBudget = opponentBudget,
-            cardsAfter = state.cardsLeft,
-            stats = stats,
-            mood = moods.getOrPut(state.roundIndex) { random.nextDouble() },
-        )
+        val view = view(state, seat) ?: return 0
+        val rating = view.perceived
+        val budget = view.budget
+        val opponentBudget = view.opponentBudget
         // A card worth 0 or less (a wrong ingredient) only lowers its owner's total.
         if (rating <= 0) return 0
         var limit = behavior.valuation.maxPrice(view)
@@ -92,6 +87,7 @@ class PersonalityBot(
         if (phase.leader == null) {
             val unwanted = (perceivedRating(state) ?: 0.0) <= 0.0
             if (unwanted && MatchEngine.canPass(state, seat)) return MatchAction.Pass(seat)
+            if (shouldHandOver(state, seat)) return MatchAction.HandOver(seat)
             return MatchAction.Raise(seat, openingStep(state, seat, limit))
         }
 
@@ -103,6 +99,27 @@ class PersonalityBot(
         if (price + 1 <= limit) return MatchAction.Raise(seat, pickStep(state, seat, room = limit - price))
         if (shouldPush(state, seat, price, limit)) return MatchAction.Raise(seat, 1)
         return MatchAction.Pass(seat)
+    }
+
+    private fun view(state: MatchState, seat: Seat): BidView? {
+        val rating = perceivedRating(state) ?: return null
+        return BidView(
+            perceived = rating,
+            budget = state.seat(seat).budget,
+            opponentBudget = state.seat(seat.other).budget,
+            cardsAfter = state.cardsLeft,
+            stats = stats,
+            mood = moods.getOrPut(state.roundIndex) { random.nextDouble() },
+            slotsLeft = state.slotsLeft(seat),
+            opponentSlotsLeft = state.slotsLeft(seat.other),
+        )
+    }
+
+    private fun shouldHandOver(state: MatchState, seat: Seat): Boolean {
+        val policy = behavior.style.handOver ?: return false
+        if (!MatchEngine.canHandOver(state, seat)) return false
+        val view = view(state, seat) ?: return false
+        return policy.shouldHandOver(view, MatchEngine.handOverCost(state, seat))
     }
 
     private fun choose(state: MatchState, seat: Seat): MatchAction {
@@ -140,6 +157,8 @@ class PersonalityBot(
         if (style.pushChance <= 0.0 || state.cardsLeft == 0) return false
         // Pushing a card the rival does not want would just leave it with the pusher.
         if ((perceivedRating(state) ?: 0.0) <= 0.0) return false
+        // With a card limit a push that backfires also costs a slot, so only push good cards.
+        if (state.ruleSet.slots != null && (view(state, seat)?.strength ?: 0.0) < 1.0) return false
         val next = price + 1
         val affordable = next <= limit + style.pushMargin && MatchEngine.canRaise(state, seat, 1)
         // Pushing past the rival's budget would just buy the card; that is not a push.

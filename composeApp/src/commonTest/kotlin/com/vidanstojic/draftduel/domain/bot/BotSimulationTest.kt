@@ -2,6 +2,7 @@ package com.vidanstojic.draftduel.domain.bot
 
 import com.vidanstojic.draftduel.domain.match.GameRules
 import com.vidanstojic.draftduel.domain.match.MatchOutcome
+import com.vidanstojic.draftduel.domain.match.RuleSet
 import com.vidanstojic.draftduel.domain.match.Seat
 import com.vidanstojic.draftduel.domain.model.Scoring
 import kotlin.random.Random
@@ -81,6 +82,61 @@ class BotSimulationTest {
         for (pack in SimPacks.all) {
             val rate = BotSimulation.winRate(BotPersonality.SCOUT, BotPersonality.CASUAL_FAN, games = 300, seed = 1, pack = pack)
             assertTrue(rate > 0.7, "Scout won only $rate against Casual fan on ${pack.theme}")
+        }
+    }
+
+    @Test
+    fun fiveSlots_everyoneEndsWithFiveCards_andPaysForHandOvers() {
+        val random = Random(11)
+        val personalities = BotPersonality.entries
+        for (pack in listOf(SimPacks.football, SimPacks.movies)) {
+            repeat(240) { game ->
+                val a = personalities[game % personalities.size]
+                val b = personalities[(game / personalities.size) % personalities.size]
+                val result = BotSimulation.playOnce(a, b, pack, random, if (game % 2 == 0) Seat.A else Seat.B, RuleSet.FIVE_SLOTS)
+
+                assertEquals(0, result.rejectedActions, "$a vs $b made an illegal move")
+                assertEquals(0, result.timeouts, "$a vs $b let the clock run out")
+                result.final.seats.values.forEach { seat ->
+                    assertEquals(5, seat.cards.size)
+                    val fees = seat.handOvers * (seat.handOvers + 1) / 2
+                    assertEquals(GameRules.STARTING_BUDGET - seat.budget, seat.cards.sumOf { it.price } + fees)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun fiveSlots_openerAdvantageAndTiers() {
+        for (pack in listOf(SimPacks.football, SimPacks.movies)) {
+            val random = Random(5)
+            var openerPoints = 0.0
+            repeat(600) {
+                val result = BotSimulation.playOnce(
+                    BotPersonality.entries.random(random),
+                    BotPersonality.entries.random(random),
+                    pack,
+                    random,
+                    firstOpener = Seat.A,
+                    ruleSet = RuleSet.FIVE_SLOTS,
+                )
+                openerPoints += when (result.outcome) {
+                    MatchOutcome.A_WINS -> 1.0
+                    MatchOutcome.DRAW -> 0.5
+                    MatchOutcome.B_WINS -> 0.0
+                }
+            }
+            assertTrue(openerPoints / 600 in 0.42..0.58, "first opener won ${openerPoints / 600} on ${pack.theme}")
+
+            val average = BotSimulation.tournament(pack, gamesPerPair = 60, ruleSet = RuleSet.FIVE_SLOTS)
+            fun tier(d: BotDifficulty) = BotPersonality.entries
+                .filter { it.difficultyFor(pack.scoring, RuleSet.FIVE_SLOTS) == d }
+                .map { average.getValue(it) }
+                .average()
+            val easy = tier(BotDifficulty.EASY)
+            val medium = tier(BotDifficulty.MEDIUM)
+            val hard = tier(BotDifficulty.HARD)
+            assertTrue(easy < medium && medium < hard, "${pack.theme} five slots: easy $easy, medium $medium, hard $hard")
         }
     }
 

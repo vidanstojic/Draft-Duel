@@ -1,9 +1,15 @@
 package com.vidanstojic.draftduel.domain.match
 
+import com.vidanstojic.draftduel.domain.bot.BotFactory
+import com.vidanstojic.draftduel.domain.bot.BotPersonality
+import com.vidanstojic.draftduel.domain.bot.PersonalityBot
+import com.vidanstojic.draftduel.domain.bot.PoolStats
 import com.vidanstojic.draftduel.domain.model.AvatarColorway
 import com.vidanstojic.draftduel.domain.model.AvatarSpec
 import com.vidanstojic.draftduel.domain.model.GameCard
+import com.vidanstojic.draftduel.domain.model.Scoring
 import com.vidanstojic.draftduel.domain.model.Theme
+import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -144,5 +150,22 @@ class FiveSlotsTest {
         val state = newMatch(RuleSet.CLASSIC)
         assertEquals(null, state.slotsLeft(Seat.A))
         assertFalse(state.isFull(Seat.A))
+    }
+
+    @Test
+    fun bots_handOverWeakCardsOnlyWhenTheirStyleSaysSo() {
+        val ratings = listOf(65) + List(9) { 85 }
+        val state = newMatch(ratings = ratings)
+        val stats = PoolStats.of(List(30) { card(it, 60 + it) }, Scoring.RATINGS)
+        fun decision(personality: BotPersonality) =
+            BotFactory.create(personality, stats, Random(1), RuleSet.FIVE_SLOTS).decide(state, Seat.A)
+
+        assertEquals(MatchAction.HandOver(Seat.A), decision(BotPersonality.SCOUT))
+        assertEquals(MatchAction.HandOver(Seat.A), decision(BotPersonality.STAR_CHASER))
+        assertIs<MatchAction.Raise>(decision(BotPersonality.CASUAL_FAN))
+        assertIs<MatchAction.Raise>(decision(BotPersonality.HUSTLER))
+
+        val classic = BotFactory.create(BotPersonality.SCOUT, stats, Random(1)) as PersonalityBot
+        assertIs<MatchAction.Raise>(classic.decide(newMatch(RuleSet.CLASSIC, ratings), Seat.A))
     }
 }

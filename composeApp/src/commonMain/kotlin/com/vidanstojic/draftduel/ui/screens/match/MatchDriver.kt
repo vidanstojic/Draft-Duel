@@ -8,6 +8,7 @@ import com.vidanstojic.draftduel.domain.match.MatchPhase
 import com.vidanstojic.draftduel.domain.match.MatchState
 import com.vidanstojic.draftduel.domain.match.Seat
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Runs a local match: the 10 s turn clock, the pause after each award and the bot's moves.
@@ -79,7 +81,10 @@ class MatchDriver(
         if (bot != null && botSeat != null && seatToAct == botSeat) {
             launch {
                 delay(bot.thinkTimeMillis())
-                bot.decide(_match.value, botSeat)?.let(::dispatch)
+                // The strongest bot builds a lookahead table on its first move; keep that off the UI thread.
+                val snapshot = _match.value
+                val action = withContext(Dispatchers.Default) { bot.decide(snapshot, botSeat) }
+                if (_match.value === snapshot) action?.let(::dispatch)
             }
         }
         var left = TURN_MILLIS

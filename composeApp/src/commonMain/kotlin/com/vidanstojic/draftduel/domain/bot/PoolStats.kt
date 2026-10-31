@@ -25,6 +25,12 @@ class PoolStats(
     /** Average of the cards worth having, the "typical good card" valuations compare against. */
     val average: Double = values.filter { it > floor }.ifEmpty { values }.average()
 
+    /**
+     * Lower quartile of the values. With a card limit every card takes a slot a better one could
+     * fill, so cards at or below this are treated as worth nothing.
+     */
+    val lowerQuartile: Double = values.sorted().let { sorted -> sorted[(sorted.size - 1) / 4].toDouble() }
+
     /** Share of cards that add something (all of them in rating packs, the fitting ingredients in a recipe). */
     val usefulShare: Double = values.count { it > 0 }.toDouble() / values.size
 
