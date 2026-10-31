@@ -112,6 +112,34 @@ Pravila su ista, a menja se samo bodovanje (`Scoring.RECIPE`):
 
 Provera paketa: `python tools/validate_pack.py`.
 
+## Pravila „5 karata“
+
+Bira se na ekranu kategorije, pored „Classic“, samo za teme sa ocenama (hrana ima svoje pravilo preskakanja).
+- Svaki igrač završava sa tačno 5 karata (spec §3 v1). Kad jedan popuni slotove, ostale karte idu drugom besplatno.
+- **Prepuštanje:** otvarač, pre prve ponude, može da plati da protivnik otvori kartu umesto njega. To je za kartu za koju misli da je loša.
+  Cena raste za istog igrača: 1, pa 2, pa 3… poena. Plaćeni poeni nestaju (ne idu protivniku).
+  Protivnik ne može da vrati prepuštanje i mora da otvori. Posle toga važe obična pravila, pa prvi otvarač može da odustane.
+- U partiji dugme „Odustani“ otvaraču postaje „Hand over · −N pts“, a kod oba igrača piše „3/5 cards“.
+- Istek vremena otvarača i dalje automatski nudi 1, ne prepušta (spec §3 pravilo 7).
+
+Zašto: sa 5 slotova svaka kupljena karta zauzima mesto boljoj, pa zvezde opet vrede. Galáctico, najslabiji bot u klasičnim pravilima, ovde je drugi po jačini.
+
+| Bot | Težina (5 karata) | Fudbal* | Filmovi* | Prepuštanja po partiji |
+|---|---|---|---|---|
+| Galáctico Gio | Medium | 65% | 61% | 1,6 (sve ispod tipične dobre karte, dok košta ≤ 2) |
+| Sunday Sam | Easy | 27% | 28% | 0 (ne zna za dugme) |
+| Bargain Bea | Medium | 56% | 57% | 1,4 |
+| Steady Stefan | Medium | 42% | 50% | 0,8 (samo slabe karte, samo za 1) |
+| Hustler Hugo | Easy | 36% | 33% | 0 (radije diže cenu; sa slotovima to ga košta) |
+| Scout Nina | Hard | 74% | 71% | 1,8 (računa da li se isplati) |
+
+\* prosek pobeda protiv ostalih pet, 1000 partija po paru. Otvarač prve runde pobeđuje u 48,3% (fudbal) i 47,9% (filmovi) partija.
+
+Izmene botova za ova pravila: fer cena po karti je budžet / prazni slotovi (spec §12: S), a baza formule je donja četvrtina paketa umesto 60.
+Hustler diže cenu samo na dobrim kartama. Scout-ov model računa i slotove: ko bira dok je protivnik na 0, uzima najbolje od preostalih karata.
+Model računa očekivani zbir najboljih k od n preostalih karata (statistike poretka).
+Tabela modela se kešira po paketu i pravilima, a prvi potez bota računa se van UI niti.
+
 ## Botovi
 
 Bot vidi isto što i igrač: kartu na stolu, oba budžeta i ocene karata koje je osvojio. Ocena na stolu je skrivena,
@@ -152,7 +180,8 @@ Otvarač prve runde pobeđuje u 48,7% (fudbal), 50,0% (filmovi) i 51,6% (hrana) 
 - `PackJsonTest`: format paketa, odbacivanje ocena van 60–99, rezervni paket, bazen po kategoriji.
 - `RecipeModeTest`: bazen jela, preskakanje otvarača, negativni poeni, botovi preskaču i poklanjaju pogrešne sastojke.
 - `PersonalityBotTest`: otvarač mora da ponudi, granica i odustajanje, snajper, kraj partije, lookahead model.
-- `BotSimulationTest` (spec §17), na sve tri teme: samo legalni potezi, invarijante budžeta, prednost otvarača, redosled težina.
+- `FiveSlotsTest`: prepuštanje (cena 1, 2, 3, poeni nestaju, nema vraćanja), pun igrač, botovi koji prepuštaju.
+- `BotSimulationTest` (spec §17), na sve tri teme i za pravila „5 karata“: samo legalni potezi, invarijante budžeta, prednost otvarača, redosled težina.
 
 ## Sledeći koraci
 - Fontovi: dodati Bricolage Grotesque i IBM Plex Mono u `composeResources/font` i zameniti ih u `ui/theme/Typography.kt`.
