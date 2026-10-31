@@ -112,9 +112,20 @@ Pravila su ista, a menja se samo bodovanje (`Scoring.RECIPE`):
 
 Provera paketa: `python tools/validate_pack.py`.
 
-## Pravila „5 karata“
+## Pravila: Default, Classic, Custom
 
-Bira se na ekranu kategorije, pored „Classic“, samo za teme sa ocenama (hrana ima svoje pravilo preskakanja).
+Na ekranu kategorije biraju se pravila (`MatchRules`):
+- **Default**: 5 karata i prepuštanje 1, 2, 3 (ispod). Sa ovim pravilima se igra testira.
+- **Classic**: bez limita karata i bez prepuštanja, otvarač mora da ponudi.
+- **Custom**: svaki parametar posebno, za testiranje: poeni po igraču (10–40), karata po partiji (6–14), limit karata (isključen ili 3–7),
+  prepuštanje (uključeno ili ne, prva cena 1–3, svaka sledeća skuplja za 0–2), vreme poteza (5–20 s) i javne ocene tokom licitacije (spec §4).
+  Kod javnih ocena i botovi vide tačnu ocenu. Custom nije dostupan za „Find opponent“, jer će tu kasnije igrati nepoznati ljudi sa istim pravilima.
+  Botovi su podešeni za Default i Classic; sa drugim vrednostima igraju legalno, ali ne nužno optimalno.
+- Hrana zadržava svoje pravilo (otvarač sme da preskoči), pa se za nju limit karata i prepuštanje ne primenjuju.
+- Poslednja izabrana pravila ostaju zapamćena za sledeću partiju u istoj sesiji.
+
+### Default: 5 karata i prepuštanje
+
 - Svaki igrač završava sa tačno 5 karata (spec §3 v1). Kad jedan popuni slotove, ostale karte idu drugom besplatno.
 - **Prepuštanje:** otvarač, pre prve ponude, može da plati da protivnik otvori kartu umesto njega. To je za kartu za koju misli da je loša.
   Cena raste za istog igrača: 1, pa 2, pa 3… poena. Plaćeni poeni nestaju (ne idu protivniku).
@@ -180,8 +191,9 @@ Otvarač prve runde pobeđuje u 48,7% (fudbal), 50,0% (filmovi) i 51,6% (hrana) 
 - `PackJsonTest`: format paketa, odbacivanje ocena van 60–99, rezervni paket, bazen po kategoriji.
 - `RecipeModeTest`: bazen jela, preskakanje otvarača, negativni poeni, botovi preskaču i poklanjaju pogrešne sastojke.
 - `PersonalityBotTest`: otvarač mora da ponudi, granica i odustajanje, snajper, kraj partije, lookahead model.
+- `CustomRulesTest`: budžet i broj karata iz pravila, fiksna cena prepuštanja, opsezi, javne ocene, botovi sa velikim custom vrednostima.
 - `FiveSlotsTest`: prepuštanje (cena 1, 2, 3, poeni nestaju, nema vraćanja), pun igrač, botovi koji prepuštaju.
-- `BotSimulationTest` (spec §17), na sve tri teme i za pravila „5 karata“: samo legalni potezi, invarijante budžeta, prednost otvarača, redosled težina.
+- `BotSimulationTest` (spec §17), na sve tri teme i za Default pravila: samo legalni potezi, invarijante budžeta, prednost otvarača, redosled težina.
 
 ## Sledeći koraci
 - Fontovi: dodati Bricolage Grotesque i IBM Plex Mono u `composeResources/font` i zameniti ih u `ui/theme/Typography.kt`.
