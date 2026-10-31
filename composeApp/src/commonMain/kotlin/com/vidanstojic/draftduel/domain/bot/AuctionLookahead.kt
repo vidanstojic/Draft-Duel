@@ -38,7 +38,11 @@ class AuctionLookahead(
     private val slotStates = (slots ?: 0) + 1
     /** topSums[n][k]: expected sum of the best k of n remaining cards. */
     private val topSums: Array<DoubleArray> = Array(maxCards + 1) { n -> DoubleArray(n + 1) { k -> expectedTopSum(n, k) } }
-    private val memo = DoubleArray((maxBudget + 1) * (maxBudget + 1) * (maxCards + 1) * slotStates * slotStates) { Double.NaN }
+    private val tableSize = (maxBudget + 1) * (maxBudget + 1) * (maxCards + 1) * slotStates * slotStates
+
+    /** A flat array for the tested rules; custom rules with big budgets and limits only fill a few states, so a map. */
+    private val memoArray: DoubleArray? = if (tableSize <= ARRAY_MEMO_LIMIT) DoubleArray(tableSize) { Double.NaN } else null
+    private val memoMap: MutableMap<Int, Double>? = if (memoArray == null) HashMap() else null
 
     /**
      * Highest price worth paying for a card rated [rating] with [cardsAfter] cards still to come:
@@ -96,7 +100,7 @@ class AuctionLookahead(
         if (opponentBudget == 0) return freePicks(cards, mySlots)
         if (budget == 0) return -freePicks(cards, theirSlots)
         val key = key(budget, opponentBudget, cards, mySlots, theirSlots)
-        val cached = memo[key]
+        val cached = memoArray?.get(key) ?: memoMap?.get(key) ?: Double.NaN
         if (!cached.isNaN()) return cached
 
         val after = cards - 1
@@ -118,7 +122,7 @@ class AuctionLookahead(
             }
             expected += probabilities[i] * outcome
         }
-        memo[key] = expected
+        if (memoArray != null) memoArray[key] = expected else memoMap?.set(key, expected)
         return expected
     }
 
@@ -192,5 +196,10 @@ class AuctionLookahead(
         val mySlots = if (slots == null) 0 else sa.coerceIn(0, slots)
         val theirSlots = if (slots == null) 0 else sb.coerceIn(0, slots)
         return (((b * (maxBudget + 1) + o) * (maxCards + 1) + n) * slotStates + mySlots) * slotStates + theirSlots
+    }
+
+    private companion object {
+        /** 20 points, 10 cards and 5 slots need 21 x 21 x 11 x 6 x 6 = 174 636 states. */
+        const val ARRAY_MEMO_LIMIT = 200_000
     }
 }

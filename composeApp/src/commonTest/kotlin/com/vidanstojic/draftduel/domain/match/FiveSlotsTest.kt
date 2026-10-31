@@ -17,7 +17,7 @@ import kotlin.test.assertIs
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
 
-/** [RuleSet.FIVE_SLOTS]: five cards each and the paid hand-over (spec §3 v1 plus the hand-over rule). */
+/** [MatchRules.DEFAULT]: five cards each and the paid hand-over (spec §3 v1 plus the hand-over rule). */
 class FiveSlotsTest {
 
     private fun card(i: Int, rating: Int = 80) = GameCard(
@@ -31,13 +31,13 @@ class FiveSlotsTest {
         categoryIds = emptySet(),
     )
 
-    private fun newMatch(ruleSet: RuleSet = RuleSet.FIVE_SLOTS, ratings: List<Int> = List(10) { 80 }) = MatchEngine.start(
+    private fun newMatch(rules: MatchRules = MatchRules.DEFAULT, ratings: List<Int> = List(10) { 80 }) = MatchEngine.start(
         theme = Theme.FOOTBALL,
         pool = ratings.mapIndexed { i, r -> card(i, r) },
         nameA = "A",
         nameB = "B",
         firstOpener = Seat.A,
-        ruleSet = ruleSet,
+        rules = rules,
     )
 
     /** Opener of the current round takes the card for 1; the other passes. */
@@ -118,8 +118,8 @@ class FiveSlotsTest {
     @Test
     fun passButton_meansHandOverForTheOpener() {
         assertEquals(MatchAction.HandOver(Seat.A), MatchEngine.passAction(newMatch(), Seat.A))
-        assertFalse(MatchEngine.canHandOver(newMatch(RuleSet.CLASSIC), Seat.A))
-        assertEquals(MatchAction.Pass(Seat.A), MatchEngine.passAction(newMatch(RuleSet.CLASSIC), Seat.A))
+        assertFalse(MatchEngine.canHandOver(newMatch(MatchRules.CLASSIC), Seat.A))
+        assertEquals(MatchAction.Pass(Seat.A), MatchEngine.passAction(newMatch(MatchRules.CLASSIC), Seat.A))
     }
 
     @Test
@@ -147,7 +147,7 @@ class FiveSlotsTest {
 
     @Test
     fun classic_hasNoCardLimit() {
-        val state = newMatch(RuleSet.CLASSIC)
+        val state = newMatch(MatchRules.CLASSIC)
         assertEquals(null, state.slotsLeft(Seat.A))
         assertFalse(state.isFull(Seat.A))
     }
@@ -158,7 +158,7 @@ class FiveSlotsTest {
         val state = newMatch(ratings = ratings)
         val stats = PoolStats.of(List(30) { card(it, 60 + it) }, Scoring.RATINGS)
         fun decision(personality: BotPersonality) =
-            BotFactory.create(personality, stats, Random(1), RuleSet.FIVE_SLOTS).decide(state, Seat.A)
+            BotFactory.create(personality, stats, Random(1), MatchRules.DEFAULT).decide(state, Seat.A)
 
         assertEquals(MatchAction.HandOver(Seat.A), decision(BotPersonality.SCOUT))
         assertEquals(MatchAction.HandOver(Seat.A), decision(BotPersonality.STAR_CHASER))
@@ -166,6 +166,6 @@ class FiveSlotsTest {
         assertIs<MatchAction.Raise>(decision(BotPersonality.HUSTLER))
 
         val classic = BotFactory.create(BotPersonality.SCOUT, stats, Random(1)) as PersonalityBot
-        assertIs<MatchAction.Raise>(classic.decide(newMatch(RuleSet.CLASSIC, ratings), Seat.A))
+        assertIs<MatchAction.Raise>(classic.decide(newMatch(MatchRules.CLASSIC, ratings), Seat.A))
     }
 }

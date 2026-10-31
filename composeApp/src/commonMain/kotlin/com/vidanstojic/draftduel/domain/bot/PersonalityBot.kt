@@ -60,6 +60,8 @@ class PersonalityBot(
     /** The bot's current guess of the card on the table, or null between rounds. */
     fun perceivedRating(state: MatchState): Double? {
         val card = state.currentCard ?: return null
+        // With public ratings (a custom rule) everyone, bots included, sees the exact number.
+        if (state.rules.ratingsVisible) return card.rating.toDouble()
         return perceived.getOrPut(card.id) { behavior.perception.perceive(card, stats, random) }
     }
 
@@ -158,7 +160,7 @@ class PersonalityBot(
         // Pushing a card the rival does not want would just leave it with the pusher.
         if ((perceivedRating(state) ?: 0.0) <= 0.0) return false
         // With a card limit a push that backfires also costs a slot, so only push good cards.
-        if (state.ruleSet.slots != null && (view(state, seat)?.strength ?: 0.0) < 1.0) return false
+        if (state.rules.slots != null && (view(state, seat)?.strength ?: 0.0) < 1.0) return false
         val next = price + 1
         val affordable = next <= limit + style.pushMargin && MatchEngine.canRaise(state, seat, 1)
         // Pushing past the rival's budget would just buy the card; that is not a push.

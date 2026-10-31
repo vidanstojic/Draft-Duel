@@ -19,7 +19,7 @@ object MatchEngine {
         nameB: String,
         firstOpener: Seat,
         goal: String? = null,
-        ruleSet: RuleSet = RuleSet.CLASSIC,
+        rules: MatchRules = MatchRules.CLASSIC,
     ): MatchState {
         require(pool.isNotEmpty()) { "A match needs at least one card." }
         val initial = MatchState(
@@ -27,13 +27,13 @@ object MatchEngine {
             pool = pool,
             roundIndex = 0,
             seats = mapOf(
-                Seat.A to SeatState(nameA, GameRules.STARTING_BUDGET),
-                Seat.B to SeatState(nameB, GameRules.STARTING_BUDGET),
+                Seat.A to SeatState(nameA, rules.budget),
+                Seat.B to SeatState(nameB, rules.budget),
             ),
             firstOpener = firstOpener,
             phase = MatchPhase.Finished,
             goal = goal,
-            ruleSet = ruleSet,
+            rules = rules,
         )
         return drawRound(initial)
     }
@@ -69,7 +69,7 @@ object MatchEngine {
      * card, only in rule sets that allow it, and only with enough points to pay.
      */
     fun canHandOver(state: MatchState, seat: Seat): Boolean {
-        if (!state.ruleSet.allowsHandOver) return false
+        if (!state.rules.allowsHandOver) return false
         val phase = state.phase as? MatchPhase.Bidding ?: return false
         return phase.toAct == seat && phase.opener == seat && phase.leader == null && !phase.handedOver &&
             state.seat(seat).budget >= handOverCost(state, seat)
@@ -79,8 +79,9 @@ object MatchEngine {
     fun passAction(state: MatchState, seat: Seat): MatchAction =
         if (canHandOver(state, seat)) MatchAction.HandOver(seat) else MatchAction.Pass(seat)
 
-    /** 1 for the first hand-over of the match, then 2, 3… for the same player. */
-    fun handOverCost(state: MatchState, seat: Seat): Int = state.seat(seat).handOvers + 1
+    /** With [MatchRules.DEFAULT]: 1 for a player's first hand-over of the match, then 2, 3… */
+    fun handOverCost(state: MatchState, seat: Seat): Int =
+        state.rules.handOver?.cost(state.seat(seat).handOvers) ?: Int.MAX_VALUE
 
     /** Spec §3 rule 3 (the opener must bid) holds for rating packs; in recipe packs the opener may skip. */
     fun openerMaySkip(state: MatchState): Boolean = state.theme.scoring == Scoring.RECIPE

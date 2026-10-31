@@ -27,6 +27,8 @@ data class RosterUi(
     val rows: List<RosterRowUi>,
     val total: Int,
     val spent: Int,
+    /** Starting points, for "paid 14 / 20". */
+    val budget: Int,
 )
 
 enum class ResultOutcome { BOTTOM_WINS, TOP_WINS, DRAW }
@@ -83,6 +85,7 @@ private fun MatchState.roster(seat: Seat, best: OwnedCard?): RosterUi {
         rows = state.cards.sortedByDescending { it.card.rating }.map { it.toRow(isBest = it == best) },
         total = state.total,
         spent = state.cards.sumOf { it.price },
+        budget = rules.budget,
     )
 }
 

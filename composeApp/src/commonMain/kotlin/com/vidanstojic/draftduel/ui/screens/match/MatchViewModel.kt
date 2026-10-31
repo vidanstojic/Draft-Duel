@@ -39,7 +39,8 @@ class MatchViewModel(
     )
     private val opponent = setup.opponent ?: profileRepository.quickMatchOpponent()
     private val theme = if (packRepository.pack(setup.theme) != null) setup.theme else Theme.FOOTBALL
-    private val pool = requireNotNull(packRepository.drawPool(theme, setup.poolSource)) { "No pack for $theme" }
+    private val rules = setup.copy(theme = theme).effectiveRules
+    private val pool = requireNotNull(packRepository.drawPool(theme, setup.poolSource, rules.cards)) { "No pack for $theme" }
 
     /** Hidden in quick matches, chosen by the player in "Play vs bot". Kept for the rematch. */
     private val botPersonality: BotPersonality = setup.bot ?: BotPersonality.randomForQuickMatch(random)
@@ -50,7 +51,7 @@ class MatchViewModel(
             theme = theme,
             pool = pool.cards,
             goal = pool.goal?.name,
-            ruleSet = setup.ruleSet,
+            rules = rules,
             nameA = setup.you.nickname,
             nameB = opponent.nickname,
             firstOpener = if (random.nextBoolean()) Seat.A else Seat.B,
@@ -59,7 +60,7 @@ class MatchViewModel(
             personality = botPersonality,
             stats = PoolStats.of(pool.drawnFrom, theme.scoring),
             random = random,
-            ruleSet = setup.ruleSet,
+            rules = rules,
         ),
         botSeat = Seat.B,
         onFinished = { finishedMatch ->
@@ -73,7 +74,7 @@ class MatchViewModel(
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
-        initialValue = driver.match.value.toUi(viewer = Seat.A, millisLeft = MatchDriver.TURN_MILLIS),
+        initialValue = driver.match.value.toUi(viewer = Seat.A, millisLeft = driver.turnMillis),
     )
 
     private val _finished = MutableStateFlow(false)

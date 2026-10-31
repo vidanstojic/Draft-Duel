@@ -1,6 +1,6 @@
 package com.vidanstojic.draftduel.domain.bot
 
-import com.vidanstojic.draftduel.domain.match.RuleSet
+import com.vidanstojic.draftduel.domain.match.MatchRules
 import com.vidanstojic.draftduel.domain.model.Scoring
 import kotlin.random.Random
 
@@ -19,7 +19,7 @@ enum class BotPersonality(
     val quickMatchWeight: Int,
     /** Difficulty in recipe packs (food), where some styles play differently. */
     private val recipeDifficulty: BotDifficulty = ratingsDifficulty,
-    /** Difficulty with five slots ([RuleSet.FIVE_SLOTS]), where stars matter again. */
+    /** Difficulty with a card limit ([MatchRules.slots], five by default), where stars matter again. */
     private val fiveSlotsDifficulty: BotDifficulty = ratingsDifficulty,
 ) {
     /**
@@ -53,8 +53,8 @@ enum class BotPersonality(
     SCOUT("Scout Nina", BotDifficulty.HARD, quickMatchWeight = 10),
     ;
 
-    fun difficultyFor(scoring: Scoring, ruleSet: RuleSet = RuleSet.CLASSIC): BotDifficulty = when {
-        ruleSet.slots != null -> fiveSlotsDifficulty
+    fun difficultyFor(scoring: Scoring, rules: MatchRules = MatchRules.CLASSIC): BotDifficulty = when {
+        rules.slots != null && scoring == Scoring.RATINGS -> fiveSlotsDifficulty
         scoring == Scoring.RECIPE -> recipeDifficulty
         else -> ratingsDifficulty
     }
@@ -77,7 +77,13 @@ enum class BotDifficulty { EASY, MEDIUM, HARD }
 /** Builds the bot for one match. Parameters are tuned with `BotSimulationTest` on the football pack. */
 object BotFactory {
 
-    private data class LookaheadKey(val distribution: List<Pair<Int, Double>>, val scoring: Scoring, val slots: Int?)
+    private data class LookaheadKey(
+        val distribution: List<Pair<Int, Double>>,
+        val scoring: Scoring,
+        val slots: Int?,
+        val budget: Int,
+        val cards: Int,
+    )
 
     private const val LOOKAHEAD_CACHE_SIZE = 4
 
@@ -87,13 +93,13 @@ object BotFactory {
      */
     private val lookaheads = LinkedHashMap<LookaheadKey, AuctionLookahead>()
 
-    private fun lookaheadFor(stats: PoolStats, ruleSet: RuleSet): AuctionLookahead {
-        val key = LookaheadKey(stats.distribution, stats.scoring, ruleSet.slots)
+    private fun lookaheadFor(stats: PoolStats, rules: MatchRules): AuctionLookahead {
+        val key = LookaheadKey(stats.distribution, stats.scoring, rules.slots, rules.budget, rules.cards)
         lookaheads.remove(key)?.let { cached ->
             lookaheads[key] = cached
             return cached
         }
-        val created = AuctionLookahead(stats, slots = ruleSet.slots)
+        val created = AuctionLookahead(stats, slots = rules.slots, maxBudget = rules.budget, maxCards = rules.cards)
         lookaheads[key] = created
         if (lookaheads.size > LOOKAHEAD_CACHE_SIZE) lookaheads.remove(lookaheads.keys.first())
         return created
@@ -103,14 +109,14 @@ object BotFactory {
         personality: BotPersonality,
         stats: PoolStats,
         random: Random = Random.Default,
-        ruleSet: RuleSet = RuleSet.CLASSIC,
-    ): MatchBot = PersonalityBot(behaviorOf(personality, stats, ruleSet), stats, random)
+        rules: MatchRules = MatchRules.CLASSIC,
+    ): MatchBot = PersonalityBot(behaviorOf(personality, stats, rules), stats, random)
 
     /**
-     * Hand-over policies only matter in rule sets that allow it ([RuleSet.FIVE_SLOTS]): the casual
+     * Hand-over policies only matter when the rules allow it ([MatchRules.handOver]): the casual
      * fan never thinks of it and the hustler would rather push the price than pay to dodge.
      */
-    fun behaviorOf(personality: BotPersonality, stats: PoolStats, ruleSet: RuleSet = RuleSet.CLASSIC): BotBehavior = when (personality) {
+    fun behaviorOf(personality: BotPersonality, stats: PoolStats, rules: MatchRules = MatchRules.CLASSIC): BotBehavior = when (personality) {
         BotPersonality.CASUAL_FAN -> BotBehavior(
             perception = RatingPerception(
                 noise = 9,
@@ -151,12 +157,12 @@ object BotFactory {
             thinkMillis = 700L..2_000L,
         )
         BotPersonality.SCOUT -> {
-            val lookahead = lookaheadFor(stats, ruleSet)
+            val lookahead = lookaheadFor(stats, rules)
             BotBehavior(
                 perception = RatingPerception(noise = 2),
                 // In classic rating matches the exact lookahead beat every other bot 9 times in 10,
                 // so it plays a little cautious there; recipes and five slots are close enough without that.
-                valuation = if (stats.scoring == Scoring.RATINGS && ruleSet.slots == null) {
+                valuation = if (stats.scoring == Scoring.RATINGS && rules.slots == null) {
                     LookaheadValuation(lookahead, moodMin = 0.75, moodMax = 1.05)
                 } else {
                     LookaheadValuation(lookahead)

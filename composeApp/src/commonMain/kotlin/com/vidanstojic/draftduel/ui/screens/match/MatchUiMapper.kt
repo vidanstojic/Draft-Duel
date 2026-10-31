@@ -51,21 +51,23 @@ fun MatchState.toUi(
         MatchPhase.Finished -> MatchPhaseUi.Finished
     }
     val awardedToViewer = (phase as? MatchPhase.Awarded)?.winner == viewer
-    val turnMillis = GameRules.TURN_SECONDS * 1_000L
+    val turnMillis = rules.turnSeconds * 1_000L
+    // Public ratings (a custom rule): nothing is hidden, from either side.
+    val public = rules.ratingsVisible
     return MatchUiState(
         theme = theme,
         goal = goal,
         cardNumber = (roundIndex + 1).coerceAtMost(pool.size),
         totalCards = pool.size,
         cardsLeft = cardsLeft,
-        you = seat(viewer).toPanel(faceUp = revealOwnRatings, includeTotal = revealOwnRatings, slots = ruleSet.slots),
-        opponent = seat(viewer.other).toPanel(faceUp = false, includeTotal = false, slots = ruleSet.slots),
+        you = seat(viewer).toPanel(faceUp = revealOwnRatings || public, includeTotal = revealOwnRatings || public, slots = rules.slots),
+        opponent = seat(viewer.other).toPanel(faceUp = public, includeTotal = public, slots = rules.slots),
         card = currentCard,
-        cardRatingVisible = awardedToViewer && revealOwnRatings,
+        cardRatingVisible = public || (awardedToViewer && revealOwnRatings),
         phase = phaseUi,
-        secondsLeft = ceil(millisLeft / 1_000.0).toInt().coerceIn(0, GameRules.TURN_SECONDS),
+        secondsLeft = ceil(millisLeft / 1_000.0).toInt().coerceIn(0, rules.turnSeconds),
         timerProgress = (millisLeft.toFloat() / turnMillis).coerceIn(0f, 1f),
-        maxBudget = GameRules.STARTING_BUDGET,
+        maxBudget = rules.budget,
     )
 }
 

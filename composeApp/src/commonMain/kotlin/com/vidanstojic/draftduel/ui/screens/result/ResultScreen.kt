@@ -156,7 +156,7 @@ private fun RosterBlock(roster: RosterUi, nameFirst: Boolean, isBottom: Boolean,
                 Text(roster.name, style = DraftDuelTheme.type.bodyStrong, color = if (isBottom) colors.accent else colors.onScreen)
             }
             InfoPill {
-                Text(stringResource(Res.string.result_paid, roster.spent), style = DraftDuelTheme.type.mono, color = colors.muted)
+                Text(stringResource(Res.string.result_paid, roster.spent, roster.budget), style = DraftDuelTheme.type.mono, color = colors.muted)
             }
         }
     }

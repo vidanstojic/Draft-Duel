@@ -2,7 +2,7 @@ package com.vidanstojic.draftduel.domain.bot
 
 import com.vidanstojic.draftduel.domain.match.GameRules
 import com.vidanstojic.draftduel.domain.match.MatchOutcome
-import com.vidanstojic.draftduel.domain.match.RuleSet
+import com.vidanstojic.draftduel.domain.match.MatchRules
 import com.vidanstojic.draftduel.domain.match.Seat
 import com.vidanstojic.draftduel.domain.model.Scoring
 import kotlin.random.Random
@@ -93,7 +93,7 @@ class BotSimulationTest {
             repeat(240) { game ->
                 val a = personalities[game % personalities.size]
                 val b = personalities[(game / personalities.size) % personalities.size]
-                val result = BotSimulation.playOnce(a, b, pack, random, if (game % 2 == 0) Seat.A else Seat.B, RuleSet.FIVE_SLOTS)
+                val result = BotSimulation.playOnce(a, b, pack, random, if (game % 2 == 0) Seat.A else Seat.B, MatchRules.DEFAULT)
 
                 assertEquals(0, result.rejectedActions, "$a vs $b made an illegal move")
                 assertEquals(0, result.timeouts, "$a vs $b let the clock run out")
@@ -118,7 +118,7 @@ class BotSimulationTest {
                     pack,
                     random,
                     firstOpener = Seat.A,
-                    ruleSet = RuleSet.FIVE_SLOTS,
+                    rules = MatchRules.DEFAULT,
                 )
                 openerPoints += when (result.outcome) {
                     MatchOutcome.A_WINS -> 1.0
@@ -128,9 +128,9 @@ class BotSimulationTest {
             }
             assertTrue(openerPoints / 600 in 0.42..0.58, "first opener won ${openerPoints / 600} on ${pack.theme}")
 
-            val average = BotSimulation.tournament(pack, gamesPerPair = 60, ruleSet = RuleSet.FIVE_SLOTS)
+            val average = BotSimulation.tournament(pack, gamesPerPair = 60, rules = MatchRules.DEFAULT)
             fun tier(d: BotDifficulty) = BotPersonality.entries
-                .filter { it.difficultyFor(pack.scoring, RuleSet.FIVE_SLOTS) == d }
+                .filter { it.difficultyFor(pack.scoring, MatchRules.DEFAULT) == d }
                 .map { average.getValue(it) }
                 .average()
             val easy = tier(BotDifficulty.EASY)

@@ -1,7 +1,7 @@
 package com.vidanstojic.draftduel.ui.screens.category
 
 import androidx.lifecycle.ViewModel
-import com.vidanstojic.draftduel.domain.match.RuleSet
+import com.vidanstojic.draftduel.domain.match.MatchRules
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.MatchSetup
 import com.vidanstojic.draftduel.domain.model.PoolSource
@@ -36,8 +36,16 @@ class CategoryViewModel(
         }
     }
 
-    fun selectRuleSet(ruleSet: RuleSet) {
-        _state.update { if (it.ruleSetsAvailable) it.copy(ruleSet = ruleSet) else it }
+    fun selectRulesPreset(preset: RulesPreset) {
+        _state.update { if (preset == RulesPreset.CUSTOM && !it.customRulesAllowed) it else it.copy(rulesPreset = preset) }
+    }
+
+    /** Applies one change from the Custom editor; values outside the allowed ranges are ignored. */
+    fun updateCustomRules(change: (MatchRules) -> MatchRules) {
+        _state.update { current ->
+            val updated = runCatching { change(current.customRules) }.getOrNull() ?: return@update current
+            current.copy(customRules = updated, rulesPreset = RulesPreset.CUSTOM)
+        }
     }
 
     fun selectSource(type: PoolSourceType) {
@@ -67,7 +75,7 @@ class CategoryViewModel(
             theme = current.selectedTheme,
             poolSource = source,
             you = profileRepository.currentPlayer(),
-            ruleSet = if (current.ruleSetsAvailable) current.ruleSet else RuleSet.CLASSIC,
+            rules = current.rules,
         )
         return current.mode
     }
@@ -75,11 +83,21 @@ class CategoryViewModel(
     private fun initialState(mode: GameMode): CategoryUiState {
         val themes = packRepository.themes().map { ThemeOptionUi(it, available = packRepository.pack(it) != null) }
         val first = themes.first { it.available }.theme
+        // Coming back for another match keeps the rules chosen last time.
+        val previous = sessionRepository.setup?.rules ?: MatchRules.DEFAULT
+        val preset = when {
+            previous == MatchRules.DEFAULT -> RulesPreset.DEFAULT
+            previous == MatchRules.CLASSIC -> RulesPreset.CLASSIC
+            mode == GameMode.QUICK_MATCH -> RulesPreset.DEFAULT
+            else -> RulesPreset.CUSTOM
+        }
         return CategoryUiState(
             mode = mode,
             themes = themes,
             selectedTheme = first,
             categories = categoriesOf(first),
+            rulesPreset = preset,
+            customRules = previous,
         )
     }
 

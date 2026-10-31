@@ -31,7 +31,7 @@
     <string name="mode_bot_title">Play vs bot</string>
     <string name="mode_bot_subtitle">Pick a rival. Works offline</string>
     <string name="how_to_play">How to play</string>
-    <string name="how_to_play_rules">You both start with 20 points. 10 cards go up for auction, one at a time.\n\nThe opener must bid. Then raise by 1, 2 or 5, or pass and the other player takes the card at their last bid.\n\nRatings stay hidden. You see yours when you win a card and your rival's at the end.\n\nThe higher total rating wins.\n\n5 cards rules: each player ends with exactly 5 cards. As the opener you may hand a card you do not want over to your rival, who must then open it. Your first hand-over costs 1 point, the next 2, then 3.</string>
+    <string name="how_to_play_rules">You both start with 20 points. 10 cards go up for auction, one at a time.\n\nThe opener must bid. Then raise by 1, 2 or 5, or pass and the other player takes the card at their last bid.\n\nRatings stay hidden. You see yours when you win a card and your rival's at the end.\n\nThe higher total rating wins.\n\nDefault rules: each player ends with exactly 5 cards. As the opener you may hand a card you do not want over to your rival, who must then open it. Your first hand-over costs 1 point, the next 2, then 3.</string>
     <!-- Themes -->
     <string name="theme_football">Football</string>
     <string name="theme_basketball">Basketball</string>
@@ -51,10 +51,27 @@
     <string name="category_custom_hint">You will pick at least 10 athletes before sending the invite. Coming soon.</string>
     <string name="category_custom_friend_only">Custom pools are for friend matches only.</string>
     <string name="rules_label">Rules</string>
+    <string name="rules_default">Default</string>
     <string name="rules_classic">Classic</string>
-    <string name="rules_five_slots">5 cards</string>
+    <string name="rules_custom">Custom</string>
+    <string name="rules_default_hint">Each player ends with exactly 5 cards. The opener may hand a card over instead of bidding, and the rival must open it. Hand-overs cost 1, then 2, then 3… points each.</string>
     <string name="rules_classic_hint">No card limit. Only your 20 points stop you, and the opener must bid.</string>
-    <string name="rules_five_slots_hint">Each player ends with exactly 5 cards. The opener may hand a card over instead of bidding, and the rival must open it. Hand-overs cost 1, then 2, then 3… points each.</string>
+    <string name="rules_custom_hint">Set every parameter yourself. Bots are tuned for Default and Classic, so other values are for testing.</string>
+    <string name="rules_custom_quick_match">Custom rules are for bot, friend and same-device matches.</string>
+    <string name="custom_budget">Points per player</string>
+    <string name="custom_cards">Cards per match</string>
+    <string name="custom_slots">Card limit</string>
+    <string name="custom_off">Off</string>
+    <string name="custom_hand_over">Hand-over</string>
+    <string name="custom_first_cost">First hand-over costs</string>
+    <string name="custom_increment">Each next one costs more by</string>
+    <string name="custom_turn">Turn time</string>
+    <string name="custom_seconds">%1$d s</string>
+    <string name="custom_ratings_visible">Show ratings while bidding</string>
+    <string name="custom_reset">Reset to default</string>
+    <string name="custom_recipe_note">Food keeps its own rule: no card limit and no hand-over, but the opener may skip a card.</string>
+    <string name="custom_less">Less: %1$s</string>
+    <string name="custom_more">More: %1$s</string>
     <string name="source_random">Random</string>
     <string name="source_category">By category</string>
     <string name="source_custom">Custom</string>
@@ -148,7 +165,7 @@
     <string name="close">Close</string>
     <string name="result_title">Final reveal</string>
     <string name="result_cards">%1$d cards revealed</string>
-    <string name="result_paid">paid %1$d / 20</string>
+    <string name="result_paid">paid %1$d / %2$d</string>
     <string name="result_draw">Draw</string>
     <string name="result_you_win_by">You win by %1$d</string>
     <string name="result_you_lose_by">You lose by %1$d</string>

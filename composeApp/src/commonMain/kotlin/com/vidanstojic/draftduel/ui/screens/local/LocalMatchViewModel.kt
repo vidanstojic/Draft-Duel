@@ -72,7 +72,8 @@ class LocalMatchViewModel(
     private val layout = setup.localLayout
     private val revealOwn = layout == LocalLayout.PASS_DEVICE
     private val theme = if (packRepository.pack(setup.theme) != null) setup.theme else Theme.FOOTBALL
-    private val pool = requireNotNull(packRepository.drawPool(theme, setup.poolSource)) { "No pack for $theme" }
+    private val rules = setup.copy(theme = theme).effectiveRules
+    private val pool = requireNotNull(packRepository.drawPool(theme, setup.poolSource, rules.cards)) { "No pack for $theme" }
 
     private val driver = MatchDriver(
         scope = viewModelScope,
@@ -80,7 +81,7 @@ class LocalMatchViewModel(
             theme = theme,
             pool = pool.cards,
             goal = pool.goal?.name,
-            ruleSet = setup.ruleSet,
+            rules = rules,
             nameA = setup.you.nickname,
             nameB = setup.opponent?.nickname ?: "Player 2",
             firstOpener = if (random.nextBoolean()) Seat.A else Seat.B,
@@ -102,7 +103,7 @@ class LocalMatchViewModel(
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
-        initialValue = project(driver.match.value, MatchDriver.TURN_MILLIS, confirmedSeat.value),
+        initialValue = project(driver.match.value, driver.turnMillis, confirmedSeat.value),
     )
 
     private val _finished = MutableStateFlow(false)

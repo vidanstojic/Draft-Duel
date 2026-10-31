@@ -21,7 +21,7 @@ data class SeatState(
     val name: String,
     val budget: Int,
     val cards: List<OwnedCard> = emptyList(),
-    /** Hand-overs used this match; the next one costs one point more (see [RuleSet.FIVE_SLOTS]). */
+    /** Hand-overs used this match; the next one costs more (see [HandOverRule]). */
     val handOvers: Int = 0,
 ) {
     val total: Int get() = cards.sumOf { it.card.rating }
@@ -84,7 +84,7 @@ data class MatchState(
     val phase: MatchPhase,
     /** The dish to build in recipe packs; null in rating packs. */
     val goal: String? = null,
-    val ruleSet: RuleSet = RuleSet.CLASSIC,
+    val rules: MatchRules = MatchRules.CLASSIC,
 ) {
     val currentCard: GameCard? get() = pool.getOrNull(roundIndex)
 
@@ -99,7 +99,7 @@ data class MatchState(
     fun seat(seat: Seat): SeatState = seats.getValue(seat)
 
     /** Empty slots of [seat], or null when the rule set has no card limit. */
-    fun slotsLeft(seat: Seat): Int? = ruleSet.slots?.let { (it - seat(seat).cards.size).coerceAtLeast(0) }
+    fun slotsLeft(seat: Seat): Int? = rules.slots?.let { (it - seat(seat).cards.size).coerceAtLeast(0) }
 
     fun isFull(seat: Seat): Boolean = slotsLeft(seat) == 0
 }
@@ -111,7 +111,7 @@ sealed interface MatchAction {
 
     data class Assign(val chooser: Seat, val to: Seat) : MatchAction
 
-    /** The opener pays to let the rival open this card instead ([RuleSet.FIVE_SLOTS]). */
+    /** The opener pays to let the rival open this card instead ([MatchRules.handOver]). */
     data class HandOver(val seat: Seat) : MatchAction
 
     /** The player to act ran out of time. */

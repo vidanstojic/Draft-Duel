@@ -33,7 +33,10 @@ class MatchDriver(
     private val _match = MutableStateFlow(initial)
     val match: StateFlow<MatchState> = _match.asStateFlow()
 
-    private val _millisLeft = MutableStateFlow(TURN_MILLIS)
+    /** Length of one turn, from the match rules. */
+    val turnMillis: Long = initial.rules.turnSeconds * 1_000L
+
+    private val _millisLeft = MutableStateFlow(turnMillis)
     val millisLeft: StateFlow<Long> = _millisLeft.asStateFlow()
 
     private var job: Job? = null
@@ -72,7 +75,7 @@ class MatchDriver(
     }
 
     private suspend fun runTurn(state: MatchState) = coroutineScope {
-        _millisLeft.value = TURN_MILLIS
+        _millisLeft.value = turnMillis
         val seatToAct = when (val phase = state.phase) {
             is MatchPhase.Bidding -> phase.toAct
             is MatchPhase.Choosing -> phase.chooser
@@ -87,7 +90,7 @@ class MatchDriver(
                 if (_match.value === snapshot) action?.let(::dispatch)
             }
         }
-        var left = TURN_MILLIS
+        var left = turnMillis
         while (left > 0) {
             delay(TICK_MILLIS)
             if (!paused) {
@@ -98,8 +101,7 @@ class MatchDriver(
         dispatch(MatchAction.Timeout)
     }
 
-    companion object {
-        const val TURN_MILLIS = GameRules.TURN_SECONDS * 1_000L
-        private const val TICK_MILLIS = 100L
+    private companion object {
+        const val TICK_MILLIS = 100L
     }
 }
