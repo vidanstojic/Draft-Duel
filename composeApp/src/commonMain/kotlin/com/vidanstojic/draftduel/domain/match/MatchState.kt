@@ -21,6 +21,8 @@ data class SeatState(
     val name: String,
     val budget: Int,
     val cards: List<OwnedCard> = emptyList(),
+    /** Hand-overs used this match; the next one costs one point more (see [RuleSet.FIVE_SLOTS]). */
+    val handOvers: Int = 0,
 ) {
     val total: Int get() = cards.sumOf { it.card.rating }
 }
@@ -37,6 +39,9 @@ enum class AwardReason {
 
     /** Both players had 0 points. */
     FREE,
+
+    /** The other player's slots were full, so the card came for free (spec §3). */
+    OTHER_FULL,
 }
 
 sealed interface MatchPhase {
@@ -45,6 +50,8 @@ sealed interface MatchPhase {
         val toAct: Seat,
         val price: Int,
         val leader: Seat?,
+        /** The first opener paid to hand this card over; [opener] is now the rival and must open. */
+        val handedOver: Boolean = false,
     ) : MatchPhase
 
     /** The opponent of [chooser] has 0 points; [chooser] decides who takes the card for free. */
@@ -77,6 +84,7 @@ data class MatchState(
     val phase: MatchPhase,
     /** The dish to build in recipe packs; null in rating packs. */
     val goal: String? = null,
+    val ruleSet: RuleSet = RuleSet.CLASSIC,
 ) {
     val currentCard: GameCard? get() = pool.getOrNull(roundIndex)
 
@@ -89,6 +97,11 @@ data class MatchState(
     val isSettled: Boolean get() = phase is MatchPhase.Awarded || phase == MatchPhase.Discarded
 
     fun seat(seat: Seat): SeatState = seats.getValue(seat)
+
+    /** Empty slots of [seat], or null when the rule set has no card limit. */
+    fun slotsLeft(seat: Seat): Int? = ruleSet.slots?.let { (it - seat(seat).cards.size).coerceAtLeast(0) }
+
+    fun isFull(seat: Seat): Boolean = slotsLeft(seat) == 0
 }
 
 sealed interface MatchAction {
@@ -97,6 +110,9 @@ sealed interface MatchAction {
     data class Pass(val seat: Seat) : MatchAction
 
     data class Assign(val chooser: Seat, val to: Seat) : MatchAction
+
+    /** The opener pays to let the rival open this card instead ([RuleSet.FIVE_SLOTS]). */
+    data class HandOver(val seat: Seat) : MatchAction
 
     /** The player to act ran out of time. */
     data object Timeout : MatchAction

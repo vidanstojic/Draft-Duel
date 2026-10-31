@@ -19,6 +19,7 @@ object MatchEngine {
         nameB: String,
         firstOpener: Seat,
         goal: String? = null,
+        ruleSet: RuleSet = RuleSet.CLASSIC,
     ): MatchState {
         require(pool.isNotEmpty()) { "A match needs at least one card." }
         val initial = MatchState(
@@ -32,6 +33,7 @@ object MatchEngine {
             firstOpener = firstOpener,
             phase = MatchPhase.Finished,
             goal = goal,
+            ruleSet = ruleSet,
         )
         return drawRound(initial)
     }
@@ -40,6 +42,7 @@ object MatchEngine {
         is MatchAction.Raise -> raise(state, action.seat, action.step)
         is MatchAction.Pass -> pass(state, action.seat)
         is MatchAction.Assign -> assign(state, action.chooser, action.to)
+        is MatchAction.HandOver -> handOver(state, action.seat)
         MatchAction.Timeout -> timeout(state)
     }
 
@@ -61,6 +64,24 @@ object MatchEngine {
         return phase.toAct == seat && (phase.leader != null || openerMaySkip(state))
     }
 
+    /**
+     * The opener, before any bid, may pay [handOverCost] to make the rival open instead. Once per
+     * card, only in rule sets that allow it, and only with enough points to pay.
+     */
+    fun canHandOver(state: MatchState, seat: Seat): Boolean {
+        if (!state.ruleSet.allowsHandOver) return false
+        val phase = state.phase as? MatchPhase.Bidding ?: return false
+        return phase.toAct == seat && phase.opener == seat && phase.leader == null && !phase.handedOver &&
+            state.seat(seat).budget >= handOverCost(state, seat)
+    }
+
+    /** What the pass button means: a paid hand-over for an opener who may, otherwise a plain pass. */
+    fun passAction(state: MatchState, seat: Seat): MatchAction =
+        if (canHandOver(state, seat)) MatchAction.HandOver(seat) else MatchAction.Pass(seat)
+
+    /** 1 for the first hand-over of the match, then 2, 3… for the same player. */
+    fun handOverCost(state: MatchState, seat: Seat): Int = state.seat(seat).handOvers + 1
+
     /** Spec §3 rule 3 (the opener must bid) holds for rating packs; in recipe packs the opener may skip. */
     fun openerMaySkip(state: MatchState): Boolean = state.theme.scoring == Scoring.RECIPE
 
@@ -81,7 +102,12 @@ object MatchEngine {
         val budgetA = state.seat(Seat.A).budget
         val budgetB = state.seat(Seat.B).budget
         val opener = openerFor(state, state.roundIndex)
+        val fullA = state.isFull(Seat.A)
+        val fullB = state.isFull(Seat.B)
         return when {
+            fullA && fullB -> state.copy(phase = MatchPhase.Finished)
+            fullA -> award(state, winner = Seat.B, price = 0, reason = AwardReason.OTHER_FULL)
+            fullB -> award(state, winner = Seat.A, price = 0, reason = AwardReason.OTHER_FULL)
             budgetA > 0 && budgetB > 0 ->
                 state.copy(phase = MatchPhase.Bidding(opener = opener, toAct = opener, price = 0, leader = null))
             budgetA > 0 -> state.copy(phase = MatchPhase.Choosing(chooser = Seat.A))
@@ -105,6 +131,17 @@ object MatchEngine {
         if (!canPass(state, seat)) return state
         val leader = phase.leader ?: return state.copy(phase = MatchPhase.Discarded)
         return award(state, winner = leader, price = phase.price, reason = AwardReason.PASSED)
+    }
+
+    private fun handOver(state: MatchState, seat: Seat): MatchState {
+        val phase = state.phase as? MatchPhase.Bidding ?: return state
+        if (!canHandOver(state, seat)) return state
+        val payer = state.seat(seat)
+        val paid = payer.copy(budget = payer.budget - handOverCost(state, seat), handOvers = payer.handOvers + 1)
+        return state.copy(
+            seats = state.seats + (seat to paid),
+            phase = phase.copy(opener = seat.other, toAct = seat.other, handedOver = true),
+        )
     }
 
     private fun assign(state: MatchState, chooser: Seat, to: Seat): MatchState {
