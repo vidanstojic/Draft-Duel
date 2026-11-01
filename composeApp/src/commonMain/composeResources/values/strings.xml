@@ -28,6 +28,7 @@
     <string name="mode_local_subtitle">Two players, one phone</string>
     <string name="mode_friend_title">Play a friend</string>
     <string name="mode_friend_subtitle">Send a link or enter a code</string>
+    <string name="mode_coming_soon">Coming soon</string>
     <string name="mode_bot_title">Play vs bot</string>
     <string name="mode_bot_subtitle">Pick a rival. Works offline</string>
     <string name="how_to_play">How to play</string>

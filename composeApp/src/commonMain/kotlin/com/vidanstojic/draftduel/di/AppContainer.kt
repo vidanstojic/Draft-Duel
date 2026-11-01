@@ -14,7 +14,10 @@ import com.vidanstojic.draftduel.domain.repository.ProfileRepository
  *
  * Swap the fake implementations for network/cache-backed ones here; screens only see the interfaces.
  */
-class AppContainer {
+class AppContainer(
+    val appInfo: AppInfo = AppInfo.DEVELOPMENT,
+    val features: Features = Features.forBuild(appInfo),
+) {
     val packRepository: PackRepository = BundledPackRepository()
     val profileRepository: ProfileRepository = FakeProfileRepository()
     val sessionRepository: MatchSessionRepository = InMemoryMatchSessionRepository()

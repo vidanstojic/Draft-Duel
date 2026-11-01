@@ -33,6 +33,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
@@ -40,6 +41,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.vidanstojic.draftduel.di.LocalAppContainer
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.app_name
@@ -50,6 +52,7 @@ import com.vidanstojic.draftduel.resources.how_to_play
 import com.vidanstojic.draftduel.resources.how_to_play_rules
 import com.vidanstojic.draftduel.resources.mode_bot_subtitle
 import com.vidanstojic.draftduel.resources.mode_bot_title
+import com.vidanstojic.draftduel.resources.mode_coming_soon
 import com.vidanstojic.draftduel.resources.mode_find_subtitle
 import com.vidanstojic.draftduel.resources.mode_find_title
 import com.vidanstojic.draftduel.resources.mode_friend_subtitle
@@ -73,13 +76,24 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun HomeRoute(onModeSelected: (GameMode) -> Unit) {
-    HomeScreen(onModeSelected = onModeSelected, onSettings = {})
+    val container = LocalAppContainer.current
+    HomeScreen(
+        onModeSelected = onModeSelected,
+        friendMatchesEnabled = container.features.friendMatches,
+        versionLabel = container.appInfo.label,
+    )
 }
 
+/**
+ * [onSettings] null hides the settings button (there is no settings screen yet). With
+ * [friendMatchesEnabled] false, "Play a friend" is shown as coming soon (release builds).
+ */
 @Composable
 fun HomeScreen(
     onModeSelected: (GameMode) -> Unit,
-    onSettings: () -> Unit,
+    onSettings: (() -> Unit)? = null,
+    friendMatchesEnabled: Boolean = true,
+    versionLabel: String? = null,
 ) {
     var showRules by rememberSaveable { mutableStateOf(false) }
     val colors = DraftDuelTheme.colors
@@ -87,7 +101,7 @@ fun HomeScreen(
     DdScreen(surface = SurfaceStyle.TABLE) {
         DdTopBar(
             leading = { Logo() },
-            trailing = { DdIconButton(Icons.Filled.Settings, stringResource(Res.string.settings), onSettings) },
+            trailing = { onSettings?.let { DdIconButton(Icons.Filled.Settings, stringResource(Res.string.settings), it) } },
             title = {},
         )
         HeroTable()
@@ -116,14 +130,23 @@ fun HomeScreen(
         )
         ModeCard(
             title = stringResource(Res.string.mode_friend_title),
-            subtitle = stringResource(Res.string.mode_friend_subtitle),
+            subtitle = stringResource(if (friendMatchesEnabled) Res.string.mode_friend_subtitle else Res.string.mode_coming_soon),
             icon = Icons.Filled.Share,
             iconBackground = colors.primaryBid.container,
             onClick = { onModeSelected(GameMode.FRIEND) },
+            enabled = friendMatchesEnabled,
         )
         Spacer(Modifier.weight(1f))
         TextButton(onClick = { showRules = true }, modifier = Modifier.align(Alignment.CenterHorizontally)) {
             Text(stringResource(Res.string.how_to_play), style = DraftDuelTheme.type.mono, color = colors.muted)
+        }
+        versionLabel?.let {
+            Text(
+                text = it,
+                style = DraftDuelTheme.type.mono,
+                color = colors.muted.copy(alpha = 0.6f),
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+            )
         }
     }
 
@@ -196,6 +219,7 @@ private fun ModeCard(
     iconBackground: Color,
     onClick: () -> Unit,
     highlighted: Boolean = false,
+    enabled: Boolean = true,
 ) {
     val colors = DraftDuelTheme.colors
     val shape = RoundedCornerShape(16.dp)
@@ -205,10 +229,11 @@ private fun ModeCard(
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .alpha(if (enabled) 1f else 0.5f)
             .clip(shape)
             .background(container)
             .then(if (highlighted) Modifier else Modifier.border(1.5.dp, colors.outline, shape))
-            .clickable(role = Role.Button, onClick = onClick)
+            .clickable(enabled = enabled, role = Role.Button, onClick = onClick)
             .padding(horizontal = 16.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(14.dp),
@@ -233,6 +258,6 @@ private fun ModeCard(
 @Composable
 private fun HomeScreenPreview() {
     DraftDuelTheme {
-        HomeScreen(onModeSelected = {}, onSettings = {})
+        HomeScreen(onModeSelected = {}, versionLabel = "v0.1.0 (1)")
     }
 }
