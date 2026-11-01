@@ -1,3 +1,4 @@
+import java.util.Properties
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -53,6 +54,16 @@ kotlin {
     }
 }
 
+/**
+ * Release signing (upload key) is read from keystore.properties in the repo root, which is
+ * git-ignored. Copy keystore.properties.example and fill it in; without it release builds are
+ * unsigned and Play Console rejects them.
+ */
+val keystoreProperties = Properties().apply {
+    val file = rootProject.file("keystore.properties")
+    if (file.exists()) file.inputStream().use { load(it) }
+}
+
 android {
     namespace = "com.vidanstojic.draftduel"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -69,9 +80,22 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    signingConfigs {
+        create("release") {
+            if (keystoreProperties.isNotEmpty()) {
+                storeFile = rootProject.file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+        }
+    }
     buildTypes {
         getByName("release") {
+            // R8 stays off for the first test builds: fewer surprises with serialization and
+            // Compose resources. Turn it on (with rules) before a public release to cut the size.
             isMinifyEnabled = false
+            if (keystoreProperties.isNotEmpty()) signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
