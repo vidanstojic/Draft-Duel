@@ -32,7 +32,7 @@ Pre uploada instaliraj release na telefon i odigraj jednu partiju. Na dnu počet
      uploaduj `.aab`, release name `0.1.0 (1)`, release notes iz `store-listing.md`, *Next › Save › Start rollout*.
 3. Zadaci sa *Dashboard › Set up your app* (za interni test nisu svi obavezni, ali kasnije jesu):
    - **Privacy policy**: hostuj `privacy-policy.html` na javnom URL-u (npr. GitHub Pages ili Google Sites), pa upiši URL.
-     Pre toga zameni `<developer name>` i `<contact email>`.
+     Ime i kontakt email su već upisani.
    - **App content**: odgovori iz `app-content.md`.
    - **Store listing**: tekstovi iz `store-listing.md`, `icon-512.png`, `feature-graphic-1024x500.png` i 2–8 snimaka ekrana sa telefona.
 

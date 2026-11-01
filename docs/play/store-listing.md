@@ -10,7 +10,7 @@ Default language: English (United States). A Serbian translation is below (add i
 | Category | Card |
 | Free or paid | Free |
 | Tags | Card, Sports, Strategy |
-| Contact email | `<your contact email>` |
+| Contact email | vidan.stojic@gmail.com |
 | Privacy policy URL | `<URL where privacy-policy.html is hosted>` |
 
 ## Short description (≤ 80 characters)

@@ -2,7 +2,7 @@
 
 *Effective date: 1 November 2026*
 
-Draft Duel ("the app") is developed by `<developer name>`. This policy explains what the app does
+Draft Duel ("the app") is developed by Vidan Stojić. This policy explains what the app does
 with information about you.
 
 ## Information we collect
@@ -28,4 +28,4 @@ before that version is released, and the date above will change.
 
 ## Contact
 
-Questions about this policy: `<contact email>`
+Questions about this policy: [vidan.stojic@gmail.com](mailto:vidan.stojic@gmail.com)
