@@ -22,6 +22,12 @@ Pregledi ekrana bez pokretanja: otvori bilo koji `*Screen.kt` i koristi Preview 
 
 Za iOS se ne piše novi UI. Swift deo je samo omotač (`iosApp/iosApp/ContentView.swift`), a svi ekrani su u `commonMain`.
 
+## Objava na Google Play
+
+Paket je `com.vidanstojic.draftduel`. Uputstvo za interni test, tekstovi za prodavnicu, politika privatnosti,
+odgovori za *App content* i grafike su u [`docs/play/`](docs/play/README.md). Release build se potpisuje
+ključem iz `keystore.properties`, koji git ignoriše (šablon je `keystore.properties.example`).
+
 ## Struktura
 
 ```
