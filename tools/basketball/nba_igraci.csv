@@ -1,0 +1,523 @@
+﻿ime,prezime,rejting,pozicija,klub
+Luguentz,Dort,80,G,Atlanta Hawks
+Keshon,Gilbert,70,G,Atlanta Hawks
+Aaron,Wiggins,79,G,Atlanta Hawks
+CJ,McCollum,83,G,Atlanta Hawks
+Kingston,Flemings,76,G,Atlanta Hawks
+Dyson,Daniels,86,G,Atlanta Hawks
+Nickeil,Alexander-Walker,83,G,Atlanta Hawks
+RayJ,Dennis,70,G,Atlanta Hawks
+Jalen,Johnson,90,F,Atlanta Hawks
+Dorian,Finney-Smith,78,F,Atlanta Hawks
+Asa,Newell,73,F,Atlanta Hawks
+Onyeka,Okongwu,84,F,Atlanta Hawks
+Mouhamed,Gueye,72,F,Atlanta Hawks
+Zuby,Ejiofor,72,F,Atlanta Hawks
+Jalen,Wilson,73,F,Atlanta Hawks
+Corey,Kispert,78,F,Atlanta Hawks
+Henri,Veesaar,72,C,Atlanta Hawks
+Jock,Landale,79,C,Atlanta Hawks
+Ron,Harper Jr.,74,G,Boston Celtics
+Derrick,White,88,G,Boston Celtics
+Payton,Pritchard,85,G,Boston Celtics
+Jordan,Walsh,76,G,Boston Celtics
+Hugo,Gonzalez,75,G,Boston Celtics
+Mike,Conley,76,G,Boston Celtics
+Baylor,Scheierman,75,G,Boston Celtics
+Devin,Carter,73,G,Boston Celtics
+Jayson,Tatum,92,F,Boston Celtics
+Chris,Cenac Jr.,74,F,Boston Celtics
+Paul,George,84,F,Boston Celtics
+Dillon,Mitchell,72,F,Boston Celtics
+Sam,Hauser,79,F,Boston Celtics
+Amari,Williams,71,F,Boston Celtics
+Mitchell,Robinson,81,C,Boston Celtics
+Luka,Garza,76,C,Boston Celtics
+Neemias,Queta,80,C,Boston Celtics
+Mikel,Brown Jr.,76,G,Brooklyn Nets
+Keon,Ellis,78,G,Brooklyn Nets
+Drake,Powell,74,G,Brooklyn Nets
+Egor,Demin,77,G,Brooklyn Nets
+Nolan,Traore,75,G,Brooklyn Nets
+Terance,Mann,77,G,Brooklyn Nets
+Ben,Saraf,73,G,Brooklyn Nets
+Josh,Minott,76,F,Brooklyn Nets
+Danny,Wolf,75,F,Brooklyn Nets
+Joshua,Jefferson,72,F,Brooklyn Nets
+Grant,Nelson,71,F,Brooklyn Nets
+Michael,Porter Jr.,87,F,Brooklyn Nets
+Noah,Clowney,78,F,Brooklyn Nets
+Julius,Randle,86,F,Brooklyn Nets
+Chaney,Johnson,70,F,Brooklyn Nets
+Tyler,Bilodeau,72,F,Brooklyn Nets
+Moritz,Wagner,77,C,Brooklyn Nets
+Day'Ron,Sharpe,77,C,Brooklyn Nets
+Coby,White,85,G,Charlotte Hornets
+Sion,James,75,G,Charlotte Hornets
+Christian,Anderson,74,G,Charlotte Hornets
+Kon,Knueppel,86,G,Charlotte Hornets
+Grayson,Allen,79,G,Charlotte Hornets
+Dennis,Schroder,79,G,Charlotte Hornets
+Kylan,Boswell,71,G,Charlotte Hornets
+Liam,McNeeley,75,G,Charlotte Hornets
+Royce,O'Neale,78,F,Charlotte Hornets
+Grant,Williams,76,F,Charlotte Hornets
+Moussa,Diabate,79,F,Charlotte Hornets
+Hannes,Steinbach,74,F,Charlotte Hornets
+Brandon,Miller,86,F,Charlotte Hornets
+Tidjane,Salaun,74,F,Charlotte Hornets
+Naz,Reid,83,C,Charlotte Hornets
+Ryan,Kalkbrenner,77,C,Charlotte Hornets
+PJ,Hall,70,C,Charlotte Hornets
+Josh,Giddey,87,G,Chicago Bulls
+Dailyn,Swain,73,G,Chicago Bulls
+Buddy,Hield,78,G,Chicago Bulls
+Jordan,Hawkins,76,G,Chicago Bulls
+Jaylin,Sellers,71,G,Chicago Bulls
+Norman,Powell,85,G,Chicago Bulls
+Tre,Jones,80,G,Chicago Bulls
+Noa,Essengue,74,F,Chicago Bulls
+Caleb,Wilson,77,F,Chicago Bulls
+Leonard,Miller,73,F,Chicago Bulls
+Zach,Collins,77,F,Chicago Bulls
+Matas,Buzelis,82,F,Chicago Bulls
+Tobe,Awaka,71,F,Chicago Bulls
+Jalen,Smith,79,F,Chicago Bulls
+Isaac,Okoro,78,F,Chicago Bulls
+Patrick,Williams,78,F,Chicago Bulls
+Nic,Claxton,81,C,Chicago Bulls
+James,Harden,89,G,Cleveland Cavaliers
+Sam,Merrill,79,G,Cleveland Cavaliers
+Peyton,Watson,83,G,Cleveland Cavaliers
+Craig,Porter Jr.,74,G,Cleveland Cavaliers
+Meleek,Thomas,74,G,Cleveland Cavaliers
+Jaylon,Tyson,77,G,Cleveland Cavaliers
+Tyrese,Proctor,73,G,Cleveland Cavaliers
+Donovan,Mitchell,93,G,Cleveland Cavaliers
+Riley,Minix,70,F,Cleveland Cavaliers
+Tristan,Enaruna,71,F,Cleveland Cavaliers
+Mario,Hezonja,78,F,Cleveland Cavaliers
+Thomas,Bryant,75,C,Cleveland Cavaliers
+Evan,Mobley,90,C,Cleveland Cavaliers
+Jarrett,Allen,85,C,Cleveland Cavaliers
+Ernest,Udeh Jr.,71,C,Cleveland Cavaliers
+Max,Christie,80,G,Dallas Mavericks
+Walter,Clayton Jr.,76,G,Dallas Mavericks
+Marcus,Sasser,73,G,Dallas Mavericks
+Jett,Howard,72,G,Dallas Mavericks
+Kyrie,Irving,88,G,Dallas Mavericks
+Naji,Marshall,80,F,Dallas Mavericks
+Zaccharie,Risacher,79,F,Dallas Mavericks
+Tarik,Biberovic,71,F,Dallas Mavericks
+Morez,Johnson Jr.,73,F,Dallas Mavericks
+Caleb,Martin,76,F,Dallas Mavericks
+Daniel,Gafford,81,F,Dallas Mavericks
+P.J.,Washington,82,F,Dallas Mavericks
+Cooper,Flagg,89,F,Dallas Mavericks
+Tobi,Lawal,72,F,Dallas Mavericks
+Santi,Aldama,81,F,Dallas Mavericks
+Sergio,de Larrea,72,F,Dallas Mavericks
+Dereck,Lively II,82,C,Dallas Mavericks
+Moussa,Cisse,72,C,Dallas Mavericks
+Christian,Braun,83,G,Denver Nuggets
+Julian,Strawther,76,G,Denver Nuggets
+Tyus,Jones,77,G,Denver Nuggets
+Ryan,Nembhard,75,G,Denver Nuggets
+DeMar,DeRozan,84,G,Denver Nuggets
+Jamal,Murray,90,G,Denver Nuggets
+Cam,Whitmore,76,F,Denver Nuggets
+Marvin,Bagley III,74,F,Denver Nuggets
+Trevon,Brazile,72,F,Denver Nuggets
+Alpha,Diallo,71,F,Denver Nuggets
+Bryce,Hopkins,71,F,Denver Nuggets
+DaRon,Holmes II,73,F,Denver Nuggets
+Spencer,Jones,72,F,Denver Nuggets
+Zeke,Nnaji,73,F,Denver Nuggets
+Cameron,Johnson,82,F,Denver Nuggets
+Aaron,Gordon,84,F,Denver Nuggets
+Nikola,Jokic,98,C,Denver Nuggets
+Cade,Cunningham,93,G,Detroit Pistons
+Chaz,Lanier,73,G,Detroit Pistons
+Ausar,Thompson,84,G,Detroit Pistons
+Isaiah,Joe,79,G,Detroit Pistons
+Ebuka,Okorie,73,G,Detroit Pistons
+Daniss,Jenkins,76,G,Detroit Pistons
+Kevin,Huerter,78,G,Detroit Pistons
+Javonte,Green,74,G,Detroit Pistons
+Elijah,Harkless,70,G,Detroit Pistons
+Ronald,Holland II,77,F,Detroit Pistons
+Paul,Reed,75,F,Detroit Pistons
+Taurean,Prince,76,F,Detroit Pistons
+John,Collins,81,F,Detroit Pistons
+Tolu,Smith,70,F,Detroit Pistons
+Duncan,Robinson,79,F,Detroit Pistons
+Jalen,Duren,88,C,Detroit Pistons
+Isaac,Jones,71,C,Detroit Pistons
+Ugonna,Onyenso,71,C,Detroit Pistons
+Gary,Payton II,76,G,Golden State Warriors
+Brandin,Podziemski,81,G,Golden State Warriors
+Will,Richard,77,G,Golden State Warriors
+Moses,Moody,79,G,Golden State Warriors
+De'Anthony,Melton,78,G,Golden State Warriors
+Brandon,Williams,73,G,Golden State Warriors
+LJ,Cryer,71,G,Golden State Warriors
+Stephen,Curry,92,G,Golden State Warriors
+Yaxel,Lendeborg,75,F,Golden State Warriors
+Jimmy,Butler III,86,F,Golden State Warriors
+Gui,Santos,75,F,Golden State Warriors
+Draymond,Green,82,F,Golden State Warriors
+Georges,Niang,74,F,Golden State Warriors
+Malevy,Leons,70,F,Golden State Warriors
+Graham,Ike,72,F,Golden State Warriors
+Kristaps,Porzingis,84,C,Golden State Warriors
+Al,Horford,79,C,Golden State Warriors
+Charles,Bassey,71,C,Golden State Warriors
+Amen,Thompson,89,G,Houston Rockets
+Bruce,Thornton,73,G,Houston Rockets
+Fred,VanVleet,82,G,Houston Rockets
+Reed,Sheppard,80,G,Houston Rockets
+Quadir,Copeland,71,G,Houston Rockets
+Bogdan,Bogdanovic,77,G,Houston Rockets
+Marcus,Smart,79,G,Houston Rockets
+Julian,Phillips,73,F,Houston Rockets
+Kevin,Durant,91,F,Houston Rockets
+Jae'Sean,Tate,74,F,Houston Rockets
+Jabari,Smith Jr.,84,F,Houston Rockets
+Tari,Eason,82,F,Houston Rockets
+Isaiah,Crawford,70,F,Houston Rockets
+Oscar,Tshiebwe,70,C,Houston Rockets
+Steven,Adams,79,C,Houston Rockets
+Alperen,Sengun,90,C,Houston Rockets
+Clint,Capela,76,C,Houston Rockets
+Tyrese,Haliburton,88,G,Indiana Pacers
+Andrew,Nembhard,84,G,Indiana Pacers
+Braden,Smith,73,G,Indiana Pacers
+T.J.,McConnell,80,G,Indiana Pacers
+Kelly,Oubre Jr.,80,G,Indiana Pacers
+Johnny,Furphy,73,G,Indiana Pacers
+Aaron,Nesmith,81,G,Indiana Pacers
+Kobe,Brown,72,G,Indiana Pacers
+Ben,Sheppard,74,G,Indiana Pacers
+Quenton,Jackson,72,G,Indiana Pacers
+Obi,Toppin,79,F,Indiana Pacers
+Jarace,Walker,78,F,Indiana Pacers
+Jalen,Slawson,71,F,Indiana Pacers
+Larry,Nance Jr.,74,F,Indiana Pacers
+Pascal,Siakam,88,F,Indiana Pacers
+Jay,Huff,76,C,Indiana Pacers
+Ivica,Zubac,86,C,Indiana Pacers
+Keaton,Wagler,75,G,LA Clippers
+Bradley,Beal,80,G,LA Clippers
+Kobe,Sanders,74,G,LA Clippers
+Kris,Dunn,78,G,LA Clippers
+Gradey,Dick,77,G,LA Clippers
+Darius,Garland,86,G,LA Clippers
+Blake,Wesley,72,G,LA Clippers
+Jalen,Pickett,72,G,LA Clippers
+Jordan,Miller,74,G,LA Clippers
+Cam,Christie,73,G,LA Clippers
+Max,Strus,79,G,LA Clippers
+Derrick,Jones Jr.,79,F,LA Clippers
+Brandon,Ingram,86,F,LA Clippers
+Nick,Martinelli,70,F,LA Clippers
+Baba,Miller,70,F,LA Clippers
+Isaiah,Jackson,75,F,LA Clippers
+Rui,Hachimura,80,F,LA Clippers
+Brook,Lopez,78,C,LA Clippers
+Yanic,Konan Niederhauser,73,C,LA Clippers
+Matisse,Thybulle,76,G,Los Angeles Lakers
+Quentin,Grimes,80,G,Los Angeles Lakers
+Jaden,Hardy,76,G,Los Angeles Lakers
+Bronny,James,70,G,Los Angeles Lakers
+Collin,Sexton,80,G,Los Angeles Lakers
+Austin,Reaves,89,G,Los Angeles Lakers
+Chris,Manon,70,G,Los Angeles Lakers
+Cameron,Carr,73,G,Los Angeles Lakers
+Luka,Doncic,97,G,Los Angeles Lakers
+Adou,Thiero,73,F,Los Angeles Lakers
+Jarred,Vanderbilt,76,F,Los Angeles Lakers
+Ziaire,Williams,77,F,Los Angeles Lakers
+Jake,LaRavia,78,F,Los Angeles Lakers
+AK,Okereke,70,F,Los Angeles Lakers
+Arthur,Kaluma,71,F,Los Angeles Lakers
+Sandro,Mamukelashvili,76,F,Los Angeles Lakers
+Kevon,Looney,74,F,Los Angeles Lakers
+Walker,Kessler,84,C,Los Angeles Lakers
+Lawson,Lovering,70,C,Los Angeles Lakers
+Scotty,Pippen Jr.,79,G,Memphis Grizzlies
+Ty,Jerome,81,G,Memphis Grizzlies
+Javon,Small,74,G,Memphis Grizzlies
+Jahmai,Mashack,72,G,Memphis Grizzlies
+Cam,Spencer,77,G,Memphis Grizzlies
+Jaylen,Wells,80,F,Memphis Grizzlies
+Jerami,Grant,80,F,Memphis Grizzlies
+Kris,Murray,76,F,Memphis Grizzlies
+Olivier-Maxence,Prosper,74,F,Memphis Grizzlies
+Taylor,Hendricks,75,F,Memphis Grizzlies
+Cedric,Coward,79,F,Memphis Grizzlies
+Cameron,Boozer,78,F,Memphis Grizzlies
+Karim,Lopez,74,F,Memphis Grizzlies
+GG,Jackson,77,F,Memphis Grizzlies
+Zach,Edey,82,C,Memphis Grizzlies
+Carson,Cooper,70,C,Memphis Grizzlies
+Isaiah,Stewart,80,C,Memphis Grizzlies
+Quinten,Post,77,C,Memphis Grizzlies
+Davion,Mitchell,80,G,Miami Heat
+Ryan,Conwell,72,G,Miami Heat
+Pelle,Larsson,77,G,Miami Heat
+Tim,Hardaway Jr.,78,G,Miami Heat
+Klay,Thompson,79,G,Miami Heat
+Dru,Smith,72,G,Miami Heat
+Tre,Donaldson,71,G,Miami Heat
+Simone,Fontecchio,76,F,Miami Heat
+Nikola,Jovic,79,F,Miami Heat
+Giannis,Antetokounmpo,96,F,Miami Heat
+Myron,Gardner,71,F,Miami Heat
+Keshad,Johnson,73,F,Miami Heat
+Andrew,Wiggins,82,F,Miami Heat
+Bobby,Portis,80,F,Miami Heat
+Nick,Richards,76,C,Miami Heat
+Bam,Adebayo,88,C,Miami Heat
+Vladislav,Goldin,72,C,Miami Heat
+Brayden,Burries,75,G,Milwaukee Bucks
+Gary,Trent Jr.,77,G,Milwaukee Bucks
+Tyler,Herro,87,G,Milwaukee Bucks
+Caris,LeVert,76,G,Milwaukee Bucks
+Ryan,Rollins,81,G,Milwaukee Bucks
+Kam,Jones,73,G,Milwaukee Bucks
+AJ,Green,78,G,Milwaukee Bucks
+Kasparas,Jakucionis,75,G,Milwaukee Bucks
+Cormac,Ryan,70,G,Milwaukee Bucks
+Nate,Ament,75,F,Milwaukee Bucks
+Kyle,Kuzma,80,F,Milwaukee Bucks
+Ousmane,Dieng,75,F,Milwaukee Bucks
+Bogoljub,Markovic,74,F,Milwaukee Bucks
+Jaime,Jaquez Jr.,80,F,Milwaukee Bucks
+Pete,Nance,71,F,Milwaukee Bucks
+Jericho,Sims,72,C,Milwaukee Bucks
+Myles,Turner,84,C,Milwaukee Bucks
+Kel'el,Ware,82,C,Milwaukee Bucks
+Donte,DiVincenzo,81,G,Minnesota Timberwolves
+LaMelo,Ball,87,G,Minnesota Timberwolves
+Terrence,Shannon Jr.,76,G,Minnesota Timberwolves
+Anthony,Edwards,94,G,Minnesota Timberwolves
+Jaylen,Clark,74,G,Minnesota Timberwolves
+Bones,Hyland,76,G,Minnesota Timberwolves
+Ayo,Dosunmu,80,G,Minnesota Timberwolves
+Zyon,Pullin,70,G,Minnesota Timberwolves
+Jaden,McDaniels,84,F,Minnesota Timberwolves
+Cody,Williams,75,F,Minnesota Timberwolves
+Joan,Beringer,74,F,Minnesota Timberwolves
+Jonathan,Kuminga,83,F,Minnesota Timberwolves
+Enrique,Freeman,70,F,Minnesota Timberwolves
+Isaiah,Evans,73,F,Minnesota Timberwolves
+Trey,Lyles,75,F,Minnesota Timberwolves
+Rudy,Gobert,85,C,Minnesota Timberwolves
+Rocco,Zikarsky,71,C,Minnesota Timberwolves
+Jeremiah,Fears,79,G,New Orleans Pelicans
+Jordan,Poole,81,G,New Orleans Pelicans
+Dejounte,Murray,83,G,New Orleans Pelicans
+Jaron,Pierre Jr.,70,G,New Orleans Pelicans
+Bryce,McGowens,73,G,New Orleans Pelicans
+AJ,Johnson,73,G,New Orleans Pelicans
+Bennedict,Mathurin,83,G,New Orleans Pelicans
+Saddiq,Bey,79,G,New Orleans Pelicans
+Zion,Williamson,87,F,New Orleans Pelicans
+Herbert,Jones,82,F,New Orleans Pelicans
+Malik,Dia,72,F,New Orleans Pelicans
+Trendon,Watford,75,F,New Orleans Pelicans
+Julian,Reese,72,F,New Orleans Pelicans
+Karlo,Matkovic,74,F,New Orleans Pelicans
+Trey,Murphy III,86,F,New Orleans Pelicans
+DeAndre,Jordan,71,C,New Orleans Pelicans
+Yves,Missi,77,C,New Orleans Pelicans
+Derik,Queen,79,C,New Orleans Pelicans
+Jordan,Clarkson,77,G,New York Knicks
+Miles,McBride,80,G,New York Knicks
+Josh,Hart,83,G,New York Knicks
+Jose,Alvarado,77,G,New York Knicks
+Jalen,Brunson,92,G,New York Knicks
+Tyler,Kolek,74,G,New York Knicks
+Jaden,Akins,70,G,New York Knicks
+Mikal,Bridges,85,G,New York Knicks
+Landry,Shamet,75,G,New York Knicks
+Pacome,Dadiet,72,F,New York Knicks
+OG,Anunoby,86,F,New York Knicks
+Mohamed,Diawara,73,F,New York Knicks
+Tyler,Nickel,70,F,New York Knicks
+Dalton,Knecht,76,F,New York Knicks
+Andre,Drummond,74,C,New York Knicks
+Karl-Anthony,Towns,89,C,New York Knicks
+James,Wiseman,71,C,New York Knicks
+Shai,Gilgeous-Alexander,98,G,Oklahoma City Thunder
+Jared,McCain,80,G,Oklahoma City Thunder
+Jalen,Williams,90,G,Oklahoma City Thunder
+Alex,Caruso,81,G,Oklahoma City Thunder
+Bennett,Stirtz,73,G,Oklahoma City Thunder
+Josh,Dix,71,G,Oklahoma City Thunder
+Cason,Wallace,82,G,Oklahoma City Thunder
+Ajay,Mitchell,82,G,Oklahoma City Thunder
+Ochai,Agbaji,75,G,Oklahoma City Thunder
+Kenrich,Williams,75,G,Oklahoma City Thunder
+Nikola,Topic,74,G,Oklahoma City Thunder
+Micah,Peavy,71,G,Oklahoma City Thunder
+Jaylin,Williams,77,F,Oklahoma City Thunder
+Brooks,Barnhizer,70,F,Oklahoma City Thunder
+Chet,Holmgren,89,C,Oklahoma City Thunder
+Thomas,Sorber,74,C,Oklahoma City Thunder
+Aday,Mara,72,C,Oklahoma City Thunder
+Isaiah,Hartenstein,83,C,Oklahoma City Thunder
+Anthony,Black,80,G,Orlando Magic
+Jevon,Carter,73,G,Orlando Magic
+Desmond,Bane,86,G,Orlando Magic
+Jalen,Suggs,85,G,Orlando Magic
+Jase,Richardson,74,G,Orlando Magic
+Alex,Morales,70,G,Orlando Magic
+Jonathan,Isaac,76,F,Orlando Magic
+Paolo,Banchero,89,F,Orlando Magic
+Jamal,Cain,71,F,Orlando Magic
+Franz,Wagner,88,F,Orlando Magic
+Tristan,da Silva,77,F,Orlando Magic
+Izaiyah,Nelson,72,F,Orlando Magic
+Noah,Penda,73,F,Orlando Magic
+Nikola,Vucevic,81,C,Orlando Magic
+Colin,Castleton,70,C,Orlando Magic
+Wendell,Carter Jr.,80,C,Orlando Magic
+Goga,Bitadze,77,C,Orlando Magic
+Tyrese,Maxey,92,G,Philadelphia 76ers
+Labaron,Philon Jr.,74,G,Philadelphia 76ers
+Kentavious,Caldwell-Pope,77,G,Philadelphia 76ers
+Anfernee,Simons,82,G,Philadelphia 76ers
+Jaylen,Brown,91,G,Philadelphia 76ers
+Caleb,Love,72,G,Philadelphia 76ers
+Rayan,Rupert,73,G,Philadelphia 76ers
+VJ,Edgecombe,83,G,Philadelphia 76ers
+Justin,Edwards,75,F,Philadelphia 76ers
+LeBron,James,88,F,Philadelphia 76ers
+Dominick,Barlow,73,F,Philadelphia 76ers
+Jabari,Walker,74,F,Philadelphia 76ers
+Dean,Wade,74,F,Philadelphia 76ers
+Joel,Embiid,89,C,Philadelphia 76ers
+Adem,Bona,75,C,Philadelphia 76ers
+Ariel,Hukporti,71,C,Philadelphia 76ers
+Tacko,Fall,69,C,Philadelphia 76ers
+Jalen,Green,84,G,Phoenix Suns
+Luke,Kennard,77,G,Phoenix Suns
+Collin,Gillespie,79,G,Phoenix Suns
+Devin,Booker,91,G,Phoenix Suns
+Jamaree,Bouyea,72,G,Phoenix Suns
+Jordan,Goodwin,75,G,Phoenix Suns
+Pat,Spencer,71,G,Phoenix Suns
+Ryan,Dunn,77,F,Phoenix Suns
+Dillon,Brooks,82,F,Phoenix Suns
+Oso,Ighodaro,75,F,Phoenix Suns
+Koa,Peat,74,F,Phoenix Suns
+Rasheer,Fleming,73,F,Phoenix Suns
+Miles,Bridges,82,F,Phoenix Suns
+Drew,Timme,71,F,Phoenix Suns
+Khaman,Maluach,75,C,Phoenix Suns
+Mark,Williams,80,C,Phoenix Suns
+Duop,Reath,71,C,Phoenix Suns
+Scoot,Henderson,80,G,Portland Trail Blazers
+Damian,Lillard,84,G,Portland Trail Blazers
+Ja,Morant,87,G,Portland Trail Blazers
+Jrue,Holiday,82,G,Portland Trail Blazers
+Chris,Youngblood,70,G,Portland Trail Blazers
+Shaedon,Sharpe,84,G,Portland Trail Blazers
+Vit,Krejci,76,G,Portland Trail Blazers
+Jayson,Kent,70,G,Portland Trail Blazers
+Sidy,Cissoko,74,G,Portland Trail Blazers
+John,Tonje,71,F,Portland Trail Blazers
+Deni,Avdija,89,F,Portland Trail Blazers
+Toumani,Camara,82,F,Portland Trail Blazers
+Micah,Potter,70,C,Portland Trail Blazers
+Branden,Carlson,71,C,Portland Trail Blazers
+Yang,Hansen,74,C,Portland Trail Blazers
+Donovan,Clingan,83,C,Portland Trail Blazers
+Robert,Williams III,76,C,Portland Trail Blazers
+Malik,Monk,80,G,Sacramento Kings
+Sean,Pedulla,71,G,Sacramento Kings
+Darius,Acuff Jr.,75,G,Sacramento Kings
+Zach,LaVine,85,G,Sacramento Kings
+Nique,Clifford,75,G,Sacramento Kings
+Ben,Simmons,72,G,Sacramento Kings
+Daeqwon,Plowden,70,G,Sacramento Kings
+Emanuel,Sharp,70,G,Sacramento Kings
+Precious,Achiuwa,75,F,Sacramento Kings
+Domantas,Sabonis,87,F,Sacramento Kings
+Keegan,Murray,83,F,Sacramento Kings
+De'Andre,Hunter,79,F,Sacramento Kings
+Leaky,Black,70,F,Sacramento Kings
+Jonathan,Mogbo,72,F,Sacramento Kings
+Alex,Karaban,73,F,Sacramento Kings
+Dylan,Cardwell,72,C,Sacramento Kings
+Maxime,Raynaud,77,C,Sacramento Kings
+Jordan,McLaughlin,72,G,San Antonio Spurs
+Dylan,Harper,83,G,San Antonio Spurs
+De'Aaron,Fox,87,G,San Antonio Spurs
+Stephon,Castle,85,G,San Antonio Spurs
+Ja'Kobi,Gillespie,72,G,San Antonio Spurs
+Devin,Vassell,82,G,San Antonio Spurs
+Victor,Wembanyama,96,F,San Antonio Spurs
+Keldon,Johnson,81,F,San Antonio Spurs
+Carter,Bryant,75,F,San Antonio Spurs
+Maliq,Brown,70,F,San Antonio Spurs
+Jayden,Quaintance,74,F,San Antonio Spurs
+Tobias,Harris,79,F,San Antonio Spurs
+David,Jones Garcia,71,F,San Antonio Spurs
+Julian,Champagnie,79,F,San Antonio Spurs
+Harrison,Barnes,79,F,San Antonio Spurs
+Luke,Kornet,77,C,San Antonio Spurs
+Tarris,Reed Jr.,73,C,San Antonio Spurs
+Immanuel,Quickley,83,G,Toronto Raptors
+Jaden,Bradley,71,G,Toronto Raptors
+Ja'Kobe,Walter,76,G,Toronto Raptors
+Malachi,Smith,70,G,Toronto Raptors
+Jamal,Shead,77,G,Toronto Raptors
+Alijah,Martin,72,G,Toronto Raptors
+Kawhi,Leonard,90,F,Toronto Raptors
+Scottie,Barnes,89,F,Toronto Raptors
+RJ,Barrett,84,F,Toronto Raptors
+Kyle,Anderson,75,F,Toronto Raptors
+Allen,Graves,73,F,Toronto Raptors
+Collin,Murray-Boyles,79,F,Toronto Raptors
+Trayce,Jackson-Davis,75,F,Toronto Raptors
+Jamison,Battle,74,F,Toronto Raptors
+Jakob,Poeltl,82,C,Toronto Raptors
+Nate,Bittle,71,C,Toronto Raptors
+Keyonte,George,85,G,Utah Jazz
+Josh,Green,74,G,Utah Jazz
+Isaiah,Collier,76,G,Utah Jazz
+Svi,Mykhailiuk,75,G,Utah Jazz
+Trey,Alexander,71,G,Utah Jazz
+Ace,Bailey,80,G,Utah Jazz
+Josh,Okogie,74,G,Utah Jazz
+Darryn,Peterson,79,G,Utah Jazz
+Harrison,Ingram,70,F,Utah Jazz
+Kyle,Filipowski,77,F,Utah Jazz
+Jaren,Jackson Jr.,89,F,Utah Jazz
+Lauri,Markkanen,88,F,Utah Jazz
+Blake,Hinson,71,F,Utah Jazz
+Brice,Sensabaugh,77,F,Utah Jazz
+Jaxson,Hayes,74,C,Utah Jazz
+Tony,Bradley,70,C,Utah Jazz
+Jusuf,Nurkic,77,C,Utah Jazz
+Mo,Bamba,71,C,Utah Jazz
+Bilal,Coulibaly,79,G,Washington Wizards
+Tre,Mann,74,G,Washington Wizards
+Trae,Young,88,G,Washington Wizards
+Jamir,Watkins,73,G,Washington Wizards
+Bub,Carrington,76,G,Washington Wizards
+Tre,Johnson,76,G,Washington Wizards
+Reece,Beekman,70,G,Washington Wizards
+Will,Riley,75,G,Washington Wizards
+Tristan,Vukcevic,74,F,Washington Wizards
+AJ,Dybantsa,79,F,Washington Wizards
+Justin,Champagnie,75,F,Washington Wizards
+Anthony,Gill,70,F,Washington Wizards
+Kyshawn,George,78,F,Washington Wizards
+Khris,Middleton,78,F,Washington Wizards
+Anthony,Davis,89,F,Washington Wizards
+Felix,Okpara,70,F,Washington Wizards
+Deandre,Ayton,79,C,Washington Wizards
+Alex,Sarr,82,C,Washington Wizards

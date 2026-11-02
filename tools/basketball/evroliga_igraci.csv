@@ -1,0 +1,300 @@
+﻿ime,prezime,rejting,pozicija,klub
+Mike,James,87,PG,Anadolu Efes
+Matthew,Strazel,80,PG,Anadolu Efes
+Ruzgar,Fenemen,69,PG,Anadolu Efes
+P.J.,Dozier,79,SG,Anadolu Efes
+Jordan,Loyd,84,SG,Anadolu Efes
+David,Mutaf,70,SG,Anadolu Efes
+Collin,Malcolm,75,SF,Anadolu Efes
+Isaia,Cordinier,84,SF,Anadolu Efes
+Santi,Yusta,76,SF,Anadolu Efes
+Erkan,Yilmaz,70,SF,Anadolu Efes
+Burakcan,Yildizli,69,SF,Anadolu Efes
+Dario,Saric,86,PF,Anadolu Efes
+Ercan,Osmani,78,PF,Anadolu Efes
+Bruno,Fernando,81,C,Anadolu Efes
+Kai,Jones,79,C,Anadolu Efes
+Georgios,Papagiannis,82,C,Anadolu Efes
+Brice,Dessert,77,C,Anadolu Efes
+Kobi,Simmons,79,PG,Baskonia
+Matteo,Spagnolo,80,PG,Baskonia
+Damion,Baugh,79,PG,Baskonia
+Markus,Howard,86,SG,Baskonia
+Chris,Duarte,81,SG,Baskonia
+DJ,Stewart,76,SF,Baskonia
+AJ,Lawson,77,SF,Baskonia
+Rodions,Kurucs,76,SF,Baskonia
+Stefan,Joksimovic,71,SF,Baskonia
+Tadas,Sedekerskis,82,PF,Baskonia
+Clement,Frisch,74,PF,Baskonia
+Khalifa,Diop,78,C,Baskonia
+Devon,Dotson,82,PG,Besiktas
+Berk,Ugurlu,74,PG,Besiktas
+David,DeJulius,78,PG,Besiktas
+Jaylen,Nowell,80,SG,Besiktas
+Scottie,Wilbekin,84,SG,Besiktas
+Furkan,Korkmaz,79,SF,Besiktas
+DaQuan,Jeffries,76,SF,Besiktas
+Anthony,Brown,76,SF,Besiktas
+Eugene,Omoruyi,80,PF,Besiktas
+Conor,Morgan,77,PF,Besiktas
+Metecan,Birsen,75,PF,Besiktas
+Wenyen,Gabriel,79,PF,Besiktas
+Mady,Sissoko,75,C,Besiktas
+Ante,Zizic,80,C,Besiktas
+Vitto,Brown,76,C,Besiktas
+Jared,Butler,81,PG,Crvena Zvezda
+Chris,Jones,79,PG,Crvena Zvezda
+Tyson,Carter,82,SG,Crvena Zvezda
+David,Kramer,75,SG,Crvena Zvezda
+Jovan,Bikic,70,SG,Crvena Zvezda
+Stefan,Miljenovic,76,SG,Crvena Zvezda
+Nikola,Djurisic,77,SF,Crvena Zvezda
+Ognjen,Dobric,80,SF,Crvena Zvezda
+Dejan,Davidovac,77,SF,Crvena Zvezda
+Patrick,Baldwin Jr.,77,SF,Crvena Zvezda
+Vojin,Medarevic,69,SF,Crvena Zvezda
+Aleksej,Nedeljkovic,70,SF,Crvena Zvezda
+Nikola,Kalinic,79,PF,Crvena Zvezda
+Jordan,Nwora,86,PF,Crvena Zvezda
+Semi,Ojeleye,80,PF,Crvena Zvezda
+Chima,Moneke,87,PF,Crvena Zvezda
+Ebuka,Izundu,80,C,Crvena Zvezda
+Johnathan,Motley,81,C,Crvena Zvezda
+Elie,Okobo,85,PG,Dubai Basketball
+Davion,Mintz,79,PG,Dubai Basketball
+McKinley,Wright IV,78,PG,Dubai Basketball
+Kosta,Kondic,70,PG,Dubai Basketball
+Klemen,Prepelic,79,SG,Dubai Basketball
+Dzanan,Musa,88,SG,Dubai Basketball
+Dwayne,Bacon,82,SF,Dubai Basketball
+Jaron,Blossomgame,78,SF,Dubai Basketball
+Justin,Anderson,77,SF,Dubai Basketball
+Awudu,Abass,76,SF,Dubai Basketball
+Nemanja,Dangubic,74,SF,Dubai Basketball
+Davis,Bertans,79,PF,Dubai Basketball
+Mamadi,Diakite,79,PF,Dubai Basketball
+Filip,Petrusev,87,PF,Dubai Basketball
+Tornike,Shengelia,86,PF,Dubai Basketball
+Mfiondu,Kabengele,80,C,Dubai Basketball
+Mouhammadou,Jaiteh,79,C,Dubai Basketball
+Kenan,Kamenjas,74,C,Dubai Basketball
+Darius,Thompson,82,PG,EA7 Emporio Armani Milan
+RJ,Cole,77,PG,EA7 Emporio Armani Milan
+Diego,Flaccadori,77,PG,EA7 Emporio Armani Milan
+Devon,Hall,80,SG,EA7 Emporio Armani Milan
+Leandro,Bolmaro,81,SG,EA7 Emporio Armani Milan
+Stefano,Tonut,76,SG,EA7 Emporio Armani Milan
+Marko,Guduric,83,SF,EA7 Emporio Armani Milan
+Nicola,Akele,74,SF,EA7 Emporio Armani Milan
+Alec,Peters,80,PF,EA7 Emporio Armani Milan
+Jason,Burnell,78,PF,EA7 Emporio Armani Milan
+Giampaolo,Ricci,74,PF,EA7 Emporio Armani Milan
+Moses,Wright,80,C,EA7 Emporio Armani Milan
+Devin,Booker,80,C,EA7 Emporio Armani Milan
+Ousmane,Diop,75,C,EA7 Emporio Armani Milan
+Justin,Robinson,78,PG,FC Barcelona
+Umoja,Gibson,78,PG,FC Barcelona
+Juan,Nunez,82,PG,FC Barcelona
+Tyrese,Martin,81,SG,FC Barcelona
+Kevin,Punter,88,SG,FC Barcelona
+Dario,Brizuela,80,SG,FC Barcelona
+Stanley,Umude,77,SG,FC Barcelona
+Agustin,Ubal,72,SG,FC Barcelona
+Tosan,Evbuomwan,78,SF,FC Barcelona
+Joel,Parra,79,SF,FC Barcelona
+Olivier,Nkamhoua,77,PF,FC Barcelona
+Olek,Balcerowski,80,C,FC Barcelona
+Josh,Nebo,83,C,FC Barcelona
+Kamar,Baldwin,78,PG,FC Bayern Munich
+Justus,Hollatz,73,PG,FC Bayern Munich
+Rokas,Jokubaitis,80,PG,FC Bayern Munich
+Andreas,Obst,83,SG,FC Bayern Munich
+Justinian,Jessup,74,SG,FC Bayern Munich
+Tobias,Jensen,70,SG,FC Bayern Munich
+Duane,Washington Jr.,79,SG,FC Bayern Munich
+Niels,Giffey,75,SF,FC Bayern Munich
+Kilian,Fischer,72,SF,FC Bayern Munich
+Vladimir,Lucic,79,SF,FC Bayern Munich
+Oscar,da Silva,80,PF,FC Bayern Munich
+Miles,Norris,74,PF,FC Bayern Munich
+Johannes,Voigtmann,78,C,FC Bayern Munich
+Johannes,Thiemann,72,C,FC Bayern Munich
+Austin,Wiley,79,C,FC Bayern Munich
+Wade,Baldwin IV,87,PG,Fenerbahce
+Trent,Forrest,79,PG,Fenerbahce
+Shane,Larkin,87,SG,Fenerbahce
+Melih,Mahmutoglu,77,SG,Fenerbahce
+Ignas,Sargiunas,73,SG,Fenerbahce
+Johnny,Juzang,76,SG,Fenerbahce
+Talen,Horton-Tucker,85,SG,Fenerbahce
+Onuralp,Bitim,77,SF,Fenerbahce
+Will,Clyburn,86,SF,Fenerbahce
+Shavon,Shields,83,SF,Fenerbahce
+Braxton,Key,78,PF,Fenerbahce
+Nicolo,Melli,82,PF,Fenerbahce
+Chris,Silva,80,C,Fenerbahce
+Sertac,Sanli,75,C,Fenerbahce
+Marcus,Bingham Jr.,76,C,Fenerbahce
+Yiftach,Ziv,75,PG,Hapoel Tel Aviv
+Tamir,Blatt,76,PG,Hapoel Tel Aviv
+Eugene,German,76,PG,Hapoel Tel Aviv
+Bar,Timor,71,PG,Hapoel Tel Aviv
+Tyler,Ennis,77,PG,Hapoel Tel Aviv
+Tomas,Satoransky,83,PG,Hapoel Tel Aviv
+Vasilije,Micic,88,PG,Hapoel Tel Aviv
+Khadeen,Carrington,78,PG,Hapoel Tel Aviv
+Guy,Palatin,72,SG,Hapoel Tel Aviv
+Antonio,Blakeney,80,SG,Hapoel Tel Aviv
+Elijah,Bryant,83,SG,Hapoel Tel Aviv
+Amir,Coffey,79,SG,Hapoel Tel Aviv
+Frederic,Bourdillon,70,SG,Hapoel Tel Aviv
+Jacob,Toppin,77,SF,Hapoel Tel Aviv
+Ishmail,Wainright,78,SF,Hapoel Tel Aviv
+Zach,LeDay,85,PF,Hapoel Tel Aviv
+Oz,Blayzer,73,PF,Hapoel Tel Aviv
+Tomer,Ginat,74,PF,Hapoel Tel Aviv
+Itay,Segev,72,C,Hapoel Tel Aviv
+Tai,Odiase,77,C,Hapoel Tel Aviv
+Daniel,Oturu,84,C,Hapoel Tel Aviv
+Patty,Mills,76,PG,LDLC ASVEL Villeurbanne
+Nick,Weiler-Babb,77,SG,LDLC ASVEL Villeurbanne
+Both,Gach,77,SF,LDLC ASVEL Villeurbanne
+Yves,Pons,76,SF,LDLC ASVEL Villeurbanne
+Mbaye,Ndiaye,72,PF,LDLC ASVEL Villeurbanne
+Bodian,Massa,76,C,LDLC ASVEL Villeurbanne
+Yam,Madar,80,PG,Maccabi Rapyd Tel Aviv
+Gabriel,Lundberg,77,PG,Maccabi Rapyd Tel Aviv
+Jimmy,Clark III,76,PG,Maccabi Rapyd Tel Aviv
+John,DiBartolomeo,77,PG,Maccabi Rapyd Tel Aviv
+Lonnie,Walker IV,85,SG,Maccabi Rapyd Tel Aviv
+Amit,Ebo,70,SG,Maccabi Rapyd Tel Aviv
+David,Efianayi,76,SG,Maccabi Rapyd Tel Aviv
+Bonzie,Colson,83,SF,Maccabi Rapyd Tel Aviv
+Oshae,Brissett,77,SF,Maccabi Rapyd Tel Aviv
+Gur,Lavi,70,SF,Maccabi Rapyd Tel Aviv
+Jaylen,Hoard,82,PF,Maccabi Rapyd Tel Aviv
+Will,Rayman,74,PF,Maccabi Rapyd Tel Aviv
+TJ,Leaf,76,PF,Maccabi Rapyd Tel Aviv
+Roman,Sorkin,79,PF,Maccabi Rapyd Tel Aviv
+Armando,Bacot,76,C,Maccabi Rapyd Tel Aviv
+Daniel,Theis,81,C,Maccabi Rapyd Tel Aviv
+Codi,Miller-McIntyre,82,PG,Olympiacos
+Cory,Joseph,77,PG,Olympiacos
+Thomas,Walkup,84,PG,Olympiacos
+Jean,Montero,83,PG,Olympiacos
+Evan,Fournier,86,SG,Olympiacos
+Giannoulis,Larentzakis,74,SG,Olympiacos
+Tyler,Dorsey,84,SG,Olympiacos
+Omiros,Netzipoglou,71,SF,Olympiacos
+Kostas,Papanikolaou,79,SF,Olympiacos
+Tyson,Ward,80,SF,Olympiacos
+Sasha,Vezenkov,93,PF,Olympiacos
+Nikola,Milutinov,85,C,Olympiacos
+Tyrique,Jones,77,C,Olympiacos
+Donta,Hall,79,C,Olympiacos
+Jerian,Grant,81,PG,Panathinaikos
+Sylvain,Francisco,86,PG,Panathinaikos
+Dimitris,Moraitis,73,PG,Panathinaikos
+Kostas,Sloukas,85,SG,Panathinaikos
+Kendrick,Nunn,91,SG,Panathinaikos
+Brancou,Badio,77,SG,Panathinaikos
+Panagiotis,Kalaitzakis,76,SG,Panathinaikos
+Nikos,Rogkavopoulos,76,SF,Panathinaikos
+Isaac,Bonga,78,SF,Panathinaikos
+Juancho,Hernangomez,81,PF,Panathinaikos
+Konstantinos,Mitoglou,79,PF,Panathinaikos
+Nigel,Hayes-Davis,87,PF,Panathinaikos
+Guerschon,Yabusele,86,PF,Panathinaikos
+Eleftherios,Mantzoukas,71,PF,Panathinaikos
+Mathias,Lessort,88,C,Panathinaikos
+Moustapha,Fall,79,C,Panathinaikos
+Tyson,Etienne,80,PG,Paris Basketball
+Nadir,Hifi,89,SG,Paris Basketball
+Sebastian,Herrera,77,SG,Paris Basketball
+Jared,Rhoden,79,SG,Paris Basketball
+Leopold,Cavaliere,75,SF,Paris Basketball
+TJ,Warren,81,SF,Paris Basketball
+Terry,Tarpey,74,SF,Paris Basketball
+Jeremy,Morgan,77,SF,Paris Basketball
+Daulton,Hommes,78,SF,Paris Basketball
+Maozinha,Pereira,77,PF,Paris Basketball
+Alize,Johnson,77,PF,Paris Basketball
+Allan,Dokossi,74,C,Paris Basketball
+Carlik,Jones,85,PG,Partizan
+Alessandro,Pajola,78,PG,Partizan
+Luca,Vildoza,82,PG,Partizan
+Vanja,Marinkovic,80,SG,Partizan
+Uros,Mijailovic,71,SG,Partizan
+Kyle,Allman Jr.,78,SG,Partizan
+Mario,Nakic,78,SF,Partizan
+Mitar,Bosnjakovic,70,SF,Partizan
+Arijan,Lakic,72,SF,Partizan
+Lamar,Stevens,80,PF,Partizan
+Derek,Willis,78,PF,Partizan
+Jabari,Parker,83,PF,Partizan
+Nikola,Tanaskovic,71,PF,Partizan
+Kevarrius,Hayes,79,C,Partizan
+Tonye,Jekiri,78,C,Partizan
+Joffrey,Lauvergne,78,C,Partizan
+Facundo,Campazzo,90,PG,Real Madrid
+Andres,Feliz,82,PG,Real Madrid
+Theo,Maledon,82,PG,Real Madrid
+Sergio,Llull,80,SG,Real Madrid
+Gabriele,Procida,79,SG,Real Madrid
+Timothe,Luwawu-Cabarrot,80,SF,Real Madrid
+Alberto,Abalde,78,SF,Real Madrid
+Chuma,Okeke,79,PF,Real Madrid
+Gabriel,Deck,82,PF,Real Madrid
+Izan,Almansa,76,PF,Real Madrid
+Mikael,Jantunen,77,PF,Real Madrid
+Jaime,Pradilla,76,PF,Real Madrid
+Usman,Garuba,81,C,Real Madrid
+Edy,Tavares,90,C,Real Madrid
+TJ,Shorts,87,PG,Valencia Basket
+Mario,Saint-Supery,76,PG,Valencia Basket
+Alvaro,Cardenas,72,PG,Valencia Basket
+Lucas,Mari,70,PG,Valencia Basket
+Omari,Moore,81,SG,Valencia Basket
+Gonzalo,Corbalan,70,SG,Valencia Basket
+Armoni,Brooks,79,SG,Valencia Basket
+Kameron,Taylor,81,SF,Valencia Basket
+Josep,Puerto,76,SF,Valencia Basket
+Nathan,Reuvers,79,PF,Valencia Basket
+Dylan,Osetkowski,80,PF,Valencia Basket
+Mouhamadou,Gueye,72,PF,Valencia Basket
+Neal,Sako,79,C,Valencia Basket
+Yankuba,Sima,78,C,Valencia Basket
+Jorge,Carot,70,C,Valencia Basket
+Tommaso,Baldasso,72,PG,Virtus Bologna
+Daniel,Hackett,77,PG,Virtus Bologna
+Rasheed,Bello,75,PG,Virtus Bologna
+Marcus,Carr,77,PG,Virtus Bologna
+Trent,Frazier,77,PG,Virtus Bologna
+Matteo,Baiocchi,69,SG,Virtus Bologna
+Davide,Casarin,72,SG,Virtus Bologna
+Wendell,Moore Jr.,76,SG,Virtus Bologna
+Abramo,Canka,72,SF,Virtus Bologna
+Francesco,Ferrari,71,SF,Virtus Bologna
+Kessler,Edwards,77,SF,Virtus Bologna
+Derrick,Alston Jr.,78,PF,Virtus Bologna
+Alen,Smailagic,78,PF,Virtus Bologna
+Bobi,Klintman,76,PF,Virtus Bologna
+Mouhamet,Diouf,77,C,Virtus Bologna
+Aliou,Diarra,77,C,Virtus Bologna
+Kevin,Kokila,70,C,Virtus Bologna
+Saben,Lee,81,PG,Zalgiris Kaunas
+Maodo,Lo,80,PG,Zalgiris Kaunas
+Dovydas,Giedraitis,76,PG,Zalgiris Kaunas
+Carsen,Edwards,86,SG,Zalgiris Kaunas
+Nigel,Williams-Goss,82,SG,Zalgiris Kaunas
+Deividas,Sirvydis,78,SG,Zalgiris Kaunas
+Sterling,Brown,77,SF,Zalgiris Kaunas
+Marius,Grigonis,78,SF,Zalgiris Kaunas
+Arnas,Butkevicius,74,SF,Zalgiris Kaunas
+Edgaras,Ulanovas,77,PF,Zalgiris Kaunas
+Dustin,Sleva,76,PF,Zalgiris Kaunas
+Azuolas,Tubelis,79,PF,Zalgiris Kaunas
+Marek,Blazevic,77,C,Zalgiris Kaunas
+Jonas,Valanciunas,89,C,Zalgiris Kaunas
+Kaodirichi,Akobundu-Ehiogu,75,C,Zalgiris Kaunas
