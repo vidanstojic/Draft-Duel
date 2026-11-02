@@ -13,9 +13,10 @@ import kotlin.random.Random
 /**
  * Packs shipped inside the app (composeResources/files/packs).
  *
- * Football comes from the rating database (`tools/export_pack.py`); movies and food are written
- * by hand. Basketball has no pack file yet, so it stays the sample. A missing or broken file
- * leaves that theme on its sample pack (or "coming soon"), so the app still opens.
+ * Football comes from the rating database (`tools/export_pack.py`), basketball from the NBA and
+ * EuroLeague tables (`tools/build_basketball_pack.py`); movies and food are written by hand. A
+ * missing or broken file leaves that theme on its sample pack (or "coming soon"), so the app
+ * still opens.
  */
 class BundledPackRepository(
     private val random: Random = Random.Default,
@@ -45,11 +46,13 @@ class BundledPackRepository(
 
     companion object {
         const val FOOTBALL_PATH = "files/packs/football.json"
+        const val BASKETBALL_PATH = "files/packs/basketball.json"
         const val MOVIES_PATH = "files/packs/movies.json"
         const val FOOD_PATH = "files/packs/food.json"
 
         private val FILES = listOf(
             Theme.FOOTBALL to FOOTBALL_PATH,
+            Theme.BASKETBALL to BASKETBALL_PATH,
             Theme.MOVIES to MOVIES_PATH,
             Theme.FOOD to FOOD_PATH,
         )

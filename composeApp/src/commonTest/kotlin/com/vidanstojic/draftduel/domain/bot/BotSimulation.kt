@@ -34,6 +34,34 @@ internal object SimPacks {
         ),
     )
 
+    /** Basketball v1, NBA category: 50 players, 6 stars / 16 strong / 28 solid. */
+    val nba: ThemePack = ratingPack(
+        Theme.BASKETBALL,
+        id = "sim-nba",
+        entries = listOf(
+            98 to "C", 98 to "G", 97 to "G", 96 to "F", 96 to "F", 92 to "G", 89 to "F", 89 to "C", 88 to "G",
+            88 to "F", 88 to "G", 87 to "G", 87 to "G", 87 to "F", 86 to "G", 86 to "F", 84 to "G", 84 to "G",
+            84 to "C", 84 to "F", 82 to "F", 81 to "C", 79 to "F", 79 to "C", 79 to "C", 79 to "G", 79 to "F",
+            79 to "G", 79 to "G", 79 to "F", 79 to "C", 79 to "F", 78 to "G", 78 to "G", 78 to "G", 77 to "G",
+            77 to "G", 77 to "C", 77 to "C", 76 to "G", 76 to "C", 76 to "G", 76 to "G", 75 to "F", 74 to "C",
+            74 to "F", 72 to "G", 71 to "C", 70 to "G", 69 to "C",
+        ),
+    )
+
+    /** Basketball v1, EuroLeague category: 50 players on its own scale (4 / 18 / 28). */
+    val euroleague: ThemePack = ratingPack(
+        Theme.BASKETBALL,
+        id = "sim-euroleague",
+        entries = listOf(
+            93 to "F", 91 to "G", 90 to "C", 90 to "G", 89 to "C", 89 to "G", 88 to "G", 88 to "G", 88 to "C",
+            88 to "G", 87 to "F", 87 to "F", 87 to "G", 87 to "F", 87 to "G", 87 to "G", 86 to "G", 86 to "F",
+            85 to "G", 83 to "F", 82 to "G", 80 to "G", 79 to "F", 79 to "G", 79 to "F", 79 to "G", 79 to "C",
+            79 to "C", 79 to "F", 79 to "F", 79 to "F", 78 to "F", 78 to "G", 78 to "C", 78 to "C", 78 to "F",
+            78 to "F", 78 to "C", 77 to "G", 77 to "F", 77 to "F", 77 to "F", 77 to "F", 76 to "G", 76 to "F",
+            76 to "G", 75 to "F", 74 to "F", 71 to "G", 70 to "F",
+        ),
+    )
+
     /** Movies v1: 60 films, 6 stars / 18 strong / 36 solid. */
     val movies: ThemePack = ratingPack(
         Theme.MOVIES,
@@ -53,10 +81,10 @@ internal object SimPacks {
         ),
     )
 
-    val all: List<ThemePack> = listOf(football, movies, food)
+    val all: List<ThemePack> = listOf(football, nba, euroleague, movies, food)
 
-    private fun ratingPack(theme: Theme, entries: List<Pair<Int, String>>) = ThemePack(
-        id = "sim-${theme.name.lowercase()}",
+    private fun ratingPack(theme: Theme, entries: List<Pair<Int, String>>, id: String = "sim-${theme.name.lowercase()}") = ThemePack(
+        id = id,
         theme = theme,
         name = theme.name,
         version = 1,

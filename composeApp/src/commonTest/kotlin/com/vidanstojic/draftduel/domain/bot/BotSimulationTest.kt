@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 /**
- * Bot-vs-bot simulation on the football, movies and food packs (spec §17). Seeds are fixed, so
+ * Bot-vs-bot simulation on the football, basketball, movies and food packs (spec §17). Seeds are fixed, so
  * results are deterministic; the thresholds leave room for re-tuning without rewriting the test.
  */
 class BotSimulationTest {
@@ -89,7 +89,7 @@ class BotSimulationTest {
     fun fiveSlots_everyoneEndsWithFiveCards_andPaysForHandOvers() {
         val random = Random(11)
         val personalities = BotPersonality.entries
-        for (pack in listOf(SimPacks.football, SimPacks.movies)) {
+        for (pack in listOf(SimPacks.football, SimPacks.nba, SimPacks.euroleague, SimPacks.movies)) {
             repeat(240) { game ->
                 val a = personalities[game % personalities.size]
                 val b = personalities[(game / personalities.size) % personalities.size]
@@ -108,7 +108,7 @@ class BotSimulationTest {
 
     @Test
     fun fiveSlots_openerAdvantageAndTiers() {
-        for (pack in listOf(SimPacks.football, SimPacks.movies)) {
+        for (pack in listOf(SimPacks.football, SimPacks.nba, SimPacks.euroleague, SimPacks.movies)) {
             val random = Random(5)
             var openerPoints = 0.0
             repeat(600) {

@@ -50,12 +50,13 @@ composeApp/src/
 │       ├── components/        dugmad, kartice, avatar, gomila kartica, tajmer, kontrole licitiranja…
 │       └── screens/           home, category, matchmaking, invite, match, result, local
 ├── commonMain/composeResources/values/strings.xml   svi tekstovi (engleski)
-├── commonMain/composeResources/files/packs/         paketi koji idu uz aplikaciju (football.json)
+├── commonMain/composeResources/files/packs/         paketi koji idu uz aplikaciju (football, basketball, movies, food)
 ├── commonTest/                testovi pravila (spec §3), paketa i botova (simulacija spec §17)
 ├── androidMain/               MainActivity, Application, manifest, ikonica
 └── iosMain/                   MainViewController za Swift
 iosApp/                        Swift omotač + XcodeGen project.yml
 tools/export_pack.py           pravi football.json iz draft_duel.db
+tools/build_basketball_pack.py pravi basketball.json iz tools/basketball/*.csv (NBA i Evroliga)
 tools/validate_pack.py         proverava sve pakete (opseg ocena, kategorije, recepti = 100)
 ```
 
@@ -95,6 +96,21 @@ python tools/export_pack.py C:/Users/<ti>/Desktop/data/v5/draft_duel.db
 ```
 
 Ako fajl nedostaje ili je neispravan, aplikacija koristi primer paket, pa se ne ruši.
+
+## Košarka
+
+`basketball.json`: 100 igrača u dve kategorije, **NBA** i **EuroLeague**, po 50. Ocene su u `tools/basketball/nba_igraci.csv`
+i `evroliga_igraci.csv` (svi igrači sa spiskova klubova), dodeljene ručno (spec §5: „autor, ručno“) na osnovu uloge i učinka
+u sezoni 2025/26, godina i povreda. Svaka liga ima svoju skalu (NBA 69–98, Evroliga 69–93).
+Paket bira poznata imena po grupama, balans po ligi: NBA 6 / 16 / 28, Evroliga 4 / 18 / 28 (ukupno 10 / 34 / 56 %).
+Na kartici su liga, pozicija (G/F/C) i sezona, bez klubova (spec §5). Broj na dresu je ukrasni, ne pravi.
+
+```
+python tools/build_basketball_pack.py          # posle izmene ocena ili izbora igrača (PICKS u skripti)
+```
+
+Botovi (300 partija po paru, podrazumevana pravila): Scout 69 / 72 %, Star chaser 65 / 56 %, Bargain 59 / 61 %,
+Steady 46 / 44 %, Hustler 35 / 38 %, Casual 29 / 30 % (NBA / Evroliga), kao na fudbalu.
 
 ## Filmovi
 
