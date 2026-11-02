@@ -1,5 +1,5 @@
 # Draft Duel
-
+                                     
 Brz 1v1 duel (3–5 min): dva igrača sa po 20 poena licitiraju za 10 kartica sportista, a pobeđuje veći zbir ocena.
 Jedan kod za Android i iOS: **Kotlin + Compose Multiplatform**.
 

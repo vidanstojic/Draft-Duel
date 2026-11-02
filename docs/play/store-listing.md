@@ -34,7 +34,7 @@ THEMES
 • Football: players from Europe's top five leagues.
 • Movies: 60 films across six genres.
 • Food: every match is one dish. Collect the ingredients that belong in it; the wrong ones cost you points.
-• Basketball: sample pack.
+• Basketball: 100 NBA and EuroLeague players.
 
 MODES
 • Play vs bot: six bots with different styles, from a gut-feeling fan to a scout who plans every bid. Works offline.
@@ -47,14 +47,14 @@ No accounts, no ads, no data collected.
 ## Release notes for 0.1.0 (1) (≤ 500 characters)
 
 ```
-First test build. Play vs bot (6 bots), same device (split screen or pass the phone), themes football, movies and food, Default / Classic / Custom rules. Online play with friends is not ready yet. Tell us what was confusing, what felt unfair and which bot was too easy or too hard.
+First test build. Play vs bot (6 bots), same device (split screen or pass the phone), themes football, basketball (NBA and EuroLeague), movies and food, Default / Classic / Custom rules. Online play with friends is not ready yet. Tell us what was confusing, what felt unfair and which bot was too easy or too hard.
 ```
 
 ## Graphics
 
 | Asset | File | Notes |
 |---|---|---|
-| App icon 512 × 512 | `icon-512.png` | Same chip as the launcher icon |
+| App icon 512 × 512 | `icon-512.png` | Two players with bidding paddles, the hidden card and the gavel |
 | Feature graphic 1024 × 500 | `feature-graphic-1024x500.png` | |
 | Phone screenshots (2–8) | take on the phone | Suggested: home, a football match, a food match with the dish on top, the final reveal, the Custom rules editor |
 
@@ -83,7 +83,7 @@ TEME
 • Fudbal: igrači iz pet najjačih evropskih liga.
 • Filmovi: 60 filmova iz šest žanrova.
 • Hrana: svaka partija je jedno jelo. Skupi sastojke koji mu pripadaju; pogrešni oduzimaju poene.
-• Košarka: probni paket.
+• Košarka: 100 igrača iz NBA i Evrolige.
 
 MODOVI
 • Igra protiv bota: šest botova različitog stila, od navijača koji licitira po osećaju do skauta koji planira svaku ponudu. Radi bez interneta.
