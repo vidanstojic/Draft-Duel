@@ -1,6 +1,6 @@
 {
   "id": "football-top5",
-  "version": 1,
+  "version": 2,
   "theme": "Football",
   "categories": [
     "England",
@@ -67,6 +67,126 @@
         "color": "#6C3483",
         "number": 10,
         "initials": "HÇ"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q19560313",
+      "name": "Dani Olmo",
+      "rating": 91,
+      "categories": [
+        "Spain"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 21,
+        "initials": "DO"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q20204829",
+      "name": "Federico Dimarco",
+      "rating": 91,
+      "categories": [
+        "Italy"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#117A65",
+        "number": 12,
+        "initials": "FD"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q96072055",
+      "name": "Jamal Musiala",
+      "rating": 91,
+      "categories": [
+        "Germany"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#117A65",
+        "number": 14,
+        "initials": "JM"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q13865408",
+      "name": "Joshua Kimmich",
+      "rating": 91,
+      "categories": [
+        "Germany"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#6C3483",
+        "number": 4,
+        "initials": "JK"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q19665907",
+      "name": "David Raya",
+      "rating": 90,
+      "categories": [
+        "England"
+      ],
+      "position": "GK",
+      "avatar": {
+        "color": "#6C3483",
+        "number": 23,
+        "initials": "DR"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q117312887",
+      "name": "Fermín López",
+      "rating": 90,
+      "categories": [
+        "Spain"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#C0392B",
+        "number": 14,
+        "initials": "FL"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q25175970",
+      "name": "Gabriel Magalhães",
+      "rating": 90,
+      "categories": [
+        "England"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#873600",
+        "number": 22,
+        "initials": "GM"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q29624459",
+      "name": "Scott McTominay",
+      "rating": 90,
+      "categories": [
+        "Italy"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#6C3483",
+        "number": 10,
+        "initials": "SM"
       },
       "season": "2025/26"
     },
@@ -176,6 +296,21 @@
       "season": "2025/26"
     },
     {
+      "id": "fb-Q20723878",
+      "name": "Dayot Upamecano",
+      "rating": 88,
+      "categories": [
+        "Germany"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#2471A3",
+        "number": 22,
+        "initials": "DU"
+      },
+      "season": "2025/26"
+    },
+    {
       "id": "fb-Q30007142",
       "name": "Declan Rice",
       "rating": 88,
@@ -202,6 +337,36 @@
         "color": "#212F3D",
         "number": 15,
         "initials": "DD"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q19509544",
+      "name": "Federico Valverde",
+      "rating": 88,
+      "categories": [
+        "Spain"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#7D3C98",
+        "number": 10,
+        "initials": "FV"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q94699949",
+      "name": "Florian Wirtz",
+      "rating": 88,
+      "categories": [
+        "England"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#283747",
+        "number": 18,
+        "initials": "FW"
       },
       "season": "2025/26"
     },
@@ -281,6 +446,96 @@
       "season": "2025/26"
     },
     {
+      "id": "fb-Q4979316",
+      "name": "Bruno Fernandes",
+      "rating": 87,
+      "categories": [
+        "England"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 14,
+        "initials": "BF"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q28861547",
+      "name": "Raphinha",
+      "rating": 87,
+      "categories": [
+        "Spain"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#1F618D",
+        "number": 7,
+        "initials": "R"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q73360",
+      "name": "Thibaut Courtois",
+      "rating": 87,
+      "categories": [
+        "Spain"
+      ],
+      "position": "GK",
+      "avatar": {
+        "color": "#117A65",
+        "number": 1,
+        "initials": "TC"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q28973866",
+      "name": "Vinícius Júnior",
+      "rating": 87,
+      "categories": [
+        "Spain"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#196F3D",
+        "number": 9,
+        "initials": "VJ"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q133903",
+      "name": "Virgil van Dijk",
+      "rating": 87,
+      "categories": [
+        "England"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#1E8449",
+        "number": 5,
+        "initials": "VD"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q28561068",
+      "name": "Alessandro Bastoni",
+      "rating": 86,
+      "categories": [
+        "Italy"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#A04000",
+        "number": 4,
+        "initials": "AB"
+      },
+      "season": "2025/26"
+    },
+    {
       "id": "fb-Q27476",
       "name": "Florian Thauvin",
       "rating": 86,
@@ -296,6 +551,81 @@
       "season": "2025/26"
     },
     {
+      "id": "fb-Q28531111",
+      "name": "Luis Díaz",
+      "rating": 86,
+      "categories": [
+        "Germany"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#283747",
+        "number": 29,
+        "initials": "LD"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q107365",
+      "name": "Manuel Neuer",
+      "rating": 86,
+      "categories": [
+        "Germany"
+      ],
+      "position": "GK",
+      "avatar": {
+        "color": "#7D3C98",
+        "number": 23,
+        "initials": "MN"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q1354960",
+      "name": "Mohamed Salah",
+      "rating": 86,
+      "categories": [
+        "England"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#9A7D0A",
+        "number": 7,
+        "initials": "MS"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q96396963",
+      "name": "Nuno Mendes",
+      "rating": 86,
+      "categories": [
+        "France"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 12,
+        "initials": "NM"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q66606355",
+      "name": "Pedri",
+      "rating": 86,
+      "categories": [
+        "Spain"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#7D3C98",
+        "number": 21,
+        "initials": "P"
+      },
+      "season": "2025/26"
+    },
+    {
       "id": "fb-Q66818509",
       "name": "Vitinha",
       "rating": 86,
@@ -307,6 +637,531 @@
         "color": "#212F3D",
         "number": 8,
         "initials": "V"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q62050484",
+      "name": "Michael Olise",
+      "rating": 85,
+      "categories": [
+        "Germany"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#873600",
+        "number": 11,
+        "initials": "MO"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q20851003",
+      "name": "Ousmane Dembélé",
+      "rating": 85,
+      "categories": [
+        "France"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#A04000",
+        "number": 7,
+        "initials": "OD"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q15406583",
+      "name": "Corentin Tolisso",
+      "rating": 84,
+      "categories": [
+        "France"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#C0392B",
+        "number": 16,
+        "initials": "CT"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q36184031",
+      "name": "Gregor Kobel",
+      "rating": 84,
+      "categories": [
+        "Germany"
+      ],
+      "position": "GK",
+      "avatar": {
+        "color": "#283747",
+        "number": 23,
+        "initials": "GK"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q3189078",
+      "name": "Julian Brandt",
+      "rating": 84,
+      "categories": [
+        "Germany"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#283747",
+        "number": 20,
+        "initials": "JB"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q113704154",
+      "name": "Lamine Yamal",
+      "rating": 84,
+      "categories": [
+        "Spain"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#7D3C98",
+        "number": 19,
+        "initials": "LY"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q19903718",
+      "name": "Marcus Thuram",
+      "rating": 84,
+      "categories": [
+        "Italy"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#2471A3",
+        "number": 10,
+        "initials": "MT"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q20090225",
+      "name": "Nicolò Barella",
+      "rating": 84,
+      "categories": [
+        "Italy"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#C0392B",
+        "number": 18,
+        "initials": "NB"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q23540953",
+      "name": "Alphonso Davies",
+      "rating": 83,
+      "categories": [
+        "Germany"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#C0392B",
+        "number": 4,
+        "initials": "AD"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q96755",
+      "name": "Antonio Rüdiger",
+      "rating": 83,
+      "categories": [
+        "Spain"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#1F618D",
+        "number": 6,
+        "initials": "AR"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q357984",
+      "name": "Kevin De Bruyne",
+      "rating": 83,
+      "categories": [
+        "Italy"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#196F3D",
+        "number": 14,
+        "initials": "KB"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q16902219",
+      "name": "Martin Ødegaard",
+      "rating": 83,
+      "categories": [
+        "England"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 8,
+        "initials": "MØ"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q61986758",
+      "name": "Mason Greenwood",
+      "rating": 83,
+      "categories": [
+        "France"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#7D3C98",
+        "number": 10,
+        "initials": "MG"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q17274709",
+      "name": "Mike Maignan",
+      "rating": 83,
+      "categories": [
+        "Italy"
+      ],
+      "position": "GK",
+      "avatar": {
+        "color": "#A04000",
+        "number": 13,
+        "initials": "MM"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q27569376",
+      "name": "Trent Alexander-Arnold",
+      "rating": 83,
+      "categories": [
+        "Spain"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#1E8449",
+        "number": 6,
+        "initials": "TA"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q111280241",
+      "name": "Warren Zaïre-Emery",
+      "rating": 83,
+      "categories": [
+        "France"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#922B21",
+        "number": 14,
+        "initials": "WE"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q23759917",
+      "name": "Alexander Isak",
+      "rating": 82,
+      "categories": [
+        "England"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#A04000",
+        "number": 11,
+        "initials": "AI"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q18237361",
+      "name": "Alisson Becker",
+      "rating": 82,
+      "categories": [
+        "England"
+      ],
+      "position": "GK",
+      "avatar": {
+        "color": "#7D3C98",
+        "number": 1,
+        "initials": "AB"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q99670930",
+      "name": "Bradley Barcola",
+      "rating": 82,
+      "categories": [
+        "France"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#922B21",
+        "number": 27,
+        "initials": "BB"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q21693199",
+      "name": "Christopher Nkunku",
+      "rating": 82,
+      "categories": [
+        "Italy"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#2471A3",
+        "number": 21,
+        "initials": "CN"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q99760796",
+      "name": "Cole Palmer",
+      "rating": 82,
+      "categories": [
+        "England"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#A04000",
+        "number": 17,
+        "initials": "CP"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q19898898",
+      "name": "Frenkie de Jong",
+      "rating": 82,
+      "categories": [
+        "Spain"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#6C3483",
+        "number": 8,
+        "initials": "FJ"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q66241169",
+      "name": "Jude Bellingham",
+      "rating": 82,
+      "categories": [
+        "Spain"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#9A7D0A",
+        "number": 7,
+        "initials": "JB"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q59381180",
+      "name": "Julián Alvarez",
+      "rating": 82,
+      "categories": [
+        "Spain"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#196F3D",
+        "number": 10,
+        "initials": "JA"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q39230",
+      "name": "Marquinhos",
+      "rating": 82,
+      "categories": [
+        "France"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#2471A3",
+        "number": 4,
+        "initials": "M"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q44977",
+      "name": "Pierre-Emerick Aubameyang",
+      "rating": 82,
+      "categories": [
+        "France"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#1F618D",
+        "number": 17,
+        "initials": "PA"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q23762815",
+      "name": "Dušan Vlahović",
+      "rating": 81,
+      "categories": [
+        "Italy"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#1E8449",
+        "number": 9,
+        "initials": "DV"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q483837",
+      "name": "Luka Modrić",
+      "rating": 81,
+      "categories": [
+        "Italy"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#A04000",
+        "number": 21,
+        "initials": "LM"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q100144350",
+      "name": "Nicolas Jackson",
+      "rating": 81,
+      "categories": [
+        "Germany"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#1F618D",
+        "number": 29,
+        "initials": "NJ"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q20994118",
+      "name": "Rodri",
+      "rating": 81,
+      "categories": [
+        "England"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#7D3C98",
+        "number": 18,
+        "initials": "R"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q59306386",
+      "name": "Bukayo Saka",
+      "rating": 80,
+      "categories": [
+        "England"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 10,
+        "initials": "BS"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q30729096",
+      "name": "Phil Foden",
+      "rating": 80,
+      "categories": [
+        "England"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 10,
+        "initials": "PF"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q313316",
+      "name": "Romelu Lukaku",
+      "rating": 80,
+      "categories": [
+        "Italy"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#117A65",
+        "number": 11,
+        "initials": "RL"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q18938815",
+      "name": "Adrien Thomasson",
+      "rating": 79,
+      "categories": [
+        "France"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#C0392B",
+        "number": 15,
+        "initials": "AT"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q15065431",
+      "name": "Aleksandr Golovin",
+      "rating": 79,
+      "categories": [
+        "France"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#A04000",
+        "number": 14,
+        "initials": "AG"
       },
       "season": "2025/26"
     },
@@ -341,6 +1196,81 @@
       "season": "2025/26"
     },
     {
+      "id": "fb-Q2876432",
+      "name": "Aïssa Mandi",
+      "rating": 79,
+      "categories": [
+        "France"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#9A7D0A",
+        "number": 2,
+        "initials": "AM"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q74548",
+      "name": "Chris Wood",
+      "rating": 79,
+      "categories": [
+        "England"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 9,
+        "initials": "CW"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q5241591",
+      "name": "Davide Zappacosta",
+      "rating": 79,
+      "categories": [
+        "Italy"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 3,
+        "initials": "DZ"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q27063854",
+      "name": "Ezri Konsa",
+      "rating": 79,
+      "categories": [
+        "England"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#A04000",
+        "number": 15,
+        "initials": "EK"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q60889488",
+      "name": "Felix Nmecha",
+      "rating": 79,
+      "categories": [
+        "Germany"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#7D3C98",
+        "number": 18,
+        "initials": "FN"
+      },
+      "season": "2025/26"
+    },
+    {
       "id": "fb-Q101035007",
       "name": "Folarin Balogun",
       "rating": 79,
@@ -352,6 +1282,21 @@
         "color": "#212F3D",
         "number": 11,
         "initials": "FB"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q98872225",
+      "name": "Fran García",
+      "rating": 79,
+      "categories": [
+        "Spain"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#117A65",
+        "number": 12,
+        "initials": "FG"
       },
       "season": "2025/26"
     },
@@ -371,6 +1316,96 @@
       "season": "2025/26"
     },
     {
+      "id": "fb-Q65159565",
+      "name": "Jorge de Frutos",
+      "rating": 79,
+      "categories": [
+        "Spain"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#1E8449",
+        "number": 14,
+        "initials": "JF"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q61780902",
+      "name": "Khvicha Kvaratskhelia",
+      "rating": 79,
+      "categories": [
+        "France"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#1F618D",
+        "number": 29,
+        "initials": "KK"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q16234741",
+      "name": "Lee Jae-sung",
+      "rating": 79,
+      "categories": [
+        "Germany"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#7D3C98",
+        "number": 20,
+        "initials": "LS"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q79058092",
+      "name": "Lucas Da Cunha",
+      "rating": 79,
+      "categories": [
+        "Italy"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#2471A3",
+        "number": 21,
+        "initials": "LC"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q23679804",
+      "name": "Mathías Olivera",
+      "rating": 79,
+      "categories": [
+        "Italy"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#A04000",
+        "number": 12,
+        "initials": "MO"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q23041943",
+      "name": "Matty Cash",
+      "rating": 79,
+      "categories": [
+        "England"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#C0392B",
+        "number": 2,
+        "initials": "MC"
+      },
+      "season": "2025/26"
+    },
+    {
       "id": "fb-Q80314837",
       "name": "Maximilian Beier",
       "rating": 79,
@@ -382,6 +1417,81 @@
         "color": "#6C3483",
         "number": 9,
         "initials": "MB"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q1755683",
+      "name": "Nathan Aké",
+      "rating": 79,
+      "categories": [
+        "England"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#A04000",
+        "number": 12,
+        "initials": "NA"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q11059683",
+      "name": "Pierre-Emile Højbjerg",
+      "rating": 79,
+      "categories": [
+        "France"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#6C3483",
+        "number": 8,
+        "initials": "PH"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q30055335",
+      "name": "Rafael Leão",
+      "rating": 79,
+      "categories": [
+        "Italy"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#A04000",
+        "number": 7,
+        "initials": "RL"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q122583363",
+      "name": "Raúl Asencio",
+      "rating": 79,
+      "categories": [
+        "Spain"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#0E6655",
+        "number": 15,
+        "initials": "RA"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q29950055",
+      "name": "Éder Militão",
+      "rating": 79,
+      "categories": [
+        "Spain"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#196F3D",
+        "number": 15,
+        "initials": "ÉM"
       },
       "season": "2025/26"
     },
@@ -431,6 +1541,36 @@
       "season": "2025/26"
     },
     {
+      "id": "fb-Q2036160",
+      "name": "Thomas Meunier",
+      "rating": 78,
+      "categories": [
+        "France"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#1F618D",
+        "number": 5,
+        "initials": "TM"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q110001765",
+      "name": "Álvaro Carreras",
+      "rating": 78,
+      "categories": [
+        "Spain"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 5,
+        "initials": "ÁC"
+      },
+      "season": "2025/26"
+    },
+    {
       "id": "fb-Q28540571",
       "name": "David Raum",
       "rating": 77,
@@ -442,6 +1582,36 @@
         "color": "#196F3D",
         "number": 16,
         "initials": "DR"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q713627",
+      "name": "Lukas Hradecky",
+      "rating": 77,
+      "categories": [
+        "France"
+      ],
+      "position": "GK",
+      "avatar": {
+        "color": "#6C3483",
+        "number": 23,
+        "initials": "LH"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q1911",
+      "name": "Olivier Giroud",
+      "rating": 77,
+      "categories": [
+        "France"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 17,
+        "initials": "OG"
       },
       "season": "2025/26"
     },
@@ -461,6 +1631,51 @@
       "season": "2025/26"
     },
     {
+      "id": "fb-Q23908113",
+      "name": "Unai Simón",
+      "rating": 77,
+      "categories": [
+        "Spain"
+      ],
+      "position": "GK",
+      "avatar": {
+        "color": "#873600",
+        "number": 1,
+        "initials": "US"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q21622039",
+      "name": "Alex Meret",
+      "rating": 76,
+      "categories": [
+        "Italy"
+      ],
+      "position": "GK",
+      "avatar": {
+        "color": "#2471A3",
+        "number": 30,
+        "initials": "AM"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q112170256",
+      "name": "Désiré Doué",
+      "rating": 76,
+      "categories": [
+        "France"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 10,
+        "initials": "DD"
+      },
+      "season": "2025/26"
+    },
+    {
       "id": "fb-Q108111889",
       "name": "Gavi",
       "rating": 76,
@@ -472,6 +1687,21 @@
         "color": "#A04000",
         "number": 20,
         "initials": "G"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q112813857",
+      "name": "Jarell Quansah",
+      "rating": 76,
+      "categories": [
+        "Germany"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#7D3C98",
+        "number": 22,
+        "initials": "JQ"
       },
       "season": "2025/26"
     },
@@ -551,6 +1781,21 @@
       "season": "2025/26"
     },
     {
+      "id": "fb-Q17517223",
+      "name": "Vanja Milinković-Savić",
+      "rating": 76,
+      "categories": [
+        "Italy"
+      ],
+      "position": "GK",
+      "avatar": {
+        "color": "#117A65",
+        "number": 13,
+        "initials": "VS"
+      },
+      "season": "2025/26"
+    },
+    {
       "id": "fb-Q97059010",
       "name": "Calvin Bassey",
       "rating": 75,
@@ -581,6 +1826,21 @@
       "season": "2025/26"
     },
     {
+      "id": "fb-Q17602824",
+      "name": "Kevin Diks",
+      "rating": 75,
+      "categories": [
+        "Germany"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#117A65",
+        "number": 22,
+        "initials": "KD"
+      },
+      "season": "2025/26"
+    },
+    {
       "id": "fb-Q5981954",
       "name": "Lucas Vázquez",
       "rating": 75,
@@ -596,6 +1856,36 @@
       "season": "2025/26"
     },
     {
+      "id": "fb-Q113515002",
+      "name": "Mike Penders",
+      "rating": 75,
+      "categories": [
+        "France"
+      ],
+      "position": "GK",
+      "avatar": {
+        "color": "#873600",
+        "number": 30,
+        "initials": "MP"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q53280628",
+      "name": "Ozan Kabak",
+      "rating": 75,
+      "categories": [
+        "Germany"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#A04000",
+        "number": 5,
+        "initials": "OK"
+      },
+      "season": "2025/26"
+    },
+    {
       "id": "fb-Q59914100",
       "name": "Raoul Bellanova",
       "rating": 75,
@@ -607,6 +1897,21 @@
         "color": "#1F618D",
         "number": 6,
         "initials": "RB"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q27077869",
+      "name": "Robin Koch",
+      "rating": 75,
+      "categories": [
+        "Germany"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#6C3483",
+        "number": 3,
+        "initials": "RK"
       },
       "season": "2025/26"
     },
@@ -641,6 +1946,21 @@
       "season": "2025/26"
     },
     {
+      "id": "fb-Q19956709",
+      "name": "Dominic Calvert-Lewin",
+      "rating": 74,
+      "categories": [
+        "England"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#283747",
+        "number": 9,
+        "initials": "DL"
+      },
+      "season": "2025/26"
+    },
+    {
       "id": "fb-Q24254392",
       "name": "Dominik Greif",
       "rating": 74,
@@ -652,6 +1972,21 @@
         "color": "#873600",
         "number": 23,
         "initials": "DG"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q109184766",
+      "name": "Giorgio Scalvini",
+      "rating": 74,
+      "categories": [
+        "Italy"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#1E8449",
+        "number": 22,
+        "initials": "GS"
       },
       "season": "2025/26"
     },
@@ -716,6 +2051,21 @@
       "season": "2025/26"
     },
     {
+      "id": "fb-Q15627817",
+      "name": "Brice Samba",
+      "rating": 73,
+      "categories": [
+        "France"
+      ],
+      "position": "GK",
+      "avatar": {
+        "color": "#117A65",
+        "number": 1,
+        "initials": "BS"
+      },
+      "season": "2025/26"
+    },
+    {
       "id": "fb-Q16382834",
       "name": "Federico Bonazzoli",
       "rating": 73,
@@ -746,6 +2096,36 @@
       "season": "2025/26"
     },
     {
+      "id": "fb-Q20078774",
+      "name": "Philipp Lienhart",
+      "rating": 73,
+      "categories": [
+        "Germany"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#922B21",
+        "number": 3,
+        "initials": "PL"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q46679",
+      "name": "Idrissa Gueye",
+      "rating": 72,
+      "categories": [
+        "England"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#283747",
+        "number": 8,
+        "initials": "IG"
+      },
+      "season": "2025/26"
+    },
+    {
       "id": "fb-Q100386793",
       "name": "Aitor Paredes",
       "rating": 71,
@@ -757,6 +2137,126 @@
         "color": "#6C3483",
         "number": 2,
         "initials": "AP"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q6439494",
+      "name": "Giovanni Simeone",
+      "rating": 71,
+      "categories": [
+        "Italy"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#1F618D",
+        "number": 11,
+        "initials": "GS"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q106694910",
+      "name": "Beñat Prados",
+      "rating": 70,
+      "categories": [
+        "Spain"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#0E6655",
+        "number": 14,
+        "initials": "BP"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q129109",
+      "name": "Matthias Ginter",
+      "rating": 70,
+      "categories": [
+        "Germany"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#A04000",
+        "number": 6,
+        "initials": "MG"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q135616172",
+      "name": "Samir El Mourabet",
+      "rating": 69,
+      "categories": [
+        "France"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#2471A3",
+        "number": 8,
+        "initials": "SM"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q5371332",
+      "name": "Emil Krafth",
+      "rating": 68,
+      "categories": [
+        "England"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#9A7D0A",
+        "number": 4,
+        "initials": "EK"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q472300",
+      "name": "Marcel Sabitzer",
+      "rating": 68,
+      "categories": [
+        "Germany"
+      ],
+      "position": "FW",
+      "avatar": {
+        "color": "#1E8449",
+        "number": 10,
+        "initials": "MS"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q29427316",
+      "name": "Marin Pongračić",
+      "rating": 67,
+      "categories": [
+        "Italy"
+      ],
+      "position": "DF",
+      "avatar": {
+        "color": "#2471A3",
+        "number": 6,
+        "initials": "MP"
+      },
+      "season": "2025/26"
+    },
+    {
+      "id": "fb-Q17659996",
+      "name": "Mahmoud Dahoud",
+      "rating": 66,
+      "categories": [
+        "Germany"
+      ],
+      "position": "MF",
+      "avatar": {
+        "color": "#C0392B",
+        "number": 18,
+        "initials": "MD"
       },
       "season": "2025/26"
     }
