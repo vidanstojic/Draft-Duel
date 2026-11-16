@@ -3,6 +3,7 @@ package com.vidanstojic.draftduel.data.pack
 import com.vidanstojic.draftduel.data.fake.FakePacks
 import com.vidanstojic.draftduel.domain.model.MatchPool
 import com.vidanstojic.draftduel.domain.model.PoolSource
+import com.vidanstojic.draftduel.domain.model.ShuffleBag
 import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.model.ThemePack
 import com.vidanstojic.draftduel.domain.repository.PackRepository
@@ -16,11 +17,12 @@ import kotlin.random.Random
  * Football comes from the rating database (`tools/export_pack.py`), basketball from the NBA and
  * EuroLeague tables (`tools/build_basketball_pack.py`); movies and food are written by hand. A
  * missing or broken file leaves that theme on its sample pack (or "coming soon"), so the app
- * still opens.
+ * still opens. Pools come from a [ShuffleBag], so cards do not repeat until the pool is used up.
  */
 class BundledPackRepository(
     private val random: Random = Random.Default,
     private val readFile: suspend (path: String) -> ByteArray = ::readResource,
+    private val shuffleBag: ShuffleBag = ShuffleBag(),
 ) : PackRepository {
 
     private var packs: Map<Theme, ThemePack> = samplePacks()
@@ -39,7 +41,7 @@ class BundledPackRepository(
     override fun pack(theme: Theme): ThemePack? = packs[theme]
 
     override fun drawPool(theme: Theme, source: PoolSource, size: Int): MatchPool? =
-        packs[theme]?.drawPool(source, size, random)
+        packs[theme]?.drawPool(source, size, random) { candidates, n -> shuffleBag.draw(theme.name, candidates, n, random) }
 
     private fun samplePacks(): Map<Theme, ThemePack> =
         listOf(FakePacks.football, FakePacks.basketball).associateBy { it.theme }

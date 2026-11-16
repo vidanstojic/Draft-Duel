@@ -38,10 +38,16 @@ data class ThemePack(
      * Rating packs: [size] random cards from [candidatesFor]. Recipe packs: one dish (the chosen
      * category, or a random one), with every ingredient that belongs plus random wrong ones.
      */
-    fun drawPool(source: PoolSource, size: Int = GameRules.POOL_SIZE, random: Random = Random.Default): MatchPool {
+    fun drawPool(
+        source: PoolSource,
+        size: Int = GameRules.POOL_SIZE,
+        random: Random = Random.Default,
+        /** Picks [size] of the candidates in auction order; a [ShuffleBag] avoids repeats. */
+        pick: (candidates: List<GameCard>, size: Int) -> List<GameCard> = { candidates, n -> candidates.shuffled(random).take(n) },
+    ): MatchPool {
         if (scoring == Scoring.RATINGS) {
             val candidates = candidatesFor(source, size)
-            return MatchPool(cards = candidates.shuffled(random).take(size), drawnFrom = candidates)
+            return MatchPool(cards = pick(candidates, size), drawnFrom = candidates)
         }
         val playable = playableCategories(size)
         val dish = (source as? PoolSource.ByCategory)?.let { chosen -> playable.firstOrNull { it.id == chosen.categoryId } }

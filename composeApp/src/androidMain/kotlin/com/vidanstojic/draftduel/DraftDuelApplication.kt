@@ -5,11 +5,12 @@ import android.content.pm.ApplicationInfo
 import android.os.Build
 import com.vidanstojic.draftduel.di.AppContainer
 import com.vidanstojic.draftduel.di.AppInfo
+import com.vidanstojic.draftduel.platform.androidPlatformServices
 
 /** Holds the app-scoped [AppContainer] so it survives activity recreation. */
 class DraftDuelApplication : Application() {
 
-    val container: AppContainer by lazy { AppContainer(appInfo = readAppInfo()) }
+    val container: AppContainer by lazy { AppContainer(appInfo = readAppInfo(), platform = androidPlatformServices(this)) }
 
     private fun readAppInfo(): AppInfo {
         val info = packageManager.getPackageInfo(packageName, 0)
