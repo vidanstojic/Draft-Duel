@@ -165,6 +165,10 @@
     <string name="match_takes_it">%1$s takes it for %2$d</string>
     <string name="match_rating_later">You will see its rating at the end</string>
     <string name="match_next_card">Next card coming up</string>
+    <string name="match_pause">Pause</string>
+    <string name="match_paused_title">Paused</string>
+    <string name="match_paused_hint">The clock is stopped. The match goes on exactly where you left it.</string>
+    <string name="match_resume">Resume</string>
     <string name="match_leave_title">Leave the match?</string>
     <string name="match_leave_text">Leaving counts as resigning, so %1$s wins this one.</string>
     <string name="match_leave_confirm">Resign</string>

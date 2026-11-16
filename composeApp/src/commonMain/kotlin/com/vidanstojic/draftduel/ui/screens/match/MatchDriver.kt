@@ -15,11 +15,13 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
- * Runs a local match: the 10 s turn clock, the pause after each award and the bot's moves.
+ * Runs a local match: the 10 s turn clock, the pause after each award, the bot's moves and the
+ * pause menu.
  * Used by both the bot match and the same-device match; an online match will replace it with
  * server events (spec §10) while the screens stay the same.
  */
@@ -40,11 +42,22 @@ class MatchDriver(
     val millisLeft: StateFlow<Long> = _millisLeft.asStateFlow()
 
     private var job: Job? = null
-    private var paused = false
+
+    /** Why the match is on hold; it runs again only when nothing is left here. */
+    private val pauseReasons = MutableStateFlow<Set<PauseReason>>(emptySet())
+
+    private val _pausedByPlayer = MutableStateFlow(false)
+
+    /** True while a player paused the match (the pause menu is on screen). */
+    val pausedByPlayer: StateFlow<Boolean> = _pausedByPlayer.asStateFlow()
+
+    private val isPaused: Boolean get() = pauseReasons.value.isNotEmpty()
 
     fun start() = onMatchChanged()
 
     fun dispatch(action: MatchAction) {
+        // While the pause menu is open nothing on the table may change, not even a late tap.
+        if (PauseReason.PLAYER in pauseReasons.value) return
         val current = _match.value
         val next = MatchEngine.reduce(current, action)
         if (next !== current) {
@@ -53,9 +66,13 @@ class MatchDriver(
         }
     }
 
-    /** Stops the clock, e.g. while the phone is handed to the other player. */
-    fun setPaused(value: Boolean) {
-        paused = value
+    /**
+     * Holds or releases the match for one [reason]. While anything holds it, the turn clock, the
+     * pause after an award and the bot all wait; nothing is lost, the match continues where it was.
+     */
+    fun setPaused(reason: PauseReason, value: Boolean) {
+        pauseReasons.value = if (value) pauseReasons.value + reason else pauseReasons.value - reason
+        _pausedByPlayer.value = PauseReason.PLAYER in pauseReasons.value
     }
 
     private fun onMatchChanged() {
@@ -64,7 +81,7 @@ class MatchDriver(
         job = scope.launch {
             when (state.phase) {
                 is MatchPhase.Awarded, MatchPhase.Discarded -> {
-                    delay(GameRules.AWARD_PAUSE_MILLIS)
+                    pausableDelay(GameRules.AWARD_PAUSE_MILLIS)
                     _match.value = MatchEngine.advance(_match.value)
                     onMatchChanged()
                 }
@@ -83,17 +100,19 @@ class MatchDriver(
         }
         if (bot != null && botSeat != null && seatToAct == botSeat) {
             launch {
-                delay(bot.thinkTimeMillis())
+                pausableDelay(bot.thinkTimeMillis())
                 // The strongest bot builds a lookahead table on its first move; keep that off the UI thread.
                 val snapshot = _match.value
                 val action = withContext(Dispatchers.Default) { bot.decide(snapshot, botSeat) }
+                // A pause that started while the bot was thinking holds its move until the match runs again.
+                pauseReasons.first { it.isEmpty() }
                 if (_match.value === snapshot) action?.let(::dispatch)
             }
         }
         var left = turnMillis
         while (left > 0) {
             delay(TICK_MILLIS)
-            if (!paused) {
+            if (!isPaused) {
                 left -= TICK_MILLIS
                 _millisLeft.value = left
             }
@@ -101,7 +120,26 @@ class MatchDriver(
         dispatch(MatchAction.Timeout)
     }
 
+    /** Like [delay], but time spent paused does not count. */
+    private suspend fun pausableDelay(millis: Long) {
+        var left = millis
+        while (left > 0) {
+            val step = minOf(TICK_MILLIS, left)
+            delay(step)
+            if (!isPaused) left -= step
+        }
+    }
+
     private companion object {
         const val TICK_MILLIS = 100L
     }
+}
+
+/** What can hold a local match. */
+enum class PauseReason {
+    /** Pass-the-phone: the next player has not taken the phone yet. */
+    HANDOFF,
+
+    /** A player opened the pause menu, or the app went to the background. */
+    PLAYER,
 }

@@ -80,6 +80,14 @@ class MatchViewModel(
     private val _finished = MutableStateFlow(false)
     val finished: StateFlow<Boolean> = _finished.asStateFlow()
 
+    /**
+     * Only a bot the player chose may wait. "Find opponent" stands in for a real person (and will
+     * be one online), so the clock keeps running there, as it will in an online match.
+     */
+    val canPause: Boolean = setup.mode == GameMode.VS_BOT
+
+    val paused: StateFlow<Boolean> = driver.pausedByPlayer
+
     init {
         driver.start()
     }
@@ -90,4 +98,10 @@ class MatchViewModel(
     fun onPass() = driver.dispatch(MatchEngine.passAction(driver.match.value, Seat.A))
 
     fun onAssign(toSelf: Boolean) = driver.dispatch(MatchAction.Assign(chooser = Seat.A, to = if (toSelf) Seat.A else Seat.B))
+
+    fun pause() {
+        if (canPause) driver.setPaused(PauseReason.PLAYER, true)
+    }
+
+    fun resume() = driver.setPaused(PauseReason.PLAYER, false)
 }

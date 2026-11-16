@@ -19,6 +19,7 @@ import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 import com.vidanstojic.draftduel.domain.repository.PackRepository
 import com.vidanstojic.draftduel.ui.screens.match.MatchDriver
 import com.vidanstojic.draftduel.ui.screens.match.MatchUiState
+import com.vidanstojic.draftduel.ui.screens.match.PauseReason
 import com.vidanstojic.draftduel.ui.screens.match.toUi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -109,13 +110,15 @@ class LocalMatchViewModel(
     private val _finished = MutableStateFlow(false)
     val finished: StateFlow<Boolean> = _finished.asStateFlow()
 
+    val paused: StateFlow<Boolean> = driver.pausedByPlayer
+
     init {
         if (layout == LocalLayout.PASS_DEVICE) {
             // Pause the clock whenever the turn moves to the player who does not hold the phone,
             // whether after a move, a timeout or a new card.
             viewModelScope.launch {
                 driver.match.collect { match ->
-                    if (needsHandoff(match, confirmedSeat.value)) driver.setPaused(true)
+                    if (needsHandoff(match, confirmedSeat.value)) driver.setPaused(PauseReason.HANDOFF, true)
                 }
             }
         }
@@ -131,8 +134,13 @@ class LocalMatchViewModel(
     /** The next player has the phone. */
     fun onHandoffConfirmed() {
         seatToAct(driver.match.value)?.let { confirmedSeat.value = it }
-        driver.setPaused(false)
+        driver.setPaused(PauseReason.HANDOFF, false)
     }
+
+    /** Pause menu; also opened when the app goes to the background. */
+    fun pause() = driver.setPaused(PauseReason.PLAYER, true)
+
+    fun resume() = driver.setPaused(PauseReason.PLAYER, false)
 
     private fun act(action: MatchAction) = driver.dispatch(action)
 

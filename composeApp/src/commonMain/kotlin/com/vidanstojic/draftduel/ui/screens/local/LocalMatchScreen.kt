@@ -30,6 +30,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vidanstojic.draftduel.di.LocalAppContainer
@@ -43,6 +45,7 @@ import com.vidanstojic.draftduel.resources.local_ratings_at_end
 import com.vidanstojic.draftduel.resources.match_card_label
 import com.vidanstojic.draftduel.resources.match_card_of
 import com.vidanstojic.draftduel.resources.match_choosing
+import com.vidanstojic.draftduel.resources.match_pause
 import com.vidanstojic.draftduel.resources.match_give_to
 import com.vidanstojic.draftduel.resources.match_leads
 import com.vidanstojic.draftduel.resources.match_points_left
@@ -57,6 +60,8 @@ import com.vidanstojic.draftduel.ui.components.GameCardCompact
 import com.vidanstojic.draftduel.ui.components.BidControls
 import com.vidanstojic.draftduel.ui.components.CardPile
 import com.vidanstojic.draftduel.ui.components.DdIconButton
+import com.vidanstojic.draftduel.ui.components.DdIcons
+import com.vidanstojic.draftduel.ui.components.PauseOverlay
 import com.vidanstojic.draftduel.ui.components.DdOutlinedButton
 import com.vidanstojic.draftduel.ui.components.DdPrimaryButton
 import com.vidanstojic.draftduel.ui.components.DdScreen
@@ -95,9 +100,11 @@ fun LocalMatchRoute(
     val viewModel = viewModel { LocalMatchViewModel(container.packRepository, container.sessionRepository) }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val finished by viewModel.finished.collectAsStateWithLifecycle()
+    val paused by viewModel.paused.collectAsStateWithLifecycle()
     LaunchedEffect(finished) {
         if (finished) onFinished()
     }
+    LifecycleEventEffect(Lifecycle.Event.ON_PAUSE) { viewModel.pause() }
     var confirmLeave by rememberSaveable { mutableStateOf(false) }
 
     val actionsFor: (Seat) -> SeatActions = { seat ->
@@ -108,19 +115,28 @@ fun LocalMatchRoute(
         )
     }
     val handoff = state.handoff
-    when {
-        state.layout == LocalLayout.SPLIT_SCREEN -> SplitMatchScreen(
-            state = state,
-            bottomActions = actionsFor(Seat.A),
-            topActions = actionsFor(Seat.B),
-            onMenu = { confirmLeave = true },
-        )
-        handoff != null -> HandoffScreen(handoff = handoff, theme = state.bottom.theme, onReady = viewModel::onHandoffConfirmed)
-        else -> PassDeviceMatchScreen(
-            state = state.active,
-            actions = actionsFor(state.activeSeat),
-            onMenu = { confirmLeave = true },
-        )
+    Box {
+        when {
+            state.layout == LocalLayout.SPLIT_SCREEN -> SplitMatchScreen(
+                state = state,
+                bottomActions = actionsFor(Seat.A),
+                topActions = actionsFor(Seat.B),
+                onMenu = { confirmLeave = true },
+                onPause = viewModel::pause,
+            )
+            handoff != null -> HandoffScreen(handoff = handoff, theme = state.bottom.theme, onReady = viewModel::onHandoffConfirmed)
+            else -> PassDeviceMatchScreen(
+                state = state.active,
+                actions = actionsFor(state.activeSeat),
+                onMenu = { confirmLeave = true },
+                onPause = viewModel::pause,
+            )
+        }
+        if (paused) {
+            DraftDuelTheme(surface = state.bottom.theme.surfaceStyle()) {
+                PauseOverlay(onResume = viewModel::resume, onLeave = { confirmLeave = true })
+            }
+        }
     }
 
     if (confirmLeave) {
@@ -141,10 +157,12 @@ private fun PassDeviceMatchScreen(
     state: MatchUiState,
     actions: SeatActions,
     onMenu: () -> Unit,
+    onPause: () -> Unit,
 ) {
     DdScreen(surface = state.theme.surfaceStyle()) {
         DdTopBar(
             leading = { DdIconButton(Icons.Filled.Menu, stringResource(Res.string.menu), onMenu) },
+            trailing = { DdIconButton(DdIcons.Pause, stringResource(Res.string.match_pause), onPause) },
             title = {
                 TopBarTitle(
                     label = stringResource(Res.string.match_card_label),
@@ -168,6 +186,7 @@ private fun SplitMatchScreen(
     bottomActions: SeatActions,
     topActions: SeatActions,
     onMenu: () -> Unit,
+    onPause: () -> Unit,
 ) {
     val surface = state.bottom.theme.surfaceStyle()
     DraftDuelTheme(surface = surface) {
@@ -192,7 +211,7 @@ private fun SplitMatchScreen(
                         .weight(1f)
                         .rotate(180f),
                 )
-                CenterStrip(state = state.bottom, onMenu = onMenu)
+                CenterStrip(state = state.bottom, onMenu = onMenu, onPause = onPause)
                 SeatHalf(
                     state = state.bottom,
                     actions = bottomActions,
@@ -306,7 +325,7 @@ private fun statusFor(state: MatchUiState): String = when (val phase = state.pha
 }
 
 @Composable
-private fun CenterStrip(state: MatchUiState, onMenu: () -> Unit) {
+private fun CenterStrip(state: MatchUiState, onMenu: () -> Unit, onPause: () -> Unit) {
     val colors = DraftDuelTheme.colors
     val card = state.card
     val price = when (val phase = state.phase) {
@@ -343,7 +362,10 @@ private fun CenterStrip(state: MatchUiState, onMenu: () -> Unit) {
                     caption = stringResource(Res.string.match_seconds, state.secondsLeft),
                     size = 60.dp,
                 )
-                DdIconButton(Icons.Filled.Menu, stringResource(Res.string.menu), onMenu)
+                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    DdIconButton(DdIcons.Pause, stringResource(Res.string.match_pause), onPause)
+                    DdIconButton(Icons.Filled.Menu, stringResource(Res.string.menu), onMenu)
+                }
             }
             Text(
                 text = stringResource(Res.string.match_card_of, state.cardNumber.toString().padStart(2, '0'), state.totalCards) +
@@ -371,5 +393,6 @@ private fun SplitMatchScreenPreview() {
         bottomActions = noop,
         topActions = noop,
         onMenu = {},
+        onPause = {},
     )
 }
