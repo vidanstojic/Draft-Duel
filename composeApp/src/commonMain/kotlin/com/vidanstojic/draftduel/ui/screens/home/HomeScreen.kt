@@ -172,41 +172,48 @@ private fun Logo() {
 
 @Composable
 private fun HeroTable() {
+    // The table's padding (24 dp top and bottom) and its rounded rim leave less room than the
+    // height suggests: the cards and both tagline lines must fit inside, also with a larger
+    // system font, or the last line is cut off.
     PlaySurface(
         style = SurfaceStyle.TABLE,
         modifier = Modifier
             .fillMaxWidth()
-            .height(200.dp),
+            .height(224.dp),
     ) {
         Column(
             modifier = Modifier.align(Alignment.Center),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Box(contentAlignment = Alignment.Center) {
-                MiniCard(PileCard.Back(paidPrice = 6), width = 60.dp, modifier = Modifier.offset(x = (-44).dp).rotate(-12f))
-                MiniCard(PileCard.Back(paidPrice = 3), width = 60.dp, modifier = Modifier.offset(x = 44.dp).rotate(12f))
+                MiniCard(PileCard.Back(paidPrice = 6), width = 54.dp, modifier = Modifier.offset(x = (-42).dp).rotate(-12f))
+                MiniCard(PileCard.Back(paidPrice = 3), width = 54.dp, modifier = Modifier.offset(x = 42.dp).rotate(12f))
                 Box(
                     modifier = Modifier
-                        .size(width = 72.dp, height = 98.dp)
+                        .size(width = 64.dp, height = 88.dp)
                         .background(CardColors.Paper, RoundedCornerShape(8.dp)),
                     contentAlignment = Alignment.Center,
                 ) {
-                    HiddenRating(size = 42.dp)
+                    HiddenRating(size = 38.dp)
                 }
             }
-            Text(
-                text = stringResource(Res.string.home_tagline),
-                style = DraftDuelTheme.type.bodyStrong,
-                color = DraftDuelTheme.colors.onScreen,
-                textAlign = TextAlign.Center,
-            )
-            Text(
-                text = stringResource(Res.string.home_tagline_accent),
-                style = DraftDuelTheme.type.bodyStrong,
-                color = DraftDuelTheme.colors.accent,
-                textAlign = TextAlign.Center,
-            )
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = stringResource(Res.string.home_tagline),
+                    style = DraftDuelTheme.type.bodyStrong,
+                    color = DraftDuelTheme.colors.onScreen,
+                    textAlign = TextAlign.Center,
+                    maxLines = 1,
+                )
+                Text(
+                    text = stringResource(Res.string.home_tagline_accent),
+                    style = DraftDuelTheme.type.bodyStrong,
+                    color = DraftDuelTheme.colors.accent,
+                    textAlign = TextAlign.Center,
+                    maxLines = 1,
+                )
+            }
         }
     }
 }
