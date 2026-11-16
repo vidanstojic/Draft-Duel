@@ -181,9 +181,18 @@
     <string name="result_cards">%1$d cards revealed</string>
     <string name="result_paid">paid %1$d / %2$d</string>
     <string name="result_draw">Draw</string>
-    <string name="result_you_win_by">You win by %1$d</string>
-    <string name="result_you_lose_by">You lose by %1$d</string>
-    <string name="result_wins_by">%1$s wins by %2$d</string>
+    <string name="result_you_win_by">You win by %1$s</string>
+    <string name="result_you_lose_by">You lose by %1$s</string>
+    <string name="result_wins_by">%1$s wins by %2$s</string>
+    <plurals name="result_goals">
+        <item quantity="one">%1$d goal</item>
+        <item quantity="other">%1$d goals</item>
+    </plurals>
+    <plurals name="result_points">
+        <item quantity="one">%1$d point</item>
+        <item quantity="other">%1$d points</item>
+    </plurals>
+    <string name="result_ratings_line">Ratings %1$d : %2$d</string>
     <string name="result_best_buy">Best buy: %1$s, %2$d for %3$d</string>
     <string name="result_share">Share result</string>
     <string name="result_rematch">Rematch</string>

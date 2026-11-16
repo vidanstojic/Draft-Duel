@@ -31,6 +31,7 @@ import com.vidanstojic.draftduel.di.LocalAppContainer
 import com.vidanstojic.draftduel.domain.match.MatchEngine
 import com.vidanstojic.draftduel.domain.match.MatchPhase
 import com.vidanstojic.draftduel.domain.match.OwnedCard
+import com.vidanstojic.draftduel.domain.match.ScoreUnit
 import com.vidanstojic.draftduel.domain.match.Seat
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.Scoring
@@ -42,7 +43,10 @@ import com.vidanstojic.draftduel.resources.result_best_buy
 import com.vidanstojic.draftduel.resources.result_cards
 import com.vidanstojic.draftduel.resources.result_draw
 import com.vidanstojic.draftduel.resources.result_empty
+import com.vidanstojic.draftduel.resources.result_goals
 import com.vidanstojic.draftduel.resources.result_paid
+import com.vidanstojic.draftduel.resources.result_points
+import com.vidanstojic.draftduel.resources.result_ratings_line
 import com.vidanstojic.draftduel.resources.result_rematch
 import com.vidanstojic.draftduel.resources.result_share
 import com.vidanstojic.draftduel.resources.result_share_message
@@ -63,6 +67,7 @@ import com.vidanstojic.draftduel.ui.surface.SurfaceStyle
 import com.vidanstojic.draftduel.ui.surface.surfaceStyle
 import com.vidanstojic.draftduel.ui.theme.CardColors
 import com.vidanstojic.draftduel.ui.theme.DraftDuelTheme
+import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -81,8 +86,8 @@ fun ResultRoute(
     }
     val shareMessage = stringResource(
         Res.string.result_share_message,
-        state.bottom.total,
-        state.top.total,
+        state.bottomScore,
+        state.topScore,
         state.bestBuy?.name ?: "-",
     )
     ResultScreen(
@@ -201,31 +206,26 @@ private fun RosterRow(row: RosterRowUi, scoring: Scoring) {
 @Composable
 private fun Scoreboard(state: ResultUiState) {
     val colors = DraftDuelTheme.colors
-    val headline = when (state.outcome) {
-        ResultOutcome.DRAW -> stringResource(Res.string.result_draw)
-        ResultOutcome.BOTTOM_WINS -> if (state.bottomIsYou) {
-            stringResource(Res.string.result_you_win_by, state.margin)
-        } else {
-            stringResource(Res.string.result_wins_by, state.bottom.name, state.margin)
-        }
-        ResultOutcome.TOP_WINS -> if (state.bottomIsYou) {
-            stringResource(Res.string.result_you_lose_by, state.margin)
-        } else {
-            stringResource(Res.string.result_wins_by, state.top.name, state.margin)
-        }
-    }
+    val headline = headline(state)
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         InfoPill {
-            Text(state.bottom.total.toString(), style = DraftDuelTheme.type.numberLarge, color = colors.accent)
+            Text(state.bottomScore.toString(), style = DraftDuelTheme.type.numberLarge, color = colors.accent)
             Text(":", style = DraftDuelTheme.type.title, color = colors.muted)
-            Text(state.top.total.toString(), style = DraftDuelTheme.type.number, color = colors.onScreen)
+            Text(state.topScore.toString(), style = DraftDuelTheme.type.number, color = colors.onScreen)
         }
         InfoPill(background = colors.accent) {
             Text(headline, style = DraftDuelTheme.type.bodyStrong, color = colors.onAccent)
+        }
+        if (state.showsTotalsBelow) {
+            Text(
+                text = stringResource(Res.string.result_ratings_line, state.bottom.total, state.top.total),
+                style = DraftDuelTheme.type.mono,
+                color = colors.muted,
+            )
         }
         state.bestBuy?.let { best ->
             Text(
@@ -234,6 +234,24 @@ private fun Scoreboard(state: ResultUiState) {
                 color = colors.onScreen,
             )
         }
+    }
+}
+
+/** "You win by 2 goals", "Ana wins by 12 points", or by the total in themes without a scoreline. */
+@Composable
+private fun headline(state: ResultUiState): String {
+    if (state.outcome == ResultOutcome.DRAW) return stringResource(Res.string.result_draw)
+    val winnerName = if (state.outcome == ResultOutcome.BOTTOM_WINS) state.bottom.name else state.top.name
+    val youWin = state.outcome == ResultOutcome.BOTTOM_WINS
+    val margin = when (state.scoreUnit) {
+        ScoreUnit.GOALS -> pluralStringResource(Res.plurals.result_goals, state.margin, state.margin)
+        ScoreUnit.POINTS -> pluralStringResource(Res.plurals.result_points, state.margin, state.margin)
+        ScoreUnit.TOTALS -> state.margin.toString()
+    }
+    return when {
+        !state.bottomIsYou -> stringResource(Res.string.result_wins_by, winnerName, margin)
+        youWin -> stringResource(Res.string.result_you_win_by, margin)
+        else -> stringResource(Res.string.result_you_lose_by, margin)
     }
 }
 

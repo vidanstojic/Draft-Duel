@@ -6,6 +6,8 @@ import com.vidanstojic.draftduel.domain.match.MatchEngine
 import com.vidanstojic.draftduel.domain.match.MatchOutcome
 import com.vidanstojic.draftduel.domain.match.MatchState
 import com.vidanstojic.draftduel.domain.match.OwnedCard
+import com.vidanstojic.draftduel.domain.match.ScoreProjection
+import com.vidanstojic.draftduel.domain.match.ScoreUnit
 import com.vidanstojic.draftduel.domain.match.Seat
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.Theme
@@ -45,8 +47,15 @@ data class ResultUiState(
     /** True when the bottom roster is "you" (bot and friend matches). */
     val bottomIsYou: Boolean,
     val bestBuy: RosterRowUi?,
+    /** The score as shown: a scoreline in football and basketball, the totals elsewhere. */
+    val bottomScore: Int = bottom.total,
+    val topScore: Int = top.total,
+    val scoreUnit: ScoreUnit = ScoreUnit.TOTALS,
 ) {
-    val margin: Int get() = kotlin.math.abs(bottom.total - top.total)
+    val margin: Int get() = kotlin.math.abs(bottomScore - topScore)
+
+    /** The rating totals are shown under a scoreline, so the reveal still adds up. */
+    val showsTotalsBelow: Boolean get() = scoreUnit != ScoreUnit.TOTALS
 }
 
 /** Final reveal: every rating becomes visible for both players (spec §6 result screen). */
@@ -67,6 +76,7 @@ internal fun MatchState.toResultUi(bottomIsYou: Boolean): ResultUiState {
         MatchOutcome.B_WINS -> ResultOutcome.TOP_WINS
         MatchOutcome.DRAW -> ResultOutcome.DRAW
     }
+    val score = ScoreProjection.of(this)
     return ResultUiState(
         theme = theme,
         goal = goal,
@@ -75,6 +85,9 @@ internal fun MatchState.toResultUi(bottomIsYou: Boolean): ResultUiState {
         outcome = outcome,
         bottomIsYou = bottomIsYou,
         bestBuy = best?.toRow(isBest = true),
+        bottomScore = score.of(Seat.A),
+        topScore = score.of(Seat.B),
+        scoreUnit = score.unit,
     )
 }
 
