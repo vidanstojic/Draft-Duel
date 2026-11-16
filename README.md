@@ -3,7 +3,8 @@
 Brz 1v1 duel (3–5 min): dva igrača sa po 20 poena licitiraju za 10 kartica sportista, a pobeđuje veći zbir ocena.
 Jedan kod za Android i iOS: **Kotlin + Compose Multiplatform**.
 
-> **Status:** UI + prava pravila + šest botova. Teme: fudbal (baza ocena v5), filmovi i hrana (ručno), košarka je još primer (`data/fake`).
+> **Status:** UI + prava pravila + šest botova. Teme: fudbal (baza ocena v5), košarka (NBA i Evroliga, 250 igrača), filmovi i hrana (ručno).
+> Muzika, zvučni efekti, vibracija i podešavanja; uputstvo „How to play“; pauza u partiji protiv bota i na istom telefonu.
 > Protivnik u svim online modovima je bot na telefonu, a server još ne postoji. Pravila (`MatchEngine`) i botovi su pokriveni testovima.
 
 ## Pokretanje
@@ -43,7 +44,8 @@ composeApp/src/
 │   ├── data/pack/             učitavanje paketa iz composeResources/files/packs (JSON, spec §5)
 │   ├── data/fake/             primer paketa (košarka, rezervni fudbal) i bot profili
 │   ├── navigation/            type-safe rute i NavHost
-│   ├── platform/              expect/actual (za sada samo sistemsko deljenje)
+│   ├── feedback/              GameFeedback (muzika, efekti, vibracija) i SettingsRepository
+│   ├── platform/              PlatformServices: KeyValueStore, AudioOutput, HapticOutput, deljenje
 │   └── ui/
 │       ├── theme/             tokeni boja, tipografija, razmaci, DraftDuelTheme
 │       ├── surface/           podloge odozgo: sto, teren, parket, šljaka (crtane kodom)
@@ -58,6 +60,7 @@ iosApp/                        Swift omotač + XcodeGen project.yml
 tools/export_pack.py           pravi football.json iz draft_duel.db
 tools/build_basketball_pack.py pravi basketball.json iz tools/basketball/*.csv (NBA i Evroliga)
 tools/validate_pack.py         proverava sve pakete (opseg ocena, kategorije, recepti = 100)
+tools/audio/make_audio.py      sintetiše muziku i zvučne efekte (files/audio, MP3)
 ```
 
 **Konvencije**
@@ -70,12 +73,14 @@ tools/validate_pack.py         proverava sve pakete (opseg ocena, kategorije, re
 
 | Ekran | Šta prikazuje |
 |---|---|
-| Home | Četiri moda: *Find opponent*, *Play vs bot*, *Same device*, *Play a friend* + pravila |
+| Home | Četiri moda: *Find opponent*, *Play vs bot*, *Same device*, *Play a friend*, *How to play* i podešavanja |
+| How to play | Četiri strane: šta je igra, jedna karta, 20 poena i 5 karata, otkrivanje i rezultat. Otvara se sama pri prvom pokretanju |
+| Settings | Muzika, zvučni efekti, vibracija (pamte se), uputstvo, verzija |
 | Category | Tema (podloga se vidi na pločici, tenis „uskoro“), izvor bazena (nasumično, po kategoriji, sopstveni samo za prijatelja) |
 | Find opponent | Traženje → „Opponent found“ → odbrojavanje. U v1 je to bot sa imenom igrača |
 | Invite | Kod i link, kopiranje, sistemsko deljenje, istek linka, ulazak preko koda, ponuda bota posle 60 s |
 | Match | Licitacija na podlozi sporta, gomile kartica bez limita, budžeti, skrivene ocene, „X can bid up to N“, biranje kad je neko na 0, dodela |
-| Result | Obe ekipe otkrivene, rezultat, „best buy“, deljenje, revanš |
+| Result | Obe ekipe otkrivene, rezultat (u fudbalu i košarci kao pravi rezultat, ispod zbir ocena), „best buy“, deljenje, revanš |
 | Same device | Imena + izbor: podeljen ekran (gornja polovina okrenuta 180°) ili predavanje telefona (ekran za predaju, tajmer pauziran) |
 | Play vs bot | Sport i bazen, pa izbor jednog od šest botova (opis i težina). Radi bez interneta |
 
@@ -99,18 +104,25 @@ Ako fajl nedostaje ili je neispravan, aplikacija koristi primer paket, pa se ne 
 
 ## Košarka
 
-`basketball.json`: 100 igrača u dve kategorije, **NBA** i **EuroLeague**, po 50. Ocene su u `tools/basketball/nba_igraci.csv`
-i `evroliga_igraci.csv` (svi igrači sa spiskova klubova), dodeljene ručno (spec §5: „autor, ručno“) na osnovu uloge i učinka
-u sezoni 2025/26, godina i povreda. Svaka liga ima svoju skalu (NBA 69–98, Evroliga 69–93).
-Paket bira poznata imena po grupama, balans po ligi: NBA 6 / 16 / 28, Evroliga 4 / 18 / 28 (ukupno 10 / 34 / 56 %).
+`basketball.json`: 250 igrača u dve kategorije, **NBA** (150, svih 30 klubova) i **EuroLeague** (100, svih 20 klubova).
+Ocene su u `tools/basketball/nba_igraci.csv` i `evroliga_igraci.csv` (svi igrači sa spiskova klubova), dodeljene ručno
+(spec §5: „autor, ručno“) na osnovu uloge i učinka u sezoni 2025/26, godina i povreda. Svaka liga ima svoju skalu (NBA 69–98, Evroliga 69–93).
+Ručno izabrana poznata imena (`PICKS`) su uvek u paketu, a ostatak svake grupe se popunjava iz tabela: prvo najviše ocene,
+klub po klub. Odnos je 10 / 30 / 60 % (zvezde: NBA 90+, Evroliga 88+; jaki: 80+).
 Na kartici su liga, pozicija (G/F/C) i sezona, bez klubova (spec §5). Broj na dresu je ukrasni, ne pravi.
 
 ```
-python tools/build_basketball_pack.py          # posle izmene ocena ili izbora igrača (PICKS u skripti)
+python tools/build_basketball_pack.py          # posle izmene ocena ili izbora igrača (PICKS, TARGETS u skripti)
 ```
 
-Botovi (300 partija po paru, podrazumevana pravila): Scout 69 / 72 %, Star chaser 65 / 56 %, Bargain 59 / 61 %,
-Steady 46 / 44 %, Hustler 35 / 38 %, Casual 29 / 30 % (NBA / Evroliga), kao na fudbalu.
+Botovi (300 partija po paru, Default pravila, NBA / Evroliga): Scout 69 / 69 %, Galáctico 60 / 55 %, Bargain 57 / 59 %,
+Steady 43 / 42 %, Hustler 37 / 41 %, Sunday Sam 29 / 30 %.
+
+## Bez ponavljanja karata
+
+Bazen partije se vuče iz „shuffle bag“-a (`ShuffleBag`): karta se vraća tek kad su odigrane sve ostale karte istog bazena.
+Kad se vreća isprazni, odigraju se poslednje sveže karte, partija se dopuni ostalima i kreće nova vreća. Jedna vreća po temi,
+pamti se i posle restarta (`StoredSeenCards` u `KeyValueStore`). Bazen po kategoriji uzima samo karte te kategorije.
 
 ## Filmovi
 
@@ -139,7 +151,8 @@ Provera paketa: `python tools/validate_pack.py`.
 Na ekranu kategorije biraju se pravila (`MatchRules`):
 - **Default**: 5 karata i prepuštanje 1, 2, 3 (ispod). Sa ovim pravilima se igra testira.
 - **Classic**: bez limita karata i bez prepuštanja, otvarač mora da ponudi.
-- **Custom**: svaki parametar posebno, za testiranje: poeni po igraču (10–40), karata po partiji (6–14), limit karata (isključen ili 3–7),
+- **Custom**: svaki parametar posebno, za testiranje: poeni po igraču (10–40), karata po partiji (6–14),
+  **isti broj karata za oba igrača** (uključeno: svako završava sa pola karata partije, limit prati broj karata; isključeno: limit karata isključen ili 3–7),
   prepuštanje (uključeno ili ne, prva cena 1–3, svaka sledeća skuplja za 0–2), vreme poteza (5–20 s) i javne ocene tokom licitacije (spec §4).
   Kod javnih ocena i botovi vide tačnu ocenu. Custom nije dostupan za „Find opponent“, jer će tu kasnije igrati nepoznati ljudi sa istim pravilima.
   Botovi su podešeni za Default i Classic; sa drugim vrednostima igraju legalno, ali ne nužno optimalno.
@@ -172,6 +185,31 @@ Izmene botova za ova pravila: fer cena po karti je budžet / prazni slotovi (spe
 Hustler diže cenu samo na dobrim kartama. Scout-ov model računa i slotove: ko bira dok je protivnik na 0, uzima najbolje od preostalih karata.
 Model računa očekivani zbir najboljih k od n preostalih karata (statistike poretka).
 Tabela modela se kešira po paketu i pravilima, a prvi potez bota računa se van UI niti.
+
+## Konačan rezultat
+
+Pobednika uvek određuje zbir ocena (`MatchEngine.outcome`). `ScoreProjection` samo pretvara zbir u rezultat koji liči na sport:
+
+- **Veličina pobede** zavisi od razlike u oceni po karti, pa ne zavisi od broja karata. Fudbal: ispod 3 → 1 gol razlike,
+  ispod 6,5 → 2, ispod 10,5 → 3, ispod 15 → 4, inače 5. Košarka: 3 poena razlike po poenu ocene po karti (±2).
+- **Poraženi:** u fudbalu golovi po fiksnim verovatnoćama za svaku razliku, u košarci poeni po njegovoj prosečnoj karti (osnova 92, 68–128).
+- Ista partija uvek daje isti rezultat (seed iz karata i cena). Na botovskim partijama najčešći su 2:1, 1:0, 2:0 i 3:1,
+  a u košarci pobednik najčešće ima 90–120 poena.
+- Ispod rezultata stoji zbir ocena („Ratings 412 : 398“). Filmovi i hrana zadržavaju zbir.
+
+## Pauza
+
+U *Play vs bot* i *Same device* dugme pauze (gornja traka, odnosno srednja traka na podeljenom ekranu) zaustavlja sat,
+pauzu posle dodele i razmišljanje bota. Meni pauze pokriva sto skoro neprovidnim slojem (Resume, Resign).
+Partija se pauzira i sama kad aplikacija ode u pozadinu. *Find opponent* nema pauzu, jer zamenjuje pravog protivnika.
+
+## Zvuk i vibracija
+
+Sav zvuk je sintetisan u `tools/audio/make_audio.py` (oscilatori, šum, Karplus-Strong žice), pa je naš i bez licenci.
+Muzika: meni (lounge, 92 bpm), fudbal (stadion, 124), košarka (funk, 100), filmovi (gudači i timpani, 76), hrana (bossa, 112).
+Efekti: licitacija, pas, osvojena / izgubljena karta, otkucaj poslednje 3 sekunde, istek vremena, pobeda / poraz / nerešeno.
+Android: MediaPlayer i SoundPool, vibracija sa dozvolom `VIBRATE`. iOS: AVAudioPlayer (ambient sesija) i UIKit feedback generatori.
+Sve troje se gasi u podešavanjima.
 
 ## Botovi
 
@@ -215,6 +253,9 @@ Otvarač prve runde pobeđuje u 48,7% (fudbal), 50,0% (filmovi) i 51,6% (hrana) 
 - `PersonalityBotTest`: otvarač mora da ponudi, granica i odustajanje, snajper, kraj partije, lookahead model.
 - `CustomRulesTest`: budžet i broj karata iz pravila, fiksna cena prepuštanja, opsezi, javne ocene, botovi sa velikim custom vrednostima.
 - `FiveSlotsTest`: prepuštanje (cena 1, 2, 3, poeni nestaju, nema vraćanja), pun igrač, botovi koji prepuštaju.
+- `ScoreProjectionTest`: isti pobednik kao po zbiru, realni opsezi, veća razlika = veća pobeda, nerešeno.
+- `ShuffleBagTest`: bez ponavljanja dok se bazen ne potroši, ravnomerno pojavljivanje, deljena vreća teme.
+- `GameFeedbackTest`: prekidači za muziku, efekte i vibraciju, pamćenje podešavanja.
 - `BotSimulationTest` (spec §17), na sve tri teme i za Default pravila: samo legalni potezi, invarijante budžeta, prednost otvarača, redosled težina.
 
 ## Sledeći koraci
@@ -222,5 +263,4 @@ Otvarač prve runde pobeđuje u 48,7% (fudbal), 50,0% (filmovi) i 51,6% (hrana) 
 - Animacija „kartica leti u gomilu“ (spec §6) i slika za deljenje rezultata.
 - Izdvojiti `domain/match` u modul `:game-core` koji deli i Ktor server (spec §8).
 - Pravi repozitorijumi (keš i preuzimanje novih verzija paketa, WebSocket klijent) umesto `data/fake`.
-- Košarkaški paket iz baze, kad bude postojala.
 - Bot u „Find opponent“ trenutno bira ličnost nasumično; kasnije po rejtingu igrača.
