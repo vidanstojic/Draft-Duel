@@ -3,7 +3,7 @@
 Brz 1v1 duel (3–5 min): dva igrača sa po 20 poena licitiraju za 10 kartica sportista, a pobeđuje veći zbir ocena.
 Jedan kod za Android i iOS: **Kotlin + Compose Multiplatform**.
 
-> **Status:** UI + prava pravila + šest botova. Teme: fudbal (baza ocena v5), košarka (NBA i Evroliga, 250 igrača), filmovi i hrana (ručno).
+> **Status:** UI + prava pravila + šest botova. Teme: fudbal (baza ocena v5, 150 igrača), košarka (NBA i Evroliga, 250 igrača), filmovi (150, ručno) i hrana (20 jela, ručno).
 > Muzika, zvučni efekti, vibracija i podešavanja; uputstvo „How to play“; pauza u partiji protiv bota i na istom telefonu.
 > Protivnik u svim online modovima je bot na telefonu, a server još ne postoji. Pravila (`MatchEngine`) i botovi su pokriveni testovima.
 
@@ -57,7 +57,8 @@ composeApp/src/
 ├── androidMain/               MainActivity, Application, manifest, ikonica
 └── iosMain/                   MainViewController za Swift
 iosApp/                        Swift omotač + XcodeGen project.yml
-tools/export_pack.py           pravi football.json iz draft_duel.db
+tools/build_football_pack.py   pravi football.json iz draft_duel.db (30 po ligi)
+tools/export_pack.py           stari izvoz paketa iz tabele pack_athletes (10 po ligi)
 tools/build_basketball_pack.py pravi basketball.json iz tools/basketball/*.csv (NBA i Evroliga)
 tools/validate_pack.py         proverava sve pakete (opseg ocena, kategorije, recepti = 100)
 tools/audio/make_audio.py      sintetiše muziku i zvučne efekte (files/audio, MP3)
@@ -92,12 +93,13 @@ tools/audio/make_audio.py      sintetiše muziku i zvučne efekte (files/audio, 
 
 ## Fudbalski paket
 
-`football.json` je izvezen iz `draft_duel.db` (model v5): 50 igrača, po 10 iz svake lige (kategorija = država lige),
-4 zvezde / 16 jakih / 30 solidnih. U odnosu na `pack_football_v1.json` ima i `position` (GK/DF/MF/FW) i `season`.
-Novi paket posle ponovnog pokretanja pipeline-a:
+`football.json` pravi `tools/build_football_pack.py` direktno iz `draft_duel.db` (model v5, bez pandas): 150 igrača, po 30 iz svake lige
+(kategorija = država lige). Po ligi 3 zvezde (90+), 9 jakih (80–89) i 18 solidnih (65–79); Francuska nema 90+, pa ta mesta dobijaju njeni najbolji jaki igrači.
+Uvek su u paketu igrači prethodnog paketa i poznata imena (`FAMOUS`: Salah, Saka, Yamal, Bellingham, Vinícius, Musiala, Dembélé…),
+zato je odnos 8 / 42 / 50 % umesto 10 / 30 / 60. Svaka liga ima bar 3 GK, 8 DF, 7 MF i 6 FW; solidni su raspoređeni po celom opsegu.
 
 ```
-python tools/export_pack.py C:/Users/<ti>/Desktop/data/v5/draft_duel.db
+python tools/build_football_pack.py C:/Users/<ti>/Desktop/data/v5/draft_duel.db
 ```
 
 Ako fajl nedostaje ili je neispravan, aplikacija koristi primer paket, pa se ne ruši.
@@ -126,14 +128,15 @@ pamti se i posle restarta (`StoredSeenCards` u `KeyValueStore`). Bazen po katego
 
 ## Filmovi
 
-`movies.json`: 60 filmova, ocene sam dodelio ručno (spec §5: „autor, ručno“, bez tuđih ocena), balans 6 / 18 / 36 kao u specu.
-Kategorije su žanrovi (Sci-Fi, Crime, Animation, Comedy, Drama, Action, po 10), na kartici su godina i zemlja.
+`movies.json`: 150 filmova, ocene su dodeljene ručno (spec §5: „autor, ručno“, bez tuđih ocena), balans 16 / 48 / 86 (11 / 32 / 57 %).
+Kategorije su žanrovi (Sci-Fi, Crime, Animation, Comedy, Drama, Action, po 25), na kartici su godina i zemlja.
 Kartica je filmska traka sa inicijalima: nema postera ni logotipa. Podloga je bioskop (zavese, platno, sedišta).
 
 ## Hrana (recept mod)
 
 Pravila su ista, a menja se samo bodovanje (`Scoring.RECIPE`):
-- Partija je jedno jelo (kategorija): pica, burger, karbonara, sarma, ćevapi, maki, grčka salata, palačinke, gvakamole, tiramisu.
+- Partija je jedno jelo (kategorija), 20 jela: pica, burger, karbonara, sarma, ćevapi, maki, grčka salata, palačinke, gvakamole, tiramisu,
+  gulaš, paelja, pad thai, čili kon karne, musaka, cezar salata, burek, brauniji, šopska salata, ramen.
   *Random* bira nasumično jelo.
 - Pravi sastojci nose poene koji zbirno daju 100 (npr. testo 30, paradajz sos 25, mocarela 25…). Pogrešni oduzimaju (ananas −15, čokolada −20…).
   Zbir zato pokazuje koliko je igrač blizu receptu.
