@@ -137,9 +137,7 @@
     <string name="match_cards_left">×%1$d left</string>
     <string name="match_points_left">%1$d pts left</string>
     <string name="match_total">Σ %1$d</string>
-    <string name="match_price">Price</string>
     <string name="match_seconds">%1$ds</string>
-    <string name="match_shot_clock">Shot clock</string>
     <string name="match_your_turn">Your turn</string>
     <string name="match_thinking">%1$s is thinking…</string>
     <string name="match_leads">%1$s leads</string>

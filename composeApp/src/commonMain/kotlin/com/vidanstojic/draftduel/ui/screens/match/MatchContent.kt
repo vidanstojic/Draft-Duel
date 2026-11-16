@@ -38,11 +38,9 @@ import com.vidanstojic.draftduel.resources.match_opener_must_bid
 import com.vidanstojic.draftduel.resources.match_opens
 import com.vidanstojic.draftduel.resources.match_pass_to
 import com.vidanstojic.draftduel.resources.match_points_left
-import com.vidanstojic.draftduel.resources.match_price
 import com.vidanstojic.draftduel.resources.match_rating_gain
 import com.vidanstojic.draftduel.resources.match_rating_later
 import com.vidanstojic.draftduel.resources.match_seconds
-import com.vidanstojic.draftduel.resources.match_shot_clock
 import com.vidanstojic.draftduel.resources.match_take_it
 import com.vidanstojic.draftduel.resources.match_takes_it
 import com.vidanstojic.draftduel.resources.match_thinking
@@ -60,10 +58,8 @@ import com.vidanstojic.draftduel.ui.components.DdOutlinedButton
 import com.vidanstojic.draftduel.ui.components.DdPrimaryButton
 import com.vidanstojic.draftduel.ui.components.InfoPill
 import com.vidanstojic.draftduel.ui.components.LeaderBadge
-import com.vidanstojic.draftduel.ui.components.ShotClock
 import com.vidanstojic.draftduel.ui.components.TurnTimerRing
 import com.vidanstojic.draftduel.ui.surface.PlaySurface
-import com.vidanstojic.draftduel.ui.surface.SurfaceStyle
 import com.vidanstojic.draftduel.ui.surface.surfaceStyle
 import com.vidanstojic.draftduel.ui.theme.DraftDuelTheme
 import org.jetbrains.compose.resources.pluralStringResource
@@ -201,19 +197,12 @@ private fun AuctionClock(state: MatchUiState) {
         MatchPhaseUi.Discarded, MatchPhaseUi.Finished -> ""
     }
     val ticking = state.phase is MatchPhaseUi.Bidding || state.phase is MatchPhaseUi.Choosing
-    if (DraftDuelTheme.surface == SurfaceStyle.COURT) {
-        ShotClock(seconds = if (ticking) state.secondsLeft else 0, label = stringResource(Res.string.match_shot_clock))
-        InfoPill {
-            Text(stringResource(Res.string.match_price), style = DraftDuelTheme.type.mono, color = DraftDuelTheme.colors.muted)
-            Text(price, style = DraftDuelTheme.type.title, color = DraftDuelTheme.colors.onScreen)
-        }
-    } else {
-        TurnTimerRing(
-            progress = if (ticking) state.timerProgress else 1f,
-            value = price,
-            caption = if (ticking) stringResource(Res.string.match_seconds, state.secondsLeft) else null,
-        )
-    }
+    // The same ring in every theme: the time left has to be readable at a glance everywhere.
+    TurnTimerRing(
+        progress = if (ticking) state.timerProgress else 1f,
+        value = price,
+        caption = if (ticking) stringResource(Res.string.match_seconds, state.secondsLeft) else null,
+    )
 }
 
 @Composable

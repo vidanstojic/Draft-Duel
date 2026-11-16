@@ -2,7 +2,6 @@ package com.vidanstojic.draftduel.ui.components
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -61,26 +60,6 @@ fun TurnTimerRing(
                 Text(caption, style = DraftDuelTheme.type.mono.copy(fontSize = 9.sp), color = colors.muted)
             }
         }
-    }
-}
-
-/** Arena-style shot clock, used on the basketball court instead of the ring. */
-@Composable
-fun ShotClock(seconds: Int, label: String, modifier: Modifier = Modifier) {
-    val colors = DraftDuelTheme.colors
-    Column(
-        modifier = modifier
-            .background(Color(0xFF0C0F18), RoundedCornerShape(8.dp))
-            .border(2.dp, Color(0xFF2B3349), RoundedCornerShape(8.dp))
-            .padding(horizontal = 10.dp, vertical = 6.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Text(label.uppercase(), style = DraftDuelTheme.type.label.copy(fontSize = 8.sp), color = colors.muted)
-        Text(
-            text = seconds.coerceAtLeast(0).toString().padStart(2, '0'),
-            style = DraftDuelTheme.type.monoStrong.copy(fontSize = 24.sp),
-            color = colors.accent,
-        )
     }
 }
 
