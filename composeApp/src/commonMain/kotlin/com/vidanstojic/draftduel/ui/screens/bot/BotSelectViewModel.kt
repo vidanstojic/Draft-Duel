@@ -19,6 +19,8 @@ import kotlinx.coroutines.flow.update
 
 @Immutable
 data class BotSelectUiState(
+    /** Taglines are worded for the chosen theme (no strikers in a movie match). */
+    val theme: Theme = Theme.FOOTBALL,
     /** Difficulty labels depend on how the chosen theme scores. */
     val scoring: Scoring = Scoring.RATINGS,
     val rules: MatchRules = MatchRules.DEFAULT,
@@ -40,7 +42,7 @@ class BotSelectViewModel(
     )
 
     private val _state = MutableStateFlow(
-        BotSelectUiState(scoring = setup.theme.scoring, rules = setup.effectiveRules, selected = setup.bot ?: DEFAULT_BOT),
+        BotSelectUiState(theme = setup.theme, scoring = setup.theme.scoring, rules = setup.effectiveRules, selected = setup.bot ?: DEFAULT_BOT),
     )
     val state: StateFlow<BotSelectUiState> = _state.asStateFlow()
 

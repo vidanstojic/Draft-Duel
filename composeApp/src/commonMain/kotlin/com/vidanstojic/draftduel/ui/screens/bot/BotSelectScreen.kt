@@ -30,6 +30,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vidanstojic.draftduel.di.LocalAppContainer
 import com.vidanstojic.draftduel.domain.bot.BotDifficulty
 import com.vidanstojic.draftduel.domain.bot.BotPersonality
+import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.back
 import com.vidanstojic.draftduel.resources.bot_difficulty_easy
@@ -41,9 +42,17 @@ import com.vidanstojic.draftduel.resources.bot_select_title
 import com.vidanstojic.draftduel.resources.bot_start
 import com.vidanstojic.draftduel.resources.bot_tagline_bargain_hunter
 import com.vidanstojic.draftduel.resources.bot_tagline_casual_fan
+import com.vidanstojic.draftduel.resources.bot_tagline_casual_fan_basketball
+import com.vidanstojic.draftduel.resources.bot_tagline_casual_fan_food
+import com.vidanstojic.draftduel.resources.bot_tagline_casual_fan_movies
 import com.vidanstojic.draftduel.resources.bot_tagline_hustler
 import com.vidanstojic.draftduel.resources.bot_tagline_scout
+import com.vidanstojic.draftduel.resources.bot_tagline_scout_food
+import com.vidanstojic.draftduel.resources.bot_tagline_scout_movies
 import com.vidanstojic.draftduel.resources.bot_tagline_star_chaser
+import com.vidanstojic.draftduel.resources.bot_tagline_star_chaser_basketball
+import com.vidanstojic.draftduel.resources.bot_tagline_star_chaser_food
+import com.vidanstojic.draftduel.resources.bot_tagline_star_chaser_movies
 import com.vidanstojic.draftduel.resources.bot_tagline_steady
 import com.vidanstojic.draftduel.resources.mode_bot_title
 import com.vidanstojic.draftduel.ui.components.DdIconButton
@@ -98,7 +107,13 @@ fun BotSelectScreen(
         ) {
             SectionLabel(stringResource(Res.string.bot_opponents), Modifier.padding(horizontal = 4.dp))
             state.bots.forEach { bot ->
-                BotRow(bot = bot, difficulty = bot.difficultyFor(state.scoring, state.rules), selected = bot == state.selected, onClick = { onSelect(bot) })
+                BotRow(
+                    bot = bot,
+                    tagline = bot.tagline(state.theme),
+                    difficulty = bot.difficultyFor(state.scoring, state.rules),
+                    selected = bot == state.selected,
+                    onClick = { onSelect(bot) },
+                )
             }
             Text(
                 text = stringResource(Res.string.bot_offline_note),
@@ -118,6 +133,7 @@ fun BotSelectScreen(
 @Composable
 private fun BotRow(
     bot: BotPersonality,
+    tagline: StringResource,
     difficulty: BotDifficulty,
     selected: Boolean,
     onClick: () -> Unit,
@@ -138,7 +154,7 @@ private fun BotRow(
         ProfileBadge(name = bot.nickname, color = badgeColor(difficulty), size = 40.dp)
         Column(Modifier.weight(1f)) {
             Text(bot.nickname, style = DraftDuelTheme.type.bodyStrong, color = colors.onScreen)
-            Text(stringResource(bot.tagline()), style = DraftDuelTheme.type.caption, color = colors.muted)
+            Text(stringResource(tagline), style = DraftDuelTheme.type.caption, color = colors.muted)
         }
         DifficultyBadge(difficulty)
     }
@@ -172,13 +188,29 @@ private fun badgeColor(difficulty: BotDifficulty): Color = when (difficulty) {
     BotDifficulty.HARD -> DraftDuelTheme.colors.opponent
 }
 
-private fun BotPersonality.tagline(): StringResource = when (this) {
-    BotPersonality.STAR_CHASER -> Res.string.bot_tagline_star_chaser
-    BotPersonality.CASUAL_FAN -> Res.string.bot_tagline_casual_fan
+/** The bot plays the same in every theme; only the words fit the cards on the table. */
+private fun BotPersonality.tagline(theme: Theme): StringResource = when (this) {
+    BotPersonality.STAR_CHASER -> when (theme) {
+        Theme.BASKETBALL -> Res.string.bot_tagline_star_chaser_basketball
+        Theme.MOVIES -> Res.string.bot_tagline_star_chaser_movies
+        Theme.FOOD -> Res.string.bot_tagline_star_chaser_food
+        Theme.FOOTBALL, Theme.TENNIS -> Res.string.bot_tagline_star_chaser
+    }
+    // Only in football does this bot really overrate forwards (RatingPerception.positionBias).
+    BotPersonality.CASUAL_FAN -> when (theme) {
+        Theme.BASKETBALL, Theme.TENNIS -> Res.string.bot_tagline_casual_fan_basketball
+        Theme.MOVIES -> Res.string.bot_tagline_casual_fan_movies
+        Theme.FOOD -> Res.string.bot_tagline_casual_fan_food
+        Theme.FOOTBALL -> Res.string.bot_tagline_casual_fan
+    }
     BotPersonality.BARGAIN_HUNTER -> Res.string.bot_tagline_bargain_hunter
     BotPersonality.STEADY -> Res.string.bot_tagline_steady
     BotPersonality.HUSTLER -> Res.string.bot_tagline_hustler
-    BotPersonality.SCOUT -> Res.string.bot_tagline_scout
+    BotPersonality.SCOUT -> when (theme) {
+        Theme.MOVIES -> Res.string.bot_tagline_scout_movies
+        Theme.FOOD -> Res.string.bot_tagline_scout_food
+        else -> Res.string.bot_tagline_scout
+    }
 }
 
 private fun BotDifficulty.label(): StringResource = when (this) {
