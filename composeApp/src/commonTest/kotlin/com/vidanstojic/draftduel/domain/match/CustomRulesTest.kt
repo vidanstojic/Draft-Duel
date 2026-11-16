@@ -78,6 +78,31 @@ class CustomRulesTest {
     }
 
     @Test
+    fun equalSplit_isTheDefault_andFollowsTheCardCount() {
+        assertTrue(MatchRules.DEFAULT.isEqualSplit)
+        assertTrue(!MatchRules.CLASSIC.isEqualSplit)
+        val twelve = MatchRules.DEFAULT.withCards(12)
+        assertEquals(6, twelve.slots)
+        assertTrue(twelve.isEqualSplit)
+        assertEquals(null, MatchRules.DEFAULT.withEqualSplit(false).slots)
+        assertEquals(7, MatchRules.CLASSIC.withCards(14).withEqualSplit(true).slots)
+        // A limit that is not half the cards stays as it is when the card count changes.
+        assertEquals(4, MatchRules(cards = 10, slots = 4).withCards(12).slots)
+    }
+
+    @Test
+    fun equalSplit_everyPlayerEndsWithHalfTheCards() {
+        val random = Random(11)
+        for (cards in MatchRules.CARDS_RANGE step 2) {
+            val rules = MatchRules.DEFAULT.withCards(cards)
+            repeat(20) {
+                val result = BotSimulation.playOnce(BotPersonality.HUSTLER, BotPersonality.SCOUT, SimPacks.football, random, Seat.A, rules)
+                assertEquals(listOf(cards / 2, cards / 2), result.final.seats.values.map { it.cards.size }, "$cards cards")
+            }
+        }
+    }
+
+    @Test
     fun publicRatings_botsSeeTheExactRating() {
         val state = start(MatchRules(ratingsVisible = true))
         val bot = BotFactory.create(BotPersonality.CASUAL_FAN, PoolStats.of(SimPacks.football.cards, Scoring.RATINGS), Random(1)) as PersonalityBot

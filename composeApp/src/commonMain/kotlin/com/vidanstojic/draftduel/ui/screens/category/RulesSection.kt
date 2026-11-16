@@ -34,6 +34,8 @@ import com.vidanstojic.draftduel.domain.match.MatchRules
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.custom_budget
 import com.vidanstojic.draftduel.resources.custom_cards
+import com.vidanstojic.draftduel.resources.custom_equal_split
+import com.vidanstojic.draftduel.resources.custom_equal_split_off
 import com.vidanstojic.draftduel.resources.custom_first_cost
 import com.vidanstojic.draftduel.resources.custom_hand_over
 import com.vidanstojic.draftduel.resources.custom_increment
@@ -151,20 +153,28 @@ private fun CustomRulesEditor(
             value = rules.cards.toString(),
             canDecrease = rules.cards - CARDS_STEP in MatchRules.CARDS_RANGE,
             canIncrease = rules.cards + CARDS_STEP in MatchRules.CARDS_RANGE,
-            onDecrease = { onChange { it.copy(cards = it.cards - CARDS_STEP) } },
-            onIncrease = { onChange { it.copy(cards = it.cards + CARDS_STEP) } },
+            onDecrease = { onChange { it.withCards(it.cards - CARDS_STEP) } },
+            onIncrease = { onChange { it.withCards(it.cards + CARDS_STEP) } },
         )
         if (!isRecipe) {
-            val slots = rules.slots
-            StepperRow(
-                label = stringResource(Res.string.custom_slots),
-                value = slots?.toString() ?: stringResource(Res.string.custom_off),
-                canDecrease = slots != null,
-                canIncrease = slots == null || slots < MatchRules.SLOTS_RANGE.last,
-                // Below the smallest limit comes "off"; above "off" comes the smallest limit.
-                onDecrease = { onChange { it.copy(slots = it.slots?.let { s -> if (s == MatchRules.SLOTS_RANGE.first) null else s - 1 }) } },
-                onIncrease = { onChange { it.copy(slots = it.slots?.plus(1) ?: MatchRules.SLOTS_RANGE.first) } },
+            SwitchRow(
+                label = stringResource(Res.string.custom_equal_split, rules.cards / 2),
+                checked = rules.isEqualSplit,
+                onCheckedChange = { on -> onChange { it.withEqualSplit(on) } },
             )
+            if (!rules.isEqualSplit) {
+                Caption(stringResource(Res.string.custom_equal_split_off))
+                val slots = rules.slots
+                StepperRow(
+                    label = stringResource(Res.string.custom_slots),
+                    value = slots?.toString() ?: stringResource(Res.string.custom_off),
+                    canDecrease = slots != null,
+                    canIncrease = slots == null || slots < MatchRules.SLOTS_RANGE.last,
+                    // Below the smallest limit comes "off"; above "off" comes the smallest limit.
+                    onDecrease = { onChange { it.copy(slots = it.slots?.let { s -> if (s == MatchRules.SLOTS_RANGE.first) null else s - 1 }) } },
+                    onIncrease = { onChange { it.copy(slots = it.slots?.plus(1) ?: MatchRules.SLOTS_RANGE.first) } },
+                )
+            }
             val handOver = rules.handOver
             SwitchRow(
                 label = stringResource(Res.string.custom_hand_over),

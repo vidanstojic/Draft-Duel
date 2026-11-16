@@ -52,6 +52,18 @@ data class MatchRules(
 
     val allowsHandOver: Boolean get() = handOver != null
 
+    /**
+     * Both players end with the same number of cards: the limit is exactly half the cards of the
+     * match, so once one player is full the rest go to the other and nobody wins on card count.
+     */
+    val isEqualSplit: Boolean get() = slots != null && slots * 2 == cards
+
+    /** Turns [isEqualSplit] on (limit = half the cards) or off (no card limit). */
+    fun withEqualSplit(on: Boolean): MatchRules = copy(slots = if (on) cards / 2 else null)
+
+    /** Changes the number of cards; with [isEqualSplit] the limit follows, so the split stays equal. */
+    fun withCards(count: Int): MatchRules = copy(cards = count, slots = if (isEqualSplit) count / 2 else slots)
+
     /** Recipe packs keep their own rule (the opener may skip), so slots and hand-overs do not apply. */
     fun forRecipe(): MatchRules = copy(slots = null, handOver = null)
 
@@ -61,10 +73,16 @@ data class MatchRules(
         val SLOTS_RANGE = 3..7
         val TURN_SECONDS_RANGE = 5..20
 
-        /** Five slots each and a hand-over costing 1, 2, 3… The rules the game is tested with. */
+        /**
+         * Five slots each out of ten cards (an equal split) and a hand-over costing 1, 2, 3… The
+         * rules the game is tested with.
+         */
         val DEFAULT = MatchRules()
 
-        /** No card limit and no hand-over: only the budget limits a player, and the opener must bid. */
+        /**
+         * No card limit and no hand-over: only the budget limits a player, and the opener must
+         * bid. One player can end with more cards than the other.
+         */
         val CLASSIC = MatchRules(slots = null, handOver = null)
     }
 }

@@ -56,11 +56,13 @@
     <string name="rules_classic">Classic</string>
     <string name="rules_custom">Custom</string>
     <string name="rules_default_hint">Each player ends with exactly 5 cards. The opener may hand a card over instead of bidding, and the rival must open it. Hand-overs cost 1, then 2, then 3… points each.</string>
-    <string name="rules_classic_hint">No card limit. Only your 20 points stop you, and the opener must bid.</string>
+    <string name="rules_classic_hint">No card limit. Only your 20 points stop you, and the opener must bid. One player can end with more cards.</string>
     <string name="rules_custom_hint">Set every parameter yourself. Bots are tuned for Default and Classic, so other values are for testing.</string>
     <string name="rules_custom_quick_match">Custom rules are for bot, friend and same-device matches.</string>
     <string name="custom_budget">Points per player</string>
     <string name="custom_cards">Cards per match</string>
+    <string name="custom_equal_split">Same number of cards (%1$d each)</string>
+    <string name="custom_equal_split_off">Off: one player can end with more cards than the other, and more cards usually means a higher total.</string>
     <string name="custom_slots">Card limit</string>
     <string name="custom_off">Off</string>
     <string name="custom_hand_over">Hand-over</string>
