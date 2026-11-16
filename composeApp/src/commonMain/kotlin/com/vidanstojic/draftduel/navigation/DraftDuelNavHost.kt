@@ -1,17 +1,24 @@
 package com.vidanstojic.draftduel.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.vidanstojic.draftduel.di.LocalAppContainer
 import com.vidanstojic.draftduel.domain.model.GameMode
+import com.vidanstojic.draftduel.feedback.MusicTrack
 import com.vidanstojic.draftduel.ui.screens.bot.BotSelectRoute
 import com.vidanstojic.draftduel.ui.screens.category.CategoryRoute
 import com.vidanstojic.draftduel.ui.screens.home.HomeRoute
 import com.vidanstojic.draftduel.ui.screens.howto.HowToPlayRoute
+import com.vidanstojic.draftduel.ui.screens.settings.SettingsRoute
 import com.vidanstojic.draftduel.ui.screens.invite.InviteRoute
 import com.vidanstojic.draftduel.ui.screens.local.LocalMatchRoute
 import com.vidanstojic.draftduel.ui.screens.local.LocalSetupRoute
@@ -24,6 +31,7 @@ fun DraftDuelNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
 ) {
+    MatchMusic(navController)
     NavHost(
         navController = navController,
         startDestination = Route.Home,
@@ -32,6 +40,13 @@ fun DraftDuelNavHost(
         composable<Route.Home> {
             HomeRoute(
                 onModeSelected = { mode -> navController.navigate(Route.ChooseCategory(mode.name)) },
+                onHowToPlay = { navController.navigate(Route.HowToPlay) { launchSingleTop = true } },
+                onSettings = { navController.navigate(Route.Settings) { launchSingleTop = true } },
+            )
+        }
+        composable<Route.Settings> {
+            SettingsRoute(
+                onBack = { navController.popBackStack() },
                 onHowToPlay = { navController.navigate(Route.HowToPlay) { launchSingleTop = true } },
             )
         }
@@ -91,6 +106,17 @@ fun DraftDuelNavHost(
             )
         }
     }
+}
+
+/** The theme's loop during a match, the menu loop everywhere else. */
+@Composable
+private fun MatchMusic(navController: NavHostController) {
+    val container = LocalAppContainer.current
+    val entry by navController.currentBackStackEntryAsState()
+    val destination = entry?.destination
+    val inMatch = destination != null && (destination.hasRoute<Route.Match>() || destination.hasRoute<Route.LocalMatch>())
+    val track = if (inMatch) MusicTrack.forMatch(container.sessionRepository.setup?.theme) else MusicTrack.MENU
+    LaunchedEffect(track) { container.feedback.music(track) }
 }
 
 /** Where the category screen leads for each mode. */

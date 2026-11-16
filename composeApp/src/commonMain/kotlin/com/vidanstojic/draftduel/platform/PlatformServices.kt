@@ -6,9 +6,11 @@ package com.vidanstojic.draftduel.platform
  */
 class PlatformServices(
     val store: KeyValueStore,
+    val audio: AudioOutput = SilentAudio,
+    val haptics: HapticOutput = NoHaptics,
 ) {
     companion object {
-        /** Previews and tests: nothing is saved. */
+        /** Previews and tests: nothing is saved, nothing is heard or felt. */
         fun inMemory(): PlatformServices = PlatformServices(store = InMemoryKeyValueStore())
     }
 }

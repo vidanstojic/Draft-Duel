@@ -9,6 +9,8 @@ import com.vidanstojic.draftduel.domain.repository.InMemoryMatchSessionRepositor
 import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 import com.vidanstojic.draftduel.domain.repository.PackRepository
 import com.vidanstojic.draftduel.domain.repository.ProfileRepository
+import com.vidanstojic.draftduel.feedback.GameFeedback
+import com.vidanstojic.draftduel.feedback.SettingsRepository
 import com.vidanstojic.draftduel.platform.PlatformServices
 
 /**
@@ -25,6 +27,8 @@ class AppContainer(
     val packRepository: PackRepository = BundledPackRepository(shuffleBag = ShuffleBag(StoredSeenCards(platform.store)))
     val profileRepository: ProfileRepository = FakeProfileRepository()
     val sessionRepository: MatchSessionRepository = InMemoryMatchSessionRepository()
+    val settingsRepository: SettingsRepository = SettingsRepository(platform.store)
+    val feedback: GameFeedback = GameFeedback(settingsRepository, platform.audio, platform.haptics)
 }
 
 val LocalAppContainer = staticCompositionLocalOf<AppContainer> {

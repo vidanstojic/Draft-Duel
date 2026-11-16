@@ -43,6 +43,14 @@
     <string name="howto_budget_text">Both of you start with 20 points for the whole match, and each of you ends with exactly 5 of the 10 cards. Once you have 5, the rest go to your rival for free, so a cheap card can cost you a better one later.\n\nDo not want the card you have to open? Hand it over: your rival must open it instead. Your first hand-over costs 1 point, the next 2, then 3.</string>
     <string name="howto_reveal_title">The reveal</string>
     <string name="howto_reveal_text">You see the rating of a card when you win it. The cards of your rival stay hidden until the end, when everything is turned over and the higher total wins.\n\nFootball and basketball end with a real score: the bigger your rating lead per card, the bigger the win. In Food you cook one dish, so collect what belongs in it; wrong ingredients cost points.</string>
+    <!-- Settings -->
+    <string name="settings_sound_label">Sound and touch</string>
+    <string name="settings_music">Music</string>
+    <string name="settings_music_hint">A loop for the menus and one for each theme</string>
+    <string name="settings_sounds">Sound effects</string>
+    <string name="settings_sounds_hint">Bids, cards won, the last seconds of your turn</string>
+    <string name="settings_vibration">Vibration</string>
+    <string name="settings_vibration_hint">When your time runs out, the last seconds and cards you win</string>
     <!-- Themes -->
     <string name="theme_football">Football</string>
     <string name="theme_basketball">Basketball</string>

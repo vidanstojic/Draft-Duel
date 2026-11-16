@@ -15,6 +15,9 @@ import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 import com.vidanstojic.draftduel.domain.repository.PackRepository
 import com.vidanstojic.draftduel.domain.repository.ProfileRepository
+import com.vidanstojic.draftduel.feedback.GameFeedback
+import com.vidanstojic.draftduel.feedback.Sfx
+import com.vidanstojic.draftduel.platform.HapticEffect
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -28,6 +31,7 @@ class MatchViewModel(
     packRepository: PackRepository,
     profileRepository: ProfileRepository,
     private val sessionRepository: MatchSessionRepository,
+    private val feedback: GameFeedback? = null,
     random: Random = Random.Default,
 ) : ViewModel() {
 
@@ -67,6 +71,7 @@ class MatchViewModel(
             sessionRepository.lastFinishedMatch = finishedMatch
             _finished.value = true
         },
+        onEvent = ::onMatchEvent,
     )
 
     val state: StateFlow<MatchUiState> = combine(driver.match, driver.millisLeft) { match, millis ->
@@ -98,6 +103,32 @@ class MatchViewModel(
     fun onPass() = driver.dispatch(MatchEngine.passAction(driver.match.value, Seat.A))
 
     fun onAssign(toSelf: Boolean) = driver.dispatch(MatchAction.Assign(chooser = Seat.A, to = if (toSelf) Seat.A else Seat.B))
+
+    /** The player sits in seat A: their own moves, cards and clock get sound and vibration. */
+    private fun onMatchEvent(event: MatchEvent) {
+        val feedback = feedback ?: return
+        when (event) {
+            is MatchEvent.Raised -> {
+                feedback.play(Sfx.BID)
+                if (event.seat == Seat.A) feedback.vibrate(HapticEffect.TAP)
+            }
+            is MatchEvent.Passed -> feedback.play(Sfx.PASS)
+            is MatchEvent.CardAwarded -> if (event.winner == Seat.A) {
+                feedback.play(Sfx.CARD_WON)
+                feedback.vibrate(HapticEffect.SUCCESS)
+            } else {
+                feedback.play(Sfx.CARD_LOST)
+            }
+            is MatchEvent.LastSeconds -> if (event.seat == Seat.A) {
+                feedback.play(Sfx.TICK)
+                feedback.vibrate(HapticEffect.TICK)
+            }
+            is MatchEvent.TimedOut -> if (event.seat == Seat.A) {
+                feedback.play(Sfx.TIME_UP)
+                feedback.vibrate(HapticEffect.WARNING)
+            }
+        }
+    }
 
     fun pause() {
         if (canPause) driver.setPaused(PauseReason.PLAYER, true)

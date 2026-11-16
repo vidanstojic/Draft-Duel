@@ -31,6 +31,8 @@ class MatchDriver(
     private val bot: MatchBot? = null,
     private val botSeat: Seat? = null,
     private val onFinished: (MatchState) -> Unit,
+    /** What just happened at the table, for sounds and vibration. */
+    private val onEvent: (MatchEvent) -> Unit = {},
 ) {
     private val _match = MutableStateFlow(initial)
     val match: StateFlow<MatchState> = _match.asStateFlow()
@@ -62,8 +64,27 @@ class MatchDriver(
         val next = MatchEngine.reduce(current, action)
         if (next !== current) {
             _match.value = next
+            eventsFor(current, action, next).forEach(onEvent)
             onMatchChanged()
         }
+    }
+
+    private fun eventsFor(before: MatchState, action: MatchAction, after: MatchState): List<MatchEvent> {
+        val first = when (action) {
+            is MatchAction.Raise -> MatchEvent.Raised(action.seat)
+            is MatchAction.Pass -> MatchEvent.Passed(action.seat)
+            is MatchAction.HandOver -> MatchEvent.Passed(action.seat)
+            is MatchAction.Assign -> null
+            MatchAction.Timeout -> seatToAct(before)?.let { MatchEvent.TimedOut(it) }
+        }
+        val awarded = (after.phase as? MatchPhase.Awarded)?.let { MatchEvent.CardAwarded(it.winner) }
+        return listOfNotNull(first, awarded)
+    }
+
+    private fun seatToAct(state: MatchState): Seat? = when (val phase = state.phase) {
+        is MatchPhase.Bidding -> phase.toAct
+        is MatchPhase.Choosing -> phase.chooser
+        else -> null
     }
 
     /**
@@ -82,7 +103,10 @@ class MatchDriver(
             when (state.phase) {
                 is MatchPhase.Awarded, MatchPhase.Discarded -> {
                     pausableDelay(GameRules.AWARD_PAUSE_MILLIS)
-                    _match.value = MatchEngine.advance(_match.value)
+                    val next = MatchEngine.advance(_match.value)
+                    _match.value = next
+                    // Cards that go to the other player for free once one is full are awarded here.
+                    (next.phase as? MatchPhase.Awarded)?.let { onEvent(MatchEvent.CardAwarded(it.winner)) }
                     onMatchChanged()
                 }
                 MatchPhase.Finished -> onFinished(state)
@@ -93,11 +117,7 @@ class MatchDriver(
 
     private suspend fun runTurn(state: MatchState) = coroutineScope {
         _millisLeft.value = turnMillis
-        val seatToAct = when (val phase = state.phase) {
-            is MatchPhase.Bidding -> phase.toAct
-            is MatchPhase.Choosing -> phase.chooser
-            else -> null
-        }
+        val seatToAct = seatToAct(state)
         if (bot != null && botSeat != null && seatToAct == botSeat) {
             launch {
                 pausableDelay(bot.thinkTimeMillis())
@@ -115,6 +135,9 @@ class MatchDriver(
             if (!isPaused) {
                 left -= TICK_MILLIS
                 _millisLeft.value = left
+                if (seatToAct != null && left in 1..WARN_MILLIS && left % 1_000 == 0L) {
+                    onEvent(MatchEvent.LastSeconds(seatToAct, (left / 1_000).toInt()))
+                }
             }
         }
         dispatch(MatchAction.Timeout)
@@ -132,7 +155,26 @@ class MatchDriver(
 
     private companion object {
         const val TICK_MILLIS = 100L
+
+        /** The last seconds of a turn are counted out loud: 3, 2, 1. */
+        const val WARN_MILLIS = 3_000L
     }
+}
+
+/** Things at the table worth a sound or a buzz. */
+sealed interface MatchEvent {
+    data class Raised(val seat: Seat) : MatchEvent
+
+    /** A pass, a skip or a paid hand-over. */
+    data class Passed(val seat: Seat) : MatchEvent
+
+    data class CardAwarded(val winner: Seat) : MatchEvent
+
+    /** [secondsLeft] (3, 2, 1) of the turn of [seat]. */
+    data class LastSeconds(val seat: Seat, val secondsLeft: Int) : MatchEvent
+
+    /** The clock ran out on [seat]. */
+    data class TimedOut(val seat: Seat) : MatchEvent
 }
 
 /** What can hold a local match. */

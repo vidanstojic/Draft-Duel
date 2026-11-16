@@ -17,7 +17,11 @@ import com.vidanstojic.draftduel.domain.model.PoolSource
 import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.domain.repository.MatchSessionRepository
 import com.vidanstojic.draftduel.domain.repository.PackRepository
+import com.vidanstojic.draftduel.feedback.GameFeedback
+import com.vidanstojic.draftduel.feedback.Sfx
+import com.vidanstojic.draftduel.platform.HapticEffect
 import com.vidanstojic.draftduel.ui.screens.match.MatchDriver
+import com.vidanstojic.draftduel.ui.screens.match.MatchEvent
 import com.vidanstojic.draftduel.ui.screens.match.MatchUiState
 import com.vidanstojic.draftduel.ui.screens.match.PauseReason
 import com.vidanstojic.draftduel.ui.screens.match.toUi
@@ -60,6 +64,7 @@ data class LocalMatchUiState(
 class LocalMatchViewModel(
     packRepository: PackRepository,
     private val sessionRepository: MatchSessionRepository,
+    private val feedback: GameFeedback? = null,
     random: Random = Random.Default,
 ) : ViewModel() {
 
@@ -91,6 +96,7 @@ class LocalMatchViewModel(
             sessionRepository.lastFinishedMatch = finishedMatch
             _finished.value = true
         },
+        onEvent = ::onMatchEvent,
     )
 
     /**
@@ -135,6 +141,27 @@ class LocalMatchViewModel(
     fun onHandoffConfirmed() {
         seatToAct(driver.match.value)?.let { confirmedSeat.value = it }
         driver.setPaused(PauseReason.HANDOFF, false)
+    }
+
+    /** Both players share the phone, so every move and every clock gets the same feedback. */
+    private fun onMatchEvent(event: MatchEvent) {
+        val feedback = feedback ?: return
+        when (event) {
+            is MatchEvent.Raised -> {
+                feedback.play(Sfx.BID)
+                feedback.vibrate(HapticEffect.TAP)
+            }
+            is MatchEvent.Passed -> feedback.play(Sfx.PASS)
+            is MatchEvent.CardAwarded -> feedback.play(Sfx.CARD_WON)
+            is MatchEvent.LastSeconds -> {
+                feedback.play(Sfx.TICK)
+                feedback.vibrate(HapticEffect.TICK)
+            }
+            is MatchEvent.TimedOut -> {
+                feedback.play(Sfx.TIME_UP)
+                feedback.vibrate(HapticEffect.WARNING)
+            }
+        }
     }
 
     /** Pause menu; also opened when the app goes to the background. */

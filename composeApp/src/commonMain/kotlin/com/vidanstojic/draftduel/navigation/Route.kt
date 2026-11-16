@@ -37,4 +37,7 @@ sealed interface Route {
 
     @Serializable
     data object HowToPlay : Route
+
+    @Serializable
+    data object Settings : Route
 }

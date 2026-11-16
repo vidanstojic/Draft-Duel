@@ -97,7 +97,7 @@ fun LocalMatchRoute(
     onLeave: () -> Unit,
 ) {
     val container = LocalAppContainer.current
-    val viewModel = viewModel { LocalMatchViewModel(container.packRepository, container.sessionRepository) }
+    val viewModel = viewModel { LocalMatchViewModel(container.packRepository, container.sessionRepository, container.feedback) }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val finished by viewModel.finished.collectAsStateWithLifecycle()
     val paused by viewModel.paused.collectAsStateWithLifecycle()

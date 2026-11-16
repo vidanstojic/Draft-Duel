@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Haptic feedback in matches (turn clock, cards won); can be switched off in Settings. -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".DraftDuelApplication"
         android:allowBackup="true"

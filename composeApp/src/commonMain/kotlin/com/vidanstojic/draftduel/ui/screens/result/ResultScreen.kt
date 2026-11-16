@@ -20,6 +20,7 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
@@ -36,6 +37,7 @@ import com.vidanstojic.draftduel.domain.match.Seat
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.domain.model.Scoring
 import com.vidanstojic.draftduel.domain.model.Theme
+import com.vidanstojic.draftduel.feedback.Sfx
 import com.vidanstojic.draftduel.platform.rememberShareText
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.close
@@ -83,6 +85,16 @@ fun ResultRoute(
     if (state == null) {
         EmptyResult(onClose)
         return
+    }
+    LaunchedEffect(Unit) {
+        container.feedback.play(
+            when {
+                state.outcome == ResultOutcome.DRAW -> Sfx.DRAW
+                // On a shared phone somebody always won.
+                !state.bottomIsYou || state.outcome == ResultOutcome.BOTTOM_WINS -> Sfx.WIN
+                else -> Sfx.LOSE
+            },
+        )
     }
     val shareMessage = stringResource(
         Res.string.result_share_message,
@@ -206,7 +218,7 @@ private fun RosterRow(row: RosterRowUi, scoring: Scoring) {
 @Composable
 private fun Scoreboard(state: ResultUiState) {
     val colors = DraftDuelTheme.colors
-    val headline = headline(state)
+    val headline = resultHeadline(state)
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -239,7 +251,7 @@ private fun Scoreboard(state: ResultUiState) {
 
 /** "You win by 2 goals", "Ana wins by 12 points", or by the total in themes without a scoreline. */
 @Composable
-private fun headline(state: ResultUiState): String {
+private fun resultHeadline(state: ResultUiState): String {
     if (state.outcome == ResultOutcome.DRAW) return stringResource(Res.string.result_draw)
     val winnerName = if (state.outcome == ResultOutcome.BOTTOM_WINS) state.bottom.name else state.top.name
     val youWin = state.outcome == ResultOutcome.BOTTOM_WINS

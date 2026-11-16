@@ -55,7 +55,7 @@ fun MatchRoute(
 ) {
     val container = LocalAppContainer.current
     val viewModel = viewModel {
-        MatchViewModel(container.packRepository, container.profileRepository, container.sessionRepository)
+        MatchViewModel(container.packRepository, container.profileRepository, container.sessionRepository, container.feedback)
     }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val finished by viewModel.finished.collectAsStateWithLifecycle()
