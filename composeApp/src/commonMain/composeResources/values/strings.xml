@@ -17,7 +17,6 @@
     <string name="settings">Settings</string>
     <string name="back">Back</string>
     <string name="menu">Menu</string>
-    <string name="got_it">Got it</string>
 
     <!-- Home -->
     <string name="home_tagline">10 cards. 20 points.</string>
@@ -32,7 +31,18 @@
     <string name="mode_bot_title">Play vs bot</string>
     <string name="mode_bot_subtitle">Pick a rival. Works offline</string>
     <string name="how_to_play">How to play</string>
-    <string name="how_to_play_rules">You both start with 20 points. 10 cards go up for auction, one at a time.\n\nThe opener must bid. Then raise by 1, 2 or 5, or pass and the other player takes the card at their last bid.\n\nRatings stay hidden. You see yours when you win a card and your rival's at the end.\n\nThe higher total rating wins.\n\nDefault rules: each player ends with exactly 5 cards. As the opener you may hand a card you do not want over to your rival, who must then open it. Your first hand-over costs 1 point, the next 2, then 3.</string>
+    <!-- How to play: what the game is first, then a round, the budget and how a match is won. -->
+    <string name="howto_page">%1$d of %2$d</string>
+    <string name="howto_next">Next</string>
+    <string name="howto_play">Start playing</string>
+    <string name="howto_what_title">What is Draft Duel?</string>
+    <string name="howto_what_text">A one-on-one auction. You and your rival bid for the same cards: footballers, basketball players, movies or ingredients. Every card you win joins your team.\n\nEach card has a rating, but it stays hidden while you bid, so you play on what you know. When the auction ends, the stronger team wins.</string>
+    <string name="howto_auction_title">One card at a time</string>
+    <string name="howto_auction_text">A card goes up for auction. The opener must bid first, then you take turns: raise by 1, 2 or 5, or pass. If you pass, your rival takes the card at their last bid.\n\nEach turn has 10 seconds. If the time runs out, you raise by 1 automatically, or pass when you cannot pay. Openers take turns from card to card.</string>
+    <string name="howto_budget_title">20 points, 5 cards</string>
+    <string name="howto_budget_text">Both of you start with 20 points for the whole match, and each of you ends with exactly 5 of the 10 cards. Once you have 5, the rest go to your rival for free, so a cheap card can cost you a better one later.\n\nDo not want the card you have to open? Hand it over: your rival must open it instead. Your first hand-over costs 1 point, the next 2, then 3.</string>
+    <string name="howto_reveal_title">The reveal</string>
+    <string name="howto_reveal_text">You see the rating of a card when you win it. The cards of your rival stay hidden until the end, when everything is turned over and the higher total wins.\n\nFootball and basketball end with a real score: the bigger your rating lead per card, the bigger the win. In Food you cook one dish, so collect what belongs in it; wrong ingredients cost points.</string>
     <!-- Themes -->
     <string name="theme_football">Football</string>
     <string name="theme_basketball">Basketball</string>

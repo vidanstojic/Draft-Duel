@@ -22,15 +22,11 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -45,11 +41,9 @@ import com.vidanstojic.draftduel.di.LocalAppContainer
 import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.resources.Res
 import com.vidanstojic.draftduel.resources.app_name
-import com.vidanstojic.draftduel.resources.got_it
 import com.vidanstojic.draftduel.resources.home_tagline
 import com.vidanstojic.draftduel.resources.home_tagline_accent
 import com.vidanstojic.draftduel.resources.how_to_play
-import com.vidanstojic.draftduel.resources.how_to_play_rules
 import com.vidanstojic.draftduel.resources.mode_bot_subtitle
 import com.vidanstojic.draftduel.resources.mode_bot_title
 import com.vidanstojic.draftduel.resources.mode_coming_soon
@@ -67,6 +61,7 @@ import com.vidanstojic.draftduel.ui.components.DdTopBar
 import com.vidanstojic.draftduel.ui.components.HiddenRating
 import com.vidanstojic.draftduel.ui.components.MiniCard
 import com.vidanstojic.draftduel.ui.components.PileCard
+import com.vidanstojic.draftduel.ui.screens.howto.HOW_TO_PLAY_SEEN_KEY
 import com.vidanstojic.draftduel.ui.surface.PlaySurface
 import com.vidanstojic.draftduel.ui.surface.SurfaceStyle
 import com.vidanstojic.draftduel.ui.theme.CardColors
@@ -75,27 +70,37 @@ import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun HomeRoute(onModeSelected: (GameMode) -> Unit) {
+fun HomeRoute(
+    onModeSelected: (GameMode) -> Unit,
+    onHowToPlay: () -> Unit,
+    onSettings: (() -> Unit)? = null,
+) {
     val container = LocalAppContainer.current
+    // First launch: the guide opens by itself, once.
+    LaunchedEffect(Unit) {
+        if (!container.platform.store.getBoolean(HOW_TO_PLAY_SEEN_KEY, false)) onHowToPlay()
+    }
     HomeScreen(
         onModeSelected = onModeSelected,
+        onHowToPlay = onHowToPlay,
+        onSettings = onSettings,
         friendMatchesEnabled = container.features.friendMatches,
         versionLabel = container.appInfo.label,
     )
 }
 
 /**
- * [onSettings] null hides the settings button (there is no settings screen yet). With
- * [friendMatchesEnabled] false, "Play a friend" is shown as coming soon (release builds).
+ * [onSettings] null hides the settings button. With [friendMatchesEnabled] false, "Play a friend"
+ * is shown as coming soon (release builds).
  */
 @Composable
 fun HomeScreen(
     onModeSelected: (GameMode) -> Unit,
+    onHowToPlay: () -> Unit = {},
     onSettings: (() -> Unit)? = null,
     friendMatchesEnabled: Boolean = true,
     versionLabel: String? = null,
 ) {
-    var showRules by rememberSaveable { mutableStateOf(false) }
     val colors = DraftDuelTheme.colors
 
     DdScreen(surface = SurfaceStyle.TABLE) {
@@ -137,8 +142,8 @@ fun HomeScreen(
             enabled = friendMatchesEnabled,
         )
         Spacer(Modifier.weight(1f))
-        TextButton(onClick = { showRules = true }, modifier = Modifier.align(Alignment.CenterHorizontally)) {
-            Text(stringResource(Res.string.how_to_play), style = DraftDuelTheme.type.mono, color = colors.muted)
+        TextButton(onClick = onHowToPlay, modifier = Modifier.align(Alignment.CenterHorizontally)) {
+            Text(stringResource(Res.string.how_to_play), style = DraftDuelTheme.type.bodyStrong, color = colors.accent)
         }
         versionLabel?.let {
             Text(
@@ -148,17 +153,6 @@ fun HomeScreen(
                 modifier = Modifier.align(Alignment.CenterHorizontally),
             )
         }
-    }
-
-    if (showRules) {
-        AlertDialog(
-            onDismissRequest = { showRules = false },
-            confirmButton = {
-                TextButton(onClick = { showRules = false }) { Text(stringResource(Res.string.got_it)) }
-            },
-            title = { Text(stringResource(Res.string.how_to_play)) },
-            text = { Text(stringResource(Res.string.how_to_play_rules)) },
-        )
     }
 }
 

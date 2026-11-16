@@ -11,6 +11,7 @@ import com.vidanstojic.draftduel.domain.model.GameMode
 import com.vidanstojic.draftduel.ui.screens.bot.BotSelectRoute
 import com.vidanstojic.draftduel.ui.screens.category.CategoryRoute
 import com.vidanstojic.draftduel.ui.screens.home.HomeRoute
+import com.vidanstojic.draftduel.ui.screens.howto.HowToPlayRoute
 import com.vidanstojic.draftduel.ui.screens.invite.InviteRoute
 import com.vidanstojic.draftduel.ui.screens.local.LocalMatchRoute
 import com.vidanstojic.draftduel.ui.screens.local.LocalSetupRoute
@@ -29,7 +30,13 @@ fun DraftDuelNavHost(
         modifier = modifier,
     ) {
         composable<Route.Home> {
-            HomeRoute(onModeSelected = { mode -> navController.navigate(Route.ChooseCategory(mode.name)) })
+            HomeRoute(
+                onModeSelected = { mode -> navController.navigate(Route.ChooseCategory(mode.name)) },
+                onHowToPlay = { navController.navigate(Route.HowToPlay) { launchSingleTop = true } },
+            )
+        }
+        composable<Route.HowToPlay> {
+            HowToPlayRoute(onClose = { navController.popBackStack() })
         }
         composable<Route.ChooseCategory> { entry ->
             val route = entry.toRoute<Route.ChooseCategory>()

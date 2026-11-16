@@ -34,4 +34,7 @@ sealed interface Route {
 
     @Serializable
     data object LocalMatch : Route
+
+    @Serializable
+    data object HowToPlay : Route
 }
