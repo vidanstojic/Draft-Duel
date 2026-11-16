@@ -2,9 +2,11 @@
 
 Inputs are tools/basketball/nba_igraci.csv and evroliga_igraci.csv (columns: ime, prezime,
 rejting, pozicija, klub). Ratings there are hand-assigned by the author (spec §5: "autor,
-ručno"), one scale per league. The pack takes 50 players per league as two categories, NBA and
-EuroLeague, in four tiers like the football pack: 6 elite, 14 strong, 20 solid, 10 role players.
-Club names stay out of the pack (spec §5); the card shows the league instead.
+ručno"), one scale per league. The pack has two categories, NBA (150 players) and EuroLeague
+(100), split 10 / 30 / 60 % into stars, strong and solid players (spec §5). The hand-picked
+well-known names (PICKS) are always in; the rest of each tier is filled from the tables, highest
+rating first and spread over the clubs, so every team is in the pack. Club names stay out of the
+pack (spec §5); the card shows the league instead.
 
 Usage (from the repo root):
     python tools/build_basketball_pack.py
@@ -24,7 +26,10 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "tools/basketball"
 DEFAULT_OUT = ROOT / "composeApp/src/commonMain/composeResources/files/packs/basketball.json"
 SEASON = "2025/26"  # the season the ratings are based on
-PACK_SIZE = 50  # per league
+# Players per league and the lowest rating that counts as a star in that league's scale.
+TARGETS = {"NBA": (150, 90), "EuroLeague": (100, 88)}
+STRONG_LINE = 80
+TIER_SHARE = {"star": 0.10, "strong": 0.30, "solid": 0.60}
 
 # Picked by hand: well-known names in each tier, spread over clubs and positions.
 PICKS = {
@@ -112,16 +117,50 @@ def athlete(league: str, row: dict) -> dict:
     }
 
 
+def tier(rating: int, star_line: int) -> str:
+    if rating >= star_line:
+        return "star"
+    return "strong" if rating >= STRONG_LINE else "solid"
+
+
+def fill(league: str, rows: dict[str, dict], picks: list[str]) -> list[str]:
+    """The picks plus the best of the rest per tier, one club at a time, up to the tier's share."""
+    size, star_line = TARGETS[league]
+    chosen = list(picks)
+    for name, share in TIER_SHARE.items():
+        want = round(size * share)
+        have = [p for p in chosen if tier(int(rows[p]["rejting"]), star_line) == name]
+        if len(have) > want:
+            raise ValueError(f"{league}: {len(have)} picked {name} players, the tier holds {want}")
+        rest = sorted(
+            (k for k, r in rows.items() if k not in chosen and tier(int(r["rejting"]), star_line) == name),
+            key=lambda k: (-int(rows[k]["rejting"]), k),
+        )
+        # Round robin over clubs: each club gives its best remaining player in turn.
+        by_club: dict[str, list[str]] = {}
+        for k in rest:
+            by_club.setdefault(rows[k]["klub"], []).append(k)
+        added: list[str] = []
+        while len(have) + len(added) < want and any(by_club.values()):
+            for club in sorted(by_club, key=lambda c: (-int(rows[by_club[c][0]]["rejting"]) if by_club[c] else 0, c)):
+                if by_club[club] and len(have) + len(added) < want:
+                    added.append(by_club[club].pop(0))
+        if len(have) + len(added) < want:
+            raise ValueError(f"{league}: only {len(have) + len(added)} {name} players for {want}")
+        chosen += added
+    return chosen
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--version", type=int, default=1)
+    parser.add_argument("--version", type=int, default=2)
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
     args = parser.parse_args()
 
     athletes = []
     for league, (file, picks) in PICKS.items():
-        if len(picks) != PACK_SIZE or len(set(picks)) != len(picks):
-            print(f"{league}: need {PACK_SIZE} different picks, got {len(set(picks))}", file=sys.stderr)
+        if len(set(picks)) != len(picks):
+            print(f"{league}: picks repeat a name", file=sys.stderr)
             return 1
         with open(DATA / file, encoding="utf-8-sig", newline="") as f:
             rows = {f"{r['ime']} {r['prezime']}": r for r in csv.DictReader(f)}
@@ -129,14 +168,18 @@ def main() -> int:
         if missing:
             print(f"{league}: not in {file}: {missing}", file=sys.stderr)
             return 1
-        chosen = sorted((athlete(league, rows[p]) for p in picks), key=lambda a: (-a["rating"], a["name"]))
+        names = fill(league, rows, picks)
+        chosen = sorted((athlete(league, rows[p]) for p in names), key=lambda a: (-a["rating"], a["name"]))
         ratings = [a["rating"] for a in chosen]
-        print(f"{league}: {len(chosen)} players, ratings {min(ratings)}-{max(ratings)}, "
-              f"average {sum(ratings) / len(ratings):.1f}")
+        star_line = TARGETS[league][1]
+        tiers = [sum(tier(r, star_line) == t for r in ratings) for t in TIER_SHARE]
+        clubs = len({rows[p]["klub"] for p in names})
+        print(f"{league}: {len(chosen)} players from {clubs} clubs, ratings {min(ratings)}-{max(ratings)}, "
+              f"average {sum(ratings) / len(ratings):.1f}, stars / strong / solid {tiers[0]} / {tiers[1]} / {tiers[2]}")
         athletes += chosen
 
     pack = {
-        "id": "basketball-v1",
+        "id": "basketball-v2",
         "version": args.version,
         "theme": "Basketball",
         "categories": list(PICKS),

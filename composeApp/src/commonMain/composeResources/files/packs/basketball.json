@@ -1,6 +1,6 @@
 {
-  "id": "basketball-v1",
-  "version": 1,
+  "id": "basketball-v2",
+  "version": 2,
   "theme": "Basketball",
   "categories": [
     "NBA",
@@ -83,6 +83,81 @@
       }
     },
     {
+      "id": "bb-nba-anthony-edwards",
+      "name": "Anthony Edwards",
+      "rating": 94,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 40,
+        "initials": "AE"
+      }
+    },
+    {
+      "id": "bb-nba-cade-cunningham",
+      "name": "Cade Cunningham",
+      "rating": 93,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 25,
+        "initials": "CC"
+      }
+    },
+    {
+      "id": "bb-nba-donovan-mitchell",
+      "name": "Donovan Mitchell",
+      "rating": 93,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 17,
+        "initials": "DM"
+      }
+    },
+    {
+      "id": "bb-nba-jalen-brunson",
+      "name": "Jalen Brunson",
+      "rating": 92,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 69,
+        "initials": "JB"
+      }
+    },
+    {
+      "id": "bb-nba-jayson-tatum",
+      "name": "Jayson Tatum",
+      "rating": 92,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#7B2D26",
+        "number": 3,
+        "initials": "JT"
+      }
+    },
+    {
       "id": "bb-nba-stephen-curry",
       "name": "Stephen Curry",
       "rating": 92,
@@ -95,6 +170,126 @@
         "color": "#4A5D23",
         "number": 81,
         "initials": "SC"
+      }
+    },
+    {
+      "id": "bb-nba-tyrese-maxey",
+      "name": "Tyrese Maxey",
+      "rating": 92,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 93,
+        "initials": "TM"
+      }
+    },
+    {
+      "id": "bb-nba-devin-booker",
+      "name": "Devin Booker",
+      "rating": 91,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 83,
+        "initials": "DB"
+      }
+    },
+    {
+      "id": "bb-nba-kevin-durant",
+      "name": "Kevin Durant",
+      "rating": 91,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 56,
+        "initials": "KD"
+      }
+    },
+    {
+      "id": "bb-nba-jalen-johnson",
+      "name": "Jalen Johnson",
+      "rating": 90,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 73,
+        "initials": "JJ"
+      }
+    },
+    {
+      "id": "bb-nba-amen-thompson",
+      "name": "Amen Thompson",
+      "rating": 89,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 22,
+        "initials": "AT"
+      }
+    },
+    {
+      "id": "bb-nba-anthony-davis",
+      "name": "Anthony Davis",
+      "rating": 89,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 34,
+        "initials": "AD"
+      }
+    },
+    {
+      "id": "bb-nba-austin-reaves",
+      "name": "Austin Reaves",
+      "rating": 89,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 95,
+        "initials": "AR"
+      }
+    },
+    {
+      "id": "bb-nba-chet-holmgren",
+      "name": "Chet Holmgren",
+      "rating": 89,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 10,
+        "initials": "CH"
       }
     },
     {
@@ -113,6 +308,51 @@
       }
     },
     {
+      "id": "bb-nba-deni-avdija",
+      "name": "Deni Avdija",
+      "rating": 89,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 16,
+        "initials": "DA"
+      }
+    },
+    {
+      "id": "bb-nba-james-harden",
+      "name": "James Harden",
+      "rating": 89,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 12,
+        "initials": "JH"
+      }
+    },
+    {
+      "id": "bb-nba-jaren-jackson-jr",
+      "name": "Jaren Jackson Jr.",
+      "rating": 89,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 13,
+        "initials": "JJ"
+      }
+    },
+    {
       "id": "bb-nba-joel-embiid",
       "name": "Joel Embiid",
       "rating": 89,
@@ -125,6 +365,96 @@
         "color": "#212F3D",
         "number": 66,
         "initials": "JE"
+      }
+    },
+    {
+      "id": "bb-nba-karl-anthony-towns",
+      "name": "Karl-Anthony Towns",
+      "rating": 89,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 53,
+        "initials": "KT"
+      }
+    },
+    {
+      "id": "bb-nba-paolo-banchero",
+      "name": "Paolo Banchero",
+      "rating": 89,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#7B2D26",
+        "number": 71,
+        "initials": "PB"
+      }
+    },
+    {
+      "id": "bb-nba-scottie-barnes",
+      "name": "Scottie Barnes",
+      "rating": 89,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 35,
+        "initials": "SB"
+      }
+    },
+    {
+      "id": "bb-nba-bam-adebayo",
+      "name": "Bam Adebayo",
+      "rating": 88,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 76,
+        "initials": "BA"
+      }
+    },
+    {
+      "id": "bb-nba-derrick-white",
+      "name": "Derrick White",
+      "rating": 88,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 21,
+        "initials": "DW"
+      }
+    },
+    {
+      "id": "bb-nba-jalen-duren",
+      "name": "Jalen Duren",
+      "rating": 88,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 45,
+        "initials": "JD"
       }
     },
     {
@@ -158,6 +488,21 @@
       }
     },
     {
+      "id": "bb-nba-pascal-siakam",
+      "name": "Pascal Siakam",
+      "rating": 88,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 65,
+        "initials": "PS"
+      }
+    },
+    {
       "id": "bb-nba-trae-young",
       "name": "Trae Young",
       "rating": 88,
@@ -170,6 +515,36 @@
         "color": "#1F5E5A",
         "number": 12,
         "initials": "TY"
+      }
+    },
+    {
+      "id": "bb-nba-de-aaron-fox",
+      "name": "De'Aaron Fox",
+      "rating": 87,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 33,
+        "initials": "DF"
+      }
+    },
+    {
+      "id": "bb-nba-domantas-sabonis",
+      "name": "Domantas Sabonis",
+      "rating": 87,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 92,
+        "initials": "DS"
       }
     },
     {
@@ -188,6 +563,21 @@
       }
     },
     {
+      "id": "bb-nba-josh-giddey",
+      "name": "Josh Giddey",
+      "rating": 87,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 50,
+        "initials": "JG"
+      }
+    },
+    {
       "id": "bb-nba-lamelo-ball",
       "name": "LaMelo Ball",
       "rating": 87,
@@ -200,6 +590,36 @@
         "color": "#2E4A7D",
         "number": 84,
         "initials": "LB"
+      }
+    },
+    {
+      "id": "bb-nba-michael-porter-jr",
+      "name": "Michael Porter Jr.",
+      "rating": 87,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#7B2D26",
+        "number": 43,
+        "initials": "MP"
+      }
+    },
+    {
+      "id": "bb-nba-tyler-herro",
+      "name": "Tyler Herro",
+      "rating": 87,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 97,
+        "initials": "TH"
       }
     },
     {
@@ -218,6 +638,36 @@
       }
     },
     {
+      "id": "bb-nba-brandon-ingram",
+      "name": "Brandon Ingram",
+      "rating": 86,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 10,
+        "initials": "BI"
+      }
+    },
+    {
+      "id": "bb-nba-brandon-miller",
+      "name": "Brandon Miller",
+      "rating": 86,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 39,
+        "initials": "BM"
+      }
+    },
+    {
       "id": "bb-nba-darius-garland",
       "name": "Darius Garland",
       "rating": 86,
@@ -233,6 +683,21 @@
       }
     },
     {
+      "id": "bb-nba-dyson-daniels",
+      "name": "Dyson Daniels",
+      "rating": 86,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 25,
+        "initials": "DD"
+      }
+    },
+    {
       "id": "bb-nba-jimmy-butler-iii",
       "name": "Jimmy Butler III",
       "rating": 86,
@@ -245,6 +710,51 @@
         "color": "#2E4A7D",
         "number": 56,
         "initials": "JB"
+      }
+    },
+    {
+      "id": "bb-nba-trey-murphy-iii",
+      "name": "Trey Murphy III",
+      "rating": 86,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 56,
+        "initials": "TM"
+      }
+    },
+    {
+      "id": "bb-nba-rudy-gobert",
+      "name": "Rudy Gobert",
+      "rating": 85,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 85,
+        "initials": "RG"
+      }
+    },
+    {
+      "id": "bb-nba-aaron-gordon",
+      "name": "Aaron Gordon",
+      "rating": 84,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 84,
+        "initials": "AG"
       }
     },
     {
@@ -278,6 +788,21 @@
       }
     },
     {
+      "id": "bb-nba-jalen-green",
+      "name": "Jalen Green",
+      "rating": 84,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#7B2D26",
+        "number": 63,
+        "initials": "JG"
+      }
+    },
+    {
       "id": "bb-nba-kristaps-porzingis",
       "name": "Kristaps Porzingis",
       "rating": 84,
@@ -308,6 +833,36 @@
       }
     },
     {
+      "id": "bb-nba-vj-edgecombe",
+      "name": "VJ Edgecombe",
+      "rating": 83,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 71,
+        "initials": "VE"
+      }
+    },
+    {
+      "id": "bb-nba-dereck-lively-ii",
+      "name": "Dereck Lively II",
+      "rating": 82,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 27,
+        "initials": "DL"
+      }
+    },
+    {
       "id": "bb-nba-draymond-green",
       "name": "Draymond Green",
       "rating": 82,
@@ -320,6 +875,21 @@
         "color": "#212F3D",
         "number": 74,
         "initials": "DG"
+      }
+    },
+    {
+      "id": "bb-nba-zach-edey",
+      "name": "Zach Edey",
+      "rating": 82,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#7B2D26",
+        "number": 55,
+        "initials": "ZE"
       }
     },
     {
@@ -353,6 +923,21 @@
       }
     },
     {
+      "id": "bb-nba-aaron-wiggins",
+      "name": "Aaron Wiggins",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 41,
+        "initials": "AW"
+      }
+    },
+    {
       "id": "bb-nba-al-horford",
       "name": "Al Horford",
       "rating": 79,
@@ -365,6 +950,96 @@
         "color": "#4A5D23",
         "number": 81,
         "initials": "AH"
+      }
+    },
+    {
+      "id": "bb-nba-bilal-coulibaly",
+      "name": "Bilal Coulibaly",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 2,
+        "initials": "BC"
+      }
+    },
+    {
+      "id": "bb-nba-cedric-coward",
+      "name": "Cedric Coward",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 93,
+        "initials": "CC"
+      }
+    },
+    {
+      "id": "bb-nba-collin-gillespie",
+      "name": "Collin Gillespie",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 60,
+        "initials": "CG"
+      }
+    },
+    {
+      "id": "bb-nba-collin-murray-boyles",
+      "name": "Collin Murray-Boyles",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 82,
+        "initials": "CM"
+      }
+    },
+    {
+      "id": "bb-nba-darryn-peterson",
+      "name": "Darryn Peterson",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 37,
+        "initials": "DP"
+      }
+    },
+    {
+      "id": "bb-nba-de-andre-hunter",
+      "name": "De'Andre Hunter",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 72,
+        "initials": "DH"
       }
     },
     {
@@ -398,6 +1073,66 @@
       }
     },
     {
+      "id": "bb-nba-derik-queen",
+      "name": "Derik Queen",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 72,
+        "initials": "DQ"
+      }
+    },
+    {
+      "id": "bb-nba-derrick-jones-jr",
+      "name": "Derrick Jones Jr.",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 21,
+        "initials": "DJ"
+      }
+    },
+    {
+      "id": "bb-nba-duncan-robinson",
+      "name": "Duncan Robinson",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 2,
+        "initials": "DR"
+      }
+    },
+    {
+      "id": "bb-nba-grayson-allen",
+      "name": "Grayson Allen",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 39,
+        "initials": "GA"
+      }
+    },
+    {
       "id": "bb-nba-harrison-barnes",
       "name": "Harrison Barnes",
       "rating": 79,
@@ -410,6 +1145,81 @@
         "color": "#8C4F2B",
         "number": 87,
         "initials": "HB"
+      }
+    },
+    {
+      "id": "bb-nba-isaiah-joe",
+      "name": "Isaiah Joe",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 50,
+        "initials": "IJ"
+      }
+    },
+    {
+      "id": "bb-nba-jalen-smith",
+      "name": "Jalen Smith",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 56,
+        "initials": "JS"
+      }
+    },
+    {
+      "id": "bb-nba-jeremiah-fears",
+      "name": "Jeremiah Fears",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 6,
+        "initials": "JF"
+      }
+    },
+    {
+      "id": "bb-nba-jock-landale",
+      "name": "Jock Landale",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 64,
+        "initials": "JL"
+      }
+    },
+    {
+      "id": "bb-nba-julian-champagnie",
+      "name": "Julian Champagnie",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 46,
+        "initials": "JC"
       }
     },
     {
@@ -443,6 +1253,51 @@
       }
     },
     {
+      "id": "bb-nba-max-strus",
+      "name": "Max Strus",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 38,
+        "initials": "MS"
+      }
+    },
+    {
+      "id": "bb-nba-moses-moody",
+      "name": "Moses Moody",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 78,
+        "initials": "MM"
+      }
+    },
+    {
+      "id": "bb-nba-moussa-diabate",
+      "name": "Moussa Diabate",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 65,
+        "initials": "MD"
+      }
+    },
+    {
       "id": "bb-nba-nikola-jovic",
       "name": "Nikola Jović",
       "rating": 79,
@@ -455,6 +1310,81 @@
         "color": "#7B2D26",
         "number": 39,
         "initials": "NJ"
+      }
+    },
+    {
+      "id": "bb-nba-obi-toppin",
+      "name": "Obi Toppin",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 72,
+        "initials": "OT"
+      }
+    },
+    {
+      "id": "bb-nba-saddiq-bey",
+      "name": "Saddiq Bey",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 77,
+        "initials": "SB"
+      }
+    },
+    {
+      "id": "bb-nba-sam-hauser",
+      "name": "Sam Hauser",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 95,
+        "initials": "SH"
+      }
+    },
+    {
+      "id": "bb-nba-sam-merrill",
+      "name": "Sam Merrill",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 46,
+        "initials": "SM"
+      }
+    },
+    {
+      "id": "bb-nba-scotty-pippen-jr",
+      "name": "Scotty Pippen Jr.",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 77,
+        "initials": "SP"
       }
     },
     {
@@ -488,6 +1418,36 @@
       }
     },
     {
+      "id": "bb-nba-zaccharie-risacher",
+      "name": "Zaccharie Risacher",
+      "rating": 79,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 60,
+        "initials": "ZR"
+      }
+    },
+    {
+      "id": "bb-nba-aj-green",
+      "name": "AJ Green",
+      "rating": 78,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 90,
+        "initials": "AG"
+      }
+    },
+    {
       "id": "bb-nba-buddy-hield",
       "name": "Buddy Hield",
       "rating": 78,
@@ -503,6 +1463,96 @@
       }
     },
     {
+      "id": "bb-nba-corey-kispert",
+      "name": "Corey Kispert",
+      "rating": 78,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 30,
+        "initials": "CK"
+      }
+    },
+    {
+      "id": "bb-nba-de-anthony-melton",
+      "name": "De'Anthony Melton",
+      "rating": 78,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 93,
+        "initials": "DM"
+      }
+    },
+    {
+      "id": "bb-nba-isaac-okoro",
+      "name": "Isaac Okoro",
+      "rating": 78,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 64,
+        "initials": "IO"
+      }
+    },
+    {
+      "id": "bb-nba-jake-laravia",
+      "name": "Jake LaRavia",
+      "rating": 78,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 78,
+        "initials": "JL"
+      }
+    },
+    {
+      "id": "bb-nba-jarace-walker",
+      "name": "Jarace Walker",
+      "rating": 78,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 72,
+        "initials": "JW"
+      }
+    },
+    {
+      "id": "bb-nba-keon-ellis",
+      "name": "Keon Ellis",
+      "rating": 78,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 19,
+        "initials": "KE"
+      }
+    },
+    {
       "id": "bb-nba-kevin-huerter",
       "name": "Kevin Huerter",
       "rating": 78,
@@ -515,6 +1565,51 @@
         "color": "#4A5D23",
         "number": 69,
         "initials": "KH"
+      }
+    },
+    {
+      "id": "bb-nba-khris-middleton",
+      "name": "Khris Middleton",
+      "rating": 78,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 58,
+        "initials": "KM"
+      }
+    },
+    {
+      "id": "bb-nba-mario-hezonja",
+      "name": "Mario Hezonja",
+      "rating": 78,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 71,
+        "initials": "MH"
+      }
+    },
+    {
+      "id": "bb-nba-noah-clowney",
+      "name": "Noah Clowney",
+      "rating": 78,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 1,
+        "initials": "NC"
       }
     },
     {
@@ -548,6 +1643,81 @@
       }
     },
     {
+      "id": "bb-nba-brice-sensabaugh",
+      "name": "Brice Sensabaugh",
+      "rating": 77,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 17,
+        "initials": "BS"
+      }
+    },
+    {
+      "id": "bb-nba-gary-trent-jr",
+      "name": "Gary Trent Jr.",
+      "rating": 77,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 32,
+        "initials": "GT"
+      }
+    },
+    {
+      "id": "bb-nba-goga-bitadze",
+      "name": "Goga Bitadze",
+      "rating": 77,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 37,
+        "initials": "GB"
+      }
+    },
+    {
+      "id": "bb-nba-jamal-shead",
+      "name": "Jamal Shead",
+      "rating": 77,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 68,
+        "initials": "JS"
+      }
+    },
+    {
+      "id": "bb-nba-jaylin-williams",
+      "name": "Jaylin Williams",
+      "rating": 77,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 5,
+        "initials": "JW"
+      }
+    },
+    {
       "id": "bb-nba-jordan-clarkson",
       "name": "Jordan Clarkson",
       "rating": 77,
@@ -560,6 +1730,21 @@
         "color": "#B9770E",
         "number": 17,
         "initials": "JC"
+      }
+    },
+    {
+      "id": "bb-nba-jose-alvarado",
+      "name": "Jose Alvarado",
+      "rating": 77,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 53,
+        "initials": "JA"
       }
     },
     {
@@ -578,6 +1763,66 @@
       }
     },
     {
+      "id": "bb-nba-kentavious-caldwell-pope",
+      "name": "Kentavious Caldwell-Pope",
+      "rating": 77,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#7B2D26",
+        "number": 15,
+        "initials": "KC"
+      }
+    },
+    {
+      "id": "bb-nba-luke-kennard",
+      "name": "Luke Kennard",
+      "rating": 77,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 10,
+        "initials": "LK"
+      }
+    },
+    {
+      "id": "bb-nba-luke-kornet",
+      "name": "Luke Kornet",
+      "rating": 77,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 31,
+        "initials": "LK"
+      }
+    },
+    {
+      "id": "bb-nba-maxime-raynaud",
+      "name": "Maxime Raynaud",
+      "rating": 77,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 5,
+        "initials": "MR"
+      }
+    },
+    {
       "id": "bb-nba-moritz-wagner",
       "name": "Moritz Wagner",
       "rating": 77,
@@ -590,6 +1835,111 @@
         "color": "#212F3D",
         "number": 90,
         "initials": "MW"
+      }
+    },
+    {
+      "id": "bb-nba-pelle-larsson",
+      "name": "Pelle Larsson",
+      "rating": 77,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 35,
+        "initials": "PL"
+      }
+    },
+    {
+      "id": "bb-nba-tristan-da-silva",
+      "name": "Tristan da Silva",
+      "rating": 77,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 9,
+        "initials": "TD"
+      }
+    },
+    {
+      "id": "bb-nba-tyus-jones",
+      "name": "Tyus Jones",
+      "rating": 77,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#7B2D26",
+        "number": 67,
+        "initials": "TJ"
+      }
+    },
+    {
+      "id": "bb-nba-ziaire-williams",
+      "name": "Ziaire Williams",
+      "rating": 77,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 24,
+        "initials": "ZW"
+      }
+    },
+    {
+      "id": "bb-nba-bones-hyland",
+      "name": "Bones Hyland",
+      "rating": 76,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 8,
+        "initials": "BH"
+      }
+    },
+    {
+      "id": "bb-nba-caleb-martin",
+      "name": "Caleb Martin",
+      "rating": 76,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 63,
+        "initials": "CM"
+      }
+    },
+    {
+      "id": "bb-nba-cam-whitmore",
+      "name": "Cam Whitmore",
+      "rating": 76,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 6,
+        "initials": "CW"
       }
     },
     {
@@ -623,6 +1973,21 @@
       }
     },
     {
+      "id": "bb-nba-dalton-knecht",
+      "name": "Dalton Knecht",
+      "rating": 76,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 94,
+        "initials": "DK"
+      }
+    },
+    {
       "id": "bb-nba-gary-payton-ii",
       "name": "Gary Payton II",
       "rating": 76,
@@ -638,6 +2003,21 @@
       }
     },
     {
+      "id": "bb-nba-jordan-walsh",
+      "name": "Jordan Walsh",
+      "rating": 76,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 68,
+        "initials": "JW"
+      }
+    },
+    {
       "id": "bb-nba-mike-conley",
       "name": "Mike Conley",
       "rating": 76,
@@ -650,6 +2030,96 @@
         "color": "#4A5D23",
         "number": 41,
         "initials": "MC"
+      }
+    },
+    {
+      "id": "bb-nba-nick-richards",
+      "name": "Nick Richards",
+      "rating": 76,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 68,
+        "initials": "NR"
+      }
+    },
+    {
+      "id": "bb-nba-robert-williams-iii",
+      "name": "Robert Williams III",
+      "rating": 76,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 28,
+        "initials": "RW"
+      }
+    },
+    {
+      "id": "bb-nba-terrence-shannon-jr",
+      "name": "Terrence Shannon Jr.",
+      "rating": 76,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 90,
+        "initials": "TS"
+      }
+    },
+    {
+      "id": "bb-nba-vit-krejci",
+      "name": "Vit Krejci",
+      "rating": 76,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 70,
+        "initials": "VK"
+      }
+    },
+    {
+      "id": "bb-nba-adem-bona",
+      "name": "Adem Bona",
+      "rating": 75,
+      "categories": [
+        "NBA"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 65,
+        "initials": "AB"
+      }
+    },
+    {
+      "id": "bb-nba-kenrich-williams",
+      "name": "Kenrich Williams",
+      "rating": 75,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 66,
+        "initials": "KW"
       }
     },
     {
@@ -683,6 +2153,21 @@
       }
     },
     {
+      "id": "bb-nba-jae-sean-tate",
+      "name": "Jae'Sean Tate",
+      "rating": 74,
+      "categories": [
+        "NBA"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 87,
+        "initials": "JT"
+      }
+    },
+    {
       "id": "bb-nba-kevon-looney",
       "name": "Kevon Looney",
       "rating": 74,
@@ -695,6 +2180,21 @@
         "color": "#B9770E",
         "number": 97,
         "initials": "KL"
+      }
+    },
+    {
+      "id": "bb-nba-bruce-thornton",
+      "name": "Bruce Thornton",
+      "rating": 73,
+      "categories": [
+        "NBA"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 21,
+        "initials": "BT"
       }
     },
     {
@@ -998,6 +2498,51 @@
       }
     },
     {
+      "id": "bb-el-wade-baldwin-iv",
+      "name": "Wade Baldwin IV",
+      "rating": 87,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 64,
+        "initials": "WB"
+      }
+    },
+    {
+      "id": "bb-el-carsen-edwards",
+      "name": "Carsen Edwards",
+      "rating": 86,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 0,
+        "initials": "CE"
+      }
+    },
+    {
+      "id": "bb-el-dario-saric",
+      "name": "Dario Šarić",
+      "rating": 86,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 39,
+        "initials": "DS"
+      }
+    },
+    {
       "id": "bb-el-evan-fournier",
       "name": "Evan Fournier",
       "rating": 86,
@@ -1010,6 +2555,21 @@
         "color": "#B9770E",
         "number": 97,
         "initials": "EF"
+      }
+    },
+    {
+      "id": "bb-el-guerschon-yabusele",
+      "name": "Guerschon Yabusele",
+      "rating": 86,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 95,
+        "initials": "GY"
       }
     },
     {
@@ -1028,6 +2588,51 @@
       }
     },
     {
+      "id": "bb-el-markus-howard",
+      "name": "Markus Howard",
+      "rating": 86,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 38,
+        "initials": "MH"
+      }
+    },
+    {
+      "id": "bb-el-tornike-shengelia",
+      "name": "Tornike Shengelia",
+      "rating": 86,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#7B2D26",
+        "number": 39,
+        "initials": "TS"
+      }
+    },
+    {
+      "id": "bb-el-carlik-jones",
+      "name": "Carlik Jones",
+      "rating": 85,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 88,
+        "initials": "CJ"
+      }
+    },
+    {
       "id": "bb-el-kostas-sloukas",
       "name": "Kostas Sloukas",
       "rating": 85,
@@ -1040,6 +2645,96 @@
         "color": "#7B2D26",
         "number": 63,
         "initials": "KS"
+      }
+    },
+    {
+      "id": "bb-el-lonnie-walker-iv",
+      "name": "Lonnie Walker IV",
+      "rating": 85,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 72,
+        "initials": "LW"
+      }
+    },
+    {
+      "id": "bb-el-nikola-milutinov",
+      "name": "Nikola Milutinov",
+      "rating": 85,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 40,
+        "initials": "NM"
+      }
+    },
+    {
+      "id": "bb-el-zach-leday",
+      "name": "Zach LeDay",
+      "rating": 85,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 81,
+        "initials": "ZL"
+      }
+    },
+    {
+      "id": "bb-el-scottie-wilbekin",
+      "name": "Scottie Wilbekin",
+      "rating": 84,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#7B2D26",
+        "number": 47,
+        "initials": "SW"
+      }
+    },
+    {
+      "id": "bb-el-andreas-obst",
+      "name": "Andreas Obst",
+      "rating": 83,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#7B2D26",
+        "number": 47,
+        "initials": "AO"
+      }
+    },
+    {
+      "id": "bb-el-josh-nebo",
+      "name": "Josh Nebo",
+      "rating": 83,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 52,
+        "initials": "JN"
       }
     },
     {
@@ -1058,6 +2753,36 @@
       }
     },
     {
+      "id": "bb-el-andres-feliz",
+      "name": "Andres Feliz",
+      "rating": 82,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 90,
+        "initials": "AF"
+      }
+    },
+    {
+      "id": "bb-el-darius-thompson",
+      "name": "Darius Thompson",
+      "rating": 82,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 84,
+        "initials": "DT"
+      }
+    },
+    {
       "id": "bb-el-luca-vildoza",
       "name": "Luca Vildoza",
       "rating": 82,
@@ -1070,6 +2795,51 @@
         "color": "#7B2D26",
         "number": 79,
         "initials": "LV"
+      }
+    },
+    {
+      "id": "bb-el-tyson-carter",
+      "name": "Tyson Carter",
+      "rating": 82,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#7B2D26",
+        "number": 79,
+        "initials": "TC"
+      }
+    },
+    {
+      "id": "bb-el-kameron-taylor",
+      "name": "Kameron Taylor",
+      "rating": 81,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 3,
+        "initials": "KT"
+      }
+    },
+    {
+      "id": "bb-el-tj-warren",
+      "name": "TJ Warren",
+      "rating": 81,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#7B2D26",
+        "number": 91,
+        "initials": "TW"
       }
     },
     {
@@ -1088,6 +2858,81 @@
       }
     },
     {
+      "id": "bb-el-amir-coffey",
+      "name": "Amir Coffey",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#7B2D26",
+        "number": 87,
+        "initials": "AC"
+      }
+    },
+    {
+      "id": "bb-el-armoni-brooks",
+      "name": "Armoni Brooks",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#7B2D26",
+        "number": 27,
+        "initials": "AB"
+      }
+    },
+    {
+      "id": "bb-el-austin-wiley",
+      "name": "Austin Wiley",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 11,
+        "initials": "AW"
+      }
+    },
+    {
+      "id": "bb-el-azuolas-tubelis",
+      "name": "Azuolas Tubelis",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 48,
+        "initials": "AT"
+      }
+    },
+    {
+      "id": "bb-el-chris-jones",
+      "name": "Chris Jones",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 13,
+        "initials": "CJ"
+      }
+    },
+    {
       "id": "bb-el-chuma-okeke",
       "name": "Chuma Okeke",
       "rating": 79,
@@ -1100,6 +2945,66 @@
         "color": "#2E4A7D",
         "number": 92,
         "initials": "CO"
+      }
+    },
+    {
+      "id": "bb-el-damion-baugh",
+      "name": "Damion Baugh",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 69,
+        "initials": "DB"
+      }
+    },
+    {
+      "id": "bb-el-davion-mintz",
+      "name": "Davion Mintz",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 17,
+        "initials": "DM"
+      }
+    },
+    {
+      "id": "bb-el-davis-bertans",
+      "name": "Davis Bertans",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 4,
+        "initials": "DB"
+      }
+    },
+    {
+      "id": "bb-el-donta-hall",
+      "name": "Donta Hall",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 65,
+        "initials": "DH"
       }
     },
     {
@@ -1148,6 +3053,36 @@
       }
     },
     {
+      "id": "bb-el-jared-rhoden",
+      "name": "Jared Rhoden",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 33,
+        "initials": "JR"
+      }
+    },
+    {
+      "id": "bb-el-joel-parra",
+      "name": "Joel Parra",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#212F3D",
+        "number": 74,
+        "initials": "JP"
+      }
+    },
+    {
       "id": "bb-el-kai-jones",
       "name": "Kai Jones",
       "rating": 79,
@@ -1178,6 +3113,36 @@
       }
     },
     {
+      "id": "bb-el-kobi-simmons",
+      "name": "Kobi Simmons",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 73,
+        "initials": "KS"
+      }
+    },
+    {
+      "id": "bb-el-konstantinos-mitoglou",
+      "name": "Konstantinos Mitoglou",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 83,
+        "initials": "KM"
+      }
+    },
+    {
       "id": "bb-el-kostas-papanikolaou",
       "name": "Kostas Papanikolaou",
       "rating": 79,
@@ -1190,6 +3155,36 @@
         "color": "#1F5E5A",
         "number": 40,
         "initials": "KP"
+      }
+    },
+    {
+      "id": "bb-el-moustapha-fall",
+      "name": "Moustapha Fall",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "C",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 94,
+        "initials": "MF"
+      }
+    },
+    {
+      "id": "bb-el-nathan-reuvers",
+      "name": "Nathan Reuvers",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 88,
+        "initials": "NR"
       }
     },
     {
@@ -1208,6 +3203,51 @@
       }
     },
     {
+      "id": "bb-el-p-j-dozier",
+      "name": "P.J. Dozier",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 59,
+        "initials": "PD"
+      }
+    },
+    {
+      "id": "bb-el-roman-sorkin",
+      "name": "Roman Sorkin",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 45,
+        "initials": "RS"
+      }
+    },
+    {
+      "id": "bb-el-trent-forrest",
+      "name": "Trent Forrest",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 38,
+        "initials": "TF"
+      }
+    },
+    {
       "id": "bb-el-vladimir-lucic",
       "name": "Vladimir Lučić",
       "rating": 79,
@@ -1220,6 +3260,21 @@
         "color": "#2E4A7D",
         "number": 16,
         "initials": "VL"
+      }
+    },
+    {
+      "id": "bb-el-wenyen-gabriel",
+      "name": "Wenyen Gabriel",
+      "rating": 79,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 77,
+        "initials": "WG"
       }
     },
     {
@@ -1238,6 +3293,21 @@
       }
     },
     {
+      "id": "bb-el-alen-smailagic",
+      "name": "Alen Smailagic",
+      "rating": 78,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 49,
+        "initials": "AS"
+      }
+    },
+    {
       "id": "bb-el-alessandro-pajola",
       "name": "Alessandro Pajola",
       "rating": 78,
@@ -1250,6 +3320,111 @@
         "color": "#212F3D",
         "number": 46,
         "initials": "AP"
+      }
+    },
+    {
+      "id": "bb-el-braxton-key",
+      "name": "Braxton Key",
+      "rating": 78,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#B9770E",
+        "number": 89,
+        "initials": "BK"
+      }
+    },
+    {
+      "id": "bb-el-daulton-hommes",
+      "name": "Daulton Hommes",
+      "rating": 78,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 8,
+        "initials": "DH"
+      }
+    },
+    {
+      "id": "bb-el-david-dejulius",
+      "name": "David DeJulius",
+      "rating": 78,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 42,
+        "initials": "DD"
+      }
+    },
+    {
+      "id": "bb-el-derek-willis",
+      "name": "Derek Willis",
+      "rating": 78,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 57,
+        "initials": "DW"
+      }
+    },
+    {
+      "id": "bb-el-ercan-osmani",
+      "name": "Ercan Osmani",
+      "rating": 78,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 86,
+        "initials": "EO"
+      }
+    },
+    {
+      "id": "bb-el-ishmail-wainright",
+      "name": "Ishmail Wainright",
+      "rating": 78,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 14,
+        "initials": "IW"
+      }
+    },
+    {
+      "id": "bb-el-jason-burnell",
+      "name": "Jason Burnell",
+      "rating": 78,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#2E4A7D",
+        "number": 16,
+        "initials": "JB"
       }
     },
     {
@@ -1280,6 +3455,51 @@
         "color": "#4A5D23",
         "number": 81,
         "initials": "JV"
+      }
+    },
+    {
+      "id": "bb-el-justin-robinson",
+      "name": "Justin Robinson",
+      "rating": 78,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 86,
+        "initials": "JR"
+      }
+    },
+    {
+      "id": "bb-el-kamar-baldwin",
+      "name": "Kamar Baldwin",
+      "rating": 78,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#4A5D23",
+        "number": 61,
+        "initials": "KB"
+      }
+    },
+    {
+      "id": "bb-el-kyle-allman-jr",
+      "name": "Kyle Allman Jr.",
+      "rating": 78,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "G",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#1F5E5A",
+        "number": 8,
+        "initials": "KA"
       }
     },
     {
@@ -1328,6 +3548,21 @@
       }
     },
     {
+      "id": "bb-el-both-gach",
+      "name": "Both Gach",
+      "rating": 77,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#5B2C6F",
+        "number": 54,
+        "initials": "BG"
+      }
+    },
+    {
       "id": "bb-el-daniel-hackett",
       "name": "Daniel Hackett",
       "rating": 77,
@@ -1370,6 +3605,21 @@
         "color": "#212F3D",
         "number": 82,
         "initials": "EU"
+      }
+    },
+    {
+      "id": "bb-el-mikael-jantunen",
+      "name": "Mikael Jantunen",
+      "rating": 77,
+      "categories": [
+        "EuroLeague"
+      ],
+      "position": "F",
+      "season": "2025/26",
+      "avatar": {
+        "color": "#8C4F2B",
+        "number": 15,
+        "initials": "MJ"
       }
     },
     {
