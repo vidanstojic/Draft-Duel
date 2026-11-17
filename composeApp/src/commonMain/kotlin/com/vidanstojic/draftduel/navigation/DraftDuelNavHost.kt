@@ -108,14 +108,14 @@ fun DraftDuelNavHost(
     }
 }
 
-/** The theme's loop during a match, the menu loop everywhere else. */
+/** The match music during a match, the menu loop everywhere else. */
 @Composable
 private fun MatchMusic(navController: NavHostController) {
     val container = LocalAppContainer.current
     val entry by navController.currentBackStackEntryAsState()
     val destination = entry?.destination
     val inMatch = destination != null && (destination.hasRoute<Route.Match>() || destination.hasRoute<Route.LocalMatch>())
-    val track = if (inMatch) MusicTrack.forMatch(container.sessionRepository.setup?.theme) else MusicTrack.MENU
+    val track = if (inMatch) MusicTrack.MATCH else MusicTrack.MENU
     LaunchedEffect(track) { container.feedback.music(track) }
 }
 

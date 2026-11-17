@@ -1,28 +1,13 @@
 package com.vidanstojic.draftduel.feedback
 
-import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.platform.AudioOutput
 import com.vidanstojic.draftduel.platform.HapticEffect
 import com.vidanstojic.draftduel.platform.HapticOutput
 
-/** Background music: one loop for the menus, one per theme during a match. */
+/** Background music: one loop for the menus, one for every match ("Tactical Rounds"). */
 enum class MusicTrack(val file: String) {
     MENU("music_menu"),
-    FOOTBALL("music_football"),
-    BASKETBALL("music_basketball"),
-    MOVIES("music_movies"),
-    FOOD("music_food"),
-    ;
-
-    companion object {
-        fun forMatch(theme: Theme?): MusicTrack = when (theme) {
-            Theme.FOOTBALL -> FOOTBALL
-            Theme.BASKETBALL, Theme.TENNIS -> BASKETBALL
-            Theme.MOVIES -> MOVIES
-            Theme.FOOD -> FOOD
-            null -> MENU
-        }
-    }
+    MATCH("music_match"),
 }
 
 /** Short sounds, each with its own level so the buzzer does not drown the chip clack. */

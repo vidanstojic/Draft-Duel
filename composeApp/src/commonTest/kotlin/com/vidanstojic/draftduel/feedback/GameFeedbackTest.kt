@@ -1,6 +1,5 @@
 package com.vidanstojic.draftduel.feedback
 
-import com.vidanstojic.draftduel.domain.model.Theme
 import com.vidanstojic.draftduel.platform.AudioOutput
 import com.vidanstojic.draftduel.platform.HapticEffect
 import com.vidanstojic.draftduel.platform.HapticOutput
@@ -34,21 +33,21 @@ class GameFeedbackTest {
         val (feedback, settings, log) = setup()
         feedback.load { ByteArray(1) }
         feedback.play(Sfx.BID)
-        feedback.vibrate(HapticEffect.TAP)
+        feedback.vibrate(HapticEffect.YOUR_TURN)
         settings.setSounds(false)
         settings.setVibration(false)
         feedback.play(Sfx.BID)
-        feedback.vibrate(HapticEffect.TAP)
-        assertEquals(listOf("load 14", "sound sfx_bid", "haptic TAP"), log.log)
+        feedback.vibrate(HapticEffect.YOUR_TURN)
+        assertEquals(listOf("load 11", "sound sfx_bid", "haptic YOUR_TURN"), log.log)
     }
 
     @Test
     fun music_waitsForTheFiles_andFollowsTheSwitch() = runTest {
         val (feedback, settings, log) = setup()
-        feedback.music(MusicTrack.forMatch(Theme.MOVIES))
+        feedback.music(MusicTrack.MATCH)
         assertTrue(log.log.isEmpty(), "nothing plays before the files are loaded")
         feedback.load { ByteArray(1) }
-        assertEquals("music music_movies", log.log.last())
+        assertEquals("music music_match", log.log.last())
         settings.setMusic(false)
         feedback.applyMusic()
         assertEquals("stop", log.log.last())

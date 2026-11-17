@@ -1,7 +1,8 @@
 """Synthesize Draft Duel's music loops and sound effects.
 
 Everything is generated from scratch here (oscillators, noise, plucked strings), so the audio is
-original and free of third-party licenses. Output goes to composeResources/files/audio as MP3,
+original and free of third-party licenses. The match music (music_match.mp3, "Tactical Rounds")
+is not generated here; the theme loops below are kept as sketches but no longer written. Output goes to composeResources/files/audio as MP3,
 which both Android (MediaPlayer, SoundPool) and iOS (AVAudioPlayer) play.
 
 Usage (from the repo root; needs numpy, scipy and ffmpeg with libmp3lame):
@@ -339,10 +340,6 @@ def write_mp3(name: str, x: np.ndarray, bitrate: str) -> None:
 def main() -> int:
     music = {
         "music_menu": (music_menu, 16, 92),
-        "music_football": (music_football, 16, 124),
-        "music_basketball": (music_basketball, 16, 100),
-        "music_movies": (music_movies, 8, 76),
-        "music_food": (music_food, 16, 112),
     }
     for name, (render, bars, bpm) in music.items():
         write_mp3(name, finish(loop(render, bars, bpm), -3.0), "96k")
