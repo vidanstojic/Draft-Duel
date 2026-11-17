@@ -44,6 +44,12 @@ MODES
 No accounts, no ads, no data collected.
 ```
 
+## Release notes for 0.2.0 (2) (≤ 500 characters)
+
+```
+Thanks for the feedback! New: music, sounds and vibration (all can be switched off in Settings), a How to play guide, pause in bot and same-device matches, a real final score in football and basketball, the same number of cards for both players, no repeated cards and much bigger packs: 150 footballers, 250 basketball players, 150 movies, 20 dishes. Fixes: cut-off home text, bot descriptions per theme, timer ring in basketball.
+```
+
 ## Release notes for 0.1.0 (1) (≤ 500 characters)
 
 ```
