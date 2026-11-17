@@ -27,8 +27,8 @@ enum class HapticEffect {
     /** Each of the last seconds of your turn. */
     TICK,
 
-    /** Your own bid or pass. */
-    TAP,
+    /** It is your turn now: a short, soft buzz so you notice without looking. */
+    YOUR_TURN,
 
     /** You won a card. */
     SUCCESS,

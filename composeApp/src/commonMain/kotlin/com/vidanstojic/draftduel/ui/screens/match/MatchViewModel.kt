@@ -104,14 +104,15 @@ class MatchViewModel(
 
     fun onAssign(toSelf: Boolean) = driver.dispatch(MatchAction.Assign(chooser = Seat.A, to = if (toSelf) Seat.A else Seat.B))
 
-    /** The player sits in seat A: their own moves, cards and clock get sound and vibration. */
+    /**
+     * The player sits in seat A. The phone buzzes softly when the turn comes to them (not after
+     * their own move), and for their cards and clock.
+     */
     private fun onMatchEvent(event: MatchEvent) {
         val feedback = feedback ?: return
         when (event) {
-            is MatchEvent.Raised -> {
-                feedback.play(Sfx.BID)
-                if (event.seat == Seat.A) feedback.vibrate(HapticEffect.TAP)
-            }
+            is MatchEvent.TurnStarted -> if (event.seat == Seat.A) feedback.vibrate(HapticEffect.YOUR_TURN)
+            is MatchEvent.Raised -> feedback.play(Sfx.BID)
             is MatchEvent.Passed -> feedback.play(Sfx.PASS)
             is MatchEvent.CardAwarded -> if (event.winner == Seat.A) {
                 feedback.play(Sfx.CARD_WON)

@@ -143,14 +143,15 @@ class LocalMatchViewModel(
         driver.setPaused(PauseReason.HANDOFF, false)
     }
 
-    /** Both players share the phone, so every move and every clock gets the same feedback. */
+    /**
+     * Both players share the phone: it buzzes softly whenever the turn passes to the next player,
+     * and every move and every clock gets the same sounds.
+     */
     private fun onMatchEvent(event: MatchEvent) {
         val feedback = feedback ?: return
         when (event) {
-            is MatchEvent.Raised -> {
-                feedback.play(Sfx.BID)
-                feedback.vibrate(HapticEffect.TAP)
-            }
+            is MatchEvent.TurnStarted -> feedback.vibrate(HapticEffect.YOUR_TURN)
+            is MatchEvent.Raised -> feedback.play(Sfx.BID)
             is MatchEvent.Passed -> feedback.play(Sfx.PASS)
             is MatchEvent.CardAwarded -> feedback.play(Sfx.CARD_WON)
             is MatchEvent.LastSeconds -> {

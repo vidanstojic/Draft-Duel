@@ -134,7 +134,7 @@ private class AndroidHaptics(context: Context) : HapticOutput {
             if (amplitudes) VibrationEffect.createWaveform(timings, levels, -1) else VibrationEffect.createWaveform(timings, -1)
         val vibration = when (effect) {
             HapticEffect.TICK -> shot(12, 70)
-            HapticEffect.TAP -> shot(18, 110)
+            HapticEffect.YOUR_TURN -> shot(22, 90)
             HapticEffect.SUCCESS -> pattern(longArrayOf(0, 25, 70, 40), intArrayOf(0, 140, 0, 220))
             HapticEffect.WARNING -> pattern(longArrayOf(0, 90, 80, 160), intArrayOf(0, 255, 0, 255))
         }

@@ -118,6 +118,7 @@ class MatchDriver(
     private suspend fun runTurn(state: MatchState) = coroutineScope {
         _millisLeft.value = turnMillis
         val seatToAct = seatToAct(state)
+        seatToAct?.let { onEvent(MatchEvent.TurnStarted(it)) }
         if (bot != null && botSeat != null && seatToAct == botSeat) {
             launch {
                 pausableDelay(bot.thinkTimeMillis())
@@ -163,6 +164,9 @@ class MatchDriver(
 
 /** Things at the table worth a sound or a buzz. */
 sealed interface MatchEvent {
+    /** [seat] is now to act: to bid, pass, hand over or choose who gets a free card. */
+    data class TurnStarted(val seat: Seat) : MatchEvent
+
     data class Raised(val seat: Seat) : MatchEvent
 
     /** A pass, a skip or a paid hand-over. */

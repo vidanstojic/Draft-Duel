@@ -111,7 +111,7 @@ private class IosHaptics : HapticOutput {
     override fun perform(effect: HapticEffect) {
         when (effect) {
             HapticEffect.TICK -> UISelectionFeedbackGenerator().selectionChanged()
-            HapticEffect.TAP -> UIImpactFeedbackGenerator(style = UIImpactFeedbackStyle.UIImpactFeedbackStyleLight).impactOccurred()
+            HapticEffect.YOUR_TURN -> UIImpactFeedbackGenerator(style = UIImpactFeedbackStyle.UIImpactFeedbackStyleLight).impactOccurred()
             HapticEffect.SUCCESS -> UINotificationFeedbackGenerator().notificationOccurred(UINotificationFeedbackType.UINotificationFeedbackTypeSuccess)
             HapticEffect.WARNING -> UINotificationFeedbackGenerator().notificationOccurred(UINotificationFeedbackType.UINotificationFeedbackTypeWarning)
         }

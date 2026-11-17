@@ -46,11 +46,11 @@
     <!-- Settings -->
     <string name="settings_sound_label">Sound and touch</string>
     <string name="settings_music">Music</string>
-    <string name="settings_music_hint">A loop for the menus and one for each theme</string>
+    <string name="settings_music_hint">Music in the menus and during matches</string>
     <string name="settings_sounds">Sound effects</string>
     <string name="settings_sounds_hint">Bids, cards won, the last seconds of your turn</string>
     <string name="settings_vibration">Vibration</string>
-    <string name="settings_vibration_hint">When your time runs out, the last seconds and cards you win</string>
+    <string name="settings_vibration_hint">When it is your turn, the last seconds, time running out and cards you win</string>
     <!-- Themes -->
     <string name="theme_football">Football</string>
     <string name="theme_basketball">Basketball</string>

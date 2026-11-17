@@ -208,8 +208,10 @@ Partija se pauzira i sama kad aplikacija ode u pozadinu. *Find opponent* nema pa
 
 ## Zvuk i vibracija
 
-Sav zvuk je sintetisan u `tools/audio/make_audio.py` (oscilatori, šum, Karplus-Strong žice), pa je naš i bez licenci.
-Muzika: meni (lounge, 92 bpm), fudbal (stadion, 124), košarka (funk, 100), filmovi (gudači i timpani, 76), hrana (bossa, 112).
+Muzika u partiji je „Tactical Rounds“ (`music_match.mp3`, 2:55, ista za sve teme, ponavlja se u krug).
+Muzika menija i efekti su sintetisani u `tools/audio/make_audio.py` (oscilatori, šum, Karplus-Strong žice), pa su naši i bez licenci.
+Vibracija: kratko i blago kad igrač dođe na potez (u *Same device* pri svakoj promeni poteza), otkucaji poslednje 3 sekunde,
+jače kad istekne vreme i dvostruko kad osvoji kartu.
 Efekti: licitacija, pas, osvojena / izgubljena karta, otkucaj poslednje 3 sekunde, istek vremena, pobeda / poraz / nerešeno.
 Android: MediaPlayer i SoundPool, vibracija sa dozvolom `VIBRATE`. iOS: AVAudioPlayer (ambient sesija) i UIKit feedback generatori.
 Sve troje se gasi u podešavanjima.
